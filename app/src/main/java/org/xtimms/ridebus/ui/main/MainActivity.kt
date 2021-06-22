@@ -4,10 +4,12 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -15,16 +17,29 @@ import com.bluelinelabs.conductor.Router
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import dev.chrisbanes.insetter.applyInsetter
+import kotlinx.coroutines.delay
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.BaseViewBindingActivity
+import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
+import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.more.MoreController
+import org.xtimms.ridebus.ui.routes.RoutesController
 import org.xtimms.ridebus.util.system.InternalResourceHelper
 import org.xtimms.ridebus.util.system.getResourceColor
 
 class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     private lateinit var router: Router
+
+    private val startScreenId by lazy {
+        when (preferences.startScreen()) {
+            2 -> R.id.nav_stops
+            3 -> R.id.nav_favorite
+            else -> R.id.nav_routes
+        }
+    }
 
     lateinit var tabAnimator: ViewHeightAnimator
     private var bottomNavAnimator: ViewHeightAnimator? = null
@@ -88,18 +103,22 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
             val currentRoot = router.backstack.firstOrNull()
             if (currentRoot?.tag()?.toIntOrNull() != id) {
-                /*when (id) {
+                when (id) {
                     R.id.nav_routes -> setRoot(RoutesController(), id)
-                    R.id.nav_stops -> setRoot(StopsController(), id)
-                    R.id.nav_favorite -> setRoot(FavoriteController(), id)
+                    //R.id.nav_stops -> setRoot(StopsController(), id)
+                    //R.id.nav_favorite -> setRoot(FavoriteController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
-                }*/
+                }
             }
             true
         }
 
         val container: ViewGroup = binding.controllerContainer
         router = Conductor.attachRouter(this, container, savedInstanceState)
+        if (!router.hasRootController()) {
+            // Set start screen
+            setSelectedNavItem(startScreenId)
+        }
 
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
@@ -132,6 +151,14 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Binding sometimes isn't actually instantiated yet somehow
+        binding?.bottomNav.setOnNavigationItemSelectedListener(null)
+        binding?.toolbar.setNavigationOnClickListener(null)
+    }
+
     fun showBottomNav(visible: Boolean, collapse: Boolean = false) {
         binding.bottomNav.let {
             val layoutParams = it.layoutParams as CoordinatorLayout.LayoutParams
@@ -152,6 +179,12 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         }
     }
 
+    fun setSelectedNavItem(itemId: Int) {
+        if (!isFinishing) {
+            binding.bottomNav.selectedItemId = itemId
+        }
+    }
+
     private fun setRoot(controller: Controller, id: Int) {
         router.setRoot(controller.withFadeTransaction().tag(id.toString()))
     }
@@ -161,6 +194,23 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
         // Always show appbar again when changing controllers
         binding.appbar.setExpanded(true)
+
+        if ((from == null || from is RootController) && to !is RootController) {
+            showBottomNav(visible = true, collapse = true)
+        }
+        if (to is RootController) {
+            // Always show bottom nav again when returning to a RootController
+            showBottomNav(visible = true, collapse = from !is RootController)
+        }
+
+        when (to) {
+            is NoToolbarElevationController -> {
+                binding.appbar.disableElevation()
+            }
+            else -> {
+                binding.appbar.enableElevation(false)
+            }
+        }
 
     }
 

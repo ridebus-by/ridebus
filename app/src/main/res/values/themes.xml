@@ -100,19 +100,19 @@
     </style>
 
     <!--== Strawberry Daiquiri theme ==-->
-    <style name="Theme.RideBus.Light.StrawberryDaiquiri">
+    <style name="Theme.RideBus.Light.Pink">
         <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_strawberry</item>
+        <item name="colorPrimary">@color/accent_pink</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_strawberry</item>
+        <item name="colorControlHighlight">@color/ripple_colored_pink</item>
     </style>
 
-    <!--== Yotsuba theme ==-->
-    <style name="Theme.RideBus.Light.Yotsuba">
+    <!--== Orange theme ==-->
+    <style name="Theme.RideBus.Light.Orange">
         <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_yotsuba</item>
+        <item name="colorPrimary">@color/accent_orange</item>
         <item name="colorTertiary">@color/md_blue_A400</item>
-        <item name="colorControlHighlight">@color/ripple_colored_yotsuba</item>
+        <item name="colorControlHighlight">@color/ripple_colored_orange</item>
     </style>
 
     <!--=============-->
