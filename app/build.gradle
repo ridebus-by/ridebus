@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "org.xtimms.ridebus"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode gitCommits
         versionName "0.1"
@@ -67,8 +67,13 @@ dependencies {
     //noinspection LifecycleAnnotationProcessorWithJava8
     kapt 'androidx.lifecycle:lifecycle-compiler:2.3.1'
 
+    implementation 'dev.chrisbanes.insetter:insetter:0.6.0'
+
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0'
+
+    implementation 'com.bluelinelabs:conductor:2.1.5'
+    implementation 'com.bluelinelabs:conductor-support:2.1.5'
 
     implementation 'io.insert-koin:koin-android:3.0.2'
     implementation 'io.insert-koin:koin-android-ext:3.0.2'

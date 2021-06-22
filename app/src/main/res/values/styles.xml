@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--========-->
+    <!--Toolbars-->
+    <!--========-->
+
+    <style name="ThemeOverlay.RideBus.ActionBar" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:colorControlHighlight">?attr/rippleColorToolbar</item>
+    </style>
+
+    <style name="Widget.RideBus.Toolbar.Button.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">?attr/colorOnToolbar</item>
+    </style>
+
+    <style name="Widget.RideBus.ActionMode" parent="Widget.AppCompat.ActionMode">
+        <item name="background">?attr/colorToolbar</item>
+        <item name="titleTextStyle">@style/TextAppearance.RideBus.ActionMode.Title</item>
+    </style>
+
+    <style name="Theme.RideBus.ActionMode.CloseButton" parent="Widget.AppCompat.ActionButton.CloseMode">
+        <item name="android:tint">?attr/colorOnToolbar</item>
+    </style>
+
+    <style name="Theme.RideBus.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">?attr/colorOnToolbar</item>
+    </style>
+
+    <style name="Widget.RideBus.Toolbar.Primary" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:elevation">0dp</item>
+    </style>
+
+
+    <!--===========-->
+    <!--AlertDialog-->
+    <!--===========-->
+    <style name="ThemeOverlay.RideBus.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+
+    <!--===============-->
+    <!--Text Appearance-->
+    <!--===============-->
+    <style name="TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.Regular">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.Regular.Body1">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Regular.Body1.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Regular.Body1.Secondary">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.Regular.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.Regular.Caption.Hint">
+        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
+    </style>
+
+    <style name="TextAppearance.Regular.SubHeading">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Medium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Title">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Body2">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Body2.Hint">
+        <item name="android:textColor">?android:attr/textColorHint</item>
+    </style>
+
+    <style name="TextAppearance.Medium.SubHeading">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.Widget.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:letterSpacing">-0.006</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TextAppearance.Widget.Menu" parent="TextAppearance.AppCompat.Menu">
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="TextAppearance.Widget.Tab" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.RideBus.ActionMode.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">?attr/colorOnToolbar</item>
+    </style>
+
+
+    <!--=======-->
+    <!--Widgets-->
+    <!--=======-->
+
+    <style name="Widget.RideBus.CardView" parent="CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="Widget.RideBus.CardView.Item">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="Widget.RideBus.GridView" parent="android:Widget">
+        <item name="android:smoothScrollbar">true</item>
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+    </style>
+
+    <style name="Widget.RideBus.GridView.Source">
+        <item name="android:gravity">top|left</item>
+        <item name="android:smoothScrollbar">true</item>
+        <item name="android:cacheColorHint">?android:attr/textColorHint</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:horizontalSpacing">0dp</item>
+        <item name="android:verticalSpacing">0dp</item>
+    </style>
+
+
+    <style name="Widget.RideBus.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:background">@drawable/list_item_selector</item>
+    </style>
+
+
+    <style name="Widget.RideBus.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:background">@drawable/snackbar_background</item>
+        <item name="actionTextColorAlpha">1</item>
+    </style>
+
+    <style name="Widget.RideBus.Snackbar.TextView" parent="Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.RideBus.Chip.Action" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipStrokeColor">?attr/colorPrimary</item>
+        <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="rippleColor">?attr/colorControlHighlight</item>
+
+        <!-- Custom chip states -->
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+
+        <!-- Smaller text/height -->
+        <item name="chipCornerRadius">12dp</item>
+        <item name="chipMinHeight">24dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Regular.Caption</item>
+
+        <!-- Collapse horizontal margin -->
+        <item name="chipMinTouchTargetSize">30dp</item>
+    </style>
+
+
+    <style name="Widget.RideBus.BasicSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="useMaterialThemeColors">false</item>
+    </style>
+
+
+    <style name="Widget.RideBus.CircularProgressIndicator.Small" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="indicatorSize">16dp</item>
+        <item name="trackThickness">2dp</item>
+    </style>
+
+
+    <!--==============-->
+    <!--Widgets.Button-->
+    <!--==============-->
+    <style name="Widget.RideBus.Button.ActionButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="iconGravity">top</item>
+        <item name="iconTint">@color/button_action_selector</item>
+        <item name="iconPadding">4dp</item>
+        <item name="android:textColor">@color/button_action_selector</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.RideBus.Button.InlineButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="backgroundTint">@null</item>
+        <item name="rippleColor">@null</item>
+    </style>
+
+
+    <!--=================-->
+    <!--Widgets.TabLayout-->
+    <!--=================-->
+    <style name="Widget.RideBus.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabGravity">center</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabMinWidth">75dp</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
+    </style>
+
+    <style name="Widget.RideBus.TabLayout.Colored" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="tabGravity">center</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabMinWidth">75dp</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
+    </style>
+
+    <!--============-->
+    <!--FastScroller-->
+    <!--============-->
+    <style name="FloatingTextView" parent="TextAppearance.AppCompat">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/material_bubble_drawable</item>
+        <item name="android:elevation">5dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+</resources>

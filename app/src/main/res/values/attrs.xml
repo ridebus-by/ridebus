@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="colorFilterActive" format="reference|integer"/>
+    <attr name="colorTertiary" format="reference|integer"/>
+    <attr name="colorOnTertiary" format="reference|integer"/>
+
+    <!-- Ripple color for toolbar elements -->
+    <attr name="rippleColorToolbar" format="reference|color"/>
+
+    <!-- Toolbar color. Not actually used by the toolbar. -->
+    <attr name="colorToolbar" format="reference|color"/>
+
+    <!-- For anything that is drawn on the toolbar -->
+    <attr name="colorOnToolbar" format="reference|integer"/>
+
+</resources>

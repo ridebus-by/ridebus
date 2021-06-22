@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RideBusRewrite">
+        android:theme="@style/Theme.Base.Light">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
