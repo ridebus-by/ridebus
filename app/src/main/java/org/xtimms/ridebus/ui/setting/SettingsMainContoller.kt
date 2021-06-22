@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.setting.search.SettingsSearchController
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.getResourceColor
 
@@ -29,7 +30,7 @@ class SettingsMainController : SettingsController() {
         router.pushController(controller.withFadeTransaction())
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         // Inflate menu
         inflater.inflate(R.menu.settings_main, menu)
 
@@ -54,5 +55,5 @@ class SettingsMainController : SettingsController() {
                 }
             }
         )
-    }*/
+    }
 }

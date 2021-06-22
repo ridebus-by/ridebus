@@ -29,4 +29,6 @@ class PreferencesHelper(val context: Context) {
 
     fun themeDark() = flowPrefs.getEnum(Keys.themeDark, Values.DarkThemeVariant.default)
 
+    fun lastSearchQuerySearchSettings() = flowPrefs.getString("last_search_query", "")
+
 }

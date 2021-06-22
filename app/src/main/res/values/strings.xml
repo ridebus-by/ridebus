@@ -27,4 +27,6 @@
     <string name="theme_dark_blue">Dark Blue</string>
     <string name="theme_dark_greenapple">Green Apple</string>
     <string name="theme_dark_amoled">AMOLED</string>
+    <string name="action_search">Search</string>
+    <string name="action_search_settings">Search settings</string>
 </resources>

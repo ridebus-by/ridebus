@@ -1,7 +1,9 @@
 package org.xtimms.ridebus.util.system
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
+import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.core.graphics.alpha
@@ -23,3 +25,6 @@ fun Context.getResourceColor(@AttrRes resource: Int, alphaFactor: Float = 1f): I
 
     return color
 }
+
+val Resources.isLTR
+    get() = configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
