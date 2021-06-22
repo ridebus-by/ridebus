@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.mikepenz.aboutlibraries.plugin'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
@@ -67,7 +68,13 @@ dependencies {
     //noinspection LifecycleAnnotationProcessorWithJava8
     kapt 'androidx.lifecycle:lifecycle-compiler:2.3.1'
 
+    implementation 'uy.kohesive.injekt:injekt-core:1.16.+'
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
     implementation 'dev.chrisbanes.insetter:insetter:0.6.0'
+
+    implementation 'com.mikepenz:aboutlibraries:8.9.0'
 
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0'

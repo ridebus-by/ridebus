@@ -4,9 +4,9 @@
     <item android:drawable="@color/splash" />
 
     <item
-        android:width="72dp"
-        android:height="72dp"
-        android:drawable="@drawable/ic_launcher_foreground"
+        android:width="128dp"
+        android:height="128dp"
+        android:drawable="@drawable/ic_ridebus"
         android:gravity="center" />
 
 </layer-list>

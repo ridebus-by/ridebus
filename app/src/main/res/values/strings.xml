@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">RideBus Rewrite</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">RideBus</string>
+    <string name="title_routes">Routes</string>
+    <string name="title_stops">Stops</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_more">More</string>
 </resources>
