@@ -21,6 +21,8 @@ class PreferencesHelper(val context: Context) {
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     private val flowPrefs = FlowSharedPreferences(prefs)
 
+    fun confirmExit() = prefs.getBoolean(Keys.confirmExit, false)
+
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
     fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
@@ -30,5 +32,7 @@ class PreferencesHelper(val context: Context) {
     fun themeDark() = flowPrefs.getEnum(Keys.themeDark, Values.DarkThemeVariant.default)
 
     fun lastSearchQuerySearchSettings() = flowPrefs.getString("last_search_query", "")
+
+    fun hideBottomBar() = flowPrefs.getBoolean(Keys.hideBottomBar, true)
 
 }

@@ -29,4 +29,5 @@
     <string name="theme_dark_amoled">AMOLED</string>
     <string name="action_search">Search</string>
     <string name="action_search_settings">Search settings</string>
+    <string name="confirm_exit">Press back again to exit</string>
 </resources>
