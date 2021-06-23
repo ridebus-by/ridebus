@@ -43,6 +43,7 @@ class MoreController :
                 iconRes = R.drawable.ic_info
                 iconTint = tintColor
                 titleRes = R.string.pref_category_about
+                onClick { router.pushController(AboutController().withFadeTransaction()) }
             }
         }
     }

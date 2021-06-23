@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.asImmediateFlow
 import org.xtimms.ridebus.databinding.MainActivityBinding
-import org.xtimms.ridebus.ui.base.BaseViewBindingActivity
+import org.xtimms.ridebus.ui.base.activity.BaseViewBindingActivity
 import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favorite.FavoriteController
 import org.xtimms.ridebus.ui.more.MoreController

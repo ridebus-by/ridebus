@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.asImmediateFlow
 import org.xtimms.ridebus.util.preference.*
+import org.xtimms.ridebus.util.system.LocaleHelper
+import java.util.*
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
 import org.xtimms.ridebus.data.preference.PreferenceValues as Values
 
@@ -61,8 +63,8 @@ class SettingsGeneralController : SettingsController() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     entriesRes = arrayOf(
                         R.string.theme_system,
-                        R.string.theme_light,
-                        R.string.theme_dark
+                        R.string.theme_dark_mode_off,
+                        R.string.theme_dark_mode_on
                     )
                     entryValues = arrayOf(
                         Values.ThemeMode.system.name,
@@ -144,6 +146,65 @@ class SettingsGeneralController : SettingsController() {
                     }
                     true
                 }
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.pref_category_locale
+
+            listPreference {
+                key = Keys.lang
+                titleRes = R.string.pref_language
+
+                val langs = mutableListOf<Pair<String, String>>()
+                langs += Pair(
+                    "",
+                    "${context.getString(R.string.system_default)} (${LocaleHelper.getDisplayName("")})"
+                )
+                // Due to compatibility issues:
+                // - Hebrew: `he` is copied into `iw` at build time
+                langs += arrayOf(
+                    "be",
+                    "en-US",
+                    "ru"
+                )
+                    .map {
+                        Pair(it, LocaleHelper.getDisplayName(it))
+                    }
+                    .sortedBy { it.second }
+
+                entryValues = langs.map { it.first }.toTypedArray()
+                entries = langs.map { it.second }.toTypedArray()
+                defaultValue = ""
+                summary = "%s"
+
+                onChange { newValue ->
+                    val activity = activity ?: return@onChange false
+                    val app = activity.application
+                    LocaleHelper.changeLocale(newValue.toString())
+                    LocaleHelper.updateConfiguration(app, app.resources.configuration)
+                    activity.recreate()
+                    true
+                }
+            }
+
+            listPreference {
+                key = Keys.dateFormat
+                titleRes = R.string.pref_date_format
+                entryValues = arrayOf("", "MM/dd/yy", "dd/MM/yy", "yyyy-MM-dd", "dd MMM yyyy", "MMM dd, yyyy")
+
+                val now = Date().time
+                entries = entryValues.map { value ->
+                    val formattedDate = preferences.dateFormat(value.toString()).format(now)
+                    if (value == "") {
+                        "${context.getString(R.string.system_default)} ($formattedDate)"
+                    } else {
+                        "$value ($formattedDate)"
+                    }
+                }.toTypedArray()
+
+                defaultValue = ""
+                summary = "%s"
             }
         }
     }

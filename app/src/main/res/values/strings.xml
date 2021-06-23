@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RideBus</string>
+    <string name="app_name" translatable="false">RideBus</string>
     <string name="title_routes">Routes</string>
     <string name="title_stops">Stops</string>
     <string name="title_favorite">Favorite</string>
@@ -13,6 +13,8 @@
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_hide_bottom_bar_on_scroll">Hide bottom bar on scroll</string>
     <string name="pref_manage_notifications">Manage notifications</string>
+    <string name="theme_dark_mode_off">Off</string>
+    <string name="theme_dark_mode_on">On</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_system">Follow system</string>
@@ -30,4 +32,16 @@
     <string name="action_search">Search</string>
     <string name="action_search_settings">Search settings</string>
     <string name="confirm_exit">Press back again to exit</string>
+    <string name="channel_crash_logs">Crash logs</string>
+    <string name="action_open_log">Open log</string>
+    <string name="action_share">Share</string>
+    <string name="crash_log_saved">Crash logs saved</string>
+    <string name="copied_to_clipboard">Copied to clipboard:\n%1$s</string>
+    <string name="clipboard_copy_error">Failed to copy to clipboard</string>
+    <string name="licenses">Open source licenses</string>
+    <string name="pref_category_locale">Locale</string>
+    <string name="pref_date_format">Date format</string>
+    <string name="system_default">Default</string>
+    <string name="pref_language">Language</string>
+    <string name="version">Version</string>
 </resources>

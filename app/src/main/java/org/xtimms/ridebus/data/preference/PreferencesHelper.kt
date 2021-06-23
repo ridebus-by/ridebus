@@ -6,6 +6,9 @@ import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
 import org.xtimms.ridebus.data.preference.PreferenceValues as Values
 
@@ -34,5 +37,12 @@ class PreferencesHelper(val context: Context) {
     fun lastSearchQuerySearchSettings() = flowPrefs.getString("last_search_query", "")
 
     fun hideBottomBar() = flowPrefs.getBoolean(Keys.hideBottomBar, true)
+
+    fun dateFormat(format: String = flowPrefs.getString(Keys.dateFormat, "").get()): DateFormat = when (format) {
+        "" -> DateFormat.getDateInstance(DateFormat.SHORT)
+        else -> SimpleDateFormat(format, Locale.getDefault())
+    }
+
+    fun lang() = prefs.getString(Keys.lang, "")
 
 }

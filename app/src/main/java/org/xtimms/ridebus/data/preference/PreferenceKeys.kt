@@ -14,4 +14,8 @@ object PreferenceKeys {
 
     const val hideBottomBar = "pref_hide_bottom_bar_on_scroll"
 
+    const val dateFormat = "app_date_format"
+
+    const val lang = "app_language"
+
 }

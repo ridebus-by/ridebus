@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.base
+package org.xtimms.ridebus.ui.base.activity
 
 import android.content.res.Configuration.UI_MODE_NIGHT_MASK
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
