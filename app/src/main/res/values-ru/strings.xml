@@ -12,8 +12,8 @@
     <string name="pref_start_screen">Стартовый экран</string>
     <string name="pref_hide_bottom_bar_on_scroll">Скрыть нижнюю панель при прокрутке</string>
     <string name="pref_manage_notifications">Управление уведомлениями</string>
-    <string name="theme_dark_mode_off">Выключено</string>
-    <string name="theme_dark_mode_on">Включено</string>
+    <string name="theme_dark_mode_off">Выключен</string>
+    <string name="theme_dark_mode_on">Включён</string>
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Тёмная</string>
     <string name="theme_system">В соответствии с системной темой</string>
