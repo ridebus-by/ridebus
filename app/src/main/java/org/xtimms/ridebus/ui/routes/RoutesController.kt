@@ -11,6 +11,7 @@ import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.ui.routes.bus.BusController
 
 class RoutesController:
     RxController<PagerControllerBinding>(),
@@ -67,15 +68,15 @@ class RoutesController:
         }
 
         override fun configureRouter(router: Router, position: Int) {
-            /*if (!router.hasRootController()) {
+            if (!router.hasRootController()) {
                 val controller: Controller = when (position) {
                     BUS_CONTROLLER -> BusController()
-                    ROUTE_TAXI_CONTROLLER -> RouteTaxiController()
-                    EXPRESS_CONTROLLER -> ExpressController()
+                    ROUTE_TAXI_CONTROLLER -> BusController()
+                    EXPRESS_CONTROLLER -> BusController()
                     else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))
-            }*/
+            }
         }
 
         override fun getPageTitle(position: Int): CharSequence {

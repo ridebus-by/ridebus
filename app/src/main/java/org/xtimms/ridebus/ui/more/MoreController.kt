@@ -32,19 +32,17 @@ class MoreController :
 
         add(MoreHeaderPreference(context))
 
-        preferenceCategory {
-            preference {
-                titleRes = R.string.label_settings
-                iconRes = R.drawable.ic_settings
-                iconTint = tintColor
-                onClick { router.pushController(SettingsMainController().withFadeTransaction()) }
-            }
-            preference {
-                iconRes = R.drawable.ic_info
-                iconTint = tintColor
-                titleRes = R.string.pref_category_about
-                onClick { router.pushController(AboutController().withFadeTransaction()) }
-            }
+        preference {
+            titleRes = R.string.label_settings
+            iconRes = R.drawable.ic_settings
+            iconTint = tintColor
+            onClick { router.pushController(SettingsMainController().withFadeTransaction()) }
+        }
+        preference {
+            iconRes = R.drawable.ic_info
+            iconTint = tintColor
+            titleRes = R.string.pref_category_about
+            onClick { router.pushController(AboutController().withFadeTransaction()) }
         }
     }
 

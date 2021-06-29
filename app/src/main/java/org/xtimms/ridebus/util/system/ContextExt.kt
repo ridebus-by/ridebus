@@ -84,6 +84,12 @@ fun Context.getResourceColor(@AttrRes resource: Int, alphaFactor: Float = 1f): I
     return color
 }
 
+val Float.dpToPxEnd: Float
+    get() = (
+            this * Resources.getSystem().displayMetrics.density *
+                    if (Resources.getSystem().isLTR) 1 else -1
+            )
+
 val Context.notificationManager: NotificationManager
     get() = getSystemService()!!
 
