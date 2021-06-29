@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!--============-->
     <!-- Base Theme -->
     <!--============-->
@@ -37,6 +38,7 @@
         <item name="android:navigationBarColor">@color/md_black_1000</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
@@ -86,6 +88,7 @@
         <item name="rippleColorToolbar">@color/md_white_1000_12</item>
 
         <!-- Themes -->
+        <item name="actionModeStyle">@style/Widget.RideBus.ActionMode</item>
         <item name="toolbarNavigationButtonStyle">@style/Widget.RideBus.Toolbar.Button.Navigation</item>
         <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Primary</item>
         <item name="toolbarStyle">@style/Widget.RideBus.Toolbar.Primary</item>
@@ -103,15 +106,15 @@
     <style name="Theme.RideBus.Light.Pink">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_pink</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorTertiary">@color/accent_lightblue</item>
         <item name="colorControlHighlight">@color/ripple_colored_pink</item>
     </style>
 
-    <!--== Orange theme ==-->
+    <!--== Yotsuba theme ==-->
     <style name="Theme.RideBus.Light.Orange">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_orange</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorTertiary">@color/accent_lightblue</item>
         <item name="colorControlHighlight">@color/ripple_colored_orange</item>
     </style>
 
@@ -153,6 +156,7 @@
         <item name="android:navigationBarColor">@color/md_black_1000</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
@@ -209,7 +213,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_greenapple</item>
         <item name="colorOnPrimary">@color/md_black_1000</item>
-        <item name="colorTertiary">@color/md_blue_A400</item>
+        <item name="colorTertiary">@color/accent_lightblue</item>
         <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
     </style>
 
@@ -250,6 +254,7 @@
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>

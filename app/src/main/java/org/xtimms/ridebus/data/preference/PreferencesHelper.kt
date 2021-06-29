@@ -1,6 +1,7 @@
 package org.xtimms.ridebus.data.preference
 
 import android.content.Context
+import android.content.res.Configuration
 import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
@@ -9,6 +10,7 @@ import kotlinx.coroutines.flow.onEach
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.*
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
 import org.xtimms.ridebus.data.preference.PreferenceValues as Values
 
@@ -28,7 +30,7 @@ class PreferencesHelper(val context: Context) {
 
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
-    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
+    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
 
     fun themeLight() = flowPrefs.getEnum(Keys.themeLight, Values.LightThemeVariant.default)
 
@@ -38,11 +40,23 @@ class PreferencesHelper(val context: Context) {
 
     fun hideBottomBar() = flowPrefs.getBoolean(Keys.hideBottomBar, true)
 
-    fun dateFormat(format: String = flowPrefs.getString(Keys.dateFormat, "").get()): DateFormat = when (format) {
-        "" -> DateFormat.getDateInstance(DateFormat.SHORT)
-        else -> SimpleDateFormat(format, Locale.getDefault())
-    }
+    fun dateFormat(format: String = flowPrefs.getString(Keys.dateFormat, "").get()): DateFormat =
+        when (format) {
+            "" -> DateFormat.getDateInstance(DateFormat.SHORT)
+            else -> SimpleDateFormat(format, Locale.getDefault())
+        }
 
     fun lang() = prefs.getString(Keys.lang, "")
+
+    fun isDarkMode(): Boolean {
+        return when (themeMode().get()) {
+            light -> false
+            dark -> true
+            system -> {
+                context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
+                        Configuration.UI_MODE_NIGHT_YES
+            }
+        }
+    }
 
 }

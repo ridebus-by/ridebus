@@ -4,13 +4,13 @@
     <color name="splash">@color/accent_lightblue</color>
 
     <!-- Light Theme -->
-    <color name="accent_light">#0065B3</color>
+    <color name="accent_light">@color/accent_lightblue</color>
     <color name="divider_light">@color/md_black_1000_12</color>
     <color name="surface_light">@color/md_white_1000</color>
     <color name="background_light">@color/md_grey_50</color>
-    <color name="ripple_colored_light">#1F0065B3</color>
+    <color name="ripple_colored_light">@color/ripple_colored_lightblue</color>
 
-    <!-- City on Dvina Theme -->
+    <!-- Light Blue Theme -->
     <color name="accent_lightblue">#0065B3</color>
     <color name="ripple_colored_lightblue">#1F0065B3</color>
 
@@ -19,8 +19,8 @@
     <color name="ripple_colored_pink">#1FED4A65</color>
 
     <!-- Orange Theme -->
-    <color name="accent_orange">#FF5722</color>
-    <color name="ripple_colored_orange">#1FFF5722</color>
+    <color name="accent_orange">#FFA726</color>
+    <color name="ripple_colored_orange">#1FFFA726</color>
 
     <!-- Dark Theme -->
     <color name="accent_dark">#64B4EA</color>
@@ -69,18 +69,6 @@
     <color name="md_grey_800">#424242</color>
     <color name="md_grey_900">#212121</color>
     <color name="md_grey_900_75">#BF212121</color>
-
-    <color name="md_blue_A200">#448AFF</color>
-    <color name="md_blue_A200_75">#BF448AFF</color>
-    <color name="md_blue_A200_50">#80448AFF</color>
-
-    <color name="md_blue_A400">#2979FF</color>
-    <color name="md_blue_A400_75">#BF2979FF</color>
-    <color name="md_blue_A400_38">#612979FF</color>
-    <color name="md_blue_A400_12">#1F2979FF</color>
-
-    <color name="md_blue_grey_900">#263238</color>
-    <color name="md_blue_grey_800">#37474F</color>
 
     <color name="green">#47a84a</color>
 
