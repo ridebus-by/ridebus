@@ -3,10 +3,10 @@ package org.xtimms.ridebus.ui.main
 import android.animation.ObjectAnimator
 import android.view.View
 import android.view.ViewTreeObserver
-import android.view.animation.DecelerateInterpolator
 import androidx.annotation.Keep
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 
-class ViewHeightAnimator(val view: View, val duration: Long = 250L) {
+class ViewHeightAnimator(val view: View) {
 
     /**
      * The default height of the view. It's unknown until the view is layout.
@@ -23,8 +23,8 @@ class ViewHeightAnimator(val view: View, val duration: Long = 250L) {
      */
     private val animation by lazy {
         ObjectAnimator.ofInt(this, "height", height).apply {
-            duration = this@ViewHeightAnimator.duration
-            interpolator = DecelerateInterpolator()
+            duration = 300L
+            interpolator = FastOutSlowInInterpolator()
         }
     }
 

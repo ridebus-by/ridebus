@@ -93,7 +93,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             insets
         }
 
-        tabAnimator = ViewHeightAnimator(binding.tabs, 0L)
+        tabAnimator = ViewHeightAnimator(binding.tabs)
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
 
         // If bottom nav is hidden, make it visible again when the app bar is expanded

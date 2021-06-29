@@ -43,4 +43,7 @@
     <string name="system_default">По умолчанию</string>
     <string name="pref_language">Язык</string>
     <string name="version">Версия</string>
+    <string name="label_bus">Автобусы</string>
+    <string name="label_route_taxi">Маршрутки</string>
+    <string name="label_express">Экспресс</string>
 </resources>
