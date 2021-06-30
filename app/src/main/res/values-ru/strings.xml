@@ -46,4 +46,7 @@
     <string name="label_bus">Автобусы</string>
     <string name="label_route_taxi">Маршрутки</string>
     <string name="label_express">Экспресс</string>
+    <string name="pref_category_advanced">Дополнительно</string>
+    <string name="pref_dump_crash_logs">Выгрузить логи о вылетах</string>
+    <string name="pref_dump_crash_logs_summary">Сохраняет журналы ошибок в файл для отправки разработчикам</string>
 </resources>

@@ -73,12 +73,11 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     companion object {
         private val ERROR_FACES = listOf(
-            "(･o･;)",
-            "Σ(ಠ_ಠ)",
-            "ಥ_ಥ",
-            "(˘･_･˘)",
-            "(；￣Д￣)",
-            "(･Д･。"
+            "＼(〇_ｏ)／",
+            "〣( ºΔº )〣",
+            "(￣ヘ￣)",
+            "(ᗒᗣᗕ)՞",
+            "ヾ(`ヘ´)ﾉﾞ"
         )
 
         fun getRandomErrorFace(): String {

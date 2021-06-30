@@ -10,8 +10,11 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
+import org.xtimms.ridebus.data.database.Bus
 import org.xtimms.ridebus.databinding.BusControllerBinding
 import org.xtimms.ridebus.ui.base.controller.RxController
+import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.routes.bus.details.BusDetailsController
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 
 open class BusController :
@@ -40,6 +43,8 @@ open class BusController :
                 padding()
             }
         }
+
+        binding.emptyView.show("Oops... Nothing works.")
 
         adapter = BusAdapter(this)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
@@ -82,7 +87,14 @@ open class BusController :
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
-        TODO("Not yet implemented")
+        val bus = (adapter?.getItem(position) as? BusItem)?.bus ?: return false
+        openDetails(bus)
+        return false
+    }
+
+    private fun openDetails(bus: Bus) {
+        val controller = BusDetailsController()
+        parentController!!.router.pushController(controller.withFadeTransaction())
     }
 
 }

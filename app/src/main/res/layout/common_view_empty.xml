@@ -13,16 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="48sp"
+        android:textSize="56sp"
         tools:text="-_-" />
 
     <TextView
         android:id="@+id/text_label"
-        style="@style/TextAppearance.Medium.Body2.Hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="center"
+        android:textSize="20sp"
         tools:text="Label" />
 
     <LinearLayout

@@ -47,4 +47,7 @@
     <string name="label_bus">Buses</string>
     <string name="label_route_taxi">Route taxis</string>
     <string name="label_express">Express</string>
+    <string name="pref_category_advanced">Advanced</string>
+    <string name="pref_dump_crash_logs">Dump crash logs</string>
+    <string name="pref_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
 </resources>

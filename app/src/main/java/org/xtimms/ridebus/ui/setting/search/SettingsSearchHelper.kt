@@ -7,6 +7,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceManager
+import org.xtimms.ridebus.ui.setting.SettingsAdvancedController
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.ui.setting.SettingsGeneralController
 import org.xtimms.ridebus.util.lang.launchNow
@@ -21,6 +22,7 @@ object SettingsSearchHelper {
      * All subclasses of `SettingsController` should be listed here, in order to have their preferences searchable.
      */
     private val settingControllersList: List<KClass<out SettingsController>> = listOf(
+        SettingsAdvancedController::class,
         SettingsGeneralController::class
     )
 
