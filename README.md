@@ -5,8 +5,6 @@
 Completely rewritten application on Kotlin with new features (I hope)
 
 ToDo:
-- [ ] Online schedule from server (abandoning the local database);
-- [ ] Multi-city support;
 - [ ] New favorites system (in the old version, favorites are limited to 12 items).
 
 # License
