@@ -1,0 +1,518 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "2d2f06943b0fc85ef58b719b47fa119b",
+    "entities": [
+      {
+        "tableName": "city",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `cityName` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "cityName",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "transport",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `typeTransport` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeTransport",
+            "columnName": "typeTransport",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "typeDay",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `typeDay` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeDay",
+            "columnName": "typeDay",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "kindRoute",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `kindRoute` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kindRoute",
+            "columnName": "kindRoute",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "route",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kindRoute_id` INTEGER NOT NULL, `routeNumber` TEXT, `routeTitle` TEXT NOT NULL, FOREIGN KEY(`city_id`) REFERENCES `city`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`transport_id`) REFERENCES `transport`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`kindRoute_id`) REFERENCES `kindRoute`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cityId",
+            "columnName": "city_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transportId",
+            "columnName": "transport_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kindRouteId",
+            "columnName": "kindRoute_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "number",
+            "columnName": "routeNumber",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "routeTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_route_city_id",
+            "unique": false,
+            "columnNames": [
+              "city_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_route_city_id` ON `${TABLE_NAME}` (`city_id`)"
+          },
+          {
+            "name": "index_route_transport_id",
+            "unique": false,
+            "columnNames": [
+              "transport_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_route_transport_id` ON `${TABLE_NAME}` (`transport_id`)"
+          },
+          {
+            "name": "index_route_kindRoute_id",
+            "unique": false,
+            "columnNames": [
+              "kindRoute_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_route_kindRoute_id` ON `${TABLE_NAME}` (`kindRoute_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "city",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "city_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          },
+          {
+            "table": "transport",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "transport_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          },
+          {
+            "table": "kindRoute",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kindRoute_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "stop",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kindRoute_id` INTEGER NOT NULL, `stopTitle` TEXT NOT NULL, `mark` TEXT NOT NULL, FOREIGN KEY(`city_id`) REFERENCES `city`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`transport_id`) REFERENCES `transport`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`kindRoute_id`) REFERENCES `kindRoute`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cityId",
+            "columnName": "city_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transportId",
+            "columnName": "transport_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kindRouteId",
+            "columnName": "kindRoute_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "stopTitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mark",
+            "columnName": "mark",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_stop_city_id",
+            "unique": false,
+            "columnNames": [
+              "city_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_stop_city_id` ON `${TABLE_NAME}` (`city_id`)"
+          },
+          {
+            "name": "index_stop_transport_id",
+            "unique": false,
+            "columnNames": [
+              "transport_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_stop_transport_id` ON `${TABLE_NAME}` (`transport_id`)"
+          },
+          {
+            "name": "index_stop_kindRoute_id",
+            "unique": false,
+            "columnNames": [
+              "kindRoute_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_stop_kindRoute_id` ON `${TABLE_NAME}` (`kindRoute_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "city",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "city_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          },
+          {
+            "table": "transport",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "transport_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          },
+          {
+            "table": "kindRoute",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "kindRoute_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "routeStops",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `route_id` INTEGER NOT NULL, `stop_id` INTEGER NOT NULL, `stopNumber` INTEGER NOT NULL, FOREIGN KEY(`route_id`) REFERENCES `route`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`stop_id`) REFERENCES `stop`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "routeId",
+            "columnName": "route_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stopId",
+            "columnName": "stop_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stopNumber",
+            "columnName": "stopNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_routeStops_route_id",
+            "unique": false,
+            "columnNames": [
+              "route_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_routeStops_route_id` ON `${TABLE_NAME}` (`route_id`)"
+          },
+          {
+            "name": "index_routeStops_stop_id",
+            "unique": false,
+            "columnNames": [
+              "stop_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_routeStops_stop_id` ON `${TABLE_NAME}` (`stop_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "route",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "route_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          },
+          {
+            "table": "stop",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "stop_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "schedule",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `routeStop_id` INTEGER NOT NULL, `typeDay_id` INTEGER NOT NULL, `time` TEXT NOT NULL, FOREIGN KEY(`routeStop_id`) REFERENCES `routeStops`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`typeDay_id`) REFERENCES `typeDay`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "routeStopId",
+            "columnName": "routeStop_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "typeDayId",
+            "columnName": "typeDay_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_schedule_typeDay_id",
+            "unique": false,
+            "columnNames": [
+              "typeDay_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_schedule_typeDay_id` ON `${TABLE_NAME}` (`typeDay_id`)"
+          },
+          {
+            "name": "index_schedule_routeStop_id",
+            "unique": false,
+            "columnNames": [
+              "routeStop_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_schedule_routeStop_id` ON `${TABLE_NAME}` (`routeStop_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "routeStops",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "routeStop_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          },
+          {
+            "table": "typeDay",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "typeDay_id"
+            ],
+            "referencedColumns": [
+              "_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "classTransport",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `class` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "classTransport",
+            "columnName": "class",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2d2f06943b0fc85ef58b719b47fa119b')"
+    ]
+  }
+}

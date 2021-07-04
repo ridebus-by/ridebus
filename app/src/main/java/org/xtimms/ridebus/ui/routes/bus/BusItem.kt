@@ -6,9 +6,9 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.Bus
+import org.xtimms.ridebus.data.database.Route
 
-data class BusItem(val bus: Bus) :
+data class BusItem(val route: Route) :
     AbstractFlexibleItem<BusHolder>() {
 
     override fun getLayoutRes(): Int {

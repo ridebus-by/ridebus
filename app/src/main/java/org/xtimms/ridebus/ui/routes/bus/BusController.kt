@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.Bus
+import org.xtimms.ridebus.data.database.Route
 import org.xtimms.ridebus.databinding.BusControllerBinding
 import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
@@ -87,12 +87,12 @@ open class BusController :
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
-        val bus = (adapter?.getItem(position) as? BusItem)?.bus ?: return false
+        val bus = (adapter?.getItem(position) as? BusItem)?.route ?: return false
         openDetails(bus)
         return false
     }
 
-    private fun openDetails(bus: Bus) {
+    private fun openDetails(route: Route) {
         val controller = BusDetailsController()
         parentController!!.router.pushController(controller.withFadeTransaction())
     }
