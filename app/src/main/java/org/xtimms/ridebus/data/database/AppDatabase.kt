@@ -26,7 +26,6 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
 
         const val DATABASE_NAME = "ridebus.db"
-        val DATABASE_VERSION: String = "1"
 
         fun copyDatabase(context: Context, databaseName: String?) {
 

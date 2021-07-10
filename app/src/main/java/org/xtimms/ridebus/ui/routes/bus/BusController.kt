@@ -5,23 +5,23 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.davidea.flexibleadapter.items.IFlexible
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.Route
 import org.xtimms.ridebus.databinding.BusControllerBinding
-import org.xtimms.ridebus.ui.base.controller.RxController
+import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.routes.bus.details.BusDetailsController
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 
 open class BusController :
-    RxController<BusControllerBinding>(),
+    NucleusController<BusControllerBinding, BusPresenter>(),
     FlexibleAdapter.OnItemClickListener {
 
-    private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+    var adapter: BusAdapter? = null
+        private set
 
     private var query = ""
 
@@ -29,8 +29,8 @@ open class BusController :
         setHasOptionsMenu(true)
     }
 
-    override fun getTitle(): String? {
-        return applicationContext?.getString(R.string.label_bus)
+    override fun createPresenter(): BusPresenter {
+        return BusPresenter()
     }
 
     override fun createBinding(inflater: LayoutInflater) = BusControllerBinding.inflate(inflater)
@@ -44,10 +44,9 @@ open class BusController :
             }
         }
 
-        binding.emptyView.show("Oops... Nothing works.")
-
-        adapter = BusAdapter(this)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        adapter = BusAdapter(this@BusController)
+        binding.recycler.setHasFixedSize(true)
         binding.recycler.adapter = adapter
     }
 
