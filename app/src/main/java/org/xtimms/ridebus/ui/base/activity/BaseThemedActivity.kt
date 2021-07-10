@@ -27,6 +27,8 @@ abstract class BaseThemedActivity : AppCompatActivity() {
                     DarkThemeVariant.default -> R.style.Theme_RideBus_Dark
                     DarkThemeVariant.blue -> R.style.Theme_RideBus_Dark_Blue
                     DarkThemeVariant.greenapple -> R.style.Theme_RideBus_Dark_GreenApple
+                    DarkThemeVariant.yellow -> R.style.Theme_RideBus_Dark_Yellow
+                    DarkThemeVariant.mono -> R.style.Theme_RideBus_Dark_Mono
                     DarkThemeVariant.amoled -> R.style.Theme_RideBus_Amoled
                 }
             } else {
@@ -35,6 +37,7 @@ abstract class BaseThemedActivity : AppCompatActivity() {
                     LightThemeVariant.blue -> R.style.Theme_RideBus_Light_Blue
                     LightThemeVariant.pink -> R.style.Theme_RideBus_Light_Pink
                     LightThemeVariant.orange -> R.style.Theme_RideBus_Light_Orange
+                    LightThemeVariant.mono -> R.style.Theme_RideBus_Light_Mono
                 }
             }
         }

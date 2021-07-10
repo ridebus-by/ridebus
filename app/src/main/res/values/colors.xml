@@ -22,6 +22,11 @@
     <color name="accent_orange">#FFA726</color>
     <color name="ripple_colored_orange">#1FFFA726</color>
 
+    <!-- Mono Theme -->
+    <color name="accent_mono">#000000</color>
+    <color name="color_on_secondary_mono">#FFFFFF</color>
+    <color name="ripple_colored_mono">#999999</color>
+
     <!-- Dark Theme -->
     <color name="accent_dark">#64B4EA</color>
     <color name="divider_dark">@color/md_white_1000_12</color>
@@ -37,12 +42,21 @@
     <color name="accent_greenapple">#48E484</color>
     <color name="ripple_colored_greenapple">#1F48E484</color>
 
+    <!-- Green Apple Theme -->
+    <color name="accent_yellow">#FFEB3B</color>
+    <color name="ripple_colored_yellow">#1FFFEB3B</color>
+
+    <!-- Dark Mono Theme -->
+    <color name="accent_dark_mono">#FFFFFF</color>
+    <color name="color_on_secondary_dark_mono">#000000</color>
+    <color name="ripple_colored_dark_mono">#777777</color>
+
     <!-- AMOLED Theme -->
-    <color name="accent_amoled">#3399FF</color>
+    <color name="accent_amoled">#64B4EA</color>
     <color name="divider_amoled">@android:color/transparent</color>
     <color name="surface_amoled">@color/md_black_1000</color>
     <color name="background_amoled">@color/md_black_1000</color>
-    <color name="ripple_colored_amoled">#1F3399FF</color>
+    <color name="ripple_colored_amoled">#1F64B4EA</color>
 
     <!-- Material Design Colors -->
     <color name="md_black_1000">#000000</color>

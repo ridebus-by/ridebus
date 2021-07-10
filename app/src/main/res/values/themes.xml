@@ -102,7 +102,7 @@
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
     </style>
 
-    <!--== Strawberry Daiquiri theme ==-->
+    <!--== Pink theme ==-->
     <style name="Theme.RideBus.Light.Pink">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_pink</item>
@@ -110,12 +110,22 @@
         <item name="colorControlHighlight">@color/ripple_colored_pink</item>
     </style>
 
-    <!--== Yotsuba theme ==-->
+    <!--== Orange theme ==-->
     <style name="Theme.RideBus.Light.Orange">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_orange</item>
         <item name="colorTertiary">@color/accent_lightblue</item>
         <item name="colorControlHighlight">@color/ripple_colored_orange</item>
+    </style>
+
+    <!--== Mono theme ==-->
+    <style name="Theme.RideBus.Light.Mono">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_mono</item>
+        <item name="colorOnSecondary">@color/color_on_secondary_mono</item>
+        <item name="colorTertiary">@color/color_on_secondary_mono</item>
+        <item name="colorOnTertiary">@color/accent_mono</item>
+        <item name="colorControlHighlight">@color/ripple_colored_mono</item>
     </style>
 
     <!--=============-->
@@ -215,6 +225,25 @@
         <item name="colorOnPrimary">@color/md_black_1000</item>
         <item name="colorTertiary">@color/accent_lightblue</item>
         <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
+    </style>
+
+    <!--== Yellow theme ==-->
+    <style name="Theme.RideBus.Dark.Yellow">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_yellow</item>
+        <item name="colorOnPrimary">@color/md_black_1000</item>
+        <item name="colorTertiary">@color/accent_lightblue</item>
+        <item name="colorControlHighlight">@color/ripple_colored_yellow</item>
+    </style>
+
+    <!--== Mono theme ==-->
+    <style name="Theme.RideBus.Dark.Mono">
+        <!-- Theme colors -->
+        <item name="colorPrimary">@color/accent_dark_mono</item>
+        <item name="colorOnSecondary">@color/color_on_secondary_dark_mono</item>
+        <item name="colorTertiary">@color/color_on_secondary_dark_mono</item>
+        <item name="colorOnTertiary">@color/accent_dark_mono</item>
+        <item name="colorControlHighlight">@color/ripple_colored_dark_mono</item>
     </style>
 
     <!--===============-->

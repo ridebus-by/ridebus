@@ -16,7 +16,8 @@ object PreferenceValues {
         default,
         blue,
         pink,
-        orange
+        orange,
+        mono
     }
 
     // Keys are lowercase to match legacy string values
@@ -24,6 +25,8 @@ object PreferenceValues {
         default,
         blue,
         greenapple,
+        yellow,
+        mono,
         amoled
     }
 
