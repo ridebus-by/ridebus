@@ -26,6 +26,7 @@ import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favorite.FavoriteController
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.routes.RoutesController
+import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
 import org.xtimms.ridebus.util.lang.launchUI
 import org.xtimms.ridebus.util.system.InternalResourceHelper
@@ -49,6 +50,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     private var bottomNavAnimator: ViewHeightAnimator? = null
 
     private var isConfirmingExit: Boolean = false
+    private var isHandlingShortcut: Boolean = false
 
     private var fixedViewsToBottom = mutableMapOf<View, AppBarLayout.OnOffsetChangedListener>()
 
@@ -112,6 +114,14 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     R.id.nav_stops -> setRoot(StopsController(), id)
                     R.id.nav_favorite -> setRoot(FavoriteController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
+                }
+            } else {
+                when (id) {
+                    R.id.nav_more -> {
+                        if (router.backstackSize == 1) {
+                            router.pushController(SettingsMainController().withFadeTransaction())
+                        }
+                    }
                 }
             }
             true
