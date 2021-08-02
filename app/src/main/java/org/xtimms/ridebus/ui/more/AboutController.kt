@@ -55,6 +55,8 @@ class AboutController : SettingsController(), NoToolbarElevationController {
                     .start(activity!!)
             }
         }
+
+        add(AboutLinksPreference(context))
     }
 
     private fun getFormattedBuildTime(): String {

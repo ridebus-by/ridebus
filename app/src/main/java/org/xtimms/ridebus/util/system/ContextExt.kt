@@ -6,11 +6,14 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
+import android.net.Uri
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
+import androidx.browser.customtabs.CustomTabColorSchemeParams
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
@@ -18,6 +21,7 @@ import androidx.core.graphics.alpha
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
+import androidx.core.net.toUri
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.util.lang.truncateCenter
 import timber.log.Timber
@@ -58,6 +62,28 @@ fun Context.copyToClipboard(label: String, content: String) {
     } catch (e: Throwable) {
         Timber.e(e)
         toast(R.string.clipboard_copy_error)
+    }
+}
+
+/**
+ * Opens a URL in a custom tab.
+ */
+fun Context.openInBrowser(url: String, @ColorInt toolbarColor: Int? = null) {
+    this.openInBrowser(url.toUri(), toolbarColor)
+}
+
+fun Context.openInBrowser(uri: Uri, @ColorInt toolbarColor: Int? = null) {
+    try {
+        val intent = CustomTabsIntent.Builder()
+            .setDefaultColorSchemeParams(
+                CustomTabColorSchemeParams.Builder()
+                    .setToolbarColor(toolbarColor ?: getResourceColor(R.attr.colorPrimary))
+                    .build()
+            )
+            .build()
+        intent.launchUrl(this, uri)
+    } catch (e: Exception) {
+        toast(e.message)
     }
 }
 
