@@ -31,6 +31,7 @@ import org.xtimms.ridebus.util.lang.launchUI
 import org.xtimms.ridebus.util.system.InternalResourceHelper
 import org.xtimms.ridebus.util.system.getResourceColor
 import org.xtimms.ridebus.util.system.toast
+import org.xtimms.ridebus.widget.HideBottomNavigationOnScrollBehavior
 
 class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
@@ -95,15 +96,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
         tabAnimator = ViewHeightAnimator(binding.tabs)
         bottomNavAnimator = ViewHeightAnimator(binding.bottomNav)
-
-        // If bottom nav is hidden, make it visible again when the app bar is expanded
-        binding.appbar.addOnOffsetChangedListener(
-            AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-                if (verticalOffset == 0) {
-                    showBottomNav(true)
-                }
-            }
-        )
 
         // Set behavior of bottom nav
         preferences.hideBottomBar()
@@ -171,23 +163,14 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         binding?.toolbar.setNavigationOnClickListener(null)
     }
 
-    fun showBottomNav(visible: Boolean, collapse: Boolean = false) {
-        binding.bottomNav.let {
-            val layoutParams = it.layoutParams as CoordinatorLayout.LayoutParams
-            val bottomViewNavigationBehavior =
-                layoutParams.behavior as? HideBottomViewOnScrollBehavior
-            if (visible) {
-                if (collapse) {
-                    bottomNavAnimator?.expand()
-                }
-                bottomViewNavigationBehavior?.slideUp(it)
-            } else {
-                if (collapse) {
-                    bottomNavAnimator?.collapse()
-                }
-
-                bottomViewNavigationBehavior?.slideDown(it)
+    fun showBottomNav(visible: Boolean, expand: Boolean = false) {
+        if (visible) {
+            binding.bottomNav?.translationY = 0F
+            if (expand) {
+                bottomNavAnimator?.expand()
             }
+        } else {
+            bottomNavAnimator?.collapse()
         }
     }
 
@@ -238,11 +221,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         binding.appbar.setExpanded(true)
 
         if ((from == null || from is RootController) && to !is RootController) {
-            showBottomNav(visible = false, collapse = true)
+            showBottomNav(visible = false, expand = true)
         }
         if (to is RootController) {
             // Always show bottom nav again when returning to a RootController
-            showBottomNav(visible = true, collapse = from !is RootController)
+            showBottomNav(visible = true, expand = from !is RootController)
         }
 
         if (from is TabbedController) {
@@ -292,10 +275,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
         binding.bottomNav.updateLayoutParams<CoordinatorLayout.LayoutParams> {
             behavior = when {
-                preferences.hideBottomBar().get() -> HideBottomViewOnScrollBehavior<View>()
+                preferences.hideBottomBar().get() -> HideBottomNavigationOnScrollBehavior()
                 else -> null
             }
         }
+        binding.bottomNav?.translationY = 0F
     }
 
 }
