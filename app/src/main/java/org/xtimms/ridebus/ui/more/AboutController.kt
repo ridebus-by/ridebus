@@ -1,10 +1,11 @@
 package org.xtimms.ridebus.ui.more
 
 import androidx.preference.PreferenceScreen
-import com.mikepenz.aboutlibraries.LibsBuilder
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
+import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.more.licenses.LicensesController
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.util.CrashLogUtil
 import org.xtimms.ridebus.util.lang.toDateTimestampString
@@ -46,13 +47,7 @@ class AboutController : SettingsController(), NoToolbarElevationController {
             key = "pref_about_licenses"
             titleRes = R.string.licenses
             onClick {
-                LibsBuilder()
-                    .withActivityTitle(activity!!.getString(R.string.licenses))
-                    .withAboutIconShown(false)
-                    .withAboutVersionShown(false)
-                    .withLicenseShown(true)
-                    .withEdgeToEdge(true)
-                    .start(activity!!)
+                router.pushController(LicensesController().withFadeTransaction())
             }
         }
 

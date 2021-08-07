@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.AttrRes
@@ -129,4 +130,17 @@ fun Context.createFileInCacheDir(name: String): File {
     }
     file.createNewFile()
     return file
+}
+
+@ColorInt fun Context.getThemeColor(attr: Int): Int {
+    val tv = TypedValue()
+    return if (this.theme.resolveAttribute(attr, tv, true)) {
+        if (tv.resourceId != 0) {
+            ContextCompat.getColor(this, tv.resourceId)
+        } else {
+            tv.data
+        }
+    } else {
+        0
+    }
 }

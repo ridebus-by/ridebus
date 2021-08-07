@@ -11,9 +11,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import com.google.android.material.button.MaterialButton
-import com.mikepenz.aboutlibraries.util.getThemeColor
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.CommonViewEmptyBinding
+import org.xtimms.ridebus.util.system.getThemeColor
 import kotlin.random.Random
 
 class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
