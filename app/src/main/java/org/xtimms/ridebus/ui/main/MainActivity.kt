@@ -181,7 +181,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             }
         )
 
-        syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
+        syncActivityViewWithController(router.backstack.lastOrNull()?.controller)
 
     }
 

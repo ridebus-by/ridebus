@@ -3,7 +3,7 @@ package org.xtimms.ridebus.ui.routes
 import android.view.LayoutInflater
 import android.view.View
 import com.bluelinelabs.conductor.*
-import com.bluelinelabs.conductor.support.RouterPagerAdapter
+import com.bluelinelabs.conductor.viewpager.RouterPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.PagerControllerBinding
