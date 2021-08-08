@@ -69,11 +69,11 @@
     kotlinx.serialization.KSerializer serializer(...);
 }
 
--keep,includedescriptorclasses class eu.kanade.tachiyomi.**$$serializer { *; }
--keepclassmembers class eu.kanade.tachiyomi.** {
+-keep,includedescriptorclasses class org.xtimms.ridebus.**$$serializer { *; }
+-keepclassmembers class org.xtimms.ridebus.** {
     *** Companion;
 }
--keepclasseswithmembers class eu.kanade.tachiyomi.** {
+-keepclasseswithmembers class org.xtimms.ridebus.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 

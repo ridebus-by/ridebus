@@ -14,5 +14,4 @@ class AppModule(val app: Application) : InjektModule {
 
         addSingletonFactory { PreferencesHelper(app) }
     }
-
 }

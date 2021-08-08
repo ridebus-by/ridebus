@@ -7,6 +7,4 @@ import uy.kohesive.injekt.api.get
 
 class StopsPresenter(
     private val preferences: PreferencesHelper = Injekt.get()
-) : BasePresenter<StopsController>() {
-
-}
+) : BasePresenter<StopsController>()

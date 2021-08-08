@@ -12,5 +12,4 @@ open class BusPresenter : BasePresenter<BusController>() {
         super.onCreate(savedState)
         db?.getBuses()
     }
-
 }

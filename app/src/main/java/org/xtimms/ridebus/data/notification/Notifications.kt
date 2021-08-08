@@ -25,7 +25,5 @@ object Notifications {
                 NotificationManager.IMPORTANCE_HIGH
             )
         ).forEach(context.notificationManager::createNotificationChannel)
-
     }
-
 }

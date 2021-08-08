@@ -2,8 +2,6 @@ package org.xtimms.ridebus.ui.base.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.lifecycleScope
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
@@ -55,5 +53,4 @@ abstract class BaseThemedActivity : AppCompatActivity() {
             }
         }
     }
-
 }

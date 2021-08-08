@@ -8,17 +8,20 @@ import java.io.IOException
 import java.io.OutputStream
 import java.util.*
 
-
-@Database(entities = [City::class,
-    Transport::class,
-    TypeDay::class,
-    KindRoute::class,
-    Route::class,
-    Stop::class,
-    RouteStops::class,
-    Schedule::class,
-    ClassTransport::class],
-    version = 1)
+@Database(
+    entities = [
+        City::class,
+        Transport::class,
+        TypeDay::class,
+        KindRoute::class,
+        Route::class,
+        Stop::class,
+        RouteStops::class,
+        Schedule::class,
+        ClassTransport::class
+    ],
+    version = 1
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun dao(): Dao
@@ -28,7 +31,6 @@ abstract class AppDatabase : RoomDatabase() {
         const val DATABASE_NAME = "ridebus.db"
 
         fun copyDatabase(context: Context, databaseName: String?) {
-
             val dbPath = context.getDatabasePath(databaseName)
 
             if (dbPath.exists()) {

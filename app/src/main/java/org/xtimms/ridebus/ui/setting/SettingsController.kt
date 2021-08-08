@@ -130,5 +130,4 @@ abstract class SettingsController : PreferenceController() {
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = getTitle()
     }
-
 }

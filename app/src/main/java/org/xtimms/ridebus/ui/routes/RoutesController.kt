@@ -13,7 +13,7 @@ import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.main.MainActivity
 import org.xtimms.ridebus.ui.routes.bus.BusController
 
-class RoutesController:
+class RoutesController :
     RxController<PagerControllerBinding>(),
     RootController,
     TabbedController {
@@ -89,5 +89,4 @@ class RoutesController:
         const val ROUTE_TAXI_CONTROLLER = 1
         const val EXPRESS_CONTROLLER = 2
     }
-
 }

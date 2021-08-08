@@ -114,9 +114,9 @@ fun Context.getResourceColor(@AttrRes resource: Int, alphaFactor: Float = 1f): I
 
 val Float.dpToPxEnd: Float
     get() = (
-            this * Resources.getSystem().displayMetrics.density *
-                    if (Resources.getSystem().isLTR) 1 else -1
-            )
+        this * Resources.getSystem().displayMetrics.density *
+            if (Resources.getSystem().isLTR) 1 else -1
+        )
 
 /**
  * Converts to px.

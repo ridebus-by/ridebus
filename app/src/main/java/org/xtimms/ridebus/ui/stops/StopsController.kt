@@ -27,6 +27,4 @@ class StopsController :
     override fun createPresenter(): StopsPresenter {
         return StopsPresenter()
     }
-
-
 }

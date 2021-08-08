@@ -205,6 +205,10 @@ tasks {
             "-Xuse-experimental=coil.annotation.ExperimentalCoilApi",
         )
     }
+
+    preBuild {
+        dependsOn(formatKotlin)
+    }
 }
 
 buildscript {

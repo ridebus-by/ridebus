@@ -1,16 +1,15 @@
 package org.xtimms.ridebus.data.preference
 
 import android.content.Context
-import android.content.res.Configuration
 import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
 import com.tfcporciuncula.flow.Preference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
+import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.*
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
 import org.xtimms.ridebus.data.preference.PreferenceValues as Values
 
@@ -19,7 +18,6 @@ fun <T> Preference<T>.asImmediateFlow(block: (T) -> Unit): Flow<T> {
     return asFlow()
         .onEach { block(it) }
 }
-
 
 class PreferencesHelper(val context: Context) {
 
@@ -49,5 +47,4 @@ class PreferencesHelper(val context: Context) {
         }
 
     fun lang() = prefs.getString(Keys.lang, "")
-
 }

@@ -182,7 +182,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         )
 
         syncActivityViewWithController(router.backstack.lastOrNull()?.controller)
-
     }
 
     /**
@@ -278,9 +277,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     private fun shouldHandleExitConfirmation(): Boolean {
         return router.backstackSize == 1 &&
-                router.getControllerWithTag("$startScreenId") != null &&
-                preferences.confirmExit() &&
-                !isConfirmingExit
+            router.getControllerWithTag("$startScreenId") != null &&
+            preferences.confirmExit() &&
+            !isConfirmingExit
     }
 
     fun setSelectedNavItem(itemId: Int) {

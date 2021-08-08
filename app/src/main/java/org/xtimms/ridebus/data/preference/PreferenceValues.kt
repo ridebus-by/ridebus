@@ -24,5 +24,4 @@ object PreferenceValues {
         ORANGE(R.string.theme_orange),
         TEAL(R.string.theme_teal)
     }
-
 }

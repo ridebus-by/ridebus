@@ -9,5 +9,4 @@ class BusAdapter(controller: BusController) :
     init {
         setDisplayHeadersAtStartUp(true)
     }
-
 }

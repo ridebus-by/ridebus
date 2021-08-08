@@ -70,14 +70,6 @@ class NotificationReceiver : BroadcastReceiver() {
          * @return [PendingIntent]
          */
         internal fun dismissNotification(context: Context, notificationId: Int, groupId: Int? = null) {
-            /*
-            Group notifications always have at least 2 notifications:
-            - Group summary notification
-            - Single manga notification
-            If the single notification is dismissed by the system, ie by a user swipe or tapping on the notification,
-            it will auto dismiss the group notification if there's no other single updates.
-            When programmatically dismissing this notification, the group notification is not automatically dismissed.
-             */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val groupKey = context.notificationManager.activeNotifications.find {
                     it.id == notificationId
@@ -131,5 +123,4 @@ class NotificationReceiver : BroadcastReceiver() {
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
     }
-
 }

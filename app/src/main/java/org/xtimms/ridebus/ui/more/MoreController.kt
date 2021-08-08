@@ -62,5 +62,4 @@ class MoreController :
     private fun <T> Observable<T>.subscribeUntilDestroy(onNext: (T) -> Unit): Subscription {
         return subscribe(onNext).also { untilDestroySubscriptions.add(it) }
     }
-
 }

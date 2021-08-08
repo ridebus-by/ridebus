@@ -7,7 +7,7 @@ import org.xtimms.ridebus.databinding.RoutesItemBinding
 class BusHolder(view: View, val adapter: BusAdapter) :
     FlexibleViewHolder(view, adapter) {
 
-        private val binding = RoutesItemBinding.bind(view)
+    private val binding = RoutesItemBinding.bind(view)
 
     fun bind(item: BusItem) {
         val bus = item.route
@@ -15,5 +15,4 @@ class BusHolder(view: View, val adapter: BusAdapter) :
         binding.routeTitle.text = bus.title
         binding.routeNumber.text = bus.number
     }
-
 }

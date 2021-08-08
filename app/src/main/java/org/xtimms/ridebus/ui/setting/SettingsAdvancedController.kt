@@ -1,6 +1,5 @@
 package org.xtimms.ridebus.ui.setting
 
-import android.annotation.SuppressLint
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.util.CrashLogUtil

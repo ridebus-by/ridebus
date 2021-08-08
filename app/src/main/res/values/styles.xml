@@ -243,7 +243,7 @@
         <item name="tabInlineLabel">true</item>
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
-        <item name="tabRippleColor">?attr/colorOnPrimary</item>
+        <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
     </style>
 
     <style name="Widget.RideBus.TabLayout.Colored" parent="Widget.MaterialComponents.TabLayout.Colored">
@@ -254,7 +254,7 @@
         <item name="tabInlineLabel">true</item>
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
-        <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
+        <item name="tabRippleColor">?attr/colorOnPrimary</item>
     </style>
 
     <!--================-->

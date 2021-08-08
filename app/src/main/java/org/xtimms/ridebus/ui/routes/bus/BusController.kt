@@ -95,5 +95,4 @@ open class BusController :
         val controller = BusDetailsController()
         parentController!!.router.pushController(controller.withFadeTransaction())
     }
-
 }

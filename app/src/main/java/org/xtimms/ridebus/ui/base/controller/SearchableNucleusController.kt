@@ -15,7 +15,7 @@ import reactivecircus.flowbinding.appcompat.QueryTextEvent
 import reactivecircus.flowbinding.appcompat.queryTextEvents
 
 abstract class SearchableNucleusController<VB : ViewBinding, P : BasePresenter<*>>
-    (bundle: Bundle? = null) : NucleusController<VB, P>(bundle) {
+(bundle: Bundle? = null) : NucleusController<VB, P>(bundle) {
 
     enum class SearchViewState { LOADING, LOADED, COLLAPSING, FOCUSED }
 

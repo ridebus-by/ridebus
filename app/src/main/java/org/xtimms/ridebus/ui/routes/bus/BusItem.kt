@@ -30,5 +30,4 @@ data class BusItem(val route: Route) :
     ) {
         holder.bind(this)
     }
-
 }

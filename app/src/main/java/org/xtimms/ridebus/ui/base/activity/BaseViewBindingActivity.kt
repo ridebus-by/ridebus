@@ -11,5 +11,4 @@ abstract class BaseViewBindingActivity<VB : ViewBinding> : BaseThemedActivity() 
         @Suppress("LeakingThis")
         LocaleHelper.updateConfiguration(this)
     }
-
 }
