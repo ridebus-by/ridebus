@@ -2,10 +2,10 @@ language: android
 dist: trusty
 android:
   components:
-    - android-30
+    - android-31
     - build-tools-30.0.3
     - platform-tools-30.0.5
     - tools
 before_install:
-  - yes | sdkmanager "platforms;android-30"
+  - yes | sdkmanager "platforms;android-31"
 script: ./gradlew -Dorg.gradle.jvmargs=-Xmx1536m assembleDebug lintDebug
