@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/ztimms73/RideBus-Next.svg?branch=master)](https://travis-ci.com/ztimms73/RideBus-Next) ![License](https://img.shields.io/github/license/ztimms73/Ridebus-Next)
+[![CI](https://github.com/ztimms73/RideBus-Next/actions/workflows/build.yml/badge.svg)](https://github.com/ztimms73/RideBus-Next/actions/workflows/build.yml) ![License](https://img.shields.io/github/license/ztimms73/Ridebus-Next)
 ![GitHub repo size](https://img.shields.io/github/repo-size/ztimms73/RideBus-Next) ![GitHub top language](https://img.shields.io/github/languages/top/ztimms73/RideBus-Next)
 
 # [WIP] RideBus-Next
