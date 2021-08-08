@@ -39,6 +39,6 @@
         android:layout_gravity="bottom"
         app:labelVisibilityMode="labeled"
         app:layout_insetEdge="bottom"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/main_nav" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

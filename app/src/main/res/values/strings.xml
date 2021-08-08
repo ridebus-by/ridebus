@@ -52,4 +52,18 @@
     <string name="pref_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
     <string name="theme_light_mono">Mono</string>
     <string name="theme_dark_yellow">Yellow</string>
+    <string name="theme_default">Default</string>
+    <string name="theme_darkblue">Dark Blue</string>
+    <string name="theme_greenapple">Green Apple</string>
+    <string name="theme_pink">Pink</string>
+    <string name="theme_orange">Orange</string>
+    <string name="theme_yellow">Yellow</string>
+    <string name="pref_app_theme">App theme</string>
+    <string name="pref_dark_theme_pure_black">Pure black dark mode</string>
+    <string name="theme_monet">Monet</string>
+    <string name="alignment_top">Top</string>
+    <string name="alignment_center">Center</string>
+    <string name="alignment_bottom">Bottom</string>
+    <string name="pref_side_nav_icon_alignment">Side navigation icon alignment</string>
+    <string name="theme_teal">Teal</string>
 </resources>

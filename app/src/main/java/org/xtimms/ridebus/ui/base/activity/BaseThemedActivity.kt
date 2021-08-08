@@ -1,13 +1,11 @@
 package org.xtimms.ridebus.ui.base.activity
 
-import android.content.res.Configuration.UI_MODE_NIGHT_MASK
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.lifecycleScope
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.preference.PreferenceValues.DarkThemeVariant
-import org.xtimms.ridebus.data.preference.PreferenceValues.LightThemeVariant
-import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode
+import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import uy.kohesive.injekt.injectLazy
 
@@ -16,29 +14,44 @@ abstract class BaseThemedActivity : AppCompatActivity() {
     val preferences: PreferencesHelper by injectLazy()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(getThemeResourceId(preferences))
+        applyAppTheme(preferences)
         super.onCreate(savedInstanceState)
     }
 
     companion object {
-        fun getThemeResourceId(preferences: PreferencesHelper): Int {
-            return if (preferences.isDarkMode()) {
-                when (preferences.themeDark().get()) {
-                    DarkThemeVariant.default -> R.style.Theme_RideBus_Dark
-                    DarkThemeVariant.blue -> R.style.Theme_RideBus_Dark_Blue
-                    DarkThemeVariant.greenapple -> R.style.Theme_RideBus_Dark_GreenApple
-                    DarkThemeVariant.yellow -> R.style.Theme_RideBus_Dark_Yellow
-                    DarkThemeVariant.mono -> R.style.Theme_RideBus_Dark_Mono
-                    DarkThemeVariant.amoled -> R.style.Theme_RideBus_Amoled
+        fun AppCompatActivity.applyAppTheme(preferences: PreferencesHelper) {
+            val resIds = mutableListOf<Int>()
+            when (preferences.appTheme().get()) {
+                PreferenceValues.AppTheme.MONET -> {
+                    resIds += R.style.Theme_RideBus_Monet
                 }
-            } else {
-                when (preferences.themeLight().get()) {
-                    LightThemeVariant.default -> R.style.Theme_RideBus_Light
-                    LightThemeVariant.blue -> R.style.Theme_RideBus_Light_Blue
-                    LightThemeVariant.pink -> R.style.Theme_RideBus_Light_Pink
-                    LightThemeVariant.orange -> R.style.Theme_RideBus_Light_Orange
-                    LightThemeVariant.mono -> R.style.Theme_RideBus_Light_Mono
+                PreferenceValues.AppTheme.DEFAULT -> {
+                    resIds += R.style.Theme_RideBus
                 }
+                PreferenceValues.AppTheme.DARK_BLUE -> {
+                    resIds += R.style.Theme_RideBus_DarkBlue
+                    resIds += R.style.ThemeOverlay_RideBus_ColoredBars
+                }
+                PreferenceValues.AppTheme.GREEN_APPLE -> {
+                    resIds += R.style.Theme_RideBus_GreenApple
+                }
+                PreferenceValues.AppTheme.ORANGE -> {
+                    resIds += R.style.Theme_RideBus_Orange
+                }
+                PreferenceValues.AppTheme.PINK -> {
+                    resIds += R.style.Theme_RideBus_Pink
+                }
+                PreferenceValues.AppTheme.TEAL -> {
+                    resIds += R.style.Theme_RideBus_Teal
+                }
+            }
+
+            if (preferences.themeDarkAmoled().get()) {
+                resIds += R.style.ThemeOverlay_RideBus_Amoled
+            }
+
+            resIds.forEach {
+                setTheme(it)
             }
         }
     }

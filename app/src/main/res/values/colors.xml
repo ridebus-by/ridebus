@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="splash">@color/accent_lightblue</color>
 
-    <!-- Light Theme -->
-    <color name="accent_light">@color/accent_lightblue</color>
-    <color name="divider_light">@color/md_black_1000_12</color>
-    <color name="surface_light">@color/md_white_1000</color>
-    <color name="background_light">@color/md_grey_50</color>
-    <color name="ripple_colored_light">@color/ripple_colored_lightblue</color>
+    <!-- Default Theme -->
+    <color name="accent_default">@color/accent_lightblue</color>
+    <color name="divider_default">@color/md_black_1000_12</color>
+    <color name="surface_default">@color/md_white_1000</color>
+    <color name="background_default">@color/md_grey_50</color>
+    <color name="ripple_colored_default">@color/ripple_colored_lightblue</color>
 
-    <!-- Light Blue Theme -->
+    <!-- Monet Theme -->
+    <color name="accent_monet" tools:targetApi="31">@android:color/system_accent1_600</color>
+    <color name="on_accent_monet" tools:targetApi="31">@android:color/system_accent1_10</color>
+    <color name="divider_monet" tools:targetApi="31">@android:color/system_neutral1_200</color>
+    <color name="tertiary_monet" tools:targetApi="31">@android:color/system_accent3_600</color>
+    <color name="on_tertiary_monet" tools:targetApi="31">@android:color/system_accent3_10</color>
+    <color name="surface_monet" tools:targetApi="31">@android:color/system_neutral1_50</color>
+    <color name="on_surface_monet" tools:targetApi="31">@android:color/system_neutral1_900</color>
+    <color name="background_monet" tools:targetApi="31">@color/surface_monet</color>
+    <color name="on_background_monet" tools:targetApi="31">@color/on_surface_monet</color>
+
+    <!-- Blue Theme -->
     <color name="accent_lightblue">#0065B3</color>
     <color name="ripple_colored_lightblue">#1F0065B3</color>
 
@@ -22,41 +33,23 @@
     <color name="accent_orange">#FFA726</color>
     <color name="ripple_colored_orange">#1FFFA726</color>
 
-    <!-- Mono Theme -->
-    <color name="accent_mono">#000000</color>
-    <color name="color_on_secondary_mono">#FFFFFF</color>
-    <color name="ripple_colored_mono">#999999</color>
-
-    <!-- Dark Theme -->
-    <color name="accent_dark">#64B4EA</color>
-    <color name="divider_dark">@color/md_white_1000_12</color>
-    <color name="surface_dark">#242529</color>
-    <color name="background_dark">#202125</color>
-    <color name="ripple_colored_dark">#1F64B4EA</color>
-
     <!-- Dark Blue Theme -->
     <color name="accent_darkblue">#0065B3</color>
     <color name="ripple_colored_darkblue">#1F0065B3</color>
 
     <!-- Green Apple Theme -->
-    <color name="accent_greenapple">#48E484</color>
-    <color name="ripple_colored_greenapple">#1F48E484</color>
+    <color name="accent_greenapple">#188140</color>
+    <color name="color_on_primary_greenapple">@color/md_white_1000</color>
+    <color name="ripple_colored_greenapple">#1F188140</color>
 
-    <!-- Green Apple Theme -->
-    <color name="accent_yellow">#FFEB3B</color>
-    <color name="ripple_colored_yellow">#1FFFEB3B</color>
-
-    <!-- Dark Mono Theme -->
-    <color name="accent_dark_mono">#FFFFFF</color>
-    <color name="color_on_secondary_dark_mono">#000000</color>
-    <color name="ripple_colored_dark_mono">#777777</color>
+    <!-- Teal Theme -->
+    <color name="accent_teal">#009688</color>
+    <color name="ripple_colored_teal">#1F009688</color>
 
     <!-- AMOLED Theme -->
-    <color name="accent_amoled">#64B4EA</color>
     <color name="divider_amoled">@android:color/transparent</color>
-    <color name="surface_amoled">@color/md_black_1000</color>
-    <color name="background_amoled">@color/md_black_1000</color>
-    <color name="ripple_colored_amoled">#1F64B4EA</color>
+    <color name="surface_amoled">#000001</color>
+    <color name="background_amoled">#000000</color>
 
     <!-- Material Design Colors -->
     <color name="md_black_1000">#000000</color>

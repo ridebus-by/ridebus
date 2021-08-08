@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.V27.Theme.RideBus.Light" parent="Base.Theme.RideBus.Light">
+    <style name="Base.V27.RideBus" parent="Base.Theme.RideBus">
         <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="android:windowLightNavigationBar">true</item>
     </style>
 
-    <style name="Theme.RideBus.Light" parent="Base.V27.Theme.RideBus.Light" />
+    <style name="Theme.RideBus" parent="Base.V27.RideBus" />
 </resources>

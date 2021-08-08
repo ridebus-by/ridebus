@@ -9,6 +9,7 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.asImmediateFlow
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.LocaleHelper
+import org.xtimms.ridebus.util.system.isTablet
 import java.util.*
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
 import org.xtimms.ridebus.data.preference.PreferenceValues as Values
@@ -35,11 +36,27 @@ class SettingsGeneralController : SettingsController() {
             titleRes = R.string.pref_confirm_exit
             defaultValue = false
         }
-        switchPreference {
-            key = Keys.hideBottomBar
-            titleRes = R.string.pref_hide_bottom_bar_on_scroll
-            defaultValue = true
+        if (context.isTablet()) {
+            intListPreference {
+                key = Keys.sideNavIconAlignment
+                titleRes = R.string.pref_side_nav_icon_alignment
+                entriesRes = arrayOf(
+                    R.string.alignment_top,
+                    R.string.alignment_center,
+                    R.string.alignment_bottom,
+                )
+                entryValues = arrayOf("0", "1", "2")
+                defaultValue = "0"
+                summary = "%s"
+            }
+        } else {
+            switchPreference {
+                key = Keys.hideBottomBarOnScroll
+                titleRes = R.string.pref_hide_bottom_bar_on_scroll
+                defaultValue = true
+            }
         }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             preference {
                 key = "pref_manage_notifications"
@@ -63,8 +80,8 @@ class SettingsGeneralController : SettingsController() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     entriesRes = arrayOf(
                         R.string.theme_system,
-                        R.string.theme_dark_mode_off,
-                        R.string.theme_dark_mode_on
+                        R.string.theme_light,
+                        R.string.theme_dark
                     )
                     entryValues = arrayOf(
                         Values.ThemeMode.system.name,
@@ -85,71 +102,39 @@ class SettingsGeneralController : SettingsController() {
                 }
 
                 summary = "%s"
+            }
+            listPreference {
+                key = Keys.appTheme
+                titleRes = R.string.pref_app_theme
+
+                val appThemes = Values.AppTheme.values().filter {
+                    val monetFilter = if (it == Values.AppTheme.MONET) {
+                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                    } else {
+                        true
+                    }
+                    it.titleResId != null && monetFilter
+                }
+                entriesRes = appThemes.map { it.titleResId!! }.toTypedArray()
+                entryValues = appThemes.map { it.name }.toTypedArray()
+                defaultValue = appThemes[0].name
+                summary = "%s"
 
                 onChange {
                     activity?.recreate()
                     true
                 }
             }
-            listPreference {
-                key = Keys.themeLight
-                titleRes = R.string.pref_theme_light
-                entriesRes = arrayOf(
-                    R.string.theme_light_default,
-                    R.string.theme_light_blue,
-                    R.string.theme_light_pink,
-                    R.string.theme_light_orange,
-                    R.string.theme_light_mono
-                )
-                entryValues = arrayOf(
-                    Values.LightThemeVariant.default.name,
-                    Values.LightThemeVariant.blue.name,
-                    Values.LightThemeVariant.pink.name,
-                    Values.LightThemeVariant.orange.name,
-                    Values.LightThemeVariant.mono.name
-                )
-                defaultValue = Values.LightThemeVariant.default.name
-                summary = "%s"
-
-                preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.dark }
-                    .launchIn(viewScope)
-
-                onChange {
-                    if (preferences.themeMode().get() != Values.ThemeMode.dark) {
-                        activity?.recreate()
-                    }
-                    true
-                }
-            }
-            listPreference {
-                key = Keys.themeDark
-                titleRes = R.string.pref_theme_dark
-                entriesRes = arrayOf(
-                    R.string.theme_dark_default,
-                    R.string.theme_dark_blue,
-                    R.string.theme_dark_greenapple,
-                    R.string.theme_dark_yellow,
-                    R.string.theme_light_mono,
-                    R.string.theme_dark_amoled
-                )
-                entryValues = arrayOf(
-                    Values.DarkThemeVariant.default.name,
-                    Values.DarkThemeVariant.blue.name,
-                    Values.DarkThemeVariant.greenapple.name,
-                    Values.DarkThemeVariant.yellow.name,
-                    Values.DarkThemeVariant.mono.name,
-                    Values.DarkThemeVariant.amoled.name
-                )
-                defaultValue = Values.DarkThemeVariant.default.name
-                summary = "%s"
+            switchPreference {
+                key = Keys.themeDarkAmoled
+                titleRes = R.string.pref_dark_theme_pure_black
+                defaultValue = false
 
                 preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.light }
                     .launchIn(viewScope)
 
                 onChange {
-                    if (preferences.themeMode().get() != Values.ThemeMode.light) {
-                        activity?.recreate()
-                    }
+                    activity?.recreate()
                     true
                 }
             }

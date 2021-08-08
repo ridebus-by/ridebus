@@ -9,6 +9,10 @@
         <item name="android:colorControlHighlight">?attr/rippleColorToolbar</item>
     </style>
 
+    <style name="ThemeOverlay.RideBus.ActionBar.Colored" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:colorControlHighlight">?attr/colorOnPrimary</item>
+    </style>
+
     <style name="Widget.RideBus.Toolbar.Button.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="tint">?attr/colorOnToolbar</item>
     </style>
@@ -239,7 +243,7 @@
         <item name="tabInlineLabel">true</item>
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
-        <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
+        <item name="tabRippleColor">?attr/colorOnPrimary</item>
     </style>
 
     <style name="Widget.RideBus.TabLayout.Colored" parent="Widget.MaterialComponents.TabLayout.Colored">
@@ -251,6 +255,27 @@
         <item name="tabMinWidth">75dp</item>
         <item name="tabMode">scrollable</item>
         <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
+    </style>
+
+    <!--================-->
+    <!--Navigation Views-->
+    <!--================-->
+    <style name="Widget.RideBus.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.RideBus.BottomNavigationView.Colored" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.RideBus.NavigationRailView" parent="Widget.MaterialComponents.NavigationRailView">
+        <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.RideBus.NavigationRailView.Colored" parent="Widget.MaterialComponents.NavigationRailView.Colored">
+        <item name="labelVisibilityMode">labeled</item>
     </style>
 
     <!--============-->

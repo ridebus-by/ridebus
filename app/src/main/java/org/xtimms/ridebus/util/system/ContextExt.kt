@@ -4,6 +4,7 @@ import android.app.NotificationManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
@@ -117,6 +118,12 @@ val Float.dpToPxEnd: Float
                     if (Resources.getSystem().isLTR) 1 else -1
             )
 
+/**
+ * Converts to px.
+ */
+val Int.dpToPx: Int
+    get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
 val Context.notificationManager: NotificationManager
     get() = getSystemService()!!
 
@@ -143,4 +150,18 @@ fun Context.createFileInCacheDir(name: String): File {
     } else {
         0
     }
+}
+
+/**
+ * We consider anything with a width of >= 720dp as a tablet, i.e. with layouts in layout-sw720dp.
+ */
+fun Context.isTablet(): Boolean {
+    return resources.configuration.smallestScreenWidthDp >= 720
+}
+
+/**
+ * Returns true if current context is in night mode
+ */
+fun Context.isNightMode(): Boolean {
+    return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }

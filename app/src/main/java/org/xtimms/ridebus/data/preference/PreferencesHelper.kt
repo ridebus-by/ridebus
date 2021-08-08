@@ -30,15 +30,17 @@ class PreferencesHelper(val context: Context) {
 
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
+    fun hideBottomBarOnScroll() = flowPrefs.getBoolean(Keys.hideBottomBarOnScroll, true)
+
+    fun sideNavIconAlignment() = flowPrefs.getInt(Keys.sideNavIconAlignment, 0)
+
     fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
 
-    fun themeLight() = flowPrefs.getEnum(Keys.themeLight, Values.LightThemeVariant.default)
+    fun appTheme() = flowPrefs.getEnum(Keys.appTheme, Values.AppTheme.DEFAULT)
 
-    fun themeDark() = flowPrefs.getEnum(Keys.themeDark, Values.DarkThemeVariant.default)
+    fun themeDarkAmoled() = flowPrefs.getBoolean(Keys.themeDarkAmoled, false)
 
     fun lastSearchQuerySearchSettings() = flowPrefs.getString("last_search_query", "")
-
-    fun hideBottomBar() = flowPrefs.getBoolean(Keys.hideBottomBar, true)
 
     fun dateFormat(format: String = flowPrefs.getString(Keys.dateFormat, "").get()): DateFormat =
         when (format) {
@@ -47,16 +49,5 @@ class PreferencesHelper(val context: Context) {
         }
 
     fun lang() = prefs.getString(Keys.lang, "")
-
-    fun isDarkMode(): Boolean {
-        return when (themeMode().get()) {
-            light -> false
-            dark -> true
-            system -> {
-                context.applicationContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK ==
-                        Configuration.UI_MODE_NIGHT_YES
-            }
-        }
-    }
 
 }
