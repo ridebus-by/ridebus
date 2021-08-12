@@ -47,6 +47,23 @@ open class App : Application(), LifecycleObserver {
             }.launchIn(ProcessLifecycleOwner.get().lifecycleScope)
     }
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        setupAcra()
+    }
+
+    protected open fun setupAcra() {
+        initAcra {
+            buildConfigClass = BuildConfig::class.java
+            reportFormat = StringFormat.JSON
+            excludeMatchingSharedPreferencesKeys =
+                arrayOf(".*username.*", ".*password.*", ".*token.*")
+            httpSender {
+                uri = BuildConfig.ACRA_URI
+            }
+        }
+    }
+
     protected open fun setupNotificationChannels() {
         Notifications.createChannels(this)
     }
