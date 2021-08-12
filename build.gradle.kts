@@ -28,6 +28,7 @@ subprojects {
 
 buildscript {
     dependencies {
+        classpath("com.google.gms:google-services:4.3.9")
         classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
         classpath(kotlin("serialization", version = BuildPluginsVersion.KOTLIN))
     }

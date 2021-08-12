@@ -12,6 +12,10 @@ plugins {
     kotlin("kapt")
 }
 
+if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
+    apply(plugin = "com.google.gms.google-services")
+}
+
 android {
     compileSdk = AndroidConfig.compileSdk
 
@@ -29,16 +33,6 @@ android {
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas",
-                    "room.incremental" to "true",
-                    "room.expandProjection" to "true"
-                )
-            }
-        }
     }
 
     buildTypes {
@@ -189,8 +183,9 @@ dependencies {
     implementation("commons-io:commons-io:2.6")
     implementation("org.apache.commons:commons-lang3:3.9")
 
-    // Crash reports
+    // Crash reports/analytics
     implementation("ch.acra:acra-http:5.8.1")
+    "standardImplementation"("com.google.firebase:firebase-analytics:19.0.0")
 
     // Tests
     testImplementation("junit:junit:4.13.2")
