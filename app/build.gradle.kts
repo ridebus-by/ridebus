@@ -27,6 +27,9 @@ android {
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
 
+        // Please disable ACRA or use your own instance in forked versions of the project
+        buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += mapOf(
@@ -185,6 +188,9 @@ dependencies {
     // Utils
     implementation("commons-io:commons-io:2.6")
     implementation("org.apache.commons:commons-lang3:3.9")
+
+    // Crash reports
+    implementation("ch.acra:acra-http:5.8.1")
 
     // Tests
     testImplementation("junit:junit:4.13.2")

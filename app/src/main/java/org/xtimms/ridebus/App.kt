@@ -1,11 +1,15 @@
 package org.xtimms.ridebus
 
 import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.launchIn
+import org.acra.config.httpSender
+import org.acra.data.StringFormat
+import org.acra.ktx.initAcra
 import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper

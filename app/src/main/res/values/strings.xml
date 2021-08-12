@@ -66,4 +66,6 @@
     <string name="alignment_bottom">Bottom</string>
     <string name="pref_side_nav_icon_alignment">Side navigation icon alignment</string>
     <string name="theme_teal">Teal</string>
+    <string name="pref_enable_acra">Send crash reports</string>
+    <string name="pref_acra_summary">Helps fix any bugs. No sensitive data will be sent</string>
 </resources>
