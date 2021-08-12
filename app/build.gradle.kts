@@ -182,6 +182,10 @@ dependencies {
     implementation("com.bluelinelabs:conductor-viewpager:$conductorVersion")
     implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
 
+    // Utils
+    implementation("commons-io:commons-io:2.6")
+    implementation("org.apache.commons:commons-lang3:3.9")
+
     // Tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.assertj:assertj-core:3.16.1")
