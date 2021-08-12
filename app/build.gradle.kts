@@ -133,14 +133,15 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-process:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
 
-    // Room
-    val roomVersion = "2.3.0"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
-
     // RX
     implementation("io.reactivex:rxandroid:1.2.1")
     implementation("io.reactivex:rxjava:1.3.8")
+
+    // Database
+    implementation("androidx.sqlite:sqlite-ktx:2.1.0")
+    implementation("com.github.inorichi.storio:storio-common:8be19de@aar")
+    implementation("com.github.inorichi.storio:storio-sqlite:8be19de@aar")
+    implementation("com.github.requery:sqlite-android:3.36.0")
 
     // Model View Presenter
     val nucleusVersion = "3.0.0"

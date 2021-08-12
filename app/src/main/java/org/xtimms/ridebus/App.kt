@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
 import kotlinx.coroutines.flow.launchIn
-import org.xtimms.ridebus.data.database.AppDatabase
 import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
@@ -21,8 +19,6 @@ open class App : Application(), LifecycleObserver {
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private var database: AppDatabase? = null
-
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
@@ -35,8 +31,6 @@ open class App : Application(), LifecycleObserver {
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
-        AppDatabase.copyDatabase(applicationContext, AppDatabase.DATABASE_NAME)
-
         preferences.themeMode()
             .asImmediateFlow {
                 AppCompatDelegate.setDefaultNightMode(
@@ -47,11 +41,6 @@ open class App : Application(), LifecycleObserver {
                     }
                 )
             }.launchIn(ProcessLifecycleOwner.get().lifecycleScope)
-
-        database = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, AppDatabase.DATABASE_NAME
-        ).build()
     }
 
     protected open fun setupNotificationChannels() {
