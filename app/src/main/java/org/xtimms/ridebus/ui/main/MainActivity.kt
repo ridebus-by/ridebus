@@ -1,6 +1,7 @@
 package org.xtimms.ridebus.ui.main
 
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -26,6 +27,7 @@ import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
+import org.xtimms.ridebus.data.notification.NotificationReceiver
 import org.xtimms.ridebus.data.preference.asImmediateFlow
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.activity.BaseViewBindingActivity
@@ -151,7 +153,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         router = Conductor.attachRouter(this, container, savedInstanceState)
         if (!router.hasRootController()) {
             // Set start screen
-            setSelectedNavItem(startScreenId)
+            if (!handleIntentAction(intent)) {
+                setSelectedNavItem(startScreenId)
+            }
         }
 
         binding.toolbar.setNavigationOnClickListener {
@@ -242,6 +246,35 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         } else {
             setNavbarScrim()
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        if (!handleIntentAction(intent)) {
+            super.onNewIntent(intent)
+        }
+    }
+
+    private fun handleIntentAction(intent: Intent): Boolean {
+        val notificationId = intent.getIntExtra("notificationId", -1)
+        if (notificationId > -1) {
+            NotificationReceiver.dismissNotification(applicationContext, notificationId, intent.getIntExtra("groupId", 0))
+        }
+
+        isHandlingShortcut = true
+
+        when (intent.action) {
+            SHORTCUT_ROUTE -> setSelectedNavItem(R.id.nav_routes)
+            SHORTCUT_STOP -> setSelectedNavItem(R.id.nav_stops)
+            SHORTCUT_FAVORITE -> setSelectedNavItem(R.id.nav_favorite)
+            else -> {
+                isHandlingShortcut = false
+                return false
+            }
+        }
+
+        ready = true
+        isHandlingShortcut = false
+        return true
     }
 
     @Suppress("UNNECESSARY_SAFE_CALL")
@@ -391,5 +424,10 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         private const val SPLASH_MIN_DURATION = 500 // ms
         private const val SPLASH_MAX_DURATION = 5000 // ms
         private const val SPLASH_EXIT_ANIM_DURATION = 400L // ms
+
+        // Shortcut actions
+        const val SHORTCUT_ROUTE = "org.xtimms.ridebus.SHOW_ROUTE"
+        const val SHORTCUT_STOP = "org.xtimms.ridebus.SHOW_STOP"
+        const val SHORTCUT_FAVORITE = "org.xtimms.ridebus.SHOW_FAVORITE"
     }
 }

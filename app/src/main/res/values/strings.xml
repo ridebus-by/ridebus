@@ -68,4 +68,5 @@
     <string name="theme_teal">Teal</string>
     <string name="pref_enable_acra">Send crash reports</string>
     <string name="pref_acra_summary">Helps fix any bugs. No sensitive data will be sent</string>
+    <string name="app_not_available">App not available</string>
 </resources>

@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_directions_bus_48dp.xml" value="0.22135416666666666" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_favorite_border_48dp.xml" value="0.22135416666666666" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_store_mall_directory_48dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/pager_controller.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/menu/main_nav.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>

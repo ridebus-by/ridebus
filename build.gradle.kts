@@ -2,7 +2,6 @@ plugins {
     id("com.android.application") version BuildPluginsVersion.AGP apply false
     id("com.android.library") version BuildPluginsVersion.AGP apply false
     kotlin("android") version BuildPluginsVersion.KOTLIN apply false
-    kotlin("kapt") version BuildPluginsVersion.KOTLIN apply false
     id("org.jmailen.kotlinter") version BuildPluginsVersion.KOTLINTER
 }
 
@@ -28,7 +27,8 @@ subprojects {
 
 buildscript {
     dependencies {
-        classpath("com.google.gms:google-services:4.3.9")
+        classpath("com.github.zellius:android-shortcut-gradle-plugin:0.1.2")
+        classpath("com.google.gms:google-services:4.3.10")
         classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
         classpath(kotlin("serialization", version = BuildPluginsVersion.KOTLIN))
     }

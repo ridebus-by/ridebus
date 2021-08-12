@@ -9,12 +9,14 @@ plugins {
     id("com.mikepenz.aboutlibraries.plugin")
     kotlin("android")
     kotlin("plugin.serialization")
-    kotlin("kapt")
+    id("com.github.zellius.shortcut-helper")
 }
 
 if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
     apply(plugin = "com.google.gms.google-services")
 }
+
+shortcutHelper.setFilePath("./shortcuts.xml")
 
 android {
     compileSdk = AndroidConfig.compileSdk
