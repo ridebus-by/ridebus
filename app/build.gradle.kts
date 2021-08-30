@@ -142,6 +142,11 @@ dependencies {
     implementation("com.github.inorichi.storio:storio-sqlite:8be19de@aar")
     implementation("com.github.requery:sqlite-android:3.36.0")
 
+    // Room
+    val roomVersion = "2.3.0"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
     // Model View Presenter
     val nucleusVersion = "3.0.0"
     implementation("info.android15.nucleus:nucleus:$nucleusVersion")
