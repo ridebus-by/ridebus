@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -41,7 +40,6 @@ import org.xtimms.ridebus.util.lang.launchUI
 import org.xtimms.ridebus.util.system.dpToPx
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
-import org.xtimms.ridebus.widget.HideBottomNavigationOnScrollBehavior
 
 class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
@@ -56,7 +54,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     }
 
     lateinit var tabAnimator: ViewHeightAnimator
-    private var bottomNavAnimator: ViewHeightAnimator? = null
 
     private var isConfirmingExit: Boolean = false
     private var isHandlingShortcut: Boolean = false
@@ -104,15 +101,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         setSplashScreenExitAnimation(splashScreen)
 
         tabAnimator = ViewHeightAnimator(binding.tabs)
-
-        if (binding.bottomNav != null) {
-            bottomNavAnimator = ViewHeightAnimator(binding.bottomNav!!)
-
-            // Set behavior of bottom nav
-            preferences.hideBottomBarOnScroll()
-                .asImmediateFlow { setBottomNavBehaviorOnScroll() }
-                .launchIn(lifecycleScope)
-        }
 
         if (binding.sideNav != null) {
             preferences.sideNavIconAlignment()
@@ -332,11 +320,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         binding.appbar.setExpanded(true)
 
         if ((from == null || from is RootController) && to !is RootController) {
-            showNav(visible = false, expand = true)
+            showNav(false)
         }
         if (to is RootController) {
             // Always show bottom nav again when returning to a RootController
-            showNav(visible = true, expand = from !is RootController)
+            showNav(true)
         }
 
         if (from is TabbedController) {
@@ -363,57 +351,22 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         }
     }
 
-    private fun showNav(visible: Boolean, expand: Boolean = false) {
-        showBottomNav(visible, expand)
+    private fun showNav(visible: Boolean) {
+        showBottomNav(visible)
         showSideNav(visible)
     }
 
     // Also used from some controllers to swap bottom nav with action toolbar
-    fun showBottomNav(visible: Boolean, expand: Boolean = false) {
+    fun showBottomNav(visible: Boolean) {
         if (visible) {
-            binding.bottomNav?.translationY = 0F
-            if (expand) {
-                bottomNavAnimator?.expand()
-            }
+            binding.bottomNav?.slideUp()
         } else {
-            bottomNavAnimator?.collapse()
+            binding.bottomNav?.slideDown()
         }
     }
 
     private fun showSideNav(visible: Boolean) {
-        binding.sideNav?.let {
-            it.isVisible = visible
-        }
-    }
-
-    /**
-     * Used to manually offset a view within the activity's child views that might be cut off due to
-     * the collapsing AppBarLayout.
-     */
-    fun fixViewToBottom(view: View) {
-        val listener = AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            val maxAbsOffset = appBarLayout.measuredHeight - binding.tabs.measuredHeight
-            view.translationY = -maxAbsOffset - verticalOffset.toFloat() + appBarLayout.paddingTop
-        }
-        binding.appbar.addOnOffsetChangedListener(listener)
-        fixedViewsToBottom[view] = listener
-    }
-
-    fun clearFixViewToBottom(view: View) {
-        val listener = fixedViewsToBottom.remove(view)
-        binding.appbar.removeOnOffsetChangedListener(listener)
-    }
-
-    private fun setBottomNavBehaviorOnScroll() {
-        showNav(visible = true)
-
-        binding.bottomNav?.updateLayoutParams<CoordinatorLayout.LayoutParams> {
-            behavior = when {
-                preferences.hideBottomBarOnScroll().get() -> HideBottomNavigationOnScrollBehavior()
-                else -> null
-            }
-        }
-        binding.bottomNav?.translationY = 0F
+        binding.sideNav?.isVisible = visible
     }
 
     private val nav: NavigationBarView
