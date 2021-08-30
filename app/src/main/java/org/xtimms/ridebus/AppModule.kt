@@ -1,7 +1,6 @@
 package org.xtimms.ridebus
 
 import android.app.Application
-import org.xtimms.ridebus.data.database.DatabaseOpenHelper
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import uy.kohesive.injekt.api.InjektModule
 import uy.kohesive.injekt.api.InjektRegistrar
@@ -14,7 +13,5 @@ class AppModule(val app: Application) : InjektModule {
         addSingleton(app)
 
         addSingletonFactory { PreferencesHelper(app) }
-
-        addSingletonFactory { DatabaseOpenHelper(app) }
     }
 }
