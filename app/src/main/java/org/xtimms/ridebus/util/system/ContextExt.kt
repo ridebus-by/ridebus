@@ -8,6 +8,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
+import android.provider.Settings
 import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
@@ -165,3 +166,9 @@ fun Context.isTablet(): Boolean {
 fun Context.isNightMode(): Boolean {
     return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }
+
+/** Gets the duration multiplier for general animations on the device
+ * @see Settings.Global.ANIMATOR_DURATION_SCALE
+ */
+val Context.animatorDurationScale: Float
+    get() = Settings.Global.getFloat(this.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f)

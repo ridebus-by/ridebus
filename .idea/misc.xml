@@ -3,10 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/anim_favorite_enter.xml" value="0.1984375" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/anim_favorite_leave.xml" value="0.35989583333333336" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/anim_more_enter.xml" value="0.1984375" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/ic_baseline_directions_bus_filled_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/ic_baseline_favorite_1080.xml" value="0.3828125" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/ic_baseline_favorite_border_1080.xml" value="0.3828125" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/ic_bulldozer.xml" value="0.3828125" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/ic_favorite_selector.xml" value="0.22135416666666666" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/ic_ridebus.xml" value="0.22135416666666666" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/ic_ridebus_splash.xml" value="0.22135416666666666" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/oval.xml" value="0.1" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/rounded_rectangle.xml" value="0.1" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_directions_bus_48dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_favorite_border_48dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_store_mall_directory_48dp.xml" value="0.22135416666666666" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout-sw720dp/main_activity.xml" value="0.275" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/common_view_empty.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/favorite_controller.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/main_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/pager_controller.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/pref_theme_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/pref_themes_list.xml" value="0.75" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/routes_item.xml" value="0.1" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/stub_controller.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/test.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/menu/main_nav.xml" value="0.20520833333333333" />
       </map>
     </option>
