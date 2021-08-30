@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <color name="splash">@color/accent_lightblue</color>
+    <color name="splash">@color/accent_blue</color>
 
     <!-- Default Theme -->
-    <color name="accent_default">@color/accent_lightblue</color>
+    <color name="accent_default">@color/accent_blue</color>
     <color name="divider_default">@color/md_black_1000_12</color>
     <color name="surface_default">@color/md_white_1000</color>
     <color name="background_default">@color/md_grey_50</color>
-    <color name="ripple_colored_default">@color/ripple_colored_lightblue</color>
+    <color name="ripple_colored_default">@color/ripple_colored_blue</color>
 
     <!-- Monet Theme -->
     <color name="accent_monet" tools:targetApi="31">@android:color/system_accent1_600</color>
@@ -22,16 +22,16 @@
     <color name="on_background_monet" tools:targetApi="31">@color/on_surface_monet</color>
 
     <!-- Blue Theme -->
-    <color name="accent_lightblue">#0065B3</color>
-    <color name="ripple_colored_lightblue">#1F0065B3</color>
+    <color name="accent_blue">#0065B3</color>
+    <color name="ripple_colored_blue">#1F0065B3</color>
 
     <!-- Pink Theme -->
-    <color name="accent_pink">#ED4A65</color>
-    <color name="ripple_colored_pink">#1FED4A65</color>
+    <color name="accent_pink">#E8173A</color>
+    <color name="ripple_colored_pink">#1FE8173A</color>
 
     <!-- Orange Theme -->
-    <color name="accent_orange">#FFA726</color>
-    <color name="ripple_colored_orange">#1FFFA726</color>
+    <color name="accent_orange">#D34203</color>
+    <color name="ripple_colored_orange">#1FD34203</color>
 
     <!-- Dark Blue Theme -->
     <color name="accent_darkblue">#0065B3</color>
@@ -47,7 +47,6 @@
     <color name="ripple_colored_teal">#1F009688</color>
 
     <!-- AMOLED Theme -->
-    <color name="divider_amoled">@android:color/transparent</color>
     <color name="surface_amoled">#000001</color>
     <color name="background_amoled">#000000</color>
 

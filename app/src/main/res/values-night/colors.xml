@@ -18,9 +18,21 @@
     <color name="surface_monet" tools:targetApi="31">@android:color/system_neutral1_900</color>
     <color name="on_surface_monet" tools:targetApi="31">@android:color/system_neutral1_50</color>
 
+    <!-- Blue Theme -->
+    <color name="accent_blue">#146AFF</color>
+    <color name="ripple_colored_blue">#1F146AFF</color>
+
     <!-- Green Apple Theme -->
     <color name="accent_greenapple">#48E484</color>
     <color name="color_on_primary_greenapple">@color/md_black_1000</color>
     <color name="ripple_colored_greenapple">#1F48E484</color>
+
+    <!-- Pink Theme -->
+    <color name="accent_pink">#EE5871</color>
+    <color name="ripple_colored_pink">#1FEE5871</color>
+
+    <!-- Orange Theme -->
+    <color name="accent_orange">#FC9569</color>
+    <color name="ripple_colored_orange">#1FFC9569</color>
 
 </resources>

@@ -41,12 +41,19 @@
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
         <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
+        <item name="android:buttonStyle">?attr/borderlessButtonStyle</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeStyle">@style/Widget.RideBus.ActionMode</item>
+        <item name="actionOverflowButtonStyle">@style/Theme.RideBus.ActionButton.Overflow</item>
+        <item name="actionModeCloseButtonStyle">@style/Theme.RideBus.ActionMode.CloseButton</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_close</item>
         <item name="actionBarTheme">@style/ThemeOverlay.RideBus.ActionBar</item>
         <item name="toolbarNavigationButtonStyle">@style/Widget.RideBus.Toolbar.Button.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="chipStyle">@style/Widget.RideBus.Chip.Action</item>
+        <item name="chipBackgroundColor">?android:attr/divider</item>
         <item name="snackbarStyle">@style/Widget.RideBus.Snackbar</item>
         <item name="snackbarTextViewStyle">@style/Widget.RideBus.Snackbar.TextView</item>
         <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
@@ -55,12 +62,9 @@
         <item name="tabStyle">@style/Widget.RideBus.TabLayout</item>
         <item name="bottomNavigationStyle">@style/Widget.RideBus.BottomNavigationView</item>
         <item name="navigationRailStyle">@style/Widget.RideBus.NavigationRailView</item>
+        <item name="switchStyle">@style/Widget.RideBus.Switch</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="lightSystemBarsOnPrimary">false</item>
-
-        <!-- Text Appearances -->
-        <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
-
     </style>
 
     <!--== Default Theme ==-->
@@ -69,18 +73,11 @@
     <!-- Monet theme only support S+ -->
     <style name="Theme.RideBus.Monet" />
 
-    <!--== Light Blue theme ==-->
-    <style name="Theme.RideBus.DarkBlue">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_lightblue</item>
-        <item name="colorControlHighlight">@color/ripple_colored_lightblue</item>
-    </style>
-
     <!--== Pink theme ==-->
     <style name="Theme.RideBus.Pink">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_pink</item>
-        <item name="colorTertiary">@color/accent_lightblue</item>
+        <item name="colorTertiary">@color/accent_blue</item>
         <item name="colorControlHighlight">@color/ripple_colored_pink</item>
     </style>
 
@@ -88,7 +85,7 @@
     <style name="Theme.RideBus.Orange">
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_orange</item>
-        <item name="colorTertiary">@color/accent_lightblue</item>
+        <item name="colorTertiary">@color/accent_blue</item>
         <item name="colorControlHighlight">@color/ripple_colored_orange</item>
     </style>
 
@@ -97,7 +94,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_greenapple</item>
         <item name="colorOnPrimary">@color/md_black_1000</item>
-        <item name="colorTertiary">@color/accent_lightblue</item>
+        <item name="colorTertiary">@color/accent_blue</item>
         <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
     </style>
 
@@ -106,7 +103,7 @@
         <!-- Theme colors -->
         <item name="colorPrimary">@color/accent_teal</item>
         <item name="colorOnPrimary">@color/md_black_1000</item>
-        <item name="colorTertiary">@color/accent_lightblue</item>
+        <item name="colorTertiary">@color/accent_blue</item>
         <item name="colorControlHighlight">@color/ripple_colored_teal</item>
     </style>
 
