@@ -45,6 +45,8 @@ open class BusController :
         adapter = BusAdapter(this@BusController)
         binding.recycler.setHasFixedSize(true)
         binding.recycler.adapter = adapter
+
+        binding.emptyView.show(R.drawable.ic_bulldozer, "Work in progress")
     }
 
     override fun onDestroyView(view: View) {

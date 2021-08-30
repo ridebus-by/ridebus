@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/text_face"
-        style="@style/TextAppearance.Medium.Body2.Hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:gravity="center"
-        android:textSize="56sp"
-        tools:text="-_-" />
+        app:tint="?attr/colorControlNormal"
+        tools:src="@drawable/ic_bulldozer" />
 
     <TextView
         android:id="@+id/text_label"

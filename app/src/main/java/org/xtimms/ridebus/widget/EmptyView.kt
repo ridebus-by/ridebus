@@ -9,12 +9,12 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import com.google.android.material.button.MaterialButton
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.CommonViewEmptyBinding
 import org.xtimms.ridebus.util.system.getThemeColor
-import kotlin.random.Random
 
 class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     RelativeLayout(context, attrs) {
@@ -33,12 +33,12 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
      * Show the information view
      * @param textResource text of information view
      */
-    fun show(@StringRes textResource: Int, actions: List<Action>? = null) {
-        show(context.getString(textResource), actions)
+    fun show(@DrawableRes icon: Int, @StringRes textResource: Int, actions: List<Action>? = null) {
+        show(icon, context.getString(textResource), actions)
     }
 
-    fun show(message: String, actions: List<Action>? = null) {
-        binding.textFace.text = getRandomErrorFace()
+    fun show(@DrawableRes icon: Int, message: String, actions: List<Action>? = null) {
+        binding.icon.setImageDrawable(AppCompatResources.getDrawable(context, icon))
         binding.textLabel.text = message
 
         binding.actionsContainer.removeAllViews()
@@ -69,20 +69,6 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         }
 
         this.isVisible = true
-    }
-
-    companion object {
-        private val ERROR_FACES = listOf(
-            "＼(〇_ｏ)／",
-            "〣( ºΔº )〣",
-            "(￣ヘ￣)",
-            "(ᗒᗣᗕ)՞",
-            "ヾ(`ヘ´)ﾉﾞ"
-        )
-
-        fun getRandomErrorFace(): String {
-            return ERROR_FACES[Random.nextInt(ERROR_FACES.size)]
-        }
     }
 
     data class Action(
