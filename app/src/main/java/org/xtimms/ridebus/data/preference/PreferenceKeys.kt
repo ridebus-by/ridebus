@@ -6,6 +6,8 @@ object PreferenceKeys {
 
     const val themeMode = "pref_theme_mode_key"
 
+    const val city = "pref_city_key"
+
     const val appTheme = "pref_app_theme"
 
     const val themeDarkAmoled = "pref_theme_dark_amoled_key"

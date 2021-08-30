@@ -53,7 +53,7 @@
     <string name="theme_light_mono">Mono</string>
     <string name="theme_dark_yellow">Yellow</string>
     <string name="theme_default">Default</string>
-    <string name="theme_darkblue">Dark Blue</string>
+    <string name="theme_blue">Blue</string>
     <string name="theme_greenapple">Green Apple</string>
     <string name="theme_pink">Pink</string>
     <string name="theme_orange">Orange</string>
@@ -69,4 +69,17 @@
     <string name="pref_enable_acra">Send crash reports</string>
     <string name="pref_acra_summary">Helps fix any bugs. No sensitive data will be sent</string>
     <string name="app_not_available">App not available</string>
+    <string name="pref_category_appearance">Appearance</string>
+    <string name="pref_category_timestamps">Timestamps</string>
+    <string name="pref_category_navigation">Navigation</string>
+    <string name="pref_category_schedule">Schedule</string>
+    <string name="map">Map</string>
+    <string name="backup">Backup and restore</string>
+    <string name="automatic_schedule_updates">Automatic schedule updates</string>
+    <string name="automatic_schedule_updates_summary">Allows to get the current schedule when it is available</string>
+    <string name="near_me">Stops nearby</string>
+    <string name="help">Help</string>
+    <string name="city_polotsk">Polotsk</string>
+    <string name="city_novopolotsk">Novopolotsk</string>
+    <string name="city">City</string>
 </resources>

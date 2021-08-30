@@ -18,17 +18,18 @@ abstract class BaseThemedActivity : AppCompatActivity() {
 
     companion object {
         fun AppCompatActivity.applyAppTheme(preferences: PreferencesHelper) {
+            getThemeResIds(preferences.appTheme().get(), preferences.themeDarkAmoled().get())
+                .forEach { setTheme(it) }
+        }
+
+        fun getThemeResIds(appTheme: PreferenceValues.AppTheme, isAmoled: Boolean): List<Int> {
             val resIds = mutableListOf<Int>()
-            when (preferences.appTheme().get()) {
+            when (appTheme) {
                 PreferenceValues.AppTheme.MONET -> {
                     resIds += R.style.Theme_RideBus_Monet
                 }
                 PreferenceValues.AppTheme.DEFAULT -> {
                     resIds += R.style.Theme_RideBus
-                }
-                PreferenceValues.AppTheme.DARK_BLUE -> {
-                    resIds += R.style.Theme_RideBus_DarkBlue
-                    resIds += R.style.ThemeOverlay_RideBus_ColoredBars
                 }
                 PreferenceValues.AppTheme.GREEN_APPLE -> {
                     resIds += R.style.Theme_RideBus_GreenApple
@@ -44,13 +45,11 @@ abstract class BaseThemedActivity : AppCompatActivity() {
                 }
             }
 
-            if (preferences.themeDarkAmoled().get()) {
+            if (isAmoled) {
                 resIds += R.style.ThemeOverlay_RideBus_Amoled
             }
 
-            resIds.forEach {
-                setTheme(it)
-            }
+            return resIds
         }
     }
 }

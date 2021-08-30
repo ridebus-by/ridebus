@@ -91,7 +91,7 @@ fun Context.openInBrowser(uri: Uri, @ColorInt toolbarColor: Int? = null) {
 
 fun Context.notificationBuilder(channelId: String, block: (NotificationCompat.Builder.() -> Unit)? = null): NotificationCompat.Builder {
     val builder = NotificationCompat.Builder(this, channelId)
-        .setColor(ContextCompat.getColor(this, R.color.accent_lightblue))
+        .setColor(ContextCompat.getColor(this, R.color.accent_blue))
     if (block != null) {
         builder.block()
     }

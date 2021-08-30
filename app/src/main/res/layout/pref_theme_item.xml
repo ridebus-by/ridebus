@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="118dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/theme_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:importantForAccessibility="no"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:contentPadding="4dp"
+        app:strokeColor="?attr/colorAccent"
+        app:strokeWidth="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="176dp"
+            android:background="?android:attr/colorBackground">
+
+            <View
+                android:id="@+id/top_nav"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:background="?attr/colorToolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/top_nav_text"
+                android:layout_width="50dp"
+                android:layout_height="6dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@+id/top_nav"
+                app:layout_constraintStart_toStartOf="@id/top_nav"
+                app:layout_constraintTop_toTopOf="@id/top_nav"
+                app:tint="?attr/colorOnToolbar" />
+
+            <ImageView
+                android:id="@+id/tab1"
+                android:layout_width="12dp"
+                android:layout_height="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@+id/top_nav"
+                app:layout_constraintEnd_toStartOf="@id/tab2"
+                app:layout_constraintStart_toStartOf="@id/top_nav"
+                app:layout_constraintTop_toBottomOf="@+id/top_nav_text"
+                app:tint="?attr/colorAccent" />
+
+            <ImageView
+                android:id="@+id/tab2"
+                android:layout_width="12dp"
+                android:layout_height="4dp"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@+id/top_nav"
+                app:layout_constraintEnd_toStartOf="@id/tab3"
+                app:layout_constraintStart_toEndOf="@+id/tab1"
+                app:layout_constraintTop_toBottomOf="@+id/top_nav_text"
+                app:tint="?attr/colorOnToolbar" />
+
+            <ImageView
+                android:id="@+id/tab3"
+                android:layout_width="12dp"
+                android:layout_height="4dp"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@+id/top_nav"
+                app:layout_constraintStart_toEndOf="@id/tab2"
+                app:layout_constraintTop_toBottomOf="@+id/top_nav_text"
+                app:tint="?attr/colorOnToolbar" />
+
+            <ImageView
+                android:id="@+id/item1"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/oval"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_nav"
+                app:tint="?attr/colorPrimary" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@+id/item1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item1"
+                app:layout_constraintTop_toTopOf="@+id/item1"
+                app:tint="?android:attr/colorControlNormal" />
+
+            <ImageView
+                android:id="@+id/item2"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/oval"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item1"
+                app:tint="?attr/colorPrimary" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@+id/item2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item2"
+                app:layout_constraintTop_toTopOf="@+id/item2"
+                app:tint="?android:attr/colorControlNormal" />
+
+            <View
+                android:id="@+id/bottom_nav"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:background="?attr/colorToolbar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/bottom_nav_selected_item"
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@id/bottom_nav"
+                app:layout_constraintStart_toStartOf="@id/bottom_nav"
+                app:layout_constraintTop_toTopOf="@id/bottom_nav"
+                app:tint="?attr/colorPrimary" />
+
+            <ImageView
+                android:id="@+id/bottom_nav_unselected_item"
+                android:layout_width="0dp"
+                android:layout_height="7dp"
+                android:layout_marginHorizontal="8dp"
+                android:alpha="0.6"
+                android:src="@drawable/oval"
+                app:layout_constraintBottom_toBottomOf="@id/bottom_nav"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/bottom_nav_selected_item"
+                app:layout_constraintTop_toTopOf="@id/bottom_nav"
+                app:tint="?attr/colorOnSurface" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        tools:text="Theme Name" />
+
+</LinearLayout>

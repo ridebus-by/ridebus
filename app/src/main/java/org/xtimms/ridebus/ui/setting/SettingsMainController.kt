@@ -25,6 +25,18 @@ class SettingsMainController : SettingsController() {
             onClick { navigateTo(SettingsGeneralController()) }
         }
         preference {
+            iconRes = R.drawable.ic_brush
+            iconTint = tintColor
+            titleRes = R.string.pref_category_appearance
+            onClick { navigateTo(SettingsAppearanceController()) }
+        }
+        preference {
+            iconRes = R.drawable.ic_schedule
+            iconTint = tintColor
+            titleRes = R.string.pref_category_schedule
+            onClick { navigateTo(SettingsScheduleController()) }
+        }
+        preference {
             iconRes = R.drawable.ic_code
             iconTint = tintColor
             titleRes = R.string.pref_category_advanced

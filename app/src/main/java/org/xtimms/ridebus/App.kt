@@ -38,8 +38,6 @@ open class App : Application(), LifecycleObserver {
 
         setupNotificationChannels()
 
-        LocaleHelper.updateConfiguration(this, resources.configuration)
-
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
         preferences.themeMode()
