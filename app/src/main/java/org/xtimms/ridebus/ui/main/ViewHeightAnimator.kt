@@ -4,7 +4,7 @@ import android.animation.ObjectAnimator
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.annotation.Keep
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 
 class ViewHeightAnimator(val view: View) {
 
@@ -19,12 +19,22 @@ class ViewHeightAnimator(val view: View) {
     private var isLastStateShown = true
 
     /**
-     * Animation used to expand and collapse the view.
+     * Animation used to expand the view.
      */
-    private val animation by lazy {
+    private val expandAnimation by lazy {
         ObjectAnimator.ofInt(this, "height", height).apply {
             duration = 300L
-            interpolator = FastOutSlowInInterpolator()
+            interpolator = LinearOutSlowInInterpolator()
+        }
+    }
+
+    /**
+     * Animation used to collapse the view.
+     */
+    private val collapseAnimation by lazy {
+        ObjectAnimator.ofInt(this, "height", height).apply {
+            duration = 250L
+            interpolator = LinearOutSlowInInterpolator()
         }
     }
 
@@ -75,10 +85,10 @@ class ViewHeightAnimator(val view: View) {
     fun expand() {
         if (isMeasured) {
             if (getHeight() != height) {
-                animation.setIntValues(height)
-                animation.start()
+                expandAnimation.setIntValues(height)
+                expandAnimation.start()
             } else {
-                animation.cancel()
+                expandAnimation.cancel()
             }
         }
         isLastStateShown = true
@@ -90,10 +100,10 @@ class ViewHeightAnimator(val view: View) {
     fun collapse() {
         if (isMeasured) {
             if (getHeight() != 0) {
-                animation.setIntValues(0)
-                animation.start()
+                collapseAnimation.setIntValues(0)
+                collapseAnimation.start()
             } else {
-                animation.cancel()
+                collapseAnimation.cancel()
             }
         }
         isLastStateShown = false
