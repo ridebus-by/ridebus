@@ -11,6 +11,7 @@ import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
+import org.xtimms.ridebus.ui.stub.StubController
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.getResourceColor
 import rx.Observable
@@ -32,17 +33,59 @@ class MoreController :
 
         add(MoreHeaderPreference(context))
 
-        preference {
-            titleRes = R.string.label_settings
-            iconRes = R.drawable.ic_settings
+        switchPreference {
+            titleRes = R.string.automatic_schedule_updates
+            summaryRes = R.string.automatic_schedule_updates_summary
+            iconRes = R.drawable.ic_update
             iconTint = tintColor
-            onClick { router.pushController(SettingsMainController().withFadeTransaction()) }
         }
-        preference {
-            iconRes = R.drawable.ic_info
-            iconTint = tintColor
-            titleRes = R.string.pref_category_about
-            onClick { router.pushController(AboutController().withFadeTransaction()) }
+
+        preferenceCategory {
+            preference {
+                titleRes = R.string.near_me
+                iconRes = R.drawable.ic_near_me
+                iconTint = tintColor
+                onClick {
+                    router.pushController(StubController().withFadeTransaction())
+                }
+            }
+            preference {
+                titleRes = R.string.map
+                iconRes = R.drawable.ic_map
+                iconTint = tintColor
+                onClick {
+                    router.pushController(StubController().withFadeTransaction())
+                }
+            }
+            preference {
+                titleRes = R.string.backup
+                iconRes = R.drawable.ic_backup
+                iconTint = tintColor
+                onClick {
+                    router.pushController(StubController().withFadeTransaction())
+                }
+            }
+        }
+
+        preferenceCategory {
+            preference {
+                titleRes = R.string.label_settings
+                iconRes = R.drawable.ic_settings
+                iconTint = tintColor
+                onClick { router.pushController(SettingsMainController().withFadeTransaction()) }
+            }
+            preference {
+                iconRes = R.drawable.ic_info
+                iconTint = tintColor
+                titleRes = R.string.pref_category_about
+                onClick { router.pushController(AboutController().withFadeTransaction()) }
+            }
+            preference {
+                iconRes = R.drawable.ic_help
+                iconTint = tintColor
+                titleRes = R.string.help
+                onClick { router.pushController(StubController().withFadeTransaction()) }
+            }
         }
     }
 
