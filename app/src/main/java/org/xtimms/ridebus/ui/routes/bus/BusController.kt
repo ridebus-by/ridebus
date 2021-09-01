@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
+import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.BusControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.main.MainActivity
@@ -19,14 +20,15 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 open class BusController(
-    private val db: RideBusDatabase = Injekt.get()
+    db: RideBusDatabase = Injekt.get(),
+    preferences: PreferencesHelper = Injekt.get()
 ) :
     NucleusController<BusControllerBinding, BusPresenter>(),
     FlexibleAdapter.OnItemClickListener {
 
     private var adapter: BusAdapter? = null
 
-    private val items = db.routeDao().getAll().map { BusItem(it) } // TODO Rx
+    private val items = db.routeDao().getBuses(preferences.city().get().ordinal + 1).map { BusItem(it) } // TODO Rx
 
     private var query = ""
 

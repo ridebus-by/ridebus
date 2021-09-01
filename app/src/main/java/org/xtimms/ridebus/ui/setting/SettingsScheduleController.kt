@@ -22,10 +22,10 @@ class SettingsScheduleController : SettingsController() {
                 R.string.city_novopolotsk
             )
             entryValues = arrayOf(
-                PreferenceValues.City.polotsk.name,
-                PreferenceValues.City.novopolotsk.name
+                PreferenceValues.City.POLOTSK.name,
+                PreferenceValues.City.NOVOPOLOTSK.name
             )
-            defaultValue = PreferenceValues.City.polotsk.name
+            defaultValue = PreferenceValues.City.POLOTSK.name
             summary = "%s"
         }
     }

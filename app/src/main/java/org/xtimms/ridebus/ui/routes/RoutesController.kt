@@ -12,6 +12,7 @@ import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.main.MainActivity
 import org.xtimms.ridebus.ui.routes.bus.BusController
+import org.xtimms.ridebus.ui.stub.StubController
 
 class RoutesController :
     RxController<PagerControllerBinding>(),
@@ -71,8 +72,8 @@ class RoutesController :
             if (!router.hasRootController()) {
                 val controller: Controller = when (position) {
                     BUS_CONTROLLER -> BusController()
-                    ROUTE_TAXI_CONTROLLER -> BusController()
-                    EXPRESS_CONTROLLER -> BusController()
+                    ROUTE_TAXI_CONTROLLER -> StubController()
+                    EXPRESS_CONTROLLER -> StubController()
                     else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))

@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.animation.doOnEnd
@@ -20,7 +19,6 @@ import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.delay
@@ -57,8 +55,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     private var isConfirmingExit: Boolean = false
     private var isHandlingShortcut: Boolean = false
-
-    private var fixedViewsToBottom = mutableMapOf<View, AppBarLayout.OnOffsetChangedListener>()
 
     // To be checked by splash screen. If true then splash screen will be removed.
     var ready = false

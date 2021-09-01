@@ -36,6 +36,8 @@ class PreferencesHelper(val context: Context) {
 
     fun appTheme() = flowPrefs.getEnum(Keys.appTheme, Values.AppTheme.DEFAULT)
 
+    fun city() = flowPrefs.getEnum(Keys.city, Values.City.POLOTSK)
+
     fun themeDarkAmoled() = flowPrefs.getBoolean(Keys.themeDarkAmoled, false)
 
     fun lastSearchQuerySearchSettings() = flowPrefs.getString("last_search_query", "")

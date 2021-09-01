@@ -8,8 +8,8 @@ object PreferenceValues {
 
     // Keys are lowercase to match legacy string values
     enum class City {
-        polotsk,
-        novopolotsk
+        POLOTSK,
+        NOVOPOLOTSK
     }
 
     /* ktlint-disable experimental:enum-entry-name-case */
