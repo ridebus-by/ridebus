@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.databinding.BusControllerBinding
-import org.xtimms.ridebus.ui.base.controller.SearchableNucleusController
+import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.main.MainActivity
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
@@ -21,10 +21,12 @@ import uy.kohesive.injekt.api.get
 open class BusController(
     private val db: RideBusDatabase = Injekt.get()
 ) :
-    SearchableNucleusController<BusControllerBinding, BusPresenter>(),
+    NucleusController<BusControllerBinding, BusPresenter>(),
     FlexibleAdapter.OnItemClickListener {
 
     private var adapter: BusAdapter? = null
+
+    private val items = db.routeDao().getAll().map { BusItem(it) } // TODO Rx
 
     private var query = ""
 
@@ -51,7 +53,6 @@ open class BusController(
 
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.adapter = adapter
-        val items = db.routeDao().getAll().map { BusItem(it) } // TODO Rx
         adapter?.updateDataSet(items)
         binding.recycler.onAnimationsFinished {
             (activity as? MainActivity)?.ready = true
@@ -90,11 +91,24 @@ open class BusController(
             .filter { router.backstack.lastOrNull()?.controller == this }
             .onEach {
                 query = it.toString()
+                drawBuses()
             }
             .launchIn(viewScope)
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
         return false
+    }
+
+    private fun drawBuses() {
+        if (query.isNotBlank()) {
+            adapter?.updateDataSet(
+                items.filter {
+                    it.route.description.contains(query, ignoreCase = true)
+                }
+            )
+        } else {
+            adapter?.updateDataSet(items)
+        }
     }
 }
