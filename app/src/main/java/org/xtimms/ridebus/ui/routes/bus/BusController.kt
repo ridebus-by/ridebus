@@ -58,6 +58,7 @@ open class BusController(
             (activity as? MainActivity)?.ready = true
         }
         binding.recycler.setHasFixedSize(true)
+        adapter?.fastScroller = binding.fastScroller
     }
 
     override fun onDestroyView(view: View) {
@@ -73,7 +74,7 @@ open class BusController(
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.routes_buses, menu)
+        inflater.inflate(R.menu.routes, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView

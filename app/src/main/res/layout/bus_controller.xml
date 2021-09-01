@@ -9,13 +9,16 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
         tools:listitem="@layout/routes_item" />
 
-    <org.xtimms.ridebus.widget.EmptyView
-        android:id="@+id/empty_view"
+    <org.xtimms.ridebus.widget.MaterialFastScroll
+        android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        app:fastScrollerBubbleEnabled="false"
+        tools:visibility="visible" />
 
 </FrameLayout>
