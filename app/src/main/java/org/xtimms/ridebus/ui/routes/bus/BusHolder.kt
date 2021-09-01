@@ -8,4 +8,10 @@ class BusHolder(view: View, val adapter: BusAdapter) :
     FlexibleViewHolder(view, adapter) {
 
     private val binding = RoutesItemBinding.bind(view)
+
+    fun bind(item: BusItem) {
+        val route = item.route
+        binding.routeNumber.text = route.number
+        binding.routeTitle.text = route.description
+    }
 }

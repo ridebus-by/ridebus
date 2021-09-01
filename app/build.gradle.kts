@@ -9,6 +9,7 @@ plugins {
     id("com.mikepenz.aboutlibraries.plugin")
     kotlin("android")
     kotlin("plugin.serialization")
+    kotlin("kapt")
     id("com.github.zellius.shortcut-helper")
 }
 
@@ -35,6 +36,16 @@ android {
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
+                )
+            }
+        }
     }
 
     buildTypes {
@@ -135,6 +146,8 @@ dependencies {
     // RX
     implementation("io.reactivex:rxandroid:1.2.1")
     implementation("io.reactivex:rxjava:1.3.8")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.0.0")
+    implementation("io.reactivex.rxjava2:rxandroid:2.0.1")
 
     // Database
     implementation("androidx.sqlite:sqlite-ktx:2.1.0")
@@ -145,7 +158,9 @@ dependencies {
     // Room
     val roomVersion = "2.3.0"
     implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-rxjava2:$roomVersion")
 
     // Model View Presenter
     val nucleusVersion = "3.0.0"

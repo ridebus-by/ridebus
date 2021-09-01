@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.launchIn
 import org.acra.config.httpSender
 import org.acra.data.StringFormat
 import org.acra.ktx.initAcra
-import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
@@ -21,17 +20,10 @@ import uy.kohesive.injekt.injectLazy
 
 open class App : Application(), LifecycleObserver {
 
-    private var instance: App? = null
-    private val db: RideBusDatabase? = null
     private val preferences: PreferencesHelper by injectLazy()
-
-    open fun getInstance(): App? {
-        return instance
-    }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
 
         Injekt.importModule(AppModule(this))
@@ -50,10 +42,6 @@ open class App : Application(), LifecycleObserver {
                     }
                 )
             }.launchIn(ProcessLifecycleOwner.get().lifecycleScope)
-    }
-
-    open fun getDatabase(): RideBusDatabase? {
-        return db
     }
 
     override fun attachBaseContext(base: Context?) {

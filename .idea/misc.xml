@@ -19,13 +19,17 @@
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_favorite_border_48dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/drawable/sc_outline_store_mall_directory_48dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout-sw720dp/main_activity.xml" value="0.275" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/bus_controller.xml" value="0.20260416666666667" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/common_view_empty.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/favorite_controller.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/main_activity.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/main_activity_toolbar.xml" value="0.20260416666666667" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/pager_controller.xml" value="0.20520833333333333" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/pref_theme_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/pref_themes_list.xml" value="0.75" />
-        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/routes_item.xml" value="0.1" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/routes_controller.xml" value="0.20260416666666667" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/routes_detail_controller.xml" value="0.20260416666666667" />
+        <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/routes_item.xml" value="0.33" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/stub_controller.xml" value="0.20520833333333333" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/layout/test.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Studio Projects/RideBusRewrite/app/src/main/res/menu/main_nav.xml" value="0.20520833333333333" />

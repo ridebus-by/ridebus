@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Routes")
 data class Route(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
-    val id: Int,
+    val routeId: Int,
     @ColumnInfo(name = "number") val number: String,
     @ColumnInfo(name = "description") val description: String
 )

@@ -9,16 +9,22 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
+import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.databinding.BusControllerBinding
-import org.xtimms.ridebus.ui.base.controller.NucleusController
+import org.xtimms.ridebus.ui.base.controller.SearchableNucleusController
+import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
-open class BusController :
-    NucleusController<BusControllerBinding, BusPresenter>(),
+open class BusController(
+    private val db: RideBusDatabase = Injekt.get()
+) :
+    SearchableNucleusController<BusControllerBinding, BusPresenter>(),
     FlexibleAdapter.OnItemClickListener {
 
-    var adapter: BusAdapter? = null
-        private set
+    private var adapter: BusAdapter? = null
 
     private var query = ""
 
@@ -41,12 +47,16 @@ open class BusController :
             }
         }
 
-        binding.recycler.layoutManager = LinearLayoutManager(view.context)
-        adapter = BusAdapter(this@BusController)
-        binding.recycler.setHasFixedSize(true)
-        binding.recycler.adapter = adapter
+        adapter = BusAdapter(this)
 
-        binding.emptyView.show(R.drawable.ic_bulldozer, "Work in progress")
+        binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.adapter = adapter
+        val items = db.routeDao().getAll().map { BusItem(it) } // TODO Rx
+        adapter?.updateDataSet(items)
+        binding.recycler.onAnimationsFinished {
+            (activity as? MainActivity)?.ready = true
+        }
+        binding.recycler.setHasFixedSize(true)
     }
 
     override fun onDestroyView(view: View) {
