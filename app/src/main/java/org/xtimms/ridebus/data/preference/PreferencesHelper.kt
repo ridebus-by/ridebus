@@ -7,6 +7,7 @@ import com.tfcporciuncula.flow.Preference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.*
+import org.xtimms.ridebus.util.system.isTablet
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,6 +36,11 @@ class PreferencesHelper(val context: Context) {
     fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
 
     fun appTheme() = flowPrefs.getEnum(Keys.appTheme, Values.AppTheme.DEFAULT)
+
+    fun tabletUiMode() = flowPrefs.getEnum(
+        Keys.tabletUiMode,
+        if (context.applicationContext.isTablet()) Values.TabletUiMode.ALWAYS else Values.TabletUiMode.NEVER
+    )
 
     fun city() = flowPrefs.getEnum(Keys.city, Values.City.POLOTSK)
 

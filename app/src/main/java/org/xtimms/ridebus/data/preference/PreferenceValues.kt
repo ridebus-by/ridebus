@@ -6,7 +6,6 @@ object PreferenceValues {
 
     /* ktlint-disable experimental:enum-entry-name-case */
 
-    // Keys are lowercase to match legacy string values
     enum class City {
         POLOTSK,
         NOVOPOLOTSK
@@ -30,5 +29,11 @@ object PreferenceValues {
         PINK(R.string.theme_pink),
         ORANGE(R.string.theme_orange),
         TEAL(R.string.theme_teal)
+    }
+
+    enum class TabletUiMode {
+        ALWAYS,
+        LANDSCAPE,
+        NEVER
     }
 }

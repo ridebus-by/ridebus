@@ -12,6 +12,8 @@ object PreferenceKeys {
 
     const val themeDarkAmoled = "pref_theme_dark_amoled_key"
 
+    const val tabletUiMode = "tablet_ui_mode"
+
     const val confirmExit = "pref_confirm_exit"
 
     const val hideBottomBarOnScroll = "pref_hide_bottom_bar_on_scroll"
