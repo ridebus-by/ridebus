@@ -13,6 +13,8 @@ data class Route(
     val routeId: Int,
     @ColumnInfo(name = "city_id") val cityId: Int,
     @ColumnInfo(name = "transport_id") val transportId: Int,
+    @ColumnInfo(name = "kind_id") val kindId: Int,
     @ColumnInfo(name = "number") val number: String,
+    @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "description") val description: String
 )

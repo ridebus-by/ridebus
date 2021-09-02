@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "af0ffbd717f5404e06a3537819d4d96a",
+    "identityHash": "ce965f3a64f51682f3673439692f6381",
     "entities": [
       {
         "tableName": "Routes",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `number` TEXT NOT NULL, `description` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kind_id` INTEGER NOT NULL, `number` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "routeId",
@@ -27,8 +27,20 @@
             "notNull": true
           },
           {
+            "fieldPath": "kindId",
+            "columnName": "kind_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "number",
             "columnName": "number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -96,7 +108,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'af0ffbd717f5404e06a3537819d4d96a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ce965f3a64f51682f3673439692f6381')"
     ]
   }
 }

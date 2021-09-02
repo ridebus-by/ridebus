@@ -28,7 +28,7 @@ open class BusController(
 
     private var adapter: BusAdapter? = null
 
-    private val items = db.routeDao().getBuses(preferences.city().get().ordinal + 1).map { BusItem(it) } // TODO Rx
+    private val items = db.routeDao().getBuses(preferences.city().get().ordinal).map { BusItem(it) } // TODO Rx
 
     private var query = ""
 

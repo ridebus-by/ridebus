@@ -12,6 +12,7 @@ class BusHolder(view: View, val adapter: BusAdapter) :
     fun bind(item: BusItem) {
         val route = item.route
         binding.routeNumber.text = route.number
-        binding.routeTitle.text = route.description
+        binding.routeTitle.text = route.title
+        binding.routeDescription.text = route.description
     }
 }

@@ -60,7 +60,7 @@
     <string name="theme_yellow">Yellow</string>
     <string name="pref_app_theme">App theme</string>
     <string name="pref_dark_theme_pure_black">Pure black dark mode</string>
-    <string name="theme_monet">Monet</string>
+    <string name="theme_monet">Dynamic</string>
     <string name="alignment_top">Top</string>
     <string name="alignment_center">Center</string>
     <string name="alignment_bottom">Bottom</string>
@@ -83,4 +83,10 @@
     <string name="city_novopolotsk">Novopolotsk</string>
     <string name="city">City</string>
     <string name="information_no_favorite_stops">There are no favorite stops</string>
+    <string name="pref_category_display">Display</string>
+    <string name="pref_tablet_ui_mode">Tablet UI</string>
+    <string name="requires_app_restart">Requires app restart to take effect</string>
+    <string name="lock_always">Always</string>
+    <string name="landscape">Landscape</string>
+    <string name="lock_never">Never</string>
 </resources>
