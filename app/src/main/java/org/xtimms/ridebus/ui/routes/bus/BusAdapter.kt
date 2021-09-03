@@ -4,4 +4,11 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 
 class BusAdapter(controller: BusController) :
-    FlexibleAdapter<IFlexible<*>>(null, controller, true)
+    FlexibleAdapter<IFlexible<*>>(null, controller, true) {
+
+    val itemClickListener: OnItemClickListener = controller
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+}

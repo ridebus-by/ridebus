@@ -1,6 +1,5 @@
 package org.xtimms.ridebus.ui.stub
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import org.xtimms.ridebus.R
@@ -10,8 +9,8 @@ import org.xtimms.ridebus.ui.base.controller.NucleusController
 //
 // Created by Xtimms on 28.08.2021.
 //
-class StubController(bundle: Bundle? = null) :
-    NucleusController<StubControllerBinding, StubPresenter>(bundle) {
+class StubController :
+    NucleusController<StubControllerBinding, StubPresenter>() {
 
     override fun getTitle(): String? = "Stub"
 

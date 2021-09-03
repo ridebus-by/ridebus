@@ -12,6 +12,12 @@ class StopsHolder(view: View, val adapter: StopsAdapter) :
 
     private val binding = StopsItemBinding.bind(view)
 
+    init {
+        binding.holder.setOnClickListener {
+            adapter.itemClickListener.onItemClick(bindingAdapterPosition)
+        }
+    }
+
     fun bind(item: StopsItem) {
         val stop = item.stop
         binding.stopTitle.text = stop.name

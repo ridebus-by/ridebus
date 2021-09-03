@@ -9,6 +9,12 @@ class BusHolder(view: View, val adapter: BusAdapter) :
 
     private val binding = RoutesItemBinding.bind(view)
 
+    init {
+        binding.holder.setOnClickListener {
+            adapter.itemClickListener.onItemClick(bindingAdapterPosition)
+        }
+    }
+
     fun bind(item: BusItem) {
         val route = item.route
         binding.routeNumber.text = route.number

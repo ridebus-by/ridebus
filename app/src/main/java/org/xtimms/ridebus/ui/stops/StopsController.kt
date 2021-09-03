@@ -13,18 +13,20 @@ import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.databinding.StopsControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController
+import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.ui.stub.StubController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
-class StopsController(
-    private val db: RideBusDatabase = Injekt.get()
-) :
+class StopsController :
     NucleusController<StopsControllerBinding, StopsPresenter>(),
     RootController,
-    FlexibleAdapter.OnItemClickListener {
+    FlexibleAdapter.OnUpdateListener,
+    StopsAdapter.OnItemClickListener {
+
+    private val db: RideBusDatabase by injectLazy()
 
     private var adapter: StopsAdapter? = null
 
@@ -103,10 +105,6 @@ class StopsController(
             .launchIn(viewScope)
     }
 
-    override fun onItemClick(view: View?, position: Int): Boolean {
-        return false
-    }
-
     private fun drawStops() {
         if (query.isNotBlank()) {
             adapter?.updateDataSet(
@@ -116,6 +114,18 @@ class StopsController(
             )
         } else {
             adapter?.updateDataSet(items)
+        }
+    }
+
+    override fun onItemClick(position: Int) {
+        router.pushController(StubController().withFadeTransaction())
+    }
+
+    override fun onUpdateEmptyView(size: Int) {
+        if (size > 0) {
+            binding.emptyView.hide()
+        } else {
+            binding.emptyView.show(R.drawable.ic_alert, R.string.information_no_stops)
         }
     }
 }

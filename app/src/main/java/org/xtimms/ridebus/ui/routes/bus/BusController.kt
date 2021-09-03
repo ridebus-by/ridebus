@@ -13,18 +13,22 @@ import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.BusControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
+import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.ui.stub.StubController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
-import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
-open class BusController(
-    db: RideBusDatabase = Injekt.get(),
-    preferences: PreferencesHelper = Injekt.get()
-) :
+open class BusController :
     NucleusController<BusControllerBinding, BusPresenter>(),
-    FlexibleAdapter.OnItemClickListener {
+    FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnUpdateListener,
+    BusAdapter.OnItemClickListener {
+
+    private val db: RideBusDatabase by injectLazy()
+    private val preferences: PreferencesHelper by injectLazy()
 
     private var adapter: BusAdapter? = null
 
@@ -99,10 +103,6 @@ open class BusController(
             .launchIn(viewScope)
     }
 
-    override fun onItemClick(view: View?, position: Int): Boolean {
-        return false
-    }
-
     private fun drawBuses() {
         if (query.isNotBlank()) {
             adapter?.updateDataSet(
@@ -113,5 +113,23 @@ open class BusController(
         } else {
             adapter?.updateDataSet(items)
         }
+    }
+
+    override fun onItemClick(position: Int) {
+        val route = (adapter?.getItem(position) as? BusItem)?.route?.routeId ?: return
+        parentController!!.router.pushController(StubController().withFadeTransaction())
+    }
+
+    override fun onUpdateEmptyView(size: Int) {
+        if (size > 0) {
+            binding.emptyView.hide()
+        } else {
+            binding.emptyView.show(R.drawable.ic_bus_alert, R.string.information_no_routes)
+        }
+    }
+
+    override fun onItemClick(view: View?, position: Int): Boolean {
+        onItemClick(position)
+        return false
     }
 }
