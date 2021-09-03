@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
+import org.xtimms.ridebus.data.preference.PreferenceKeys
+import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
@@ -38,6 +40,25 @@ class MoreController :
             summaryRes = R.string.automatic_schedule_updates_summary
             iconRes = R.drawable.ic_update
             iconTint = tintColor
+        }
+
+        listPreference {
+            iconRes = R.drawable.ic_city
+            iconTint = tintColor
+            key = PreferenceKeys.city
+            titleRes = R.string.city
+            entriesRes = arrayOf(
+                R.string.city_polotsk,
+                R.string.city_novopolotsk,
+                R.string.city_ushachi
+            )
+            entryValues = arrayOf(
+                PreferenceValues.City.POLOTSK.name,
+                PreferenceValues.City.NOVOPOLOTSK.name,
+                PreferenceValues.City.USHACHI.name
+            )
+            defaultValue = PreferenceValues.City.POLOTSK.name
+            summary = "%s"
         }
 
         preferenceCategory {

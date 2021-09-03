@@ -8,7 +8,8 @@ object PreferenceValues {
 
     enum class City {
         POLOTSK,
-        NOVOPOLOTSK
+        NOVOPOLOTSK,
+        USHACHI
     }
 
     /* ktlint-disable experimental:enum-entry-name-case */
