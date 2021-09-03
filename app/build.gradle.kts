@@ -80,7 +80,7 @@ android {
             dimension = "default"
         }
         create("dev") {
-            resConfigs("en", "xxhdpi")
+            resConfigs("xxhdpi")
             dimension = "default"
         }
     }
@@ -207,7 +207,7 @@ dependencies {
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.8.1")
-    "standardImplementation"("com.google.firebase:firebase-analytics:19.0.1")
+    implementation("com.google.firebase:firebase-analytics:19.0.1")
 
     // Tests
     testImplementation("junit:junit:4.13.2")
