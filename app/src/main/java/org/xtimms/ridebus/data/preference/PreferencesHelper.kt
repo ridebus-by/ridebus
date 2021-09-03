@@ -54,5 +54,5 @@ class PreferencesHelper(val context: Context) {
             else -> SimpleDateFormat(format, Locale.getDefault())
         }
 
-    fun lang() = prefs.getString(Keys.lang, "")
+    fun lang() = flowPrefs.getString(Keys.lang, "")
 }

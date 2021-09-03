@@ -19,16 +19,6 @@
     <string name="theme_dark">Dark</string>
     <string name="theme_system">Follow system</string>
     <string name="pref_theme_mode">Dark mode</string>
-    <string name="pref_theme_light">Light theme</string>
-    <string name="theme_light_default">Default</string>
-    <string name="theme_light_blue">Blue</string>
-    <string name="theme_light_pink">Pink</string>
-    <string name="theme_light_orange">Orange</string>
-    <string name="pref_theme_dark">Dark theme</string>
-    <string name="theme_dark_default">Default</string>
-    <string name="theme_dark_blue">Dark Blue</string>
-    <string name="theme_dark_greenapple">Green Apple</string>
-    <string name="theme_dark_amoled">AMOLED</string>
     <string name="action_search">Search</string>
     <string name="action_search_settings">Search settings</string>
     <string name="confirm_exit">Press back again to exit</string>
@@ -50,8 +40,6 @@
     <string name="pref_category_advanced">Advanced</string>
     <string name="pref_dump_crash_logs">Dump crash logs</string>
     <string name="pref_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
-    <string name="theme_light_mono">Mono</string>
-    <string name="theme_dark_yellow">Yellow</string>
     <string name="theme_default">Default</string>
     <string name="theme_blue">Blue</string>
     <string name="theme_greenapple">Green Apple</string>
@@ -89,4 +77,8 @@
     <string name="lock_always">Always</string>
     <string name="landscape">Landscape</string>
     <string name="lock_never">Never</string>
+    <string name="information_no_routes">No routes</string>
+    <string name="information_no_stops">No stops</string>
+    <string name="city_ushachi">Ushachi</string>
+    <string name="pref_send_usage_statistics">Set usage statistics</string>
 </resources>

@@ -6,6 +6,7 @@ import android.provider.Settings
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.util.preference.*
+import org.xtimms.ridebus.util.system.LocaleHelper
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
 
 class SettingsGeneralController : SettingsController() {
@@ -40,6 +41,40 @@ class SettingsGeneralController : SettingsController() {
                         putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
                     }
                     startActivity(intent)
+                }
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.pref_category_locale
+
+            listPreference {
+                key = Keys.lang
+                titleRes = R.string.pref_language
+
+                val langs = mutableListOf<Pair<String, String>>()
+                langs += Pair(
+                    "",
+                    "${context.getString(R.string.system_default)} (${LocaleHelper.getDisplayName("")})"
+                )
+                langs += arrayOf(
+                    "be",
+                    "en",
+                    "ru"
+                )
+                    .map {
+                        Pair(it, LocaleHelper.getDisplayName(it))
+                    }
+                    .sortedBy { it.second }
+
+                entryValues = langs.map { it.first }.toTypedArray()
+                entries = langs.map { it.second }.toTypedArray()
+                defaultValue = ""
+                summary = "%s"
+
+                onChange { newValue ->
+                    activity?.recreate()
+                    true
                 }
             }
         }
