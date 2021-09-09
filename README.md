@@ -3,12 +3,16 @@
 
 
 # [WIP] RideBus-Next
-Completely rewritten application for viewing schedule of public transport of Polotsk, Belarus on Kotlin with new features (I hope).
+Completely rewritten application for viewing schedule of public transport of Polotsk, Belarus on Kotlin with new features (in the future, other cities of Belarus).
 
 ToDo:
 - [ ] New favorites system (in the old version, favorites are limited to 12 items);
 - [ ] Map with stops;
 - [ ] Calculation of the optimal route with transfers.
+
+# Screenshots
+| ![Screenshot_1631181702](https://user-images.githubusercontent.com/61558546/132666250-d6d373a1-7d95-4f38-9561-b63566477e78.png) | ![Screenshot_1631181707](https://user-images.githubusercontent.com/61558546/132666270-6fc31604-82a1-427e-825c-75ff0342514c.png) |
+|---|---|
 
 # License
 
