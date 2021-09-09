@@ -15,6 +15,7 @@ import androidx.core.view.*
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.lifecycle.lifecycleScope
+import androidx.preference.PreferenceDialogController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -310,6 +311,13 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
     }
 
     private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
+        if (from is DialogController || to is DialogController) {
+            return
+        }
+        if (from is PreferenceDialogController || to is PreferenceDialogController) {
+            return
+        }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(router.backstackSize != 1)
 
         // Always show appbar again when changing controllers
