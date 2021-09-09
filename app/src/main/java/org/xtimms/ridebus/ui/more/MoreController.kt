@@ -11,6 +11,7 @@ import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.nearby.NearbyController
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stub.StubController
@@ -67,7 +68,7 @@ class MoreController :
                 iconRes = R.drawable.ic_near_me
                 iconTint = tintColor
                 onClick {
-                    router.pushController(StubController().withFadeTransaction())
+                    router.pushController(NearbyController().withFadeTransaction())
                 }
             }
             preference {

@@ -80,5 +80,6 @@
     <string name="information_no_routes">No routes</string>
     <string name="information_no_stops">No stops</string>
     <string name="city_ushachi">Ushachi</string>
-    <string name="pref_send_usage_statistics">Set usage statistics</string>
+    <string name="information_no_location_permission">To find the stops closest to you, the app needs permission to access the location</string>
+    <string name="grant_permission">Grant permission</string>
 </resources>

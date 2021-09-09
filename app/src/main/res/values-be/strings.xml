@@ -80,4 +80,6 @@
     <string name="information_no_routes">Няма маршрутаў</string>
     <string name="information_no_stops">Няма прыпынкаў</string>
     <string name="city_ushachi">Ушачы</string>
+    <string name="information_no_location_permission">Каб знайсці бліжэйшыя да вас прыпынкi, дадатку патрабуецца дазвол на доступ да месцазнаходжання</string>
+    <string name="grant_permission">Даць дазвол</string>
 </resources>
