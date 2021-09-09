@@ -133,7 +133,7 @@ dependencies {
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
-    implementation("androidx.core:core-ktx:1.7.0-alpha01")
+    implementation("androidx.core:core-ktx:1.7.0-alpha02")
     implementation("androidx.core:core-splashscreen:1.0.0-alpha01")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
@@ -176,11 +176,12 @@ dependencies {
     implementation("io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion")
 
     // UI libraries
-    implementation("com.google.android.material:material:1.5.0-alpha02")
+    implementation("com.google.android.material:material:1.5.0-alpha03")
     implementation("eu.davidea:flexible-adapter:5.1.0")
     implementation("eu.davidea:flexible-adapter-ui:1.0.0")
     implementation("com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0")
     implementation("dev.chrisbanes.insetter:insetter:0.6.0")
+    implementation("com.github.vipulasri:timelineview:1.1.5")
 
     // Preferences
     implementation("androidx.preference:preference-ktx:1.1.1")

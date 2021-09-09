@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="?selectableItemBackground"
+    android:orientation="horizontal"
+    tools:ignore="Overdraw">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:ignore="RelativeOverlap">
+
+        <com.github.vipulasri.timelineview.TimelineView
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            app:marker="@drawable/oval_colored"
+            app:markerSize="14dp"
+            app:endLineColor="?attr/colorPrimary"
+            app:lineWidth="3dp"
+            app:startLineColor="?attr/colorPrimary"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/stop_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center|start"
+            tools:text="@tools:sample/lorem[3]" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/remaining_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.Regular.Body1"
+            android:gravity="center"
+            tools:text="12h 12m" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/closest_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            tools:text="16:50" />
+
+    </LinearLayout>
+
+</RelativeLayout>
