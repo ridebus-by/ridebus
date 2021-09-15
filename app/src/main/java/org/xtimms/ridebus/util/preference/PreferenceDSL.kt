@@ -86,6 +86,7 @@ fun initDialog(dialogPreference: DialogPreference) {
 inline fun <P : Preference> PreferenceGroup.add(p: P): P {
     return p.apply {
         this.isIconSpaceReserved = false
+        this.isSingleLineTitle = false
         addPreference(this)
     }
 }
@@ -94,6 +95,7 @@ inline fun <P : Preference> PreferenceGroup.initThenAdd(p: P, block: P.() -> Uni
     return p.apply {
         block()
         this.isIconSpaceReserved = false
+        this.isSingleLineTitle = false
         addPreference(this)
     }
 }
@@ -101,6 +103,7 @@ inline fun <P : Preference> PreferenceGroup.initThenAdd(p: P, block: P.() -> Uni
 inline fun <P : Preference> PreferenceGroup.addThenInit(p: P, block: P.() -> Unit): P {
     return p.apply {
         this.isIconSpaceReserved = false
+        this.isSingleLineTitle = false
         addPreference(this)
         block()
     }
