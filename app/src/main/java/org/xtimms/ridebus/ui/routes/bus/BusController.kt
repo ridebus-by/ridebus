@@ -107,7 +107,7 @@ open class BusController :
         if (query.isNotBlank()) {
             adapter?.updateDataSet(
                 items.filter {
-                    it.route.description.contains(query, ignoreCase = true)
+                    it.route.title.contains(query, ignoreCase = true)
                 }
             )
         } else {
