@@ -82,4 +82,6 @@
     <string name="city_ushachi">Ushachi</string>
     <string name="information_no_location_permission">To find the stops closest to you, the app needs permission to access the location</string>
     <string name="grant_permission">Grant permission</string>
+    <string name="build_info">Build info</string>
+    <string name="copy_debug_info">Copy debug info</string>
 </resources>

@@ -25,17 +25,16 @@ class AboutController : SettingsController(), NoToolbarElevationController {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_about
 
-        add(MoreHeaderPreference(context))
+        add(AboutHeaderPreference(context))
 
         preference {
-            key = "pref_about_version"
-            titleRes = R.string.version
-            summary = if (BuildConfig.DEBUG) {
-                "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA}, ${getFormattedBuildTime()})"
-            } else {
-                "Stable ${BuildConfig.VERSION_NAME} (${getFormattedBuildTime()})"
-            }
-
+            key = "pref_about_build_info"
+            titleRes = R.string.build_info
+            summary = "${getFormattedBuildTime()} (${BuildConfig.COMMIT_SHA})"
+        }
+        preference {
+            key = "pref_about_copy_debug_info"
+            titleRes = R.string.copy_debug_info
             onClick {
                 activity?.let {
                     val deviceInfo = CrashLogUtil(it).getDebugInfo()

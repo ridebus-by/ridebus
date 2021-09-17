@@ -81,4 +81,6 @@
     <string name="pref_side_nav_icon_alignment">Выравнивание значков боковой навигации</string>
     <string name="grant_permission">Предоставить разрешение</string>
     <string name="information_no_location_permission">Чтобы найти ближайшие к вам остановки, приложению требуется разрешение на доступ к местоположению</string>
+    <string name="build_info">Информация о сборке</string>
+    <string name="copy_debug_info">Копировать отладочную информацию</string>
 </resources>
