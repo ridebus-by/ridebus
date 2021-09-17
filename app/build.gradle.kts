@@ -149,12 +149,6 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxkotlin:2.0.0")
     implementation("io.reactivex.rxjava2:rxandroid:2.0.1")
 
-    // Database
-    implementation("androidx.sqlite:sqlite-ktx:2.1.0")
-    implementation("com.github.inorichi.storio:storio-common:8be19de@aar")
-    implementation("com.github.inorichi.storio:storio-sqlite:8be19de@aar")
-    implementation("com.github.requery:sqlite-android:3.36.0")
-
     // Room
     val roomVersion = "2.3.0"
     implementation("androidx.room:room-runtime:$roomVersion")
@@ -201,10 +195,6 @@ dependencies {
     implementation("com.bluelinelabs:conductor:$conductorVersion")
     implementation("com.bluelinelabs:conductor-viewpager:$conductorVersion")
     implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
-
-    // Utils
-    implementation("commons-io:commons-io:2.6")
-    implementation("org.apache.commons:commons-lang3:3.9")
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.8.1")
