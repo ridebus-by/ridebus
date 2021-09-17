@@ -83,4 +83,6 @@
     <string name="information_no_location_permission">Чтобы найти ближайшие к вам остановки, приложению требуется разрешение на доступ к местоположению</string>
     <string name="build_info">Информация о сборке</string>
     <string name="copy_debug_info">Копировать отладочную информацию</string>
+    <string name="label_info">Информация</string>
+    <string name="label_route">Маршрут</string>
 </resources>

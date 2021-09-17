@@ -14,8 +14,8 @@ import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.BusControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.details.RouteDetailsController
 import org.xtimms.ridebus.ui.main.MainActivity
-import org.xtimms.ridebus.ui.stub.StubController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import uy.kohesive.injekt.api.get
@@ -117,7 +117,7 @@ open class BusController :
 
     override fun onItemClick(position: Int) {
         val route = (adapter?.getItem(position) as? BusItem)?.route?.routeId ?: return
-        parentController!!.router.pushController(StubController().withFadeTransaction())
+        parentController!!.router.pushController(RouteDetailsController(route).withFadeTransaction())
     }
 
     override fun onUpdateEmptyView(size: Int) {

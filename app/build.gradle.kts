@@ -176,6 +176,7 @@ dependencies {
     implementation("com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0")
     implementation("dev.chrisbanes.insetter:insetter:0.6.0")
     implementation("com.github.vipulasri:timelineview:1.1.5")
+    implementation("com.lucasurbas:listitemview:1.1.1")
 
     // Preferences
     implementation("androidx.preference:preference-ktx:1.1.1")

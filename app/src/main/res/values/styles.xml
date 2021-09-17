@@ -179,6 +179,9 @@
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">?attr/colorPrimary</item>
         <item name="chipBackgroundColor">@android:color/transparent</item>
+        <item name="chipIconSize">18dp</item>
+        <item name="chipIconTint">?attr/colorPrimary</item>
+        <item name="iconStartPadding">6dp</item>
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="rippleColor">?attr/colorControlHighlight</item>
 

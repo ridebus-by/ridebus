@@ -17,4 +17,7 @@ interface RouteDao {
 
     @Query("SELECT * FROM Routes WHERE (transport_id = 3 AND city_id = :cityId)")
     fun getExpresses(cityId: Int): List<Route>
+
+    @Query("SELECT * FROM Routes WHERE _id = :routeId")
+    fun getRoute(routeId: Int): List<Route>
 }

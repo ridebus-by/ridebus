@@ -84,4 +84,7 @@
     <string name="grant_permission">Grant permission</string>
     <string name="build_info">Build info</string>
     <string name="copy_debug_info">Copy debug info</string>
+    <string name="label_info">Info</string>
+    <string name="label_route">Route</string>
+    <string name="unknown">Unknown</string>
 </resources>
