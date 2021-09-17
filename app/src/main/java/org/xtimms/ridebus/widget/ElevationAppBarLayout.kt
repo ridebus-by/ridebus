@@ -5,7 +5,9 @@ import android.animation.StateListAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.HideToolbarOnScrollBehavior
 import org.xtimms.ridebus.R
 
 class ElevationAppBarLayout @JvmOverloads constructor(
@@ -46,4 +48,6 @@ class ElevationAppBarLayout @JvmOverloads constructor(
             addState(IntArray(0), objAnimator)
         }
     }
+
+    override fun getBehavior(): CoordinatorLayout.Behavior<AppBarLayout> = HideToolbarOnScrollBehavior()
 }

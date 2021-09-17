@@ -1,8 +1,10 @@
 package org.xtimms.ridebus.util.view
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.TooltipCompat
+import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -39,3 +41,10 @@ fun RecyclerView.onAnimationsFinished(callback: (RecyclerView) -> Unit) = post(
         }
     }
 )
+
+/**
+ * Returns this ViewGroup's first child of specified class
+ */
+inline fun <reified T> ViewGroup.findChild(): T? {
+    return children.find { it is T } as? T
+}
