@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.routes.bus
+package org.xtimms.ridebus.ui.routes.taxi
 
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -18,21 +18,20 @@ import org.xtimms.ridebus.ui.details.RouteDetailsController
 import org.xtimms.ridebus.ui.main.MainActivity
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
-import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
-open class BusController :
-    NucleusController<TransportControllerBinding, BusPresenter>(),
+open class TaxiController :
+    NucleusController<TransportControllerBinding, TaxiPresenter>(),
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnUpdateListener,
-    BusAdapter.OnItemClickListener {
+    TaxiAdapter.OnItemClickListener {
 
     private val db: RideBusDatabase by injectLazy()
     private val preferences: PreferencesHelper by injectLazy()
 
-    private var adapter: BusAdapter? = null
+    private var adapter: TaxiAdapter? = null
 
-    private val items = db.routeDao().getBuses(preferences.city().get().ordinal).map { BusItem(it) } // TODO Rx
+    private val items = db.routeDao().getTaxis(preferences.city().get().ordinal).map { TaxiItem(it) } // TODO Rx
 
     private var query = ""
 
@@ -40,8 +39,8 @@ open class BusController :
         setHasOptionsMenu(true)
     }
 
-    override fun createPresenter(): BusPresenter {
-        return BusPresenter()
+    override fun createPresenter(): TaxiPresenter {
+        return TaxiPresenter()
     }
 
     override fun createBinding(inflater: LayoutInflater) = TransportControllerBinding.inflate(inflater)
@@ -55,7 +54,7 @@ open class BusController :
             }
         }
 
-        adapter = BusAdapter(this)
+        adapter = TaxiAdapter(this)
 
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.adapter = adapter
@@ -116,7 +115,7 @@ open class BusController :
     }
 
     override fun onItemClick(position: Int) {
-        val route = (adapter?.getItem(position) as? BusItem)?.route?.routeId ?: return
+        val route = (adapter?.getItem(position) as? TaxiItem)?.route?.routeId ?: return
         parentController!!.router.pushController(RouteDetailsController(route).withFadeTransaction())
     }
 

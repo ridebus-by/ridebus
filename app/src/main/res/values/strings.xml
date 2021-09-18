@@ -87,4 +87,17 @@
     <string name="label_info">Info</string>
     <string name="label_route">Route</string>
     <string name="unknown">Unknown</string>
+    <string name="transport_classes">Transport classes</string>
+    <string name="direction">Direction</string>
+    <string name="small_class">small (12-40)</string>
+    <string name="middle_class">middle (40-70)</string>
+    <string name="big_class">big (70-110)</string>
+    <string name="very_big_class">very big (110+)</string>
+    <string name="fare">Fare</string>
+    <string name="traffic">Weekly traffic</string>
+    <string name="working_hours">Working hours</string>
+    <string name="following">Following</string>
+    <string name="carrier_company">Carrier company</string>
+    <string name="technical_information">Technical information</string>
+    <string name="payment_methods">Payment methods</string>
 </resources>

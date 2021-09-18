@@ -45,11 +45,5 @@ class RouteInfoController :
         } else {
             route.title
         }
-
-        binding.description.subtitle = if (route.description.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.description
-        }
     }
 }
