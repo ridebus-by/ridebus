@@ -1,10 +1,10 @@
-package org.xtimms.ridebus.ui.routes.taxi
+package org.xtimms.ridebus.ui.routes
 
 import android.view.View
 import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.databinding.RoutesItemBinding
 
-class TaxiHolder(view: View, val adapter: TaxiAdapter) :
+class RouteHolder(view: View, val adapter: RouteAdapter) :
     FlexibleViewHolder(view, adapter) {
 
     private val binding = RoutesItemBinding.bind(view)
@@ -15,7 +15,7 @@ class TaxiHolder(view: View, val adapter: TaxiAdapter) :
         }
     }
 
-    fun bind(item: TaxiItem) {
+    fun bind(item: RouteItem) {
         val route = item.route
         binding.routeNumber.text = route.number
         binding.routeTitle.text = route.title

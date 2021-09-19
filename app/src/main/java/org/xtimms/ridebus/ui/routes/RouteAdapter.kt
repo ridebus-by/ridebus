@@ -1,9 +1,9 @@
-package org.xtimms.ridebus.ui.routes.taxi
+package org.xtimms.ridebus.ui.routes
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 
-class TaxiAdapter(controller: TaxiController) :
+class RouteAdapter(controller: RouteController) :
     FlexibleAdapter<IFlexible<*>>(null, controller, true) {
 
     val itemClickListener: OnItemClickListener = controller

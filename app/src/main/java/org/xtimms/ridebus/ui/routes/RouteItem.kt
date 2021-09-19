@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.routes.taxi
+package org.xtimms.ridebus.ui.routes
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -8,13 +8,10 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
 
-//
-// Created by Xtimms on 28.08.2021.
-//
-class TaxiItem(val route: Route) : AbstractFlexibleItem<TaxiHolder>() {
+class RouteItem(val route: Route) : AbstractFlexibleItem<RouteHolder>() {
 
     override fun equals(other: Any?): Boolean {
-        if (other is TaxiItem) {
+        if (other is RouteItem) {
             return route.routeId == other.route.routeId
         }
         return false
@@ -31,13 +28,13 @@ class TaxiItem(val route: Route) : AbstractFlexibleItem<TaxiHolder>() {
     override fun createViewHolder(
         view: View,
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
-    ): TaxiHolder {
-        return TaxiHolder(view, adapter as TaxiAdapter)
+    ): RouteHolder {
+        return RouteHolder(view, adapter as RouteAdapter)
     }
 
     override fun bindViewHolder(
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-        holder: TaxiHolder,
+        holder: RouteHolder,
         position: Int,
         payloads: List<Any?>?
     ) {
