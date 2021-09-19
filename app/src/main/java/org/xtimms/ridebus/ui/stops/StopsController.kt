@@ -30,7 +30,7 @@ class StopsController :
 
     private var adapter: StopsAdapter? = null
 
-    private val items = db.stopDao().getAll(preferences.city().defaultValue.ordinal).map { StopsItem(it) } // TODO Rx
+    private val items = db.stopDao().getAll(preferences.city().get().ordinal).map { StopsItem(it) } // TODO Rx
 
     private var query = ""
 

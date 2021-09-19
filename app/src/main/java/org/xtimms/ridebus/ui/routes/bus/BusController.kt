@@ -13,6 +13,6 @@ class BusController : RouteController() {
     private val preferences: PreferencesHelper by injectLazy()
 
     override fun getRoutes(): List<RouteItem> {
-        return db.routeDao().getBuses(preferences.city().defaultValue.ordinal).map { RouteItem(it) }
+        return db.routeDao().getBuses(preferences.city().get().ordinal).map { RouteItem(it) }
     }
 }

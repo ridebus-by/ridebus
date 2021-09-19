@@ -13,6 +13,6 @@ class TaxiController : RouteController() {
     private val preferences: PreferencesHelper by injectLazy()
 
     override fun getRoutes(): List<RouteItem> {
-        return db.routeDao().getTaxis(preferences.city().defaultValue.ordinal).map { RouteItem(it) }
+        return db.routeDao().getTaxis(preferences.city().get().ordinal).map { RouteItem(it) }
     }
 }

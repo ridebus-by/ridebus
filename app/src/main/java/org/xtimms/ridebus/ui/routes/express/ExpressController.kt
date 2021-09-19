@@ -13,6 +13,6 @@ class ExpressController : RouteController() {
     private val preferences: PreferencesHelper by injectLazy()
 
     override fun getRoutes(): List<RouteItem> {
-        return db.routeDao().getExpresses(preferences.city().defaultValue.ordinal).map { RouteItem(it) }
+        return db.routeDao().getExpresses(preferences.city().get().ordinal).map { RouteItem(it) }
     }
 }
