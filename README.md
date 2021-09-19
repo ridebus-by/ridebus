@@ -11,8 +11,7 @@ ToDo:
 - [ ] Calculation of the optimal route with transfers.
 
 # Screenshots
-| ![Screenshot_1631181702](https://user-images.githubusercontent.com/61558546/132666250-d6d373a1-7d95-4f38-9561-b63566477e78.png) | ![Screenshot_1631181707](https://user-images.githubusercontent.com/61558546/132666270-6fc31604-82a1-427e-825c-75ff0342514c.png) |
-|---|---|
+![readme-banner](https://user-images.githubusercontent.com/61558546/133912849-c5079c09-6d16-45eb-90aa-e3dba6a0eb76.png)
 
 # License
 
