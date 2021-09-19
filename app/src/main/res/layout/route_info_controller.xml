@@ -6,8 +6,10 @@
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -136,7 +138,7 @@
                 tools:liv_subtitle="наличные" />
 
             <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/fore"
+                android:id="@+id/fare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/payment_methods"
@@ -150,7 +152,7 @@
                 android:id="@+id/traffic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/fore"
+                app:layout_constraintTop_toBottomOf="@id/fare"
                 app:liv_displayMode="icon"
                 app:liv_forceKeyline="true"
                 app:liv_icon="@drawable/ic_today"
@@ -193,6 +195,7 @@
                 tools:liv_subtitle="ОАО «Витебскоблавтотранс» (филиал АП №2 г.Полоцка)" />
 
             <com.lucasurbas.listitemview.ListItemView
+                android:id="@+id/tech_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/company"

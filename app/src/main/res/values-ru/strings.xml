@@ -85,4 +85,18 @@
     <string name="copy_debug_info">Копировать отладочную информацию</string>
     <string name="label_info">Информация</string>
     <string name="label_route">Маршрут</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="transport_classes">Классы транспорта</string>
+    <string name="direction">Направление</string>
+    <string name="small_class">малый (12-40)</string>
+    <string name="middle_class">средний (40-70)</string>
+    <string name="big_class">большой (70-110)</string>
+    <string name="very_big_class">особо большой (110+)</string>
+    <string name="fare">Стоимость проезда</string>
+    <string name="traffic">Режим работы</string>
+    <string name="working_hours">Время работы</string>
+    <string name="following">Маршрут следования</string>
+    <string name="carrier_company">Компания-перевозчик</string>
+    <string name="technical_information">Техническая информация</string>
+    <string name="payment_methods">Способы оплаты проезда</string>
 </resources>
