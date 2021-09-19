@@ -5,11 +5,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
+import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.StopsControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController
@@ -27,10 +26,11 @@ class StopsController :
     StopsAdapter.OnItemClickListener {
 
     private val db: RideBusDatabase by injectLazy()
+    private val preferences: PreferencesHelper by injectLazy()
 
     private var adapter: StopsAdapter? = null
 
-    private val items = db.stopDao().getAll().map { StopsItem(it) } // TODO Rx
+    private val items = db.stopDao().getAll(preferences.city().defaultValue.ordinal).map { StopsItem(it) } // TODO Rx
 
     private var query = ""
 

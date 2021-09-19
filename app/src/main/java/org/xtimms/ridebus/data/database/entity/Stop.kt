@@ -11,6 +11,7 @@ import androidx.room.PrimaryKey
 data class Stop(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val stopId: Int,
+    @ColumnInfo(name = "city_id") val cityId: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "direction") val direction: String,
     @ColumnInfo(name = "latitude") val latitude: Float,
