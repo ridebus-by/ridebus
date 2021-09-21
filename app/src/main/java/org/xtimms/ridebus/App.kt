@@ -3,7 +3,7 @@ package org.xtimms.ridebus
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.launchIn
@@ -18,12 +18,12 @@ import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.injectLazy
 
-open class App : Application(), LifecycleObserver {
+open class App : Application(), DefaultLifecycleObserver {
 
     private val preferences: PreferencesHelper by injectLazy()
 
     override fun onCreate() {
-        super.onCreate()
+        super<Application>.onCreate()
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
 
         Injekt.importModule(AppModule(this))
