@@ -2,8 +2,8 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/ztimms73/RideBus-Next) ![GitHub top language](https://img.shields.io/github/languages/top/ztimms73/RideBus-Next) [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 
-# ![app icon](./.github/readme-images/app-icon.png) [WIP] RideBus-Next
-Completely rewritten application for viewing schedule of public transport of Polotsk, Belarus on Kotlin with new features (in the future, other cities of Belarus).
+# ![app icon](./.github/readme-images/app-icon.png) [WIP] RideBus
+Completely rewritten application for viewing schedule of public transport of Polotsk, Belarus on Kotlin with new features (in the future, other cities of Belarus). The source code of the old version is available [here](https://github.com/ztimms73/RideBus-legacy).
 
 ToDo:
 - [ ] New favorites system (in the old version, favorites are limited to 12 items);
