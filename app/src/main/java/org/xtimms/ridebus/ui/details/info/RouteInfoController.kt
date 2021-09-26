@@ -32,7 +32,7 @@ class RouteInfoController :
     /**
      * Update view with route information
      *
-     * @param route manga object containing information about route.
+     * @param route route object containing information about route.
      */
     fun onNextRoute(route: Route) {
         setRouteInfo(route)

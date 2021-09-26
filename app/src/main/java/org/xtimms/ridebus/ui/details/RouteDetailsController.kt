@@ -12,8 +12,8 @@ import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.databinding.RoutesDetailControllerBinding
 import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.details.info.RouteInfoController
+import org.xtimms.ridebus.ui.details.stops.RouteStopsController
 import org.xtimms.ridebus.ui.main.MainActivity
-import org.xtimms.ridebus.ui.stub.StubController
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -92,7 +92,7 @@ class RouteDetailsController :
             if (!router.hasRootController()) {
                 val controller: Controller = when (position) {
                     INFO_CONTROLLER -> RouteInfoController()
-                    STOPS_CONTROLLER -> StubController()
+                    STOPS_CONTROLLER -> RouteStopsController()
                     else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))

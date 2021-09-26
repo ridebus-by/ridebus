@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.details.info
+package org.xtimms.ridebus.ui.details.stops
 
 import android.os.Bundle
 import org.xtimms.ridebus.data.database.entity.Route
@@ -6,12 +6,12 @@ import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.Subscription
 
-class RouteInfoPresenter(val route: Route) : BasePresenter<RouteInfoController>() {
+class RouteStopsPresenter(val route: Route) : BasePresenter<RouteStopsController>() {
 
     /**
-     * Subscription to send the route to the view.
+     * Subscription to send stops list to the view.
      */
-    private var viewRouteSubscription: Subscription? = null
+    private var viewStopsOnRouteSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -19,8 +19,8 @@ class RouteInfoPresenter(val route: Route) : BasePresenter<RouteInfoController>(
     }
 
     private fun sendRouteToView() {
-        viewRouteSubscription?.let { remove(it) }
-        viewRouteSubscription = Observable.just(route)
+        viewStopsOnRouteSubscription?.let { remove(it) }
+        viewStopsOnRouteSubscription = Observable.just(route)
             .subscribeLatestCache({ view, route -> view.onNextRoute(route) })
     }
 }

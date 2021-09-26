@@ -11,12 +11,14 @@ import java.io.*
 //
 // Created by Xtimms on 28.08.2021.
 //
-@Database(entities = [Route::class, Stop::class], version = 1)
+@Database(entities = [Route::class, Stop::class, RoutesAndStops::class], version = 1)
 abstract class RideBusDatabase : RoomDatabase() {
 
     abstract fun routeDao(): RouteDao
 
     abstract fun stopDao(): StopDao
+
+    abstract fun routesAndStopsDao(): RoutesAndStopsDao
 
     companion object {
         @Volatile

@@ -100,4 +100,5 @@
     <string name="carrier_company">Carrier company</string>
     <string name="technical_information">Technical information</string>
     <string name="payment_methods">Payment methods</string>
+    <string name="information_no_stops_on_route">There are no stops on this route</string>
 </resources>

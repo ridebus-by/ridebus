@@ -99,4 +99,5 @@
     <string name="carrier_company">Компания-перевозчик</string>
     <string name="technical_information">Техническая информация</string>
     <string name="payment_methods">Способы оплаты проезда</string>
+    <string name="information_no_stops_on_route">На этом маршруте нет остановок</string>
 </resources>
