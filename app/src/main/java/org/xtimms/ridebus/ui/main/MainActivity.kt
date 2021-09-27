@@ -32,7 +32,7 @@ import org.xtimms.ridebus.ui.base.activity.BaseViewBindingActivity
 import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favorite.FavoriteController
 import org.xtimms.ridebus.ui.more.MoreController
-import org.xtimms.ridebus.ui.routes.RoutesController
+import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
 import org.xtimms.ridebus.util.lang.launchUI
@@ -117,7 +117,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             val currentRoot = router.backstack.firstOrNull()
             if (currentRoot?.tag()?.toIntOrNull() != id) {
                 when (id) {
-                    R.id.nav_routes -> setRoot(RoutesController(), id)
+                    R.id.nav_routes -> setRoot(RoutesTabbedController(), id)
                     R.id.nav_stops -> setRoot(StopsController(), id)
                     R.id.nav_favorite -> setRoot(FavoriteController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)

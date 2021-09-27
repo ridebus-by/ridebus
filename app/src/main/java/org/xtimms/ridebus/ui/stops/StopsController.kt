@@ -13,8 +13,8 @@ import org.xtimms.ridebus.databinding.StopsControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.details.stop.StopsOnRouteController
 import org.xtimms.ridebus.ui.main.MainActivity
-import org.xtimms.ridebus.ui.stub.StubController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import uy.kohesive.injekt.injectLazy
@@ -22,6 +22,7 @@ import uy.kohesive.injekt.injectLazy
 class StopsController :
     NucleusController<StopsControllerBinding, StopsPresenter>(),
     RootController,
+    FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnUpdateListener,
     StopsAdapter.OnItemClickListener {
 
@@ -118,7 +119,8 @@ class StopsController :
     }
 
     override fun onItemClick(position: Int) {
-        router.pushController(StubController().withFadeTransaction())
+        val stop = (adapter?.getItem(position) as? StopsItem)?.stop?.stopId ?: return
+        router.pushController(StopsOnRouteController(stop).withFadeTransaction())
     }
 
     override fun onUpdateEmptyView(size: Int) {
@@ -127,5 +129,10 @@ class StopsController :
         } else {
             binding.emptyView.show(R.drawable.ic_alert, R.string.information_no_stops)
         }
+    }
+
+    override fun onItemClick(view: View?, position: Int): Boolean {
+        onItemClick(position)
+        return false
     }
 }

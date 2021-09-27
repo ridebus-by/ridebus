@@ -23,4 +23,6 @@ object PreferenceKeys {
     const val dateFormat = "app_date_format"
 
     const val lang = "app_language"
+
+    const val autoUpdateSchedule = "auto_update_schedule"
 }

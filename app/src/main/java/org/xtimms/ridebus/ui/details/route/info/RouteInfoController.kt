@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.details.info
+package org.xtimms.ridebus.ui.details.route.info
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.databinding.RouteInfoControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
-import org.xtimms.ridebus.ui.details.RouteDetailsController
+import org.xtimms.ridebus.ui.details.route.RouteDetailsController
 
 class RouteInfoController :
     NucleusController<RouteInfoControllerBinding, RouteInfoPresenter>() {

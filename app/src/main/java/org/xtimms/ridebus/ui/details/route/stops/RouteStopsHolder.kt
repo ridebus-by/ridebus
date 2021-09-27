@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.details.stops
+package org.xtimms.ridebus.ui.details.route.stops
 
 import android.view.View
 import com.github.vipulasri.timelineview.TimelineView

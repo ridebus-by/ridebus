@@ -1,37 +1,57 @@
-package org.xtimms.ridebus.ui.routes
+package org.xtimms.ridebus.ui.details.route
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import com.bluelinelabs.conductor.*
 import com.bluelinelabs.conductor.viewpager.RouterPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.databinding.PagerControllerBinding
-import org.xtimms.ridebus.ui.base.controller.RootController
-import org.xtimms.ridebus.ui.base.controller.RxController
-import org.xtimms.ridebus.ui.base.controller.TabbedController
+import org.xtimms.ridebus.data.database.RideBusDatabase
+import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.databinding.RoutesDetailControllerBinding
+import org.xtimms.ridebus.ui.base.controller.*
+import org.xtimms.ridebus.ui.details.route.info.RouteInfoController
+import org.xtimms.ridebus.ui.details.route.stops.RouteStopsController
 import org.xtimms.ridebus.ui.main.MainActivity
-import org.xtimms.ridebus.ui.routes.bus.BusController
-import org.xtimms.ridebus.ui.routes.express.ExpressController
-import org.xtimms.ridebus.ui.routes.taxi.TaxiController
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
-class RoutesController :
-    RxController<PagerControllerBinding>(),
-    RootController,
+class RouteDetailsController :
+    RxController<RoutesDetailControllerBinding>,
     TabbedController {
 
-    private var adapter: RoutesAdapter? = null
-
-    override fun getTitle(): String? {
-        return resources!!.getString(R.string.title_routes)
+    constructor(route: Route?) : super(
+        Bundle().apply {
+            putInt(ROUTE_EXTRA, route?.routeId ?: 0)
+        }
+    ) {
+        this.route = route
     }
 
-    override fun createBinding(inflater: LayoutInflater) = PagerControllerBinding.inflate(inflater)
+    constructor(routeId: Int) : this(Injekt.get<RideBusDatabase>().routeDao().getRoute(routeId).firstOrNull())
+
+    @Suppress("unused")
+    constructor(bundle: Bundle) : this(bundle.getInt(ROUTE_EXTRA))
+
+    var route: Route? = null
+        private set
+
+    private var adapter: RouteDetailsAdapter? = null
+
+    override fun getTitle(): String? {
+        return "${resources!!.getString(R.string.label_route)} №${route?.number}"
+    }
+
+    override fun createBinding(inflater: LayoutInflater) = RoutesDetailControllerBinding.inflate(inflater)
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
-        adapter = RoutesAdapter()
+        if (route == null) return
+
+        adapter = RouteDetailsAdapter()
+        binding.pager.offscreenPageLimit = 2
         binding.pager.adapter = adapter
     }
 
@@ -56,12 +76,11 @@ class RoutesController :
         }
     }
 
-    private inner class RoutesAdapter : RouterPagerAdapter(this@RoutesController) {
+    private inner class RouteDetailsAdapter : RouterPagerAdapter(this@RouteDetailsController) {
 
         private val tabTitles = listOf(
-            R.string.label_bus,
-            R.string.label_route_taxi,
-            R.string.label_express
+            R.string.label_info,
+            R.string.title_stops
         )
             .map { resources!!.getString(it) }
 
@@ -72,9 +91,8 @@ class RoutesController :
         override fun configureRouter(router: Router, position: Int) {
             if (!router.hasRootController()) {
                 val controller: Controller = when (position) {
-                    BUS_CONTROLLER -> BusController()
-                    ROUTE_TAXI_CONTROLLER -> TaxiController()
-                    EXPRESS_CONTROLLER -> ExpressController()
+                    INFO_CONTROLLER -> RouteInfoController()
+                    STOPS_CONTROLLER -> RouteStopsController()
                     else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))
@@ -87,8 +105,9 @@ class RoutesController :
     }
 
     companion object {
-        const val BUS_CONTROLLER = 0
-        const val ROUTE_TAXI_CONTROLLER = 1
-        const val EXPRESS_CONTROLLER = 2
+        const val ROUTE_EXTRA = "route"
+
+        const val INFO_CONTROLLER = 0
+        const val STOPS_CONTROLLER = 1
     }
 }

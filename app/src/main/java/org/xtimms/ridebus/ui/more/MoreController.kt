@@ -37,6 +37,7 @@ class MoreController :
         add(MoreHeaderPreference(context))
 
         switchPreference {
+            key = PreferenceKeys.autoUpdateSchedule
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
             iconRes = R.drawable.ic_update
