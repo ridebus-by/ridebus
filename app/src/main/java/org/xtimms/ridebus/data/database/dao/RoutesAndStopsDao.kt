@@ -9,7 +9,7 @@ import org.xtimms.ridebus.data.database.entity.Stop
 interface RoutesAndStopsDao {
 
     @Query("SELECT Routes.* FROM RoutesAndStops INNER JOIN Routes on Routes._id = RoutesAndStops.route_id WHERE stop_id = :stopId")
-    fun getRoutesbyStop(stopId: Int): List<Route>
+    fun getRoutesByStop(stopId: Int): List<Route>
 
     @Query("SELECT Stops.* FROM RoutesAndStops INNER JOIN Stops ON Stops._id = RoutesAndStops.stop_id WHERE RoutesAndStops.route_id = :routeId")
     fun getStopsByRoute(routeId: Int): List<Stop>

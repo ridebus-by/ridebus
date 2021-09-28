@@ -5,8 +5,12 @@ import android.view.View
 import android.view.ViewTreeObserver
 import androidx.annotation.Keep
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
+import org.xtimms.ridebus.data.preference.PreferencesHelper
+import uy.kohesive.injekt.injectLazy
 
 class ViewHeightAnimator(val view: View) {
+
+    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * The default height of the view. It's unknown until the view is layout.
@@ -23,7 +27,11 @@ class ViewHeightAnimator(val view: View) {
      */
     private val expandAnimation by lazy {
         ObjectAnimator.ofInt(this, "height", height).apply {
-            duration = 300L
+            duration = if (preferences.reducedMotion()) {
+                0L
+            } else {
+                300L
+            }
             interpolator = LinearOutSlowInInterpolator()
         }
     }
@@ -33,7 +41,11 @@ class ViewHeightAnimator(val view: View) {
      */
     private val collapseAnimation by lazy {
         ObjectAnimator.ofInt(this, "height", height).apply {
-            duration = 250L
+            duration = if (preferences.reducedMotion()) {
+                0L
+            } else {
+                250L
+            }
             interpolator = LinearOutSlowInInterpolator()
         }
     }

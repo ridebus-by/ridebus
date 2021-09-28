@@ -102,4 +102,6 @@
     <string name="payment_methods">Payment methods</string>
     <string name="information_no_stops_on_route">There are no stops on this route</string>
     <string name="information_no_route_on_stop">No transport passes through this stop</string>
+    <string name="pref_category_accessibility">Accessibility</string>
+    <string name="enable_reduced_motion">Enable reduced motion</string>
 </resources>

@@ -104,7 +104,7 @@ class StopsOnRouteController :
      * @param stop stop object containing information about stop.
      */
     fun onNextStop(stop: Stop) {
-        val items = db.routesAndStopsDao().getRoutesbyStop(stop.stopId).map { StopsOnRouteItem(it) }
+        val items = db.routesAndStopsDao().getRoutesByStop(stop.stopId).map { StopsOnRouteItem(it) }
         adapter?.updateDataSet(items)
     }
 

@@ -101,4 +101,6 @@
     <string name="payment_methods">Способы оплаты проезда</string>
     <string name="information_no_stops_on_route">На этом маршруте нет остановок</string>
     <string name="information_no_route_on_stop">Через эту остановку не проходит транспорт</string>
+    <string name="pref_category_accessibility">Специальные возможности</string>
+    <string name="enable_reduced_motion">Включить пониженное движение</string>
 </resources>

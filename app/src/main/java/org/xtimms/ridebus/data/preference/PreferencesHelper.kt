@@ -57,4 +57,6 @@ class PreferencesHelper(val context: Context) {
     fun lang() = flowPrefs.getString(Keys.lang, "")
 
     fun autoUpdateSchedule() = flowPrefs.getBoolean(Keys.autoUpdateSchedule, true)
+
+    fun reducedMotion() = prefs.getBoolean(Keys.reducedMotion, false)
 }

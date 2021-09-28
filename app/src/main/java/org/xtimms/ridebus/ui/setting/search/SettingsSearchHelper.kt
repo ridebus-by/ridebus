@@ -20,6 +20,7 @@ object SettingsSearchHelper {
      * All subclasses of `SettingsController` should be listed here, in order to have their preferences searchable.
      */
     private val settingControllersList: List<KClass<out SettingsController>> = listOf(
+        SettingsAccessibilityController::class,
         SettingsAdvancedController::class,
         SettingsAppearanceController::class,
         SettingsGeneralController::class,

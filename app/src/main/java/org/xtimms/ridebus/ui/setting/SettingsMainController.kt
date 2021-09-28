@@ -37,6 +37,12 @@ class SettingsMainController : SettingsController() {
             onClick { navigateTo(SettingsScheduleController()) }
         }
         preference {
+            iconRes = R.drawable.ic_accessibility
+            iconTint = tintColor
+            titleRes = R.string.pref_category_accessibility
+            onClick { navigateTo(SettingsAccessibilityController()) }
+        }
+        preference {
             iconRes = R.drawable.ic_code
             iconTint = tintColor
             titleRes = R.string.pref_category_advanced
