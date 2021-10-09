@@ -9,6 +9,8 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.LicensesControllerBinding
 import org.xtimms.ridebus.ui.base.controller.BaseController
+import org.xtimms.ridebus.util.lang.launchUI
+import org.xtimms.ridebus.util.lang.withIOContext
 import org.xtimms.ridebus.util.system.openInBrowser
 import java.util.*
 
@@ -31,15 +33,25 @@ class LicensesController :
                 padding()
             }
         }
+        binding.progress.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         adapter = LicensesAdapter(this)
         binding.recycler.adapter = adapter
 
-        val licenseItems = Libs(view.context).libraries
-            .sortedBy { it.libraryName.toLowerCase(Locale.ROOT) }
-            .map { LicensesItem(it) }
-        adapter?.updateDataSet(licenseItems)
+        viewScope.launchUI {
+            val licenseItems = withIOContext {
+                Libs(view.context).libraries
+                    .sortedBy { it.libraryName.toLowerCase(Locale.ROOT) }
+                    .map { LicensesItem(it) }
+            }
+            binding.progress.hide()
+            adapter?.updateDataSet(licenseItems)
+        }
     }
 
     override fun onDestroyView(view: View) {
