@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.chrisbanes.insetter.applyInsetter
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.SettingsSearchControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
@@ -48,6 +49,12 @@ class SettingsSearchController :
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         // Inflate menu.
         inflater.inflate(R.menu.settings_main, menu)
+
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
 
         // Initialize search menu
         val searchItem = menu.findItem(R.id.action_search)
