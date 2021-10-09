@@ -292,6 +292,18 @@
         <item name="labelVisibilityMode">labeled</item>
     </style>
 
+    <!--===========-->
+    <!--Preferences-->
+    <!--===========-->
+    <style name="PreferenceThemeOverlay.RideBus">
+        <item name="preferenceCategoryTitleTextAppearance">?attr/textAppearanceBody2</item>
+        <item name="switchPreferenceCompatStyle">@style/PreferenceThemeOverlay.RideBus.SwitchPreferenceCompat</item>
+    </style>
+
+    <style name="PreferenceThemeOverlay.RideBus.SwitchPreferenceCompat" parent="Preference.SwitchPreferenceCompat.Material">
+        <item name="android:widgetLayout">@layout/pref_widget_switch_material</item>
+    </style>
+
     <!--============-->
     <!--FastScroller-->
     <!--============-->

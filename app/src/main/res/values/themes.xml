@@ -51,7 +51,7 @@
         <item name="actionModeCloseDrawable">@drawable/ic_close</item>
         <item name="actionBarTheme">@style/ThemeOverlay.RideBus.ActionBar</item>
         <item name="toolbarNavigationButtonStyle">@style/Widget.RideBus.Toolbar.Button.Navigation</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.RideBus</item>
         <item name="chipStyle">@style/Widget.RideBus.Chip.Action</item>
         <item name="chipBackgroundColor">?android:attr/divider</item>
         <item name="snackbarStyle">@style/Widget.RideBus.Snackbar</item>
