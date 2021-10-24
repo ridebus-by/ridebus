@@ -170,7 +170,12 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             }
         )
 
-        syncActivityViewWithController(router.backstack.lastOrNull()?.controller)
+        syncActivityViewWithController()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        syncActivityViewWithController()
     }
 
     /**
@@ -310,7 +315,10 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         router.setRoot(controller.withFadeTransaction().tag(id.toString()))
     }
 
-    private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
+    private fun syncActivityViewWithController(
+        to: Controller? = router.backstack.lastOrNull()?.controller,
+        from: Controller? = null
+    ) {
         if (from is DialogController || to is DialogController) {
             return
         }
