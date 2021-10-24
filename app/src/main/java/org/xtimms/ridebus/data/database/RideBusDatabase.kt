@@ -11,7 +11,7 @@ import java.io.*
 //
 // Created by Xtimms on 28.08.2021.
 //
-@Database(entities = [Route::class, Stop::class, RoutesAndStops::class], version = 1)
+@Database(entities = [Route::class, Stop::class, RoutesAndStops::class, Trip::class], version = 1)
 abstract class RideBusDatabase : RoomDatabase() {
 
     abstract fun routeDao(): RouteDao
