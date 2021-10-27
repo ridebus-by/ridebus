@@ -110,31 +110,6 @@
     <!--== AMOLED theme overlay ==-->
     <style name="ThemeOverlay.RideBus.Amoled" parent="" />
 
-    <!--== Colored bars (toolbar-navbar-navrail) theme overlay ==-->
-    <style name="ThemeOverlay.RideBus.ColoredBars" parent="">
-        <item name="colorToolbar">?attr/colorPrimary</item>
-        <item name="colorOnToolbar">?attr/colorOnPrimary</item>
-
-        <!-- Base background/text colors -->
-        <item name="background">?attr/colorPrimary</item>
-
-        <!-- Themes -->
-        <item name="actionBarTheme">@style/ThemeOverlay.RideBus.ActionBar.Colored</item>
-        <item name="actionModeStyle">@style/Widget.RideBus.ActionMode</item>
-        <item name="toolbarNavigationButtonStyle">@style/Widget.RideBus.Toolbar.Button.Navigation</item>
-        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Primary</item>
-        <item name="toolbarStyle">@style/Widget.RideBus.Toolbar.Primary</item>
-        <item name="tabStyle">@style/Widget.RideBus.TabLayout.Colored</item>
-        <item name="bottomNavigationStyle">@style/Widget.RideBus.BottomNavigationView.Colored</item>
-        <item name="navigationRailStyle">@style/Widget.RideBus.NavigationRailView.Colored</item>
-
-        <!-- Status/Navigation bar -->
-        <item name="android:windowLightStatusBar" tools:targetApi="m">?attr/lightSystemBarsOnPrimary</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">?attr/lightSystemBarsOnPrimary</item>
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
-    </style>
-
     <!--===============-->
     <!-- Launch Screen -->
     <!--===============-->

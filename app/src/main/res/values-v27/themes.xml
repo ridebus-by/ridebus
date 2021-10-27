@@ -2,7 +2,7 @@
 <resources>
     <style name="Base.V27.RideBus" parent="Base.Theme.RideBus">
         <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightNavigationBar">@bool/lightNavigationBar</item>
     </style>
 
     <style name="Theme.RideBus" parent="Base.V27.RideBus" />
