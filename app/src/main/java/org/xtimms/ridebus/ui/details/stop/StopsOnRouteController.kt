@@ -16,6 +16,8 @@ import org.xtimms.ridebus.ui.stub.StubController
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StopsOnRouteController :
     NucleusController<StopsRouteControllerBinding, StopsOnRoutePresenter>,
@@ -73,6 +75,10 @@ class StopsOnRouteController :
                 padding()
             }
         }
+
+        val calendar: Calendar = Calendar.getInstance()
+        val date: Date = calendar.getTime()
+        binding.dayOfWeek.text = SimpleDateFormat("EEEE", Locale.getDefault()).format(date.time)
 
         // Init RecyclerView and adapter
         adapter = StopsOnRouteAdapter(this)
