@@ -12,7 +12,7 @@ import org.xtimms.ridebus.databinding.RouteStopsControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.details.route.RouteDetailsController
-import org.xtimms.ridebus.ui.stub.StubController
+import org.xtimms.ridebus.ui.schedule.ScheduleController
 import uy.kohesive.injekt.injectLazy
 
 class RouteStopsController :
@@ -57,7 +57,7 @@ class RouteStopsController :
     }
 
     override fun onItemClick(position: Int) {
-        parentController!!.router.pushController(StubController().withFadeTransaction())
+        parentController!!.router.pushController(ScheduleController().withFadeTransaction())
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
