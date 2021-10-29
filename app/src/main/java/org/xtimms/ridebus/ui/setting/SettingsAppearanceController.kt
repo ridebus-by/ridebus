@@ -35,8 +35,8 @@ class SettingsAppearanceController : SettingsController() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     entriesRes = arrayOf(
                         R.string.theme_system,
-                        R.string.theme_light,
-                        R.string.theme_dark
+                        R.string.theme_dark_mode_off,
+                        R.string.theme_dark_mode_on
                     )
                     entryValues = arrayOf(
                         PreferenceValues.ThemeMode.system.name,
@@ -46,8 +46,8 @@ class SettingsAppearanceController : SettingsController() {
                     defaultValue = PreferenceValues.ThemeMode.system.name
                 } else {
                     entriesRes = arrayOf(
-                        R.string.theme_light,
-                        R.string.theme_dark
+                        R.string.theme_dark_mode_off,
+                        R.string.theme_dark_mode_on
                     )
                     entryValues = arrayOf(
                         PreferenceValues.ThemeMode.light.name,

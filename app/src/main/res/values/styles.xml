@@ -124,7 +124,6 @@
     <!--=======-->
     <!--Widgets-->
     <!--=======-->
-
     <style name="Widget.RideBus.CardView" parent="CardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -249,17 +248,6 @@
         <item name="tabRippleColor">@color/ripple_toolbar_fainter</item>
     </style>
 
-    <style name="Widget.RideBus.TabLayout.Colored" parent="Widget.MaterialComponents.TabLayout.Colored">
-        <item name="tabGravity">center</item>
-        <item name="tabIndicator">@drawable/tab_indicator</item>
-        <item name="tabIndicatorFullWidth">false</item>
-        <item name="tabIndicatorHeight">3dp</item>
-        <item name="tabInlineLabel">true</item>
-        <item name="tabMinWidth">75dp</item>
-        <item name="tabMode">scrollable</item>
-        <item name="tabRippleColor">?attr/colorOnPrimary</item>
-    </style>
-
     <!--==============-->
     <!--Widgets.Switch-->
     <!--==============-->
@@ -279,16 +267,8 @@
         <item name="labelVisibilityMode">labeled</item>
     </style>
 
-    <style name="Widget.RideBus.BottomNavigationView.Colored" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
-        <item name="labelVisibilityMode">labeled</item>
-    </style>
-
     <style name="Widget.RideBus.NavigationRailView" parent="Widget.MaterialComponents.NavigationRailView">
         <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
-        <item name="labelVisibilityMode">labeled</item>
-    </style>
-
-    <style name="Widget.RideBus.NavigationRailView.Colored" parent="Widget.MaterialComponents.NavigationRailView.Colored">
         <item name="labelVisibilityMode">labeled</item>
     </style>
 
@@ -296,7 +276,6 @@
     <!--Preferences-->
     <!--===========-->
     <style name="PreferenceThemeOverlay.RideBus">
-        <item name="preferenceCategoryTitleTextAppearance">?attr/textAppearanceBody2</item>
         <item name="switchPreferenceCompatStyle">@style/PreferenceThemeOverlay.RideBus.SwitchPreferenceCompat</item>
     </style>
 

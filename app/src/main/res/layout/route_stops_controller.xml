@@ -8,6 +8,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingVertical="8dp"
         android:clipToPadding="false"
         tools:listitem="@layout/route_stop_item" />
 

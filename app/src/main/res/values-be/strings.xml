@@ -15,8 +15,6 @@
     <string name="pref_manage_notifications">Кіраванне апавяшчэннямі</string>
     <string name="theme_dark_mode_off">Выключаны</string>
     <string name="theme_dark_mode_on">Уключаны</string>
-    <string name="theme_light">Светлы</string>
-    <string name="theme_dark">Цёмны</string>
     <string name="theme_system">У адпаведнасці з сістэмнай тэмай</string>
     <string name="pref_theme_mode">Цёмны рэжым</string>
     <string name="action_search">Пошук</string>

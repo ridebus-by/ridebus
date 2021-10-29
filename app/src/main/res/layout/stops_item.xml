@@ -4,10 +4,10 @@
     android:id="@+id/holder"
     android:layout_width="match_parent"
     android:layout_height="?android:listPreferredItemHeight"
+    android:background="@drawable/list_item_selector_background"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:paddingHorizontal="16dp"
-    android:background="@drawable/list_item_selector_background">
+    android:paddingHorizontal="16dp">
 
     <TextView
         android:id="@+id/stop_title"

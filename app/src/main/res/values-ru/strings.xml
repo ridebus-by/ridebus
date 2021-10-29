@@ -14,8 +14,6 @@
     <string name="pref_manage_notifications">Управление уведомлениями</string>
     <string name="theme_dark_mode_off">Выключен</string>
     <string name="theme_dark_mode_on">Включён</string>
-    <string name="theme_light">Светлая</string>
-    <string name="theme_dark">Тёмная</string>
     <string name="theme_system">В соответствии с системной темой</string>
     <string name="pref_theme_mode">Тёмный режим</string>
     <string name="action_search">Поиск</string>
