@@ -5,26 +5,26 @@
     android:id="@+id/holder"
     android:layout_width="match_parent"
     android:layout_height="72dp"
-    android:background="?selectableItemBackground"
-    tools:ignore="Overdraw">
+    android:background="?selectableItemBackground">
 
     <TextView
         android:id="@+id/route_number"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/material_bubble_drawable"
         android:gravity="center"
-        android:textColor="?attr/colorToolbar"
-        android:textSize="18sp"
+        android:textColor="?attr/colorPrimaryVariant"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/route_title"
         style="@style/TextAppearance.Regular"
         android:layout_width="0dp"
@@ -36,11 +36,10 @@
         app:layout_constraintBottom_toTopOf="@+id/route_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/route_number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:text="@tools:sample/lorem[3]" />
+        app:layout_constraintTop_toTopOf="@+id/route_number"
+        tools:text="Title" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/route_description"
         style="@style/TextAppearance.Regular.Body1.Secondary"
         android:layout_width="0dp"
@@ -52,6 +51,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/route_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/route_number"
-        tools:text="@tools:sample/lorem[3]" />
+        app:layout_constraintTop_toBottomOf="@+id/route_title"
+        tools:text="Description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

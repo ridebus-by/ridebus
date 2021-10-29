@@ -12,8 +12,8 @@
         android:id="@+id/decor_view"
         android:layout_width="8dp"
         android:layout_height="match_parent"
-        android:background="?attr/colorPrimary"
         android:layout_marginVertical="1dp"
+        android:background="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +28,16 @@
         app:layout_constraintStart_toEndOf="@+id/decor_view"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="14" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/route_number"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/route_title"
@@ -73,5 +83,12 @@
             tools:text="12:00" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:background="?android:attr/divider"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

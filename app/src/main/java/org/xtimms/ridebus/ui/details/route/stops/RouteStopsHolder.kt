@@ -20,5 +20,6 @@ class RouteStopsHolder(view: View, val adapter: RouteStopsAdapter) :
         val stop = item.stop
         binding.timeline.initLine(TimelineView.getTimeLineViewType(bindingAdapterPosition, adapter.itemCount))
         binding.stopTitle.text = stop.name
+        binding.stopDescription.text = stop.direction
     }
 }

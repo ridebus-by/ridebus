@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/holder"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="64dp"
     android:background="?selectableItemBackground"
     android:orientation="horizontal"
     tools:ignore="Overdraw">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_toStartOf="@+id/time_view"
         android:orientation="horizontal"
         tools:ignore="RelativeOverlap">
 
@@ -19,39 +20,62 @@
             android:id="@+id/timeline"
             android:layout_width="56dp"
             android:layout_height="match_parent"
-            app:marker="@drawable/oval_colored"
-            app:markerSize="14dp"
             app:endLineColor="?attr/colorPrimary"
             app:lineWidth="3dp"
-            app:startLineColor="?attr/colorPrimary"/>
+            app:marker="@drawable/oval_colored"
+            app:markerSize="14dp"
+            app:startLineColor="?attr/colorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/stop_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center|start"
-            tools:text="@tools:sample/lorem[3]" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/stop_title"
+                style="@style/TextAppearance.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center|start"
+                android:maxLines="1"
+                tools:text="@tools:sample/lorem[3]" />
+
+            <TextView
+                android:id="@+id/stop_description"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center|start"
+                android:maxLines="1"
+                tools:text="@tools:sample/lorem/random" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/time_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_alignParentEnd="true"
-        android:paddingEnd="16dp"
+        android:gravity="center"
+        android:orientation="vertical"
         android:paddingStart="16dp"
-        android:orientation="vertical">
+        android:paddingEnd="16dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/remaining_time"
+            style="@style/TextAppearance.Regular.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.Regular.Body1"
             android:gravity="center"
             tools:text="12h 12m" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <TextView
             android:id="@+id/closest_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
