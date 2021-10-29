@@ -102,4 +102,7 @@
     <string name="information_no_route_on_stop">No transport passes through this stop</string>
     <string name="pref_category_accessibility">Accessibility</string>
     <string name="enable_reduced_motion">Enable reduced motion</string>
+    <string name="pref_verbose_logging">Verbose logging</string>
+    <string name="pref_verbose_logging_summary">Print verbose logs to system log (reduces app performance)</string>
+    <string name="information_no_schedule_on_route">This route has no schedule</string>
 </resources>

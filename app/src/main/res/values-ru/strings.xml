@@ -70,7 +70,7 @@
     <string name="pref_tablet_ui_mode">Планшетный вид</string>
     <string name="requires_app_restart">Для вступления в силу требуется перезапуск приложения</string>
     <string name="lock_always">Всегда</string>
-    <string name="landscape">В портретном режиме</string>
+    <string name="landscape">В альбомном режиме</string>
     <string name="lock_never">Никогда</string>
     <string name="information_no_routes">Нет маршрутов</string>
     <string name="information_no_stops">Нет остановок</string>
@@ -86,9 +86,9 @@
     <string name="unknown">Неизвестно</string>
     <string name="transport_classes">Классы транспорта</string>
     <string name="direction">Направление</string>
-    <string name="small_class">малый (12-40)</string>
-    <string name="middle_class">средний (40-70)</string>
-    <string name="big_class">большой (70-110)</string>
+    <string name="small_class">малый (12–40)</string>
+    <string name="middle_class">средний (40–70)</string>
+    <string name="big_class">большой (70–110)</string>
     <string name="very_big_class">особо большой (110+)</string>
     <string name="fare">Стоимость проезда</string>
     <string name="traffic">Режим работы</string>
@@ -101,4 +101,7 @@
     <string name="information_no_route_on_stop">Через эту остановку не проходит транспорт</string>
     <string name="pref_category_accessibility">Специальные возможности</string>
     <string name="enable_reduced_motion">Включить пониженное движение</string>
+    <string name="pref_verbose_logging">Подробное ведение журнала логов</string>
+    <string name="pref_verbose_logging_summary">Передавать подробные журналы логов в системный журнал логов (снижает производительность приложения)</string>
+    <string name="information_no_schedule_on_route">Этот маршрут не имеет расписания</string>
 </resources>
