@@ -13,7 +13,7 @@ import com.bluelinelabs.conductor.ControllerChangeType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
-import timber.log.Timber
+import logcat.logcat
 
 abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
     Controller(bundle) {
@@ -32,20 +32,20 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
 
                 override fun preCreateView(controller: Controller) {
                     viewScope = MainScope()
-                    Timber.d("Create view for ${controller.instance()}")
+                    logcat { "Create view for ${controller.instance()}" }
                 }
 
                 override fun preAttach(controller: Controller, view: View) {
-                    Timber.d("Attach view for ${controller.instance()}")
+                    logcat { "Attach view for ${controller.instance()}" }
                 }
 
                 override fun preDetach(controller: Controller, view: View) {
-                    Timber.d("Detach view for ${controller.instance()}")
+                    logcat { "Detach view for ${controller.instance()}" }
                 }
 
                 override fun preDestroyView(controller: Controller, view: View) {
                     viewScope.cancel()
-                    Timber.d("Destroy view for ${controller.instance()}")
+                    logcat { "Destroy view for ${controller.instance()}" }
                 }
             }
         )

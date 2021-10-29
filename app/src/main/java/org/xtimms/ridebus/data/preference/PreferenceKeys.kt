@@ -27,4 +27,6 @@ object PreferenceKeys {
     const val autoUpdateSchedule = "auto_update_schedule"
 
     const val reducedMotion = "reduced_motion"
+
+    const val verboseLogging = "verbose_logging"
 }

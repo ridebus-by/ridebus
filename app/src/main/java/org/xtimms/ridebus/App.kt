@@ -7,6 +7,9 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.launchIn
+import logcat.AndroidLogcatLogger
+import logcat.LogPriority
+import logcat.LogcatLogger
 import org.acra.config.httpSender
 import org.acra.data.StringFormat
 import org.acra.ktx.initAcra
@@ -14,7 +17,6 @@ import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.data.preference.asImmediateFlow
-import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.injectLazy
 
@@ -24,7 +26,6 @@ open class App : Application(), DefaultLifecycleObserver {
 
     override fun onCreate() {
         super<Application>.onCreate()
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
 
         Injekt.importModule(AppModule(this))
 
@@ -42,6 +43,10 @@ open class App : Application(), DefaultLifecycleObserver {
                     }
                 )
             }.launchIn(ProcessLifecycleOwner.get().lifecycleScope)
+
+        if (!LogcatLogger.isInstalled && preferences.verboseLogging()) {
+            LogcatLogger.install(AndroidLogcatLogger(LogPriority.VERBOSE))
+        }
     }
 
     override fun attachBaseContext(base: Context?) {

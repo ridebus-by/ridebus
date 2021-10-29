@@ -25,11 +25,12 @@ import androidx.core.graphics.blue
 import androidx.core.graphics.green
 import androidx.core.graphics.red
 import androidx.core.net.toUri
+import logcat.LogPriority
+import logcat.logcat
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.util.lang.truncateCenter
-import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.File
@@ -69,7 +70,7 @@ fun Context.copyToClipboard(label: String, content: String) {
 
         toast(getString(R.string.copied_to_clipboard, content.truncateCenter(50)))
     } catch (e: Throwable) {
-        Timber.e(e)
+        logcat(LogPriority.ERROR, e)
         toast(R.string.clipboard_copy_error)
     }
 }

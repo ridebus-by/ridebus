@@ -186,7 +186,7 @@ dependencies {
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
 
     // Logging
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation("com.squareup.logcat:logcat:0.1")
 
     // Licenses
     implementation("com.mikepenz:aboutlibraries-core:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
