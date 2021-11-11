@@ -25,6 +25,7 @@ class FavouritesController :
     NucleusController<FavouriteControllerBinding, FavouritesPresenter>(),
     RootController,
     FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnItemLongClickListener,
     FlexibleAdapter.OnUpdateListener,
     FavouritesAdapter.OnFavouriteItemClickListener {
 
@@ -39,7 +40,8 @@ class FavouritesController :
         return resources?.getString(R.string.title_favorite)
     }
 
-    override fun createBinding(inflater: LayoutInflater) = FavouriteControllerBinding.inflate(inflater)
+    override fun createBinding(inflater: LayoutInflater) =
+        FavouriteControllerBinding.inflate(inflater)
 
     override fun createPresenter(): FavouritesPresenter {
         return FavouritesPresenter()
@@ -73,7 +75,10 @@ class FavouritesController :
         if (size > 0) {
             binding.emptyView.hide()
         } else {
-            binding.emptyView.show(R.drawable.ic_favorite_off, R.string.information_no_favorite_stops)
+            binding.emptyView.show(
+                R.drawable.ic_favorite_off,
+                R.string.information_no_favorite_stops
+            )
         }
     }
 
@@ -91,6 +96,22 @@ class FavouritesController :
     override fun onItemClick(view: View, position: Int): Boolean {
         onItemClick(position)
         return false
+    }
+
+    override fun onItemLongClick(position: Int) {
+        val activity = activity ?: return
+        val item = adapter?.getItem(position) as? FavouriteItem ?: return
+
+        val isPinned = item.header?.type?.equals(FavouritesPresenter.PINNED_KEY) ?: false
+
+        val items = mutableListOf(
+            Pair(
+                activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin),
+                { toggleFavouritePin(item.route) }
+            )
+        )
+
+        FavouriteOptionsDialog(item.route.title, items).showDialog(router)
     }
 
     private fun toggleFavouritePin(favourite: Route) {

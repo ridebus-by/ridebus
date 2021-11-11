@@ -107,4 +107,6 @@
     <string name="information_no_schedule_on_route">This route has no schedule</string>
     <string name="pinned">Pinned</string>
     <string name="other">Other</string>
+    <string name="action_unpin">Unpin</string>
+    <string name="action_pin">Pin</string>
 </resources>

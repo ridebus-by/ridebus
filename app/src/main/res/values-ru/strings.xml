@@ -106,4 +106,6 @@
     <string name="information_no_schedule_on_route">Этот маршрут не имеет расписания</string>
     <string name="pinned">Закреплено</string>
     <string name="other">Другие</string>
+    <string name="action_unpin">Открепить</string>
+    <string name="action_pin">Закрепить</string>
 </resources>
