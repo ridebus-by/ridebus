@@ -264,12 +264,10 @@
     <!--================-->
     <style name="Widget.RideBus.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
-        <item name="labelVisibilityMode">labeled</item>
     </style>
 
     <style name="Widget.RideBus.NavigationRailView" parent="Widget.MaterialComponents.NavigationRailView">
         <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
-        <item name="labelVisibilityMode">labeled</item>
     </style>
 
     <!--===========-->
