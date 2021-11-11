@@ -170,7 +170,7 @@ dependencies {
     implementation("io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion")
 
     // UI libraries
-    implementation("com.google.android.material:material:1.5.0-alpha04")
+    implementation("com.google.android.material:material:1.5.0-alpha05")
     implementation("eu.davidea:flexible-adapter:5.1.0")
     implementation("eu.davidea:flexible-adapter-ui:1.0.0")
     implementation("com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0")
