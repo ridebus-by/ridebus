@@ -65,7 +65,7 @@
     <string name="city_polotsk">Полоцк</string>
     <string name="city_novopolotsk">Новополоцк</string>
     <string name="city">Город</string>
-    <string name="information_no_favorite_stops">Нет избранных остановок</string>
+    <string name="information_no_favorite_stops">Нет избранных остановок и маршрутов</string>
     <string name="pref_category_display">Отображение</string>
     <string name="pref_tablet_ui_mode">Планшетный вид</string>
     <string name="requires_app_restart">Для вступления в силу требуется перезапуск приложения</string>
@@ -104,4 +104,6 @@
     <string name="pref_verbose_logging">Подробное ведение журнала логов</string>
     <string name="pref_verbose_logging_summary">Передавать подробные журналы логов в системный журнал логов (снижает производительность приложения)</string>
     <string name="information_no_schedule_on_route">Этот маршрут не имеет расписания</string>
+    <string name="pinned">Закреплено</string>
+    <string name="other">Другие</string>
 </resources>

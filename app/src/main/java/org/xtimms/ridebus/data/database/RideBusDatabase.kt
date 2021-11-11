@@ -4,9 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import org.xtimms.ridebus.data.database.dao.*
-import org.xtimms.ridebus.data.database.entity.*
-import java.io.*
+import org.xtimms.ridebus.data.database.dao.RouteDao
+import org.xtimms.ridebus.data.database.dao.RoutesAndStopsDao
+import org.xtimms.ridebus.data.database.dao.StopDao
+import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.database.entity.RoutesAndStops
+import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.database.entity.Trip
 
 //
 // Created by Xtimms on 28.08.2021.

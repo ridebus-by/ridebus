@@ -6,7 +6,9 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.LocaleList
 import androidx.core.os.LocaleListCompat
+import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferencesHelper
+import org.xtimms.ridebus.ui.favourite.FavouritesPresenter
 import uy.kohesive.injekt.injectLazy
 import java.util.*
 
@@ -16,6 +18,17 @@ import java.util.*
 object LocaleHelper {
 
     private val preferences: PreferencesHelper by injectLazy()
+
+    /**
+     * Returns Display name of a favourite type
+     */
+    fun getTypeDisplayName(type: String?, context: Context): String {
+        return when (type) {
+            FavouritesPresenter.PINNED_KEY -> context.getString(R.string.pinned)
+            "other" -> context.getString(R.string.other)
+            else -> getDisplayName(type)
+        }
+    }
 
     /**
      * Returns Display name of a string language code

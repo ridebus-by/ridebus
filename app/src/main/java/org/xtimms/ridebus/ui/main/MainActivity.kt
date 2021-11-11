@@ -30,7 +30,7 @@ import org.xtimms.ridebus.data.preference.asImmediateFlow
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.activity.BaseViewBindingActivity
 import org.xtimms.ridebus.ui.base.controller.*
-import org.xtimms.ridebus.ui.favorite.FavoriteController
+import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
@@ -119,7 +119,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                 when (id) {
                     R.id.nav_routes -> setRoot(RoutesTabbedController(), id)
                     R.id.nav_stops -> setRoot(StopsController(), id)
-                    R.id.nav_favorite -> setRoot(FavoriteController(), id)
+                    R.id.nav_favorite -> setRoot(FavouritesController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
                 }
             } else if (!isHandlingShortcut) {

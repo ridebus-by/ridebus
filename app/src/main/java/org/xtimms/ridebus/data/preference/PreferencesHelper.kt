@@ -20,6 +20,14 @@ fun <T> Preference<T>.asImmediateFlow(block: (T) -> Unit): Flow<T> {
         .onEach { block(it) }
 }
 
+operator fun <T> Preference<Set<T>>.plusAssign(item: T) {
+    set(get() + item)
+}
+
+operator fun <T> Preference<Set<T>>.minusAssign(item: T) {
+    set(get() - item)
+}
+
 class PreferencesHelper(val context: Context) {
 
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -61,4 +69,6 @@ class PreferencesHelper(val context: Context) {
     fun reducedMotion() = prefs.getBoolean(Keys.reducedMotion, false)
 
     fun verboseLogging() = prefs.getBoolean(Keys.verboseLogging, false)
+
+    fun pinnedFavourites() = flowPrefs.getStringSet("pinned_favourites", emptySet())
 }
