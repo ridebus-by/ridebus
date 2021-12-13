@@ -109,4 +109,6 @@
     <string name="other">Other</string>
     <string name="action_unpin">Unpin</string>
     <string name="action_pin">Pin</string>
+    <string name="report_an_error">Report an error</string>
+    <string name="email_subject">Error report: RideBus</string>
 </resources>

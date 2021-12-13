@@ -1,11 +1,14 @@
 package org.xtimms.ridebus.ui.details.route
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import com.bluelinelabs.conductor.*
 import com.bluelinelabs.conductor.viewpager.RouterPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import logcat.LogPriority
+import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
@@ -14,6 +17,8 @@ import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.details.route.info.RouteInfoController
 import org.xtimms.ridebus.ui.details.route.stops.RouteStopsController
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.util.system.logcat
+import org.xtimms.ridebus.util.system.toast
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -39,7 +44,11 @@ class RouteDetailsController :
 
     private var adapter: RouteDetailsAdapter? = null
 
-    override fun getTitle(): String? {
+    init {
+        setHasOptionsMenu(true)
+    }
+
+    override fun getTitle(): String {
         return "${resources!!.getString(R.string.label_route)} №${route?.number}"
     }
 
@@ -73,6 +82,31 @@ class RouteDetailsController :
         with(tabs) {
             tabGravity = TabLayout.GRAVITY_FILL
             tabMode = TabLayout.MODE_FIXED
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.route_info, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_report -> report()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun report() {
+        val intent = Intent(Intent.ACTION_SENDTO)
+
+        intent.putExtra(Intent.EXTRA_SUBJECT, resources!!.getString(R.string.email_subject))
+        intent.data = Uri.parse(BuildConfig.DEVELOPER_EMAIL)
+
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            logcat(LogPriority.ERROR, e)
+            activity?.toast(e.localizedMessage)
         }
     }
 

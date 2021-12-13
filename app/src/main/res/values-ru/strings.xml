@@ -108,4 +108,6 @@
     <string name="other">Другие</string>
     <string name="action_unpin">Открепить</string>
     <string name="action_pin">Закрепить</string>
+    <string name="report_an_error">Сообщить об ошибке</string>
+    <string name="email_subject">Сообщение об ошибке: RideBus</string>
 </resources>
