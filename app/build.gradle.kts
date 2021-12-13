@@ -33,6 +33,7 @@ android {
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
+        buildConfigField("String", "DEVELOPER_EMAIL", "\"mailto:ztimms73@gmail.com\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
@@ -127,13 +128,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     // AndroidX libraries
-    implementation("androidx.annotation:annotation:1.3.0-beta01")
-    implementation("androidx.appcompat:appcompat:1.4.0-beta01")
-    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha03")
-    implementation("androidx.browser:browser:1.3.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
+    implementation("androidx.annotation:annotation:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha04")
+    implementation("androidx.browser:browser:1.4.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
-    implementation("androidx.core:core-ktx:1.7.0-beta02")
+    implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
     implementation("androidx.recyclerview:recyclerview:1.3.0-alpha01")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
@@ -170,7 +171,7 @@ dependencies {
     implementation("io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion")
 
     // UI libraries
-    implementation("com.google.android.material:material:1.5.0-alpha05")
+    implementation("com.google.android.material:material:1.6.0-alpha01")
     implementation("eu.davidea:flexible-adapter:5.1.0")
     implementation("eu.davidea:flexible-adapter-ui:1.0.0")
     implementation("com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0")
@@ -192,14 +193,14 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries-core:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
 
     // Conductor
-    val conductorVersion = "3.0.0"
+    val conductorVersion = "3.1.1"
     implementation("com.bluelinelabs:conductor:$conductorVersion")
     implementation("com.bluelinelabs:conductor-viewpager:$conductorVersion")
     implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.8.1")
-    implementation("com.google.firebase:firebase-analytics:19.0.2")
+    implementation("com.google.firebase:firebase-analytics:20.0.1")
 
     // Tests
     testImplementation("junit:junit:4.13.2")
