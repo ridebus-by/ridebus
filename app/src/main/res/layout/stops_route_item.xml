@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.Regular.Body1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             tools:text="3 m" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
+            android:textAppearance="?attr/textAppearanceBodySmall"
             tools:text="12:00" />
 
     </LinearLayout>

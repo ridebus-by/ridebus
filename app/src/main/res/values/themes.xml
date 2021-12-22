@@ -5,29 +5,43 @@
     <!--============-->
 
     <!--== Theme base ==-->
-    <style name="Base.Theme.RideBus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.RideBus" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Disallow 'Force dark theme' -->
         <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
 
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_default</item>
-        <item name="colorPrimaryVariant">?attr/colorPrimary</item>
-        <item name="colorOnPrimary">@color/md_white_1000</item>
-        <item name="colorSecondary">?attr/colorPrimary</item>
-        <item name="colorSecondaryVariant">?attr/colorPrimaryVariant</item>
-        <item name="colorOnSecondary">?attr/colorOnPrimary</item>
-        <item name="colorTertiary">@color/green</item>
-        <item name="colorOnTertiary">@color/md_white_1000</item>
-        <item name="colorToolbar">?attr/colorSurface</item>
-        <item name="colorOnToolbar">?attr/colorOnSurface</item>
-        <item name="colorSurface">@color/surface_default</item>
-        <item name="android:colorBackground">@color/background_default</item>
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/ridebus_primary</item>
+        <item name="colorOnPrimary">@color/ridebus_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/ridebus_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/ridebus_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/ridebus_secondary</item>
+        <item name="colorOnSecondary">@color/ridebus_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/ridebus_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/ridebus_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/ridebus_tertiary</item>
+        <item name="colorOnTertiary">@color/ridebus_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/ridebus_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/ridebus_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/ridebus_background</item>
+        <item name="colorOnBackground">@color/ridebus_onBackground</item>
+        <item name="colorSurface">@color/ridebus_surface</item>
+        <item name="colorOnSurface">@color/ridebus_onSurface</item>
+        <item name="colorSurfaceVariant">@color/ridebus_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/ridebus_onSurfaceVariant</item>
+        <item name="colorOutline">@color/ridebus_outline</item>
+        <item name="colorOnSurfaceInverse">@color/ridebus_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/ridebus_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/ridebus_primaryInverse</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/onError</item>
+        <item name="colorErrorContainer">@color/errorContainer</item>
+        <item name="colorOnErrorContainer">@color/onErrorContainer</item>
+
         <item name="android:divider">@color/divider_default</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">@color/ripple_colored_default</item>
-        <item name="rippleColorToolbar">?attr/colorControlHighlight</item>
+        <item name="colorControlHighlight">?attr/colorSurfaceVariant</item>
 
         <!-- Handles RTL text -->
         <item name="android:textAlignment">gravity</item>
@@ -35,36 +49,37 @@
 
         <!-- Themes -->
         <item name="android:windowLightStatusBar">@bool/lightStatusBar</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/surface_amoled</item>
         <item name="android:navigationBarDividerColor" tools:targetApi="o_mr1">@null</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
         <item name="android:enforceStatusBarContrast" tools:targetApi="Q">false</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
+        <item name="android:alertDialogTheme">@style/ThemeOverlay.RideBus.MaterialAlertDialog</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.RideBus.MaterialAlertDialog</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
         <item name="android:buttonStyle">?attr/borderlessButtonStyle</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="actionModeStyle">@style/Widget.RideBus.ActionMode</item>
         <item name="actionOverflowButtonStyle">@style/Theme.RideBus.ActionButton.Overflow</item>
         <item name="actionModeCloseButtonStyle">@style/Theme.RideBus.ActionMode.CloseButton</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.RideBus.ActionBar</item>
-        <item name="toolbarNavigationButtonStyle">@style/Widget.RideBus.Toolbar.Button.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.RideBus</item>
         <item name="chipStyle">@style/Widget.RideBus.Chip.Action</item>
+        <item name="chipTextColor">?android:attr/textColorPrimary</item>
         <item name="chipBackgroundColor">?android:attr/divider</item>
-        <item name="snackbarStyle">@style/Widget.RideBus.Snackbar</item>
-        <item name="snackbarTextViewStyle">@style/Widget.RideBus.Snackbar.TextView</item>
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
-        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Surface</item>
-        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Surface</item>
+        <item name="textInputStyle">@style/Widget.Material3.TextInputLayout.OutlinedBox</item>
+        <item name="appBarLayoutStyle">@style/Widget.Material3.AppBarLayout</item>
+        <item name="toolbarStyle">@style/Widget.Material3.Toolbar.Surface</item>
         <item name="tabStyle">@style/Widget.RideBus.TabLayout</item>
         <item name="bottomNavigationStyle">@style/Widget.RideBus.BottomNavigationView</item>
         <item name="navigationRailStyle">@style/Widget.RideBus.NavigationRailView</item>
         <item name="switchStyle">@style/Widget.RideBus.Switch</item>
-        <item name="elevationOverlayEnabled">false</item>
-        <item name="lightSystemBarsOnPrimary">false</item>
+        <item name="materialCardViewStyle">@style/Widget.Material3.CardView.Elevated</item>
+
+        <!-- Preference text appearance -->
+        <item name="android:textAppearanceListItem">?attr/textAppearanceBodyLarge</item>
+        <item name="android:textAppearanceListItemSecondary">@style/TextAppearance.RideBus.Preference.Secondary</item>
     </style>
 
     <!--== Default Theme ==-->
@@ -75,36 +90,83 @@
 
     <!--== Pink theme ==-->
     <style name="Theme.RideBus.Pink">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_pink</item>
-        <item name="colorTertiary">@color/accent_blue</item>
-        <item name="colorControlHighlight">@color/ripple_colored_pink</item>
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/pink_primary</item>
+        <item name="colorOnPrimary">@color/pink_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/pink_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pink_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/pink_secondary</item>
+        <item name="colorOnSecondary">@color/pink_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/pink_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pink_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/pink_tertiary</item>
+        <item name="colorOnTertiary">@color/pink_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/pink_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/pink_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/pink_background</item>
+        <item name="colorOnBackground">@color/pink_onBackground</item>
+        <item name="colorSurface">@color/pink_surface</item>
+        <item name="colorOnSurface">@color/pink_onSurface</item>
+        <item name="colorSurfaceVariant">@color/pink_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pink_onSurfaceVariant</item>
+        <item name="colorOutline">@color/pink_outline</item>
+        <item name="colorOnSurfaceInverse">@color/pink_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/pink_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/pink_primaryInverse</item>
     </style>
 
     <!--== Orange theme ==-->
     <style name="Theme.RideBus.Orange">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_orange</item>
-        <item name="colorTertiary">@color/accent_blue</item>
-        <item name="colorControlHighlight">@color/ripple_colored_orange</item>
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/orange_primary</item>
+        <item name="colorOnPrimary">@color/orange_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/orange_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/orange_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/orange_secondary</item>
+        <item name="colorOnSecondary">@color/orange_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/orange_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/orange_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/orange_tertiary</item>
+        <item name="colorOnTertiary">@color/orange_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/orange_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/orange_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/orange_background</item>
+        <item name="colorOnBackground">@color/orange_onBackground</item>
+        <item name="colorSurface">@color/orange_surface</item>
+        <item name="colorOnSurface">@color/orange_onSurface</item>
+        <item name="colorSurfaceVariant">@color/orange_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/orange_onSurfaceVariant</item>
+        <item name="colorOutline">@color/orange_outline</item>
+        <item name="colorOnSurfaceInverse">@color/orange_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/orange_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/orange_primaryInverse</item>
     </style>
 
     <!--== Green Apple theme ==-->
     <style name="Theme.RideBus.GreenApple">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_greenapple</item>
-        <item name="colorOnPrimary">@color/md_black_1000</item>
-        <item name="colorTertiary">@color/accent_blue</item>
-        <item name="colorControlHighlight">@color/ripple_colored_greenapple</item>
-    </style>
-
-    <!--== Yellow theme ==-->
-    <style name="Theme.RideBus.Teal">
-        <!-- Theme colors -->
-        <item name="colorPrimary">@color/accent_teal</item>
-        <item name="colorOnPrimary">@color/md_black_1000</item>
-        <item name="colorTertiary">@color/accent_blue</item>
-        <item name="colorControlHighlight">@color/ripple_colored_teal</item>
+        <!-- Theme Colors -->
+        <item name="colorPrimary">@color/greenapple_primary</item>
+        <item name="colorOnPrimary">@color/greenapple_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/greenapple_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/greenapple_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/greenapple_secondary</item>
+        <item name="colorOnSecondary">@color/greenapple_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/greenapple_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/greenapple_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/greenapple_tertiary</item>
+        <item name="colorOnTertiary">@color/greenapple_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/greenapple_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/greenapple_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/greenapple_background</item>
+        <item name="colorOnBackground">@color/greenapple_onBackground</item>
+        <item name="colorSurface">@color/greenapple_surface</item>
+        <item name="colorOnSurface">@color/greenapple_onSurface</item>
+        <item name="colorSurfaceVariant">@color/greenapple_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/greenapple_onSurfaceVariant</item>
+        <item name="colorOutline">@color/greenapple_outline</item>
+        <item name="colorOnSurfaceInverse">@color/greenapple_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/greenapple_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/greenapple_primaryInverse</item>
     </style>
 
     <!--== AMOLED theme overlay ==-->

@@ -26,7 +26,6 @@ android {
         applicationId = "org.xtimms.ridebus"
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         versionCode = 1
         versionName = "0.1"
 
@@ -47,6 +46,8 @@ android {
                 )
             }
         }
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -87,12 +88,16 @@ android {
     }
 
     packagingOptions {
-        exclude("META-INF/DEPENDENCIES")
-        exclude("LICENSE.txt")
-        exclude("META-INF/LICENSE")
-        exclude("META-INF/LICENSE.txt")
-        exclude("META-INF/NOTICE")
-        exclude("META-INF/*.kotlin_module")
+        resources.excludes.addAll(listOf(
+            "META-INF/DEPENDENCIES",
+            "LICENSE.txt",
+            "META-INF/LICENSE",
+            "META-INF/LICENSE.txt",
+            "META-INF/README.md",
+            "META-INF/NOTICE",
+            "META-INF/*.kotlin_module",
+            "META-INF/*.version",
+        ))
     }
 
     dependenciesInfo {
@@ -101,6 +106,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+
+        // Disable some unused things
+        aidl = false
+        renderScript = false
+        shaders = false
     }
 
     lint {
@@ -123,26 +133,29 @@ dependencies {
 
     implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
 
-    val coroutinesVersion = "1.5.1"
+    val coroutinesVersion = "1.5.2"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     // AndroidX libraries
-    implementation("androidx.annotation:annotation:1.3.0")
+    implementation("androidx.annotation:annotation:1.4.0-alpha01")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha04")
     implementation("androidx.browser:browser:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
-    implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0-rc01")
+    implementation("androidx.core:core-ktx:1.8.0-alpha02")
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
     implementation("androidx.recyclerview:recyclerview:1.3.0-alpha01")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
-    val lifecycleVersion = "2.4.0-beta01"
+    val lifecycleVersion = "2.4.0"
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-process:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+
+    // Job scheduling
+    implementation("androidx.work:work-runtime-ktx:2.6.0")
 
     // RX
     implementation("io.reactivex:rxandroid:1.2.1")
@@ -172,15 +185,14 @@ dependencies {
 
     // UI libraries
     implementation("com.google.android.material:material:1.6.0-alpha01")
-    implementation("eu.davidea:flexible-adapter:5.1.0")
-    implementation("eu.davidea:flexible-adapter-ui:1.0.0")
+    implementation("com.github.arkon.FlexibleAdapter:flexible-adapter:c8013533")
+    implementation("com.github.arkon.FlexibleAdapter:flexible-adapter-ui:c8013533")
     implementation("com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0")
-    implementation("dev.chrisbanes.insetter:insetter:0.6.0")
+    implementation("dev.chrisbanes.insetter:insetter:0.6.1")
     implementation("com.github.vipulasri:timelineview:1.1.5")
-    implementation("com.lucasurbas:listitemview:1.1.1")
 
     // Preferences
-    implementation("androidx.preference:preference-ktx:1.1.1")
+    implementation("androidx.preference:preference-ktx:1.2.0-rc01")
     implementation("com.github.tfcporciuncula.flow-preferences:flow-preferences:1.4.0")
 
     // Dependency injection

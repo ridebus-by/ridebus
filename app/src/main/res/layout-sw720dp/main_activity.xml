@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.xtimms.ridebus.widget.RideBusCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root_coordinator"
     android:layout_width="match_parent"
@@ -10,10 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.xtimms.ridebus.widget.ElevationAppBarLayout
+        <com.google.android.material.appbar.RideBusAppBarLayout
             android:id="@+id/appbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -24,7 +25,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme" />
 
-        </org.xtimms.ridebus.widget.ElevationAppBarLayout>
+        </com.google.android.material.appbar.RideBusAppBarLayout>
 
         <com.google.android.material.navigationrail.NavigationRailView
             android:id="@+id/side_nav"
@@ -45,7 +46,7 @@
             app:layout_constraintStart_toEndOf="@+id/side_nav"
             app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
-        <com.bluelinelabs.conductor.ChangeHandlerFrameLayout
+        <org.xtimms.ridebus.widget.RideBusChangeHandlerFrameLayout
             android:id="@+id/controller_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -56,4 +57,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</org.xtimms.ridebus.widget.RideBusCoordinatorLayout>

@@ -9,7 +9,7 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.databinding.StopsRouteControllerBinding
-import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
+import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.stub.StubController
@@ -21,7 +21,7 @@ import java.util.*
 
 class StopsOnRouteController :
     NucleusController<StopsRouteControllerBinding, StopsOnRoutePresenter>,
-    NoToolbarElevationController,
+    NoAppBarElevationController,
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnUpdateListener,
     StopsOnRouteAdapter.OnItemClickListener {

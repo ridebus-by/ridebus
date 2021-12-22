@@ -2,9 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:background="?attr/colorToolbar"
-    android:elevation="4dp"
-    android:padding="16dp"
+    android:background="?attr/colorSurface"
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
@@ -13,8 +11,14 @@
         android:layout_height="wrap_content"
         tools:text="@tools:sample/lorem[3]"
         android:layout_gravity="center_vertical"
-        android:textAppearance="@style/TextAppearance.Regular.Caption"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
         android:layout_marginStart="42dp"
         android:textSize="14sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@color/divider_default" />
 
 </FrameLayout>

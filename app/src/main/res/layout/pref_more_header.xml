@@ -3,15 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorToolbar"
-    android:elevation="4dp"
-    android:padding="16dp">
+    android:background="?attr/colorSurface">
 
     <ImageView
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_gravity="center"
+        android:layout_margin="16dp"
         app:srcCompat="@drawable/ic_ridebus"
-        app:tint="?attr/colorOnToolbar" />
+        app:tint="?attr/colorOnSurface" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@color/divider_default" />
 
 </FrameLayout>

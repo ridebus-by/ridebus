@@ -3,7 +3,7 @@ package org.xtimms.ridebus.ui.more
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
+import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.more.licenses.LicensesController
 import org.xtimms.ridebus.ui.setting.SettingsController
@@ -18,7 +18,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AboutController : SettingsController(), NoToolbarElevationController {
+class AboutController : SettingsController(), NoAppBarElevationController {
 
     private val dateFormat: DateFormat = preferences.dateFormat()
 

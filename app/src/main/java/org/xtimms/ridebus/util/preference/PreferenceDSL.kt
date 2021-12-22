@@ -2,7 +2,6 @@ package org.xtimms.ridebus.util.preference
 
 import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.preference.*
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.util.system.getResourceColor
@@ -144,7 +143,7 @@ var Preference.summaryRes: Int
 var Preference.iconTint: Int
     get() = 0 // set only
     set(value) {
-        DrawableCompat.setTint(icon, value)
+        icon?.setTint(value)
     }
 
 var ListPreference.entriesRes: Array<Int>

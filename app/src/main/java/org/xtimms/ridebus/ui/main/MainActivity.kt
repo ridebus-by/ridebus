@@ -37,6 +37,7 @@ import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
 import org.xtimms.ridebus.util.lang.launchUI
 import org.xtimms.ridebus.util.system.dpToPx
+import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
 
@@ -52,10 +53,13 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         }
     }
 
-    lateinit var tabAnimator: ViewHeightAnimator
-
     private var isConfirmingExit: Boolean = false
     private var isHandlingShortcut: Boolean = false
+
+    /**
+     * App bar lift state for backstack
+     */
+    private val backstackLiftState = mutableMapOf<String, Boolean>()
 
     // To be checked by splash screen. If true then splash screen will be removed.
     var ready = false
@@ -79,11 +83,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
         // Draw edge-to-edge
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        binding.appbar.applyInsetter {
-            type(navigationBars = true, statusBars = true) {
-                padding(left = true, top = true, right = true)
-            }
-        }
         binding.bottomNav?.applyInsetter {
             type(navigationBars = true) {
                 padding()
@@ -96,8 +95,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             elapsed <= SPLASH_MIN_DURATION || (!ready && elapsed <= SPLASH_MAX_DURATION)
         }
         setSplashScreenExitAnimation(splashScreen)
-
-        tabAnimator = ViewHeightAnimator(binding.tabs)
 
         if (binding.sideNav != null) {
             preferences.sideNavIconAlignment()
@@ -156,7 +153,7 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     container: ViewGroup,
                     handler: ControllerChangeHandler
                 ) {
-                    syncActivityViewWithController(to, from)
+                    syncActivityViewWithController(to, from, isPush)
                 }
 
                 override fun onChangeCompleted(
@@ -173,11 +170,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         syncActivityViewWithController()
     }
 
-    override fun onResume() {
-        super.onResume()
-        syncActivityViewWithController()
-    }
-
     /**
      * Sets custom splash screen exit animation on devices prior to Android 12.
      *
@@ -189,7 +181,8 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             // Make sure navigation bar is on bottom before we modify it
             ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
                 if (insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom > 0) {
-                    window.setNavigationBarTransparentCompat(this@MainActivity)
+                    val elevation = binding.bottomNav?.elevation ?: 0F
+                    window.setNavigationBarTransparentCompat(this@MainActivity, elevation)
                 }
                 insets
             }
@@ -317,7 +310,8 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     private fun syncActivityViewWithController(
         to: Controller? = router.backstack.lastOrNull()?.controller,
-        from: Controller? = null
+        from: Controller? = null,
+        isPush: Boolean = true,
     ) {
         if (from is DialogController || to is DialogController) {
             return
@@ -343,23 +337,34 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             from.cleanupTabs(binding.tabs)
         }
         if (to is TabbedController) {
-            tabAnimator.expand()
             to.configureTabs(binding.tabs)
         } else {
-            tabAnimator.collapse()
             binding.tabs.setupWithViewPager(null)
         }
+        binding.tabs.isVisible = to is TabbedController
 
-        when (to) {
-            is NoToolbarElevationController -> {
-                binding.appbar.disableElevation()
+        if (!isTablet()) {
+            // Save lift state
+            if (isPush) {
+                if (router.backstackSize > 1) {
+                    // Save lift state
+                    from?.let {
+                        backstackLiftState[it.instanceId] = binding.appbar.isLifted
+                    }
+                } else {
+                    backstackLiftState.clear()
+                }
+                binding.appbar.isLifted = false
+            } else {
+                to?.let {
+                    binding.appbar.isLifted = backstackLiftState.getOrElse(it.instanceId) { false }
+                }
+                from?.let {
+                    backstackLiftState.remove(it.instanceId)
+                }
             }
-            is ToolbarLiftOnScrollController -> {
-                binding.appbar.enableElevation(true)
-            }
-            else -> {
-                binding.appbar.enableElevation(false)
-            }
+
+            binding.root.isLiftAppBarOnScroll = to !is NoAppBarElevationController
         }
     }
 

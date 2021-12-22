@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorToolbar"
-    android:elevation="4dp"
+    android:background="?attr/colorSurface"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingVertical="16dp">
+    android:paddingTop="16dp">
 
     <ImageView
         android:layout_width="72dp"
@@ -16,7 +15,7 @@
         android:layout_gravity="center"
         android:importantForAccessibility="no"
         app:srcCompat="@drawable/ic_ridebus"
-        app:tint="?attr/colorOnToolbar"/>
+        app:tint="?attr/colorOnSurface" />
 
     <TextView
         android:id="@+id/appName"
@@ -33,5 +32,12 @@
         android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="?android:textColorSecondary"
         tools:text="Version r1234" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        android:background="@color/divider_default" />
 
 </LinearLayout>

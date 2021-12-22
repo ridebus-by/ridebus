@@ -11,19 +11,19 @@
 
     <TextView
         android:id="@+id/stop_title"
-        style="@style/TextAppearance.Regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"
         android:singleLine="true"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
         tools:text="@tools:sample/lorem/random" />
 
     <TextView
         android:id="@+id/stop_description"
-        style="@style/TextAppearance.Regular.Body1.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
+        android:textAppearance="?attr/textAppearanceBodySmall"
         tools:text="@tools:sample/lorem/random" />
 
 </LinearLayout>

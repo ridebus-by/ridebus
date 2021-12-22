@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="splash">@color/background_default</color>
+    <color name="splash">#202125</color>
 
     <!-- Default Theme -->
     <color name="accent_default">@color/accent_blue</color>

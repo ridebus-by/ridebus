@@ -79,7 +79,6 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="4dp"
                 android:text="@string/transport_classes"
-                android:textAppearance="@style/TextAppearance.Regular"
                 app:layout_constraintTop_toBottomOf="@id/backdrop" />
 
             <com.google.android.material.chip.ChipGroup
@@ -125,86 +124,6 @@
                     tools:ignore="HardcodedText" />
 
             </com.google.android.material.chip.ChipGroup>
-
-            <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/payment_methods"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/chips"
-                app:liv_displayMode="icon"
-                app:liv_forceKeyline="true"
-                app:liv_icon="@drawable/ic_balance_wallet"
-                app:liv_title="@string/payment_methods"
-                tools:liv_subtitle="наличные" />
-
-            <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/fare"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/payment_methods"
-                app:liv_displayMode="icon"
-                app:liv_forceKeyline="true"
-                app:liv_icon="@drawable/ic_money"
-                app:liv_title="@string/fare"
-                tools:liv_subtitle="0.55 BYN" />
-
-            <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/traffic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/fare"
-                app:liv_displayMode="icon"
-                app:liv_forceKeyline="true"
-                app:liv_icon="@drawable/ic_today"
-                app:liv_title="@string/traffic"
-                tools:liv_subtitle="ежедневно" />
-
-            <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/traffic"
-                app:liv_displayMode="icon"
-                app:liv_forceKeyline="true"
-                app:liv_icon="@drawable/ic_time"
-                app:liv_title="@string/working_hours"
-                tools:liv_subtitle="05:25 - 00:19" />
-
-            <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/following"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/time"
-                app:liv_displayMode="icon"
-                app:liv_forceKeyline="true"
-                app:liv_icon="@drawable/ic_near_me"
-                app:liv_multiline="true"
-                app:liv_title="@string/following"
-                tools:liv_subtitle="улица Петруся Бровки - улица Максима Богдановича - улица Зыгина - Октябрьская улица - улица Ефросинии Полоцкой - улица Коммунистическая - улица Гоголя - Октябрьская улица - улица Гагарина" />
-
-            <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/company"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/following"
-                app:liv_displayMode="icon"
-                app:liv_forceKeyline="true"
-                app:liv_icon="@drawable/ic_domain"
-                app:liv_multiline="true"
-                app:liv_title="@string/carrier_company"
-                tools:liv_subtitle="ОАО «Витебскоблавтотранс» (филиал АП №2 г.Полоцка)" />
-
-            <com.lucasurbas.listitemview.ListItemView
-                android:id="@+id/tech_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/company"
-                app:liv_displayMode="icon"
-                app:liv_forceKeyline="true"
-                app:liv_icon="@drawable/ic_build"
-                app:liv_multiline="true"
-                app:liv_title="@string/technical_information"
-                tools:liv_subtitle="Длина маршрута: 11.53 км, остановок: 21" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

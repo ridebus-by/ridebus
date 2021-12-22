@@ -28,8 +28,7 @@ object PreferenceValues {
         MONET(R.string.theme_monet),
         GREEN_APPLE(R.string.theme_greenapple),
         PINK(R.string.theme_pink),
-        ORANGE(R.string.theme_orange),
-        TEAL(R.string.theme_teal)
+        ORANGE(R.string.theme_orange)
     }
 
     enum class TabletUiMode {

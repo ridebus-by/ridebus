@@ -57,47 +57,5 @@ class RouteInfoController :
         } else {
             route.title
         }
-
-        binding.paymentMethods.subtitle = if (route.title.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.paymentMethods
-        }
-
-        binding.fare.subtitle = if (route.title.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.fare
-        }
-
-        binding.traffic.subtitle = if (route.title.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.weeklyTraffic
-        }
-
-        binding.time.subtitle = if (route.title.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.workingHours
-        }
-
-        binding.following.subtitle = if (route.title.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.following
-        }
-
-        binding.company.subtitle = if (route.title.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.carrierCompany
-        }
-
-        binding.techInfo.subtitle = if (route.title.isBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            route.techInfo
-        }
     }
 }

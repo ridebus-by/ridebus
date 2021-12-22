@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.TooltipCompat
 import androidx.core.view.children
+import androidx.core.view.descendants
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -47,4 +48,11 @@ fun RecyclerView.onAnimationsFinished(callback: (RecyclerView) -> Unit) = post(
  */
 inline fun <reified T> ViewGroup.findChild(): T? {
     return children.find { it is T } as? T
+}
+
+/**
+ * Returns this ViewGroup's first descendant of specified class
+ */
+inline fun <reified T> ViewGroup.findDescendant(): T? {
+    return descendants.find { it is T } as? T
 }

@@ -7,12 +7,12 @@ import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.ScheduleControllerBinding
-import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
+import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RxController
 
 class ScheduleController :
     RxController<ScheduleControllerBinding>(),
-    NoToolbarElevationController,
+    NoAppBarElevationController,
     FlexibleAdapter.OnUpdateListener {
 
     private var adapter: ScheduleAdapter? = null

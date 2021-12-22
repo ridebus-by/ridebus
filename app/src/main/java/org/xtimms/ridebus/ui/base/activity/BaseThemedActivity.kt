@@ -46,9 +46,6 @@ abstract class BaseThemedActivity : AppCompatActivity() {
                 PreferenceValues.AppTheme.PINK -> {
                     resIds += R.style.Theme_RideBus_Pink
                 }
-                PreferenceValues.AppTheme.TEAL -> {
-                    resIds += R.style.Theme_RideBus_Teal
-                }
             }
 
             if (isAmoled) {

@@ -9,9 +9,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorToolbar"
-        android:elevation="4dp"
-        android:padding="8dp"
+        android:background="?attr/colorSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,9 +17,10 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:strokeWidth="1dp"
+            android:layout_margin="8dp"
+            app:cardElevation="0dp"
             app:strokeColor="?android:attr/divider"
-            app:cardElevation="0dp">
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,10 +37,10 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:minWidth="40dp"
                         android:minHeight="40dp"
-                        android:gravity="center"
-                        android:layout_gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
@@ -50,9 +49,9 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:padding="8dp"
-                            android:textStyle="bold"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textColor="?android:attr/textColorPrimary"
+                            android:textStyle="bold"
                             tools:text="21" />
 
                     </LinearLayout>
@@ -64,10 +63,10 @@
                         android:layout_gravity="center"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
-                        android:textSize="16sp"
-                        android:textStyle="normal"
                         android:textAppearance="@style/TextAppearance.AppCompat"
                         android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
                         tools:text="Швейная фабрика - СХТ" />
 
                 </LinearLayout>
@@ -82,14 +81,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="TODO"
+                        android:gravity="center"
                         android:minWidth="40dp"
                         android:minHeight="40dp"
-                        android:gravity="center"
-                        android:layout_gravity="center"
                         android:padding="8dp"
                         android:src="@drawable/ic_stop"
                         app:tint="?android:attr/textColorPrimary"
-                        android:contentDescription="TODO"
                         tools:ignore="ContentDescription,HardcodedText" />
 
                     <LinearLayout
@@ -105,10 +104,10 @@
                             android:layout_gravity="start"
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
-                            android:textSize="16sp"
-                            android:textStyle="normal"
                             android:textAppearance="@style/TextAppearance.AppCompat"
                             android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
                             tools:text="РСУ" />
 
                         <TextView
@@ -118,8 +117,8 @@
                             android:layout_gravity="start"
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
-                            android:textSize="12sp"
                             android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="12sp"
                             tools:text="на ЖБИ" />
 
                     </LinearLayout>
@@ -129,6 +128,12 @@
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="@color/divider_default" />
 
     </FrameLayout>
 
@@ -150,6 +155,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
-        tools:visibility="gone"/>
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

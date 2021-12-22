@@ -16,7 +16,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/material_bubble_drawable"
         android:gravity="center"
-        android:textColor="?attr/colorPrimaryVariant"
+        android:textColor="?attr/colorPrimary"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,13 +26,13 @@
 
     <TextView
         android:id="@+id/route_title"
-        style="@style/TextAppearance.Regular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
         app:layout_constraintBottom_toTopOf="@+id/route_description"
         app:layout_constraintEnd_toStartOf="@+id/pin"
         app:layout_constraintStart_toEndOf="@+id/route_number"
@@ -41,13 +41,13 @@
 
     <TextView
         android:id="@+id/route_description"
-        style="@style/TextAppearance.Regular.Body1.Secondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textAppearance="?attr/textAppearanceBodySmall"
         app:layout_constraintBottom_toBottomOf="@+id/route_number"
         app:layout_constraintEnd_toStartOf="@+id/pin"
         app:layout_constraintStart_toEndOf="@+id/route_number"

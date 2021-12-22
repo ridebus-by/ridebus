@@ -8,7 +8,7 @@ import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceKeys
 import org.xtimms.ridebus.data.preference.PreferenceValues
-import org.xtimms.ridebus.ui.base.controller.NoToolbarElevationController
+import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.nearby.NearbyController
@@ -24,7 +24,7 @@ import rx.subscriptions.CompositeSubscription
 class MoreController :
     SettingsController(),
     RootController,
-    NoToolbarElevationController {
+    NoAppBarElevationController {
 
     private var untilDestroySubscriptions = CompositeSubscription()
         private set

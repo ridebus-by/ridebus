@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.preference.PreferenceScreen
+import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceKeys
@@ -64,7 +65,7 @@ class SettingsAppearanceController : SettingsController() {
 
                 val appThemes = PreferenceValues.AppTheme.values().filter {
                     val monetFilter = if (it == PreferenceValues.AppTheme.MONET) {
-                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                        DynamicColors.isDynamicColorAvailable()
                     } else {
                         true
                     }

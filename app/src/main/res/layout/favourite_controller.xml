@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingTop="8dp"
-        android:paddingBottom="64dp" />
+        android:paddingBottom="88dp" />
 
     <org.xtimms.ridebus.widget.MaterialFastScroll
         android:id="@+id/fast_scroller"

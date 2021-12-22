@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.xtimms.ridebus.widget.RideBusCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.xtimms.ridebus.widget.ElevationAppBarLayout
+    <org.xtimms.ridebus.widget.RideBusChangeHandlerFrameLayout
+        android:id="@+id/controller_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.appbar.RideBusAppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:layout_scrollFlags="scroll|enterAlways" />
+            app:layout_scrollFlags="scroll|enterAlways|snap" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
-    </org.xtimms.ridebus.widget.ElevationAppBarLayout>
-
-    <com.bluelinelabs.conductor.ChangeHandlerFrameLayout
-        android:id="@+id/controller_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+    </com.google.android.material.appbar.RideBusAppBarLayout>
 
     <org.xtimms.ridebus.widget.RideBusBottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:clickable="true"
         app:layout_insetEdge="bottom"
-        app:menu="@menu/main_nav" />
+        app:menu="@menu/main_nav"
+        tools:ignore="KeyboardInaccessibleWidget"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</org.xtimms.ridebus.widget.RideBusCoordinatorLayout>

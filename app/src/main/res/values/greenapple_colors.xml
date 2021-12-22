@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="greenapple_primary">#006C45</color>
+    <color name="greenapple_onPrimary">#FFFFFF</color>
+    <color name="greenapple_primaryContainer">#8EF7C1</color>
+    <color name="greenapple_onPrimaryContainer">#002112</color>
+    <color name="greenapple_secondary">#4E6356</color>
+    <color name="greenapple_onSecondary">#FFFFFF</color>
+    <color name="greenapple_secondaryContainer">#CFE8D7</color>
+    <color name="greenapple_onSecondaryContainer">#0B1F15</color>
+    <color name="greenapple_tertiary">#3C6472</color>
+    <color name="greenapple_onTertiary">#FFFFFF</color>
+    <color name="greenapple_tertiaryContainer">#C0E9FA</color>
+    <color name="greenapple_onTertiaryContainer">#001F29</color>
+    <color name="greenapple_background">#FBFDF8</color>
+    <color name="greenapple_onBackground">#191C1A</color>
+    <color name="greenapple_surface">#FBFDF8</color>
+    <color name="greenapple_onSurface">#191C1A</color>
+    <color name="greenapple_surfaceVariant">#DBE5DC</color>
+    <color name="greenapple_onSurfaceVariant">#404943</color>
+    <color name="greenapple_outline">#707972</color>
+    <color name="greenapple_inverseOnSurface">#F0F1ED</color>
+    <color name="greenapple_inverseSurface">#2D312E</color>
+    <color name="greenapple_primaryInverse">#71DAA6</color>
+</resources>

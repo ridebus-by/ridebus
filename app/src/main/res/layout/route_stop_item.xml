@@ -35,22 +35,22 @@
 
             <TextView
                 android:id="@+id/stop_title"
-                style="@style/TextAppearance.Regular"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:gravity="center|start"
                 android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
                 tools:text="@tools:sample/lorem[3]" />
 
             <TextView
                 android:id="@+id/stop_description"
-                style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
                 android:gravity="center|start"
                 android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceBodySmall"
                 tools:text="@tools:sample/lorem/random" />
 
         </LinearLayout>
@@ -69,7 +69,7 @@
 
         <TextView
             android:id="@+id/remaining_time"
-            style="@style/TextAppearance.Regular.Body1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
