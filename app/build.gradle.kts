@@ -133,7 +133,7 @@ dependencies {
 
     implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
 
-    val coroutinesVersion = "1.5.2"
+    val coroutinesVersion = "1.6.0"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
@@ -211,8 +211,8 @@ dependencies {
     implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
 
     // Crash reports/analytics
-    implementation("ch.acra:acra-http:5.8.1")
-    implementation("com.google.firebase:firebase-analytics:20.0.1")
+    implementation("ch.acra:acra-http:5.8.4")
+    implementation("com.google.firebase:firebase-analytics:20.0.2")
 
     // Tests
     testImplementation("junit:junit:4.13.2")
