@@ -23,9 +23,9 @@ import com.bluelinelabs.conductor.Router
 import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.NotificationReceiver
-import org.xtimms.ridebus.util.preference.asImmediateFlow
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.activity.BaseViewBindingActivity
 import org.xtimms.ridebus.ui.base.controller.*
@@ -35,6 +35,7 @@ import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
 import org.xtimms.ridebus.util.lang.launchUI
+import org.xtimms.ridebus.util.preference.asImmediateFlow
 import org.xtimms.ridebus.util.system.dpToPx
 import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.toast

@@ -16,7 +16,7 @@ import org.acra.ktx.initAcra
 import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
-import org.xtimms.ridebus.data.preference.asImmediateFlow
+import org.xtimms.ridebus.util.preference.asImmediateFlow
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.injectLazy
 

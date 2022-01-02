@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.onEach
 fun <T> Preference<T>.asImmediateFlow(block: (T) -> Unit): Flow<T> {
     block(get())
     return asFlow()
-            .onEach { block(it) }
+        .onEach { block(it) }
 }
 
 operator fun <T> Preference<Set<T>>.plusAssign(item: T) {

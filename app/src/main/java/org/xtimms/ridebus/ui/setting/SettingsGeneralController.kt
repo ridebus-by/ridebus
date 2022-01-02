@@ -49,7 +49,7 @@ class SettingsGeneralController : SettingsController() {
             titleRes = R.string.pref_category_locale
 
             listPreference {
-                key = Keys.lang
+                bindTo(preferences.lang())
                 titleRes = R.string.pref_language
 
                 val langs = mutableListOf<Pair<String, String>>()
@@ -69,7 +69,6 @@ class SettingsGeneralController : SettingsController() {
 
                 entryValues = langs.map { it.first }.toTypedArray()
                 entries = langs.map { it.second }.toTypedArray()
-                defaultValue = ""
                 summary = "%s"
 
                 onChange { newValue ->

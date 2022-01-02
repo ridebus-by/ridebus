@@ -2,7 +2,6 @@ package org.xtimms.ridebus.ui.setting
 
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.preference.PreferenceKeys
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.util.preference.*
 
@@ -15,14 +14,13 @@ class SettingsScheduleController : SettingsController() {
         titleRes = R.string.pref_category_schedule
 
         switchPreference {
-            key = PreferenceKeys.autoUpdateSchedule
+            bindTo(preferences.autoUpdateSchedule())
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
-            defaultValue = true
         }
 
         listPreference {
-            key = PreferenceKeys.city
+            bindTo(preferences.city())
             titleRes = R.string.city
             entriesRes = arrayOf(
                 R.string.city_polotsk,
@@ -34,7 +32,6 @@ class SettingsScheduleController : SettingsController() {
                 PreferenceValues.City.NOVOPOLOTSK.name,
                 PreferenceValues.City.USHACHI.name
             )
-            defaultValue = PreferenceValues.City.POLOTSK.name
             summary = "%s"
         }
     }

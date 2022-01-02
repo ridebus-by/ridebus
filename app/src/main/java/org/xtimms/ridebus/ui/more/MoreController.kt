@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.preference.PreferenceKeys
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RootController
@@ -37,7 +36,7 @@ class MoreController :
         add(MoreHeaderPreference(context))
 
         switchPreference {
-            key = PreferenceKeys.autoUpdateSchedule
+            bindTo(preferences.autoUpdateSchedule())
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
             iconRes = R.drawable.ic_update
@@ -45,9 +44,9 @@ class MoreController :
         }
 
         listPreference {
+            bindTo(preferences.city())
             iconRes = R.drawable.ic_city
             iconTint = tintColor
-            key = PreferenceKeys.city
             titleRes = R.string.city
             entriesRes = arrayOf(
                 R.string.city_polotsk,
@@ -59,7 +58,6 @@ class MoreController :
                 PreferenceValues.City.NOVOPOLOTSK.name,
                 PreferenceValues.City.USHACHI.name
             )
-            defaultValue = PreferenceValues.City.POLOTSK.name
             summary = "%s"
         }
 
@@ -125,7 +123,4 @@ class MoreController :
         untilDestroySubscriptions.unsubscribe()
     }
 
-    private fun <T> Observable<T>.subscribeUntilDestroy(onNext: (T) -> Unit): Subscription {
-        return subscribe(onNext).also { untilDestroySubscriptions.add(it) }
-    }
 }

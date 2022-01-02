@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceKeys
 import org.xtimms.ridebus.data.preference.PreferenceValues
-import org.xtimms.ridebus.data.preference.asImmediateFlow
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.widget.preference.ThemesPreference
@@ -30,7 +29,7 @@ class SettingsAppearanceController : SettingsController() {
             titleRes = R.string.pref_category_theme
 
             listPreference {
-                key = PreferenceKeys.themeMode
+                bindTo(preferences.themeMode())
                 titleRes = R.string.pref_theme_mode
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -44,7 +43,6 @@ class SettingsAppearanceController : SettingsController() {
                         PreferenceValues.ThemeMode.light.name,
                         PreferenceValues.ThemeMode.dark.name
                     )
-                    defaultValue = PreferenceValues.ThemeMode.system.name
                 } else {
                     entriesRes = arrayOf(
                         R.string.theme_dark_mode_off,
@@ -54,13 +52,12 @@ class SettingsAppearanceController : SettingsController() {
                         PreferenceValues.ThemeMode.light.name,
                         PreferenceValues.ThemeMode.dark.name
                     )
-                    defaultValue = PreferenceValues.ThemeMode.light.name
                 }
 
                 summary = "%s"
             }
             themesPreference = initThenAdd(ThemesPreference(context)) {
-                key = PreferenceKeys.appTheme
+                bindTo(preferences.appTheme())
                 titleRes = R.string.pref_app_theme
 
                 val appThemes = PreferenceValues.AppTheme.values().filter {
@@ -72,7 +69,6 @@ class SettingsAppearanceController : SettingsController() {
                     it.titleResId != null && monetFilter
                 }
                 entries = appThemes
-                defaultValue = appThemes[0].name
 
                 onChange {
                     activity?.let { ActivityCompat.recreate(it) }
@@ -80,9 +76,8 @@ class SettingsAppearanceController : SettingsController() {
                 }
             }
             switchPreference {
-                key = PreferenceKeys.themeDarkAmoled
+                bindTo(preferences.themeDarkAmoled())
                 titleRes = R.string.pref_dark_theme_pure_black
-                defaultValue = false
 
                 preferences.themeMode().asImmediateFlow { isVisible = it != PreferenceValues.ThemeMode.light }
                     .launchIn(viewScope)
@@ -99,7 +94,7 @@ class SettingsAppearanceController : SettingsController() {
 
             if (context.isTablet()) {
                 intListPreference {
-                    key = PreferenceKeys.sideNavIconAlignment
+                    bindTo(preferences.sideNavIconAlignment())
                     titleRes = R.string.pref_side_nav_icon_alignment
                     entriesRes = arrayOf(
                         R.string.alignment_top,
@@ -107,14 +102,12 @@ class SettingsAppearanceController : SettingsController() {
                         R.string.alignment_bottom,
                     )
                     entryValues = arrayOf("0", "1", "2")
-                    defaultValue = "0"
                     summary = "%s"
                 }
             } else {
                 switchPreference {
-                    key = PreferenceKeys.hideBottomBarOnScroll
+                    bindTo(preferences.hideBottomBarOnScroll())
                     titleRes = R.string.pref_hide_bottom_bar_on_scroll
-                    defaultValue = true
                 }
             }
         }

@@ -1,15 +1,19 @@
 package org.xtimms.ridebus.data.preference
 
 import android.content.Context
+import android.os.Build
 import androidx.preference.PreferenceManager
+import com.google.android.material.color.DynamicColors
 import com.tfcporciuncula.flow.FlowSharedPreferences
+import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.*
+import org.xtimms.ridebus.data.preference.PreferenceValues.City.*
+import org.xtimms.ridebus.data.preference.PreferenceValues.TabletUiMode.*
 import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.*
 import org.xtimms.ridebus.util.system.isTablet
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
-import org.xtimms.ridebus.data.preference.PreferenceValues as Values
 
 class PreferencesHelper(val context: Context) {
 
@@ -20,22 +24,28 @@ class PreferencesHelper(val context: Context) {
 
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
-    fun hideBottomBarOnScroll() = flowPrefs.getBoolean(Keys.hideBottomBarOnScroll, true)
+    fun hideBottomBarOnScroll() = flowPrefs.getBoolean("pref_hide_bottom_bar_on_scroll", true)
 
-    fun sideNavIconAlignment() = flowPrefs.getInt(Keys.sideNavIconAlignment, 0)
+    fun sideNavIconAlignment() = flowPrefs.getInt("pref_side_nav_icon_alignment", 0)
 
-    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, system)
-
-    fun appTheme() = flowPrefs.getEnum(Keys.appTheme, Values.AppTheme.DEFAULT)
-
-    fun tabletUiMode() = flowPrefs.getEnum(
-        Keys.tabletUiMode,
-        if (context.applicationContext.isTablet()) Values.TabletUiMode.ALWAYS else Values.TabletUiMode.NEVER
+    fun themeMode() = flowPrefs.getEnum(
+        "pref_theme_mode_key",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { system } else { light }
     )
 
-    fun city() = flowPrefs.getEnum(Keys.city, Values.City.POLOTSK)
+    fun appTheme() = flowPrefs.getEnum(
+        "pref_app_theme",
+        if (DynamicColors.isDynamicColorAvailable()) { MONET } else { DEFAULT }
+    )
 
-    fun themeDarkAmoled() = flowPrefs.getBoolean(Keys.themeDarkAmoled, false)
+    fun tabletUiMode() = flowPrefs.getEnum(
+        "tablet_ui_mode",
+        if (context.applicationContext.isTablet()) ALWAYS else NEVER
+    )
+
+    fun city() = flowPrefs.getEnum("pref_city_key", POLOTSK)
+
+    fun themeDarkAmoled() = flowPrefs.getBoolean("pref_theme_dark_amoled_key", false)
 
     fun lastSearchQuerySearchSettings() = flowPrefs.getString("last_search_query", "")
 
@@ -45,9 +55,9 @@ class PreferencesHelper(val context: Context) {
             else -> SimpleDateFormat(format, Locale.getDefault())
         }
 
-    fun lang() = flowPrefs.getString(Keys.lang, "")
+    fun lang() = flowPrefs.getString("app_language", "")
 
-    fun autoUpdateSchedule() = flowPrefs.getBoolean(Keys.autoUpdateSchedule, true)
+    fun autoUpdateSchedule() = flowPrefs.getBoolean("auto_update_schedule", true)
 
     fun reducedMotion() = prefs.getBoolean(Keys.reducedMotion, false)
 

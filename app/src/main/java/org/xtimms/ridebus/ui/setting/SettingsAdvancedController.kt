@@ -5,7 +5,6 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.util.CrashLogUtil
 import org.xtimms.ridebus.util.preference.*
-import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.data.preference.PreferenceKeys as Keys
 
@@ -47,16 +46,11 @@ class SettingsAdvancedController : SettingsController() {
             titleRes = R.string.pref_category_display
 
             listPreference {
-                key = Keys.tabletUiMode
+                bindTo(preferences.tabletUiMode())
                 titleRes = R.string.pref_tablet_ui_mode
                 summary = "%s"
                 entriesRes = arrayOf(R.string.lock_always, R.string.landscape, R.string.lock_never)
                 entryValues = PreferenceValues.TabletUiMode.values().map { it.name }.toTypedArray()
-                defaultValue = if (context.isTablet()) {
-                    PreferenceValues.TabletUiMode.ALWAYS
-                } else {
-                    PreferenceValues.TabletUiMode.NEVER
-                }.name
 
                 onChange {
                     activity?.toast(R.string.requires_app_restart)
