@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="protosspylon_primary">#43D7F7</color>
+    <color name="protosspylon_onPrimary">#003641</color>
+    <color name="protosspylon_primaryContainer">#004E5D</color>
+    <color name="protosspylon_onPrimaryContainer">#A6EDFF</color>
+    <color name="protosspylon_secondary">#B3CBD3</color>
+    <color name="protosspylon_onSecondary">#1D343A</color>
+    <color name="protosspylon_secondaryContainer">#334A50</color>
+    <color name="protosspylon_onSecondaryContainer">#CEE7EE</color>
+    <color name="protosspylon_tertiary">#BEC4EA</color>
+    <color name="protosspylon_onTertiary">#282E4D</color>
+    <color name="protosspylon_tertiaryContainer">#3F4565</color>
+    <color name="protosspylon_onTertiaryContainer">#DCE1FF</color>
+    <color name="protosspylon_background">#191C1D</color>
+    <color name="protosspylon_onBackground">#E1E3E4</color>
+    <color name="protosspylon_surface">#191C1D</color>
+    <color name="protosspylon_onSurface">#E1E3E4</color>
+    <color name="protosspylon_surfaceVariant">#3F484B</color>
+    <color name="protosspylon_onSurfaceVariant">#BFC8CB</color>
+    <color name="protosspylon_outline">#899295</color>
+    <color name="protosspylon_inverseOnSurface">#191C1D</color>
+    <color name="protosspylon_inverseSurface">#E1E3E4</color>
+    <color name="protosspylon_primaryInverse">#00687B</color>
+</resources>

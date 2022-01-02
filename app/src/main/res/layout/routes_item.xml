@@ -16,7 +16,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/material_bubble_drawable"
         android:gravity="center"
-        android:textColor="?attr/colorPrimary"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

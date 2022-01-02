@@ -46,6 +46,18 @@ abstract class BaseThemedActivity : AppCompatActivity() {
                 PreferenceValues.AppTheme.PINK -> {
                     resIds += R.style.Theme_RideBus_Pink
                 }
+                PreferenceValues.AppTheme.POMEGRANATE -> {
+                    resIds += R.style.Theme_RideBus_Pomegranate
+                }
+                PreferenceValues.AppTheme.SUNFLOWER -> {
+                    resIds += R.style.Theme_RideBus_Sunflower
+                }
+                PreferenceValues.AppTheme.PROTOSS_PYLON -> {
+                    resIds += R.style.Theme_RideBus_ProtossPylon
+                }
+                PreferenceValues.AppTheme.BLUEBELL -> {
+                    resIds += R.style.Theme_RideBus_Bluebell
+                }
             }
 
             if (isAmoled) {

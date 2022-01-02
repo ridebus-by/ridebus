@@ -111,4 +111,8 @@
     <string name="action_pin">Pin</string>
     <string name="report_an_error">Report an error</string>
     <string name="email_subject">Error report: RideBus</string>
+    <string name="theme_pomegranate">Pomegranate</string>
+    <string name="theme_sunflower">Sunflower</string>
+    <string name="theme_protosspylon">Protoss Pylon</string>
+    <string name="theme_bluebell">Bluebell</string>
 </resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bluebell_primary">#5B4CBF</color>
+    <color name="bluebell_onPrimary">#FFFFFF</color>
+    <color name="bluebell_primaryContainer">#E5DEFF</color>
+    <color name="bluebell_onPrimaryContainer">#160067</color>
+    <color name="bluebell_secondary">#5F5C71</color>
+    <color name="bluebell_onSecondary">#FFFFFF</color>
+    <color name="bluebell_secondaryContainer">#E5DFF9</color>
+    <color name="bluebell_onSecondaryContainer">#1B192B</color>
+    <color name="bluebell_tertiary">#7B5265</color>
+    <color name="bluebell_onTertiary">#FFFFFF</color>
+    <color name="bluebell_tertiaryContainer">#FFD8E9</color>
+    <color name="bluebell_onTertiaryContainer">#2F1121</color>
+    <color name="bluebell_background">#FFFBFF</color>
+    <color name="bluebell_onBackground">#1C1B1F</color>
+    <color name="bluebell_surface">#FFFBFF</color>
+    <color name="bluebell_onSurface">#1C1B1F</color>
+    <color name="bluebell_surfaceVariant">#E5E0EC</color>
+    <color name="bluebell_onSurfaceVariant">#47464F</color>
+    <color name="bluebell_outline">#797680</color>
+    <color name="bluebell_inverseOnSurface">#F4F0F4</color>
+    <color name="bluebell_inverseSurface">#313033</color>
+    <color name="bluebell_primaryInverse">#C9BFFF</color>
+</resources>

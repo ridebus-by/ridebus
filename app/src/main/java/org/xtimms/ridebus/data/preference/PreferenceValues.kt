@@ -26,9 +26,13 @@ object PreferenceValues {
     enum class AppTheme(val titleResId: Int) {
         DEFAULT(R.string.theme_default),
         MONET(R.string.theme_monet),
+        POMEGRANATE(R.string.theme_pomegranate),
+        ORANGE(R.string.theme_orange),
+        SUNFLOWER(R.string.theme_sunflower),
         GREEN_APPLE(R.string.theme_greenapple),
+        PROTOSS_PYLON(R.string.theme_protosspylon),
+        BLUEBELL(R.string.theme_bluebell),
         PINK(R.string.theme_pink),
-        ORANGE(R.string.theme_orange)
     }
 
     enum class TabletUiMode {

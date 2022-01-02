@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sunflower_primary">#745C00</color>
+    <color name="sunflower_onPrimary">#FFFFFF</color>
+    <color name="sunflower_primaryContainer">#FFE07B</color>
+    <color name="sunflower_onPrimaryContainer">#231B00</color>
+    <color name="sunflower_secondary">#685E40</color>
+    <color name="sunflower_onSecondary">#FFFFFF</color>
+    <color name="sunflower_secondaryContainer">#F1E2BC</color>
+    <color name="sunflower_onSecondaryContainer">#221B04</color>
+    <color name="sunflower_tertiary">#47664C</color>
+    <color name="sunflower_onTertiary">#FFFFFF</color>
+    <color name="sunflower_tertiaryContainer">#C7ECCA</color>
+    <color name="sunflower_onTertiaryContainer">#02210C</color>
+    <color name="sunflower_background">#FFFBF7</color>
+    <color name="sunflower_onBackground">#1E1B16</color>
+    <color name="sunflower_surface">#FFFBF7</color>
+    <color name="sunflower_onSurface">#1E1B16</color>
+    <color name="sunflower_surfaceVariant">#EBE2CF</color>
+    <color name="sunflower_onSurfaceVariant">#4B4638</color>
+    <color name="sunflower_outline">#7D7667</color>
+    <color name="sunflower_inverseOnSurface">#F7F0E7</color>
+    <color name="sunflower_inverseSurface">#33302A</color>
+    <color name="sunflower_primaryInverse">#EFC209</color>
+</resources>
