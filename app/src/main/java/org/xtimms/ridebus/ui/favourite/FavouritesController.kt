@@ -9,8 +9,8 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
-import org.xtimms.ridebus.data.preference.minusAssign
-import org.xtimms.ridebus.data.preference.plusAssign
+import org.xtimms.ridebus.util.preference.minusAssign
+import org.xtimms.ridebus.util.preference.plusAssign
 import org.xtimms.ridebus.databinding.FavouriteControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController

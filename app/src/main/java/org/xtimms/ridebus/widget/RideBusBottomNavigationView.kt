@@ -17,10 +17,9 @@ import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferencesHelper
-import org.xtimms.ridebus.data.preference.asImmediateFlow
+import org.xtimms.ridebus.util.preference.asImmediateFlow
 import org.xtimms.ridebus.util.system.applySystemAnimatorScale
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
