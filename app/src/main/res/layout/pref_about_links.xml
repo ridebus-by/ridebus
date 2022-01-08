@@ -18,6 +18,28 @@
         tools:ignore="HardcodedText" />
 
     <ImageButton
+        android:id="@+id/btn_vk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="VK"
+        android:padding="16dp"
+        android:src="@drawable/ic_vk"
+        app:tint="?attr/colorAccent"
+        tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/btn_discord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Discord"
+        android:padding="16dp"
+        android:src="@drawable/ic_discord"
+        app:tint="?attr/colorAccent"
+        tools:ignore="HardcodedText" />
+
+    <ImageButton
         android:id="@+id/btn_github"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -16,8 +16,6 @@ import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stub.StubController
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.getResourceColor
-import rx.Observable
-import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 
 class MoreController :
@@ -122,5 +120,4 @@ class MoreController :
         super.onDestroyView(view)
         untilDestroySubscriptions.unsubscribe()
     }
-
 }
