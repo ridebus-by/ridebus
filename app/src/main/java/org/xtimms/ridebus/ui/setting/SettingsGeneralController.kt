@@ -26,6 +26,7 @@ class SettingsGeneralController : SettingsController() {
             defaultValue = "1"
             summary = "%s"
         }
+
         switchPreference {
             key = Keys.confirmExit
             titleRes = R.string.pref_confirm_exit
@@ -75,6 +76,12 @@ class SettingsGeneralController : SettingsController() {
                     activity?.recreate()
                     true
                 }
+            }
+
+            switchPreference {
+                bindTo(preferences.transliterate())
+                titleRes = R.string.transliterate
+                summaryRes = R.string.transliterate_summary
             }
         }
     }

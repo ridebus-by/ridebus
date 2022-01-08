@@ -115,4 +115,8 @@
     <string name="theme_sunflower">Sunflower</string>
     <string name="theme_protosspylon">Protoss Pylon</string>
     <string name="theme_bluebell">Bluebell</string>
+    <string name="transliterate">Transliterate route names and stops</string>
+    <string name="transliterate_summary">Useful for foreign users</string>
+    <string name="accessibility_info">These parameters are useful for users with disabilities</string>
+    <string name="enable_reduced_motion_summary">Disables some animations in the app</string>
 </resources>

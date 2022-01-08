@@ -13,11 +13,14 @@ class SettingsAccessibilityController : SettingsController() {
         switchPreference {
             key = PreferenceKeys.reducedMotion
             titleRes = R.string.enable_reduced_motion
+            summaryRes = R.string.enable_reduced_motion_summary
             defaultValue = false
             onChange { newValue ->
                 activity?.recreate()
                 true
             }
         }
+
+        infoPreference(R.string.accessibility_info)
     }
 }

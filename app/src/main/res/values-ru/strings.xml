@@ -110,4 +110,12 @@
     <string name="action_pin">Закрепить</string>
     <string name="report_an_error">Сообщить об ошибке</string>
     <string name="email_subject">Сообщение об ошибке: RideBus</string>
+    <string name="theme_pomegranate">Гранат</string>
+    <string name="theme_sunflower">Подсолнух</string>
+    <string name="theme_protosspylon">Незабудка</string>
+    <string name="theme_bluebell">Колокольчик</string>
+    <string name="transliterate">Транслитерировать названия маршрутов и остановок</string>
+    <string name="transliterate_summary">Полезно для иностранных пользователей</string>
+    <string name="accessibility_info">Эти параметры полезны для пользователей с ограниченными возможностями</string>
+    <string name="enable_reduced_motion_summary">Отключает некоторые анимации в приложении</string>
 </resources>
