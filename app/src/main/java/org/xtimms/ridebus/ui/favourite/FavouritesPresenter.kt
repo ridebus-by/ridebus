@@ -45,7 +45,7 @@ class FavouritesPresenter(
         val pinnedFavourites = mutableListOf<FavouriteItem>()
         val pinnedFavouriteIds = preferences.pinnedFavourites().get()
 
-        val byType = favourites.groupBy({ it.kindId })
+        val byType = favourites.groupBy { it.kindId }
         var favouriteItems = byType.flatMap {
             val typeItem = TypeItem("Автобус") // TODO
             it.value.map { favourite ->

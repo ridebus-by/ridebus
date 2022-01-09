@@ -18,7 +18,7 @@ class RouteItem(val route: Route) : AbstractFlexibleItem<RouteHolder>() {
     }
 
     override fun hashCode(): Int {
-        return route.routeId!!.hashCode()
+        return route.routeId.hashCode()
     }
 
     override fun getLayoutRes(): Int {

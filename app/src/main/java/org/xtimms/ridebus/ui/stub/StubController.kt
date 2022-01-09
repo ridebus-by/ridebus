@@ -12,7 +12,7 @@ import org.xtimms.ridebus.ui.base.controller.NucleusController
 class StubController :
     NucleusController<StubControllerBinding, StubPresenter>() {
 
-    override fun getTitle(): String? = "Stub"
+    override fun getTitle(): String = "Stub"
 
     override fun createBinding(inflater: LayoutInflater) = StubControllerBinding.inflate(inflater)
 

@@ -21,7 +21,7 @@ class StopsItem(val stop: Stop) : AbstractFlexibleItem<StopsHolder>() {
     }
 
     override fun hashCode(): Int {
-        return stop.stopId!!.hashCode()
+        return stop.stopId.hashCode()
     }
 
     override fun getLayoutRes(): Int {

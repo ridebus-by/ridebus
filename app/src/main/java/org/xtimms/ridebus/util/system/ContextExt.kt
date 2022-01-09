@@ -26,7 +26,6 @@ import androidx.core.graphics.green
 import androidx.core.graphics.red
 import androidx.core.net.toUri
 import logcat.LogPriority
-import logcat.logcat
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
@@ -185,13 +184,6 @@ fun Context.prepareTabletUiContext(): Context {
         return createConfigurationContext(overrideConf)
     }
     return this
-}
-
-/**
- * Returns true if current context is in night mode
- */
-fun Context.isNightMode(): Boolean {
-    return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }
 
 /** Gets the duration multiplier for general animations on the device

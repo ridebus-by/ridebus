@@ -53,11 +53,11 @@ class StopsOnRouteController :
      */
     private var adapter: StopsOnRouteAdapter? = null
 
-    override fun getTitle(): String? {
+    override fun getTitle(): String {
         return "${stop?.name}"
     }
 
-    override fun getSubtitle(): String? {
+    override fun getSubtitle(): String {
         return "${stop?.direction}"
     }
 
@@ -77,7 +77,7 @@ class StopsOnRouteController :
         }
 
         val calendar: Calendar = Calendar.getInstance()
-        val date: Date = calendar.getTime()
+        val date: Date = calendar.time
         binding.dayOfWeek.text = SimpleDateFormat("EEEE", Locale.getDefault()).format(date.time)
 
         // Init RecyclerView and adapter

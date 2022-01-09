@@ -42,28 +42,6 @@
     <!--Widgets-->
     <!--=======-->
 
-    <style name="Widget.RideBus.GridView" parent="android:Widget">
-        <item name="android:smoothScrollbar">true</item>
-        <item name="android:numColumns">auto_fit</item>
-        <item name="android:stretchMode">columnWidth</item>
-        <item name="android:scrollbarStyle">outsideOverlay</item>
-    </style>
-
-    <style name="Widget.RideBus.GridView.Source">
-        <item name="android:gravity">top|left</item>
-        <item name="android:smoothScrollbar">true</item>
-        <item name="android:cacheColorHint">?android:attr/textColorHint</item>
-        <item name="android:fastScrollEnabled">true</item>
-        <item name="android:horizontalSpacing">0dp</item>
-        <item name="android:verticalSpacing">0dp</item>
-    </style>
-
-
-    <style name="Widget.RideBus.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
-        <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:background">@drawable/list_item_selector</item>
-    </style>
-
     <style name="Widget.RideBus.Chip.Action" parent="Widget.Material3.Chip.Suggestion">
         <item name="chipBackgroundColor">?attr/chipBackgroundColor</item>
         <item name="android:textColor">?attr/chipTextColor</item>
@@ -82,12 +60,6 @@
         <item name="chipMinTouchTargetSize">28dp</item>
     </style>
 
-    <style name="Widget.RideBus.CircularProgressIndicator.Small" parent="Widget.Material3.CircularProgressIndicator">
-        <item name="indicatorSize">16dp</item>
-        <item name="trackThickness">2dp</item>
-    </style>
-
-
     <!--==============-->
     <!--Widgets.Button-->
     <!--==============-->
@@ -98,21 +70,6 @@
         <item name="android:textColor">@color/button_action_selector</item>
         <item name="android:textSize">12sp</item>
     </style>
-
-    <style name="Widget.RideBus.Button.InlineButton" parent="Widget.Material3.Button.TextButton">
-        <item name="android:minHeight">0dp</item>
-        <item name="android:minWidth">0dp</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingBottom">0dp</item>
-        <item name="android:insetTop">0dp</item>
-        <item name="android:insetBottom">0dp</item>
-
-        <item name="android:background">?android:attr/colorBackground</item>
-        <item name="backgroundTint">@null</item>
-        <item name="rippleColor">@null</item>
-    </style>
-
-    <style name="Widget.RideBus.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton" />
 
     <!--=================-->
     <!--Widgets.TabLayout-->

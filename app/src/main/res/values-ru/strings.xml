@@ -30,7 +30,6 @@
     <string name="pref_date_format">Формат даты</string>
     <string name="system_default">По умолчанию</string>
     <string name="pref_language">Язык</string>
-    <string name="version">Версия</string>
     <string name="label_bus">Автобусы</string>
     <string name="label_route_taxi">Маршрутки</string>
     <string name="label_express">Экспресс</string>
@@ -38,11 +37,9 @@
     <string name="pref_dump_crash_logs">Выгрузить логи о вылетах</string>
     <string name="pref_dump_crash_logs_summary">Сохраняет журналы ошибок в файл для отправки разработчикам</string>
     <string name="theme_default">По умолчанию</string>
-    <string name="theme_blue">Синяя</string>
     <string name="theme_greenapple">Зеленое яблоко</string>
     <string name="theme_pink">Розовая</string>
     <string name="theme_orange">Оранжевая</string>
-    <string name="theme_yellow">Желтая</string>
     <string name="pref_app_theme">Тема приложения</string>
     <string name="pref_dark_theme_pure_black">Черный тёмный режим</string>
     <string name="theme_monet">Динамическая</string>
@@ -75,7 +72,6 @@
     <string name="information_no_routes">Нет маршрутов</string>
     <string name="information_no_stops">Нет остановок</string>
     <string name="city_ushachi">Ушачи</string>
-    <string name="theme_teal">Бирюзовая</string>
     <string name="pref_side_nav_icon_alignment">Выравнивание значков боковой навигации</string>
     <string name="grant_permission">Предоставить разрешение</string>
     <string name="information_no_location_permission">Чтобы найти ближайшие к вам остановки, приложению требуется разрешение на доступ к местоположению</string>
@@ -85,18 +81,10 @@
     <string name="label_route">Маршрут</string>
     <string name="unknown">Неизвестно</string>
     <string name="transport_classes">Классы транспорта</string>
-    <string name="direction">Направление</string>
     <string name="small_class">малый (12–40)</string>
     <string name="middle_class">средний (40–70)</string>
     <string name="big_class">большой (70–110)</string>
     <string name="very_big_class">особо большой (110+)</string>
-    <string name="fare">Стоимость проезда</string>
-    <string name="traffic">Режим работы</string>
-    <string name="working_hours">Время работы</string>
-    <string name="following">Маршрут следования</string>
-    <string name="carrier_company">Компания-перевозчик</string>
-    <string name="technical_information">Техническая информация</string>
-    <string name="payment_methods">Способы оплаты проезда</string>
     <string name="information_no_stops_on_route">На этом маршруте нет остановок</string>
     <string name="information_no_route_on_stop">Через эту остановку не проходит транспорт</string>
     <string name="pref_category_accessibility">Специальные возможности</string>

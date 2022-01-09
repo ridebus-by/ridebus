@@ -7,7 +7,7 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.FavouriteControllerItemBinding
 import org.xtimms.ridebus.util.view.setVectorCompat
 
-class FavouriteHolder(private val view: View, val adapter: FavouritesAdapter) :
+class FavouriteHolder(view: View, val adapter: FavouritesAdapter) :
     FlexibleViewHolder(view, adapter) {
 
     private val binding = FavouriteControllerItemBinding.bind(view)

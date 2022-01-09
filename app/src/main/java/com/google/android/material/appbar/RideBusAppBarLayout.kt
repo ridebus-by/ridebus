@@ -80,7 +80,7 @@ class RideBusAppBarLayout @JvmOverloads constructor(
         }
 
     /**
-     * Disabled. Lift on scroll is handled manually with [eu.kanade.tachiyomi.widget.TachiyomiCoordinatorLayout]
+     * Disabled. Lift on scroll is handled manually with [org.xtimms.ridebus.widget.RideBusCoordinatorLayout]
      */
     override fun isLiftOnScroll(): Boolean = false
 

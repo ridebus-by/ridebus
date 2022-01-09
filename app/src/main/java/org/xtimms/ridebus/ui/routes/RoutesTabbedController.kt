@@ -22,7 +22,7 @@ class RoutesTabbedController :
 
     private var adapter: RoutesAdapter? = null
 
-    override fun getTitle(): String? {
+    override fun getTitle(): String {
         return resources!!.getString(R.string.title_routes)
     }
 

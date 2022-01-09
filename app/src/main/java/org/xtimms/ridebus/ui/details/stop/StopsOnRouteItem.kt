@@ -31,12 +31,12 @@ class StopsOnRouteItem(val route: Route) :
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other is StopsOnRouteItem) {
-            return route.routeId!! == other.route.routeId!!
+            return route.routeId == other.route.routeId
         }
         return false
     }
 
     override fun hashCode(): Int {
-        return route.routeId!!.hashCode()
+        return route.routeId.hashCode()
     }
 }

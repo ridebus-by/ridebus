@@ -31,7 +31,6 @@
     <string name="pref_date_format">Фармат даты</string>
     <string name="system_default">Безумоўна</string>
     <string name="pref_language">Мова</string>
-    <string name="version">Версія</string>
     <string name="label_bus">Аўтобусы</string>
     <string name="label_route_taxi">Маршруткi</string>
     <string name="label_express">Экспрэс</string>
@@ -39,11 +38,9 @@
     <string name="pref_dump_crash_logs">Выгрузіць логі аб вылетах</string>
     <string name="pref_dump_crash_logs_summary">Захоўвае часопісы памылак у файл для адпраўкі распрацоўнікам</string>
     <string name="theme_default">Безумоўна</string>
-    <string name="theme_blue">Сіняя</string>
     <string name="theme_greenapple">Зялёны яблык</string>
     <string name="theme_pink">Ружовая</string>
     <string name="theme_orange">Аранжавая</string>
-    <string name="theme_yellow">Жоўтая</string>
     <string name="pref_app_theme">Тэма прыкладання</string>
     <string name="pref_dark_theme_pure_black">Чорны цёмны рэжым</string>
     <string name="theme_monet">Дынамічная</string>
@@ -51,7 +48,6 @@
     <string name="alignment_center">Пасярэдзіне</string>
     <string name="alignment_bottom">Знізу</string>
     <string name="pref_side_nav_icon_alignment">Выраўноўванне значкоў бакавой навігацыі</string>
-    <string name="theme_teal">Бірузовая</string>
     <string name="pref_enable_acra">Адпраўляць справаздачы аб памылках</string>
     <string name="pref_acra_summary">Дапамагае выпраўляць любыя памылкі. Ніякая асабістая інфармацыя не адпраўляецца</string>
     <string name="app_not_available">Прыкладанне не даступна</string>

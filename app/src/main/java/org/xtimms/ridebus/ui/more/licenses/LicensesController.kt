@@ -46,7 +46,7 @@ class LicensesController :
         viewScope.launchUI {
             val licenseItems = withIOContext {
                 Libs(view.context).libraries
-                    .sortedBy { it.libraryName.toLowerCase(Locale.ROOT) }
+                    .sortedBy { it.libraryName.lowercase(Locale.ROOT) }
                     .map { LicensesItem(it) }
             }
             binding.progress.hide()

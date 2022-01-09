@@ -27,7 +27,7 @@ class SettingsSearchController :
 
     override fun createBinding(inflater: LayoutInflater) = SettingsSearchControllerBinding.inflate(inflater)
 
-    override fun getTitle(): String? {
+    override fun getTitle(): String {
         return presenter.query
     }
 

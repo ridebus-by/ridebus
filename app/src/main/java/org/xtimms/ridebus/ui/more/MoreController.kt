@@ -24,7 +24,6 @@ class MoreController :
     NoAppBarElevationController {
 
     private var untilDestroySubscriptions = CompositeSubscription()
-        private set
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.label_more
