@@ -166,8 +166,6 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                 }
             }
         )
-
-        syncActivityViewWithController()
     }
 
     /**
@@ -258,6 +256,11 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
         ready = true
         isHandlingShortcut = false
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        syncActivityViewWithController()
     }
 
     @Suppress("UNNECESSARY_SAFE_CALL")
