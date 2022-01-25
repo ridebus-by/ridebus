@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.preference.PreferenceScreen
-import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceKeys
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.util.preference.*
+import org.xtimms.ridebus.util.system.DeviceUtil
 import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.widget.preference.ThemesPreference
 import java.util.*
@@ -62,7 +62,7 @@ class SettingsAppearanceController : SettingsController() {
 
                 val appThemes = PreferenceValues.AppTheme.values().filter {
                     val monetFilter = if (it == PreferenceValues.AppTheme.MONET) {
-                        DynamicColors.isDynamicColorAvailable()
+                        DeviceUtil.isDynamicColorAvailable
                     } else {
                         true
                     }

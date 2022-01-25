@@ -3,12 +3,15 @@ package org.xtimms.ridebus.data.preference
 import android.content.Context
 import android.os.Build
 import androidx.preference.PreferenceManager
-import com.google.android.material.color.DynamicColors
 import com.tfcporciuncula.flow.FlowSharedPreferences
-import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.*
-import org.xtimms.ridebus.data.preference.PreferenceValues.City.*
-import org.xtimms.ridebus.data.preference.PreferenceValues.TabletUiMode.*
-import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.*
+import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.DEFAULT
+import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.MONET
+import org.xtimms.ridebus.data.preference.PreferenceValues.City.POLOTSK
+import org.xtimms.ridebus.data.preference.PreferenceValues.TabletUiMode.ALWAYS
+import org.xtimms.ridebus.data.preference.PreferenceValues.TabletUiMode.NEVER
+import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.light
+import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.system
+import org.xtimms.ridebus.util.system.DeviceUtil
 import org.xtimms.ridebus.util.system.isTablet
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -35,7 +38,7 @@ class PreferencesHelper(val context: Context) {
 
     fun appTheme() = flowPrefs.getEnum(
         "pref_app_theme",
-        if (DynamicColors.isDynamicColorAvailable()) { MONET } else { DEFAULT }
+        if (DeviceUtil.isDynamicColorAvailable) { MONET } else { DEFAULT }
     )
 
     fun tabletUiMode() = flowPrefs.getEnum(
