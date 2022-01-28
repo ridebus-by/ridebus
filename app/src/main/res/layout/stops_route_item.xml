@@ -13,10 +13,10 @@
         android:layout_width="8dp"
         android:layout_height="match_parent"
         android:layout_marginVertical="1dp"
-        android:background="?attr/colorTertiary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="?attr/colorTertiary" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/route_number"

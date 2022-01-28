@@ -12,5 +12,4 @@ object DeviceUtil {
     val isDynamicColorAvailable by lazy {
         DynamicColors.isDynamicColorAvailable() || (isSamsung && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
     }
-
 }
