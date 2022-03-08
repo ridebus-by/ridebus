@@ -1,19 +1,21 @@
-package org.xtimms.ridebus.ui.stops
+package org.xtimms.ridebus.ui.routes.details
 
 import android.os.Bundle
 import org.xtimms.ridebus.data.database.RideBusDatabase
+import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
+import org.xtimms.ridebus.ui.routes.details.stop.StopOnRouteItem
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class StopsPresenter(
-    private val cityId: Int,
+class RouteDetailsPresenter(
+    val route: Route,
     private val db: RideBusDatabase = Injekt.get()
-) : BasePresenter<StopsController>() {
+) : BasePresenter<RouteDetailsController>() {
 
     /**
      * List containing stops.
@@ -24,15 +26,15 @@ class StopsPresenter(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        loadStops(cityId)
+        loadStops(route)
     }
 
-    private fun loadStops(cityId: Int) {
+    private fun loadStops(route: Route) {
         stopsSubscription?.unsubscribe()
-        stopsSubscription = Observable.just(db.stopDao().getAll(cityId))
+        stopsSubscription = Observable.just(db.routesAndStopsDao().getStopsByRoute(route.routeId))
             .doOnNext { stops = it }
-            .map { it.map(::StopsItem) }
+            .map { it.map(::StopOnRouteItem) }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(StopsController::setStops)
+            .subscribeLatestCache(RouteDetailsController::onNextStops)
     }
 }

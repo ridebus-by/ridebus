@@ -70,6 +70,19 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="Widget.RideBus.Button.InlineButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+
+        <item name="android:background">?android:attr/colorBackground</item>
+        <item name="backgroundTint">@null</item>
+        <item name="rippleColor">@null</item>
+    </style>
+
     <!--=================-->
     <!--Widgets.TabLayout-->
     <!--=================-->
@@ -97,7 +110,7 @@
     <!--================-->
     <style name="Widget.RideBus.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
         <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
-        <item name="labelVisibilityMode">labeled</item>
+        <item name="labelVisibilityMode">selected</item>
     </style>
 
     <style name="Widget.RideBus.NavigationRailView" parent="Widget.Material3.NavigationRailView">
@@ -114,6 +127,13 @@
 
     <style name="PreferenceThemeOverlay.RideBus.SwitchPreferenceCompat" parent="Preference.SwitchPreferenceCompat.Material">
         <item name="android:widgetLayout">@layout/pref_widget_switch_material</item>
+    </style>
+
+    <!--======-->
+    <!--Shapes-->
+    <!--======-->
+    <style name="ShapeAppearanceOverlay.RideBus.Circle" parent="">
+        <item name="cornerSize">50%</item>
     </style>
 
     <!--============-->

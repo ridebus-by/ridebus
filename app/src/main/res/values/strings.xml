@@ -107,4 +107,17 @@
     <string name="transliterate_summary">Useful for foreign users</string>
     <string name="accessibility_info">These parameters are useful for users with disabilities</string>
     <string name="enable_reduced_motion_summary">Disables some animations in the app</string>
+    <string name="route_not_in_db">This route has been removed from the database.</string>
+    <string name="system">System</string>
+    <string name="utility">Utility</string>
+    <string name="actions">Actions</string>
+    <string name="pref_category_navbar">Navigation bar</string>
+    <string name="pref_show_bottom_bar_labels">Always show navigation labels</string>
+    <string name="route_direction">Route direction</string>
+    <string name="payment_methods">Payment methods</string>
+    <string name="additional_info">Additional information</string>
+    <plurals name="route_num_stops">
+        <item quantity="one">1 stop</item>
+        <item quantity="other">%1$s stops</item>
+    </plurals>
 </resources>

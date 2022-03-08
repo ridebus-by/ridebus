@@ -11,9 +11,6 @@ import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.main.MainActivity
-import org.xtimms.ridebus.ui.routes.bus.BusController
-import org.xtimms.ridebus.ui.routes.express.ExpressController
-import org.xtimms.ridebus.ui.routes.taxi.TaxiController
 
 class RoutesTabbedController :
     RxController<PagerControllerBinding>(),

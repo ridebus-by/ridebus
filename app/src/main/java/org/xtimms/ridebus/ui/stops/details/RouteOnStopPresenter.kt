@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.details.stop
+package org.xtimms.ridebus.ui.stops.details
 
 import android.os.Bundle
 import org.xtimms.ridebus.data.database.entity.Stop
@@ -6,7 +6,7 @@ import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.Subscription
 
-class StopsOnRoutePresenter(val stop: Stop) : BasePresenter<StopsOnRouteController>() {
+class RouteOnStopPresenter(val stop: Stop) : BasePresenter<RoutesOnStopController>() {
 
     /**
      * Subscription to send routes list to the view.

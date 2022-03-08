@@ -13,8 +13,8 @@ import org.xtimms.ridebus.databinding.FavouriteControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
-import org.xtimms.ridebus.ui.details.route.RouteDetailsController
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.util.preference.minusAssign
 import org.xtimms.ridebus.util.preference.plusAssign
 import org.xtimms.ridebus.util.view.onAnimationsFinished

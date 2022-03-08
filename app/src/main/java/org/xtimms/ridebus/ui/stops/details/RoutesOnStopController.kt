@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.details.stop
+package org.xtimms.ridebus.ui.stops.details
 
 import android.os.Bundle
 import android.view.*
@@ -19,12 +19,12 @@ import uy.kohesive.injekt.injectLazy
 import java.text.SimpleDateFormat
 import java.util.*
 
-class StopsOnRouteController :
-    NucleusController<StopsRouteControllerBinding, StopsOnRoutePresenter>,
+class RoutesOnStopController :
+    NucleusController<StopsRouteControllerBinding, RouteOnStopPresenter>,
     NoAppBarElevationController,
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnUpdateListener,
-    StopsOnRouteAdapter.OnItemClickListener {
+    RoutesOnStopAdapter.OnItemClickListener {
 
     private val db: RideBusDatabase by injectLazy()
 
@@ -51,7 +51,7 @@ class StopsOnRouteController :
     /**
      * Adapter containing a list of routes on stop.
      */
-    private var adapter: StopsOnRouteAdapter? = null
+    private var adapter: RoutesOnStopAdapter? = null
 
     override fun getTitle(): String {
         return "${stop?.name}"
@@ -63,8 +63,8 @@ class StopsOnRouteController :
 
     override fun createBinding(inflater: LayoutInflater) = StopsRouteControllerBinding.inflate(inflater)
 
-    override fun createPresenter(): StopsOnRoutePresenter {
-        return StopsOnRoutePresenter(stop!!)
+    override fun createPresenter(): RouteOnStopPresenter {
+        return RouteOnStopPresenter(stop!!)
     }
 
     override fun onViewCreated(view: View) {
@@ -81,7 +81,7 @@ class StopsOnRouteController :
         binding.dayOfWeek.text = SimpleDateFormat("EEEE", Locale.getDefault()).format(date.time)
 
         // Init RecyclerView and adapter
-        adapter = StopsOnRouteAdapter(this)
+        adapter = RoutesOnStopAdapter(this)
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.setHasFixedSize(true)
@@ -110,7 +110,7 @@ class StopsOnRouteController :
      * @param stop stop object containing information about stop.
      */
     fun onNextStop(stop: Stop) {
-        val items = db.routesAndStopsDao().getRoutesByStop(stop.stopId).map { StopsOnRouteItem(it) }
+        val items = db.routesAndStopsDao().getRoutesByStop(stop.stopId).map { RoutesOnStopItem(it) }
         adapter?.updateDataSet(items)
     }
 

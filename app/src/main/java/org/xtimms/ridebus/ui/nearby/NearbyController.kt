@@ -10,7 +10,7 @@ import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.widget.EmptyView
 
-class NearbyController :
+class NearbyController : // TODO
     NucleusController<NearbyControllerBinding, NearbyPresenter>() {
 
     override fun getTitle(): String? {

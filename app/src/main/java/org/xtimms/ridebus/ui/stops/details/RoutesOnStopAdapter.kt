@@ -1,10 +1,10 @@
-package org.xtimms.ridebus.ui.details.route.stops
+package org.xtimms.ridebus.ui.stops.details
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
 
-class RouteStopsAdapter(
-    controller: RouteStopsController
-) : FlexibleAdapter<RouteStopsItem>(null, controller, true) {
+class RoutesOnStopAdapter(
+    controller: RoutesOnStopController
+) : FlexibleAdapter<RoutesOnStopItem>(null, controller, true) {
 
     val itemClickListener: OnItemClickListener = controller
 

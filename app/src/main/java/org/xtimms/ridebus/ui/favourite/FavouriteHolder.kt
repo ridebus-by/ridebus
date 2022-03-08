@@ -4,13 +4,13 @@ import android.view.View
 import androidx.core.view.isVisible
 import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.databinding.FavouriteControllerItemBinding
+import org.xtimms.ridebus.databinding.FavouriteItemBinding
 import org.xtimms.ridebus.util.view.setVectorCompat
 
 class FavouriteHolder(view: View, val adapter: FavouritesAdapter) :
     FlexibleViewHolder(view, adapter) {
 
-    private val binding = FavouriteControllerItemBinding.bind(view)
+    private val binding = FavouriteItemBinding.bind(view)
 
     init {
         binding.pin.setOnClickListener {

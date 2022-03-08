@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.details.route.stops
+package org.xtimms.ridebus.ui.stops.details
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -6,22 +6,22 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.database.entity.Route
 
-class RouteStopsItem(val stop: Stop) :
-    AbstractFlexibleItem<RouteStopsHolder>() {
+class RoutesOnStopItem(val route: Route) :
+    AbstractFlexibleItem<RouteOnStopHolder>() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.route_stop_item
+        return R.layout.stops_route_item
     }
 
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): RouteStopsHolder {
-        return RouteStopsHolder(view, adapter as RouteStopsAdapter)
+    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): RouteOnStopHolder {
+        return RouteOnStopHolder(view, adapter as RoutesOnStopAdapter)
     }
 
     override fun bindViewHolder(
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-        holder: RouteStopsHolder,
+        holder: RouteOnStopHolder,
         position: Int,
         payloads: List<Any?>?
     ) {
@@ -30,13 +30,13 @@ class RouteStopsItem(val stop: Stop) :
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other is RouteStopsItem) {
-            return stop.stopId == other.stop.stopId
+        if (other is RoutesOnStopItem) {
+            return route.routeId == other.route.routeId
         }
         return false
     }
 
     override fun hashCode(): Int {
-        return stop.stopId.hashCode()
+        return route.routeId.hashCode()
     }
 }

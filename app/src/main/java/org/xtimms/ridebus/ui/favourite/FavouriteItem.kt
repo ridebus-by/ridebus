@@ -25,7 +25,7 @@ data class FavouriteItem(
     }
 
     override fun getLayoutRes(): Int {
-        return R.layout.favourite_controller_item
+        return R.layout.favourite_item
     }
 
     override fun createViewHolder(

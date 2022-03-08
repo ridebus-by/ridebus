@@ -7,14 +7,13 @@ import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import kotlinx.coroutines.flow.*
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.StopsControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
-import org.xtimms.ridebus.ui.details.stop.StopsOnRouteController
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.ui.stops.details.RoutesOnStopController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import uy.kohesive.injekt.injectLazy
@@ -26,12 +25,11 @@ class StopsController :
     FlexibleAdapter.OnUpdateListener,
     StopsAdapter.OnItemClickListener {
 
-    private val db: RideBusDatabase by injectLazy()
     private val preferences: PreferencesHelper by injectLazy()
 
     private var adapter: StopsAdapter? = null
 
-    private val items = db.stopDao().getAll(preferences.city().get().ordinal).map { StopsItem(it) } // TODO Rx
+    private var stops: List<StopsItem> = emptyList()
 
     private var query = ""
 
@@ -46,7 +44,7 @@ class StopsController :
     override fun createBinding(inflater: LayoutInflater) = StopsControllerBinding.inflate(inflater)
 
     override fun createPresenter(): StopsPresenter {
-        return StopsPresenter()
+        return StopsPresenter(preferences.city().get().ordinal)
     }
 
     override fun onViewCreated(view: View) {
@@ -62,7 +60,6 @@ class StopsController :
 
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.adapter = adapter
-        adapter?.updateDataSet(items)
         binding.recycler.onAnimationsFinished {
             (activity as? MainActivity)?.ready = true
         }
@@ -98,29 +95,35 @@ class StopsController :
         }
 
         searchView.queryTextChanges()
+            .drop(1)
             .filter { router.backstack.lastOrNull()?.controller == this }
             .onEach {
                 query = it.toString()
-                drawStops()
+                updateStopsList()
             }
             .launchIn(viewScope)
     }
 
-    private fun drawStops() {
+    fun setStops(stops: List<StopsItem>) {
+        this.stops = stops
+        updateStopsList()
+    }
+
+    private fun updateStopsList() {
         if (query.isNotBlank()) {
             adapter?.updateDataSet(
-                items.filter {
+                stops.filter {
                     it.stop.name.contains(query, ignoreCase = true)
                 }
             )
         } else {
-            adapter?.updateDataSet(items)
+            adapter?.updateDataSet(stops)
         }
     }
 
     override fun onItemClick(position: Int) {
         val stop = (adapter?.getItem(position) as? StopsItem)?.stop?.stopId ?: return
-        router.pushController(StopsOnRouteController(stop).withFadeTransaction())
+        router.pushController(RoutesOnStopController(stop).withFadeTransaction())
     }
 
     override fun onUpdateEmptyView(size: Int) {

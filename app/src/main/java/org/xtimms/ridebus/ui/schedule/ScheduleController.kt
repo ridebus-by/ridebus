@@ -10,7 +10,7 @@ import org.xtimms.ridebus.databinding.ScheduleControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RxController
 
-class ScheduleController :
+class ScheduleController : // TODO
     RxController<ScheduleControllerBinding>(),
     NoAppBarElevationController,
     FlexibleAdapter.OnUpdateListener {

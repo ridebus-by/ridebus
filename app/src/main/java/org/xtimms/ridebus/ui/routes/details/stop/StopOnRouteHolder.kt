@@ -1,22 +1,18 @@
-package org.xtimms.ridebus.ui.details.route.stops
+package org.xtimms.ridebus.ui.routes.details.stop
 
 import android.view.View
 import com.github.vipulasri.timelineview.TimelineView
-import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.databinding.RouteStopItemBinding
+import org.xtimms.ridebus.ui.routes.details.stop.base.BaseStopHolder
 
-class RouteStopsHolder(view: View, val adapter: RouteStopsAdapter) :
-    FlexibleViewHolder(view, adapter) {
+class StopOnRouteHolder(
+    view: View,
+    val adapter: StopsOnRouteAdapter
+) : BaseStopHolder(view, adapter) {
 
     private val binding = RouteStopItemBinding.bind(view)
 
-    init {
-        binding.holder.setOnClickListener {
-            adapter.itemClickListener.onItemClick(bindingAdapterPosition)
-        }
-    }
-
-    fun bind(item: RouteStopsItem) {
+    fun bind(item: StopOnRouteItem) {
         val stop = item.stop
         binding.timeline.initLine(TimelineView.getTimeLineViewType(bindingAdapterPosition, adapter.itemCount))
         binding.stopTitle.text = stop.name

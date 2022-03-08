@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.details.stop
+package org.xtimms.ridebus.ui.stops.details
 
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -6,7 +6,7 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.StopsRouteItemBinding
 
-class StopsOnRouteHolder(view: View, val adapter: StopsOnRouteAdapter) :
+class RouteOnStopHolder(view: View, val adapter: RoutesOnStopAdapter) :
     FlexibleViewHolder(view, adapter) {
 
     private val binding = StopsRouteItemBinding.bind(view)
@@ -17,7 +17,7 @@ class StopsOnRouteHolder(view: View, val adapter: StopsOnRouteAdapter) :
         }
     }
 
-    fun bind(item: StopsOnRouteItem) {
+    fun bind(item: RoutesOnStopItem) {
         val route = item.route
         binding.routeTitle.text = route.title
         binding.routeNumber.text = route.number

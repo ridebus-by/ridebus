@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/backdrop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-32dp"
+        android:alpha="0.2"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backdrop"
+        app:layout_constraintBottom_toBottomOf="@+id/number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <View
+        android:id="@+id/backdrop_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/backdrop_gradient"
+        android:backgroundTint="?android:attr/colorBackground"
+        app:layout_constraintBottom_toBottomOf="@+id/backdrop"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:barrierMargin="16dp"
+        app:constraint_referenced_ids="number"
+        app:layout_constraintTop_toTopOf="@id/number" />
+
+    <org.xtimms.ridebus.widget.AutoFitTextView
+        android:id="@+id/number"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:maxWidth="100dp"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="100sp"
+        app:layout_constraintDimensionRatio="h,2:3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12" />
+
+    <LinearLayout
+        android:id="@+id/details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/info_barrier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/number"
+        app:layout_constraintTop_toTopOf="@id/barrier">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textIsSelectable="false"
+            tools:text="Автовокзал - Богатырская" />
+
+        <TextView
+            android:id="@+id/path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textIsSelectable="false"
+            tools:text="Октябрьская улица - улица Гагарина - улица Суворова - д.Богатырская" />
+
+        <LinearLayout
+            android:id="@+id/fare_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <ImageView
+                android:id="@+id/fare_icon"
+                android:layout_width="16dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/ic_money"
+                app:tint="?android:attr/textColorSecondary"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/fare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textIsSelectable="false"
+                tools:text="0,70 BYN" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/info_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="number,details" />
+
+    <org.xtimms.ridebus.widget.RouteSummaryView
+        android:id="@+id/route_summary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/info_barrier" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

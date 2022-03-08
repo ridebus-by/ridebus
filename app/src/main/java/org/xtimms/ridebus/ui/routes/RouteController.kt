@@ -12,8 +12,8 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.TransportControllerBinding
 import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
-import org.xtimms.ridebus.ui.details.route.RouteDetailsController
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 

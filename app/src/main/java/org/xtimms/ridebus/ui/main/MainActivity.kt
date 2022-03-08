@@ -32,6 +32,7 @@ import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
+import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
 import org.xtimms.ridebus.util.lang.launchUI
@@ -372,6 +373,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
             }
 
             binding.root.isLiftAppBarOnScroll = to !is NoAppBarElevationController
+
+            binding.appbar.isTransparentWhenNotLifted = to is RouteDetailsController
+            binding.controllerContainer.overlapHeader = to is RouteDetailsController
         }
     }
 
