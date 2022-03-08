@@ -11,24 +11,24 @@
 <resources>
     <color name="ridebus_primary">#0057CE</color>
     <color name="ridebus_onPrimary">#FFFFFF</color>
-    <color name="ridebus_primaryContainer">#D9E2FF</color>
-    <color name="ridebus_onPrimaryContainer">#001848</color>
-    <color name="ridebus_secondary">#585E71</color>
+    <color name="ridebus_primaryContainer">#D8E2FF</color>
+    <color name="ridebus_onPrimaryContainer">#001947</color>
+    <color name="ridebus_secondary">#0057CE</color>
     <color name="ridebus_onSecondary">#FFFFFF</color>
-    <color name="ridebus_secondaryContainer">#DCE2F9</color>
-    <color name="ridebus_onSecondaryContainer">#151B2C</color>
-    <color name="ridebus_tertiary">#735572</color>
+    <color name="ridebus_secondaryContainer">#D8E2FF</color>
+    <color name="ridebus_onSecondaryContainer">#001947</color>
+    <color name="ridebus_tertiary">#006E17</color>
     <color name="ridebus_onTertiary">#FFFFFF</color>
-    <color name="ridebus_tertiaryContainer">#FED7FA</color>
-    <color name="ridebus_onTertiaryContainer">#2A122C</color>
+    <color name="ridebus_tertiaryContainer">#95F990</color>
+    <color name="ridebus_onTertiaryContainer">#002202</color>
     <color name="ridebus_background">#FDFBFF</color>
     <color name="ridebus_onBackground">#1B1B1E</color>
     <color name="ridebus_surface">#FDFBFF</color>
     <color name="ridebus_onSurface">#1B1B1E</color>
-    <color name="ridebus_surfaceVariant">#E2E2EC</color>
+    <color name="ridebus_surfaceVariant">#E1E2EC</color>
     <color name="ridebus_onSurfaceVariant">#44464E</color>
     <color name="ridebus_outline">#757780</color>
-    <color name="ridebus_inverseOnSurface">#F2F0F5</color>
+    <color name="ridebus_inverseOnSurface">#F2F0F4</color>
     <color name="ridebus_inverseSurface">#303033</color>
-    <color name="ridebus_primaryInverse">#B0C6FF</color>
+    <color name="ridebus_primaryInverse">#AEC6FF</color>
 </resources>

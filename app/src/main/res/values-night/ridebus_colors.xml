@@ -10,25 +10,25 @@
   ~ Neutral #5E5E62
 -->
 <resources>
-    <color name="ridebus_primary">#B0C6FF</color>
-    <color name="ridebus_onPrimary">#002B72</color>
-    <color name="ridebus_primaryContainer">#0040A1</color>
-    <color name="ridebus_onPrimaryContainer">#D9E2FF</color>
-    <color name="ridebus_secondary">#C0C6DD</color>
-    <color name="ridebus_onSecondary">#2A3041</color>
-    <color name="ridebus_secondaryContainer">#404658</color>
-    <color name="ridebus_onSecondaryContainer">#DCE2F9</color>
-    <color name="ridebus_tertiary">#E0BBDD</color>
-    <color name="ridebus_onTertiary">#412742</color>
-    <color name="ridebus_tertiaryContainer">#593D59</color>
-    <color name="ridebus_onTertiaryContainer">#FED7FA</color>
+    <color name="ridebus_primary">#AEC6FF</color>
+    <color name="ridebus_onPrimary">#002C71</color>
+    <color name="ridebus_primaryContainer">#00419E</color>
+    <color name="ridebus_onPrimaryContainer">#D8E2FF</color>
+    <color name="ridebus_secondary">#AEC6FF</color>
+    <color name="ridebus_onSecondary">#002C71</color>
+    <color name="ridebus_secondaryContainer">#00419E</color>
+    <color name="ridebus_onSecondaryContainer">#D8E2FF</color>
+    <color name="ridebus_tertiary">#7ADC77</color>
+    <color name="ridebus_onTertiary">#003907</color>
+    <color name="ridebus_tertiaryContainer">#00530D</color>
+    <color name="ridebus_onTertiaryContainer">#95F990</color>
     <color name="ridebus_background">#1B1B1E</color>
     <color name="ridebus_onBackground">#E4E2E6</color>
     <color name="ridebus_surface">#1B1B1E</color>
     <color name="ridebus_onSurface">#E4E2E6</color>
     <color name="ridebus_surfaceVariant">#44464E</color>
     <color name="ridebus_onSurfaceVariant">#C5C6D0</color>
-    <color name="ridebus_outline">#8F909A</color>
+    <color name="ridebus_outline">#8E9099</color>
     <color name="ridebus_inverseOnSurface">#1B1B1E</color>
     <color name="ridebus_inverseSurface">#E4E2E6</color>
     <color name="ridebus_primaryInverse">#0057CE</color>
