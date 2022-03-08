@@ -110,6 +110,10 @@ class SettingsAppearanceController : SettingsController() {
                     titleRes = R.string.pref_hide_bottom_bar_on_scroll
                 }
             }
+            switchPreference {
+                bindTo(preferences.bottomBarLabels())
+                titleRes = R.string.pref_show_bottom_bar_labels
+            }
         }
 
         preferenceCategory {

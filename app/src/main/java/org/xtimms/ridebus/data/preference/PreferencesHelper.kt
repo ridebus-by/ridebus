@@ -69,4 +69,6 @@ class PreferencesHelper(val context: Context) {
     fun verboseLogging() = prefs.getBoolean(Keys.verboseLogging, false)
 
     fun pinnedFavourites() = flowPrefs.getStringSet("pinned_favourites", emptySet())
+
+    fun bottomBarLabels() = flowPrefs.getBoolean("pref_show_bottom_bar_labels", true)
 }
