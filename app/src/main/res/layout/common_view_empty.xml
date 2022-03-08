@@ -13,7 +13,7 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:gravity="center"
-        app:tint="?attr/colorControlNormal"
+        app:tint="?attr/colorOnSecondaryContainer"
         tools:src="@drawable/ic_bulldozer" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="center"
-        android:textSize="20sp"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
         tools:text="Label" />
 
     <LinearLayout

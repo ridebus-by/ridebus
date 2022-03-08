@@ -7,22 +7,32 @@
     android:layout_height="64dp"
     android:background="?selectableItemBackground">
 
-    <TextView
-        android:id="@+id/route_number"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/circle"
         android:layout_width="42dp"
         android:layout_height="42dp"
+        android:src="?attr/colorPrimary"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RideBus.Circle"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/material_bubble_drawable"
-        android:gravity="center"
-        android:textColor="?attr/colorOnPrimary"
-        android:textSize="22sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="1" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <org.xtimms.ridebus.widget.AutoFitTextView
+        android:id="@+id/route_number"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/circle"
+        app:layout_constraintEnd_toEndOf="@+id/circle"
+        app:layout_constraintStart_toStartOf="@+id/circle"
+        app:layout_constraintTop_toTopOf="@+id/circle"
+        tools:text="12" />
 
     <TextView
         android:id="@+id/route_title"
@@ -35,8 +45,8 @@
         android:textAppearance="?attr/textAppearanceBodyMedium"
         app:layout_constraintBottom_toTopOf="@+id/route_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/route_number"
-        app:layout_constraintTop_toTopOf="@+id/route_number"
+        app:layout_constraintStart_toEndOf="@+id/circle"
+        app:layout_constraintTop_toTopOf="@+id/circle"
         tools:text="Title" />
 
     <TextView
@@ -48,9 +58,9 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="?attr/textAppearanceBodySmall"
-        app:layout_constraintBottom_toBottomOf="@+id/route_number"
+        app:layout_constraintBottom_toBottomOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/route_number"
+        app:layout_constraintStart_toEndOf="@+id/circle"
         app:layout_constraintTop_toBottomOf="@+id/route_title"
         tools:text="Description" />
 

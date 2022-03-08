@@ -20,11 +20,11 @@
             android:id="@+id/timeline"
             android:layout_width="56dp"
             android:layout_height="match_parent"
-            app:endLineColor="?attr/colorTertiary"
+            app:endLineColor="?attr/colorPrimary"
             app:lineWidth="3dp"
             app:marker="@drawable/oval_colored"
             app:markerSize="14dp"
-            app:startLineColor="?attr/colorTertiary" />
+            app:startLineColor="?attr/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
