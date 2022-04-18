@@ -31,6 +31,8 @@ class PreferencesHelper(val context: Context) {
 
     fun sideNavIconAlignment() = flowPrefs.getInt("pref_side_nav_icon_alignment", 0)
 
+    fun sideNavLabels() = flowPrefs.getInt("pref_side_nav_labels", 0)
+
     fun themeMode() = flowPrefs.getEnum(
         "pref_theme_mode_key",
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { system } else { light }

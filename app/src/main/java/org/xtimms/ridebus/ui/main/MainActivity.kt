@@ -107,6 +107,16 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
                     }
                 }
                 .launchIn(lifecycleScope)
+            preferences.sideNavLabels()
+                .asImmediateFlow {
+                    binding.sideNav?.labelVisibilityMode = when (it) {
+                        1 -> NavigationBarView.LABEL_VISIBILITY_SELECTED
+                        2 -> NavigationBarView.LABEL_VISIBILITY_LABELED
+                        3 -> NavigationBarView.LABEL_VISIBILITY_UNLABELED
+                        else -> NavigationBarView.LABEL_VISIBILITY_AUTO
+                    }
+                }
+                .launchIn(lifecycleScope)
         }
 
         nav.setOnItemSelectedListener { item ->
@@ -402,9 +412,9 @@ class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
 
     private fun setNavLabelVisibility() {
         if (preferences.bottomBarLabels().get()) {
-            nav.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
+            binding.bottomNav?.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         } else {
-            nav.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
+            binding.bottomNav?.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
         }
     }
 
