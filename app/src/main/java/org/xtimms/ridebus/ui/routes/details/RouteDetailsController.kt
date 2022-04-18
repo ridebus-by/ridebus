@@ -228,8 +228,9 @@ class RouteDetailsController :
 
     override fun onStopClick(position: Int) {
         val adapter = stopsAdapter
-        val stop = adapter?.getItem(position)
-        router.pushController(ScheduleController().withFadeTransaction())
+        val route = route?.routeId ?: return
+        val stop = adapter?.getItem(position)?.stop?.stopId ?: return
+        router.pushController(ScheduleController(route, stop).withFadeTransaction())
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {

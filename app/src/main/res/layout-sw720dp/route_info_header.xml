@@ -13,11 +13,11 @@
         android:layout_marginBottom="-32dp"
         android:alpha="0.2"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/card"
+        android:src="@drawable/backdrop"
+        app:layout_constraintBottom_toBottomOf="@+id/number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/backdrop"
         tools:ignore="ContentDescription" />
 
     <View
@@ -32,29 +32,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
+    <org.xtimms.ridebus.widget.AutoFitTextView
+        android:id="@+id/number"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/tablet_horizontal_number_margin"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="@dimen/tablet_horizontal_number_margin"
-        app:layout_constraintDimensionRatio="w,3:2"
+        android:gravity="center"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="400sp"
+        app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="12dp">
-
-        <org.xtimms.ridebus.widget.AutoFitTextView
-            android:id="@+id/number"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="400sp"
-            android:gravity="center"
-            android:layout_margin="32dp"
-            tools:text="12" />
-
-    </com.google.android.material.card.MaterialCardView>
+        tools:text="12" />
 
     <LinearLayout
         android:id="@+id/details"
@@ -75,17 +67,17 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:gravity="center"
-            tools:text="Автовокзал - Богатырская"
             android:textAppearance="?attr/textAppearanceTitleLarge"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            tools:text="Автовокзал - Богатырская" />
 
         <TextView
             android:id="@+id/path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceTitleSmall"
             android:textColor="?android:attr/textColorSecondary"
-            android:textAlignment="center"
             android:textIsSelectable="false"
             tools:text="Октябрьская улица - улица Гагарина - улица Суворова - д.Богатырская" />
 
@@ -118,12 +110,46 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/actions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_favorite"
+            style="@style/Widget.RideBus.Button.ActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_to_favourites"
+            app:icon="@drawable/ic_favorite" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_webview"
+            style="@style/Widget.RideBus.Button.ActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="WikiRoutes"
+            android:visibility="gone"
+            app:icon="@drawable/ic_public"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
     <org.xtimms.ridebus.widget.RouteSummaryView
         android:id="@+id/route_summary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/details" />
+        app:layout_constraintTop_toBottomOf="@id/actions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

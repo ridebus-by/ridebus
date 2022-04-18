@@ -42,9 +42,8 @@
         android:id="@+id/number"
         android:layout_width="100dp"
         android:layout_height="0dp"
-        android:layout_margin="8dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:maxWidth="100dp"
         android:textColor="?attr/colorPrimary"
@@ -96,7 +95,7 @@
                 android:layout_width="16dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="4dp"
-                app:srcCompat="@drawable/ic_money"
+                app:srcCompat="@drawable/ic_cash_multiple"
                 app:tint="?android:attr/textColorSecondary"
                 tools:ignore="ContentDescription" />
 
@@ -120,12 +119,43 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="number,details" />
 
+    <LinearLayout
+        android:id="@+id/actions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/info_barrier">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_favorite"
+            style="@style/Widget.RideBus.Button.ActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_to_favourites"
+            app:icon="@drawable/ic_favorite" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_webview"
+            style="@style/Widget.RideBus.Button.ActionButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="WikiRoutes"
+            app:icon="@drawable/ic_public" />
+
+    </LinearLayout>
+
     <org.xtimms.ridebus.widget.RouteSummaryView
         android:id="@+id/route_summary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_barrier" />
+        app:layout_constraintTop_toBottomOf="@id/actions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

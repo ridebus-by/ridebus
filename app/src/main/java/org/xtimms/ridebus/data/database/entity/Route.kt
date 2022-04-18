@@ -17,11 +17,15 @@ data class Route(
     @ColumnInfo(name = "number") val number: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "payment_methods") val paymentMethods: String,
     @ColumnInfo(name = "fare") val fare: String,
     @ColumnInfo(name = "weekly_traffic") val weeklyTraffic: String,
     @ColumnInfo(name = "working_hours") val workingHours: String,
     @ColumnInfo(name = "following") val following: String,
     @ColumnInfo(name = "carrier_company") val carrierCompany: String,
-    @ColumnInfo(name = "tech_info") val techInfo: String
+    @ColumnInfo(name = "tech_info") val techInfo: String,
+    @ColumnInfo(name = "cash") val cash: Int,
+    @ColumnInfo(name = "qr_code") val qrCode: Int,
+    @ColumnInfo(name = "is_small") val isSmall: Int,
+    @ColumnInfo(name = "is_big") val isBig: Int,
+    @ColumnInfo(name = "is_very_big") val isVeryBig: Int,
 )

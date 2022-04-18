@@ -12,10 +12,9 @@ import org.xtimms.ridebus.databinding.StopsRouteControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
-import org.xtimms.ridebus.ui.stub.StubController
+import org.xtimms.ridebus.ui.schedule.ScheduleController
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import uy.kohesive.injekt.injectLazy
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,8 +24,6 @@ class RoutesOnStopController :
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnUpdateListener,
     RoutesOnStopAdapter.OnItemClickListener {
-
-    private val db: RideBusDatabase by injectLazy()
 
     constructor(stop: Stop?) : super(
         Bundle().apply {
@@ -104,14 +101,8 @@ class RoutesOnStopController :
         }
     }
 
-    /**
-     * Update view with stops
-     *
-     * @param stop stop object containing information about stop.
-     */
-    fun onNextStop(stop: Stop) {
-        val items = db.routesAndStopsDao().getRoutesByStop(stop.stopId).map { RoutesOnStopItem(it) }
-        adapter?.updateDataSet(items)
+    fun onNextStop(routesOnStop: List<RoutesOnStopItem>) {
+        adapter?.updateDataSet(routesOnStop)
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
@@ -120,7 +111,9 @@ class RoutesOnStopController :
     }
 
     override fun onItemClick(position: Int) {
-        router.pushController(StubController().withFadeTransaction())
+        val route = adapter?.getItem(position)?.route?.routeId ?: return
+        val stop = stop?.stopId ?: return
+        router.pushController(ScheduleController(route, stop).withFadeTransaction())
     }
 
     companion object {

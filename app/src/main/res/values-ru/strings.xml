@@ -38,7 +38,7 @@
     <string name="pref_dump_crash_logs_summary">Сохраняет журналы ошибок в файл для отправки разработчикам</string>
     <string name="theme_default">По умолчанию</string>
     <string name="theme_greenapple">Зеленое яблоко</string>
-    <string name="theme_pink">Розовая</string>
+    <string name="theme_balloon">Розовая</string>
     <string name="theme_orange">Оранжевая</string>
     <string name="pref_app_theme">Тема приложения</string>
     <string name="pref_dark_theme_pure_black">Черный тёмный режим</string>
@@ -101,9 +101,28 @@
     <string name="theme_pomegranate">Гранат</string>
     <string name="theme_sunflower">Подсолнух</string>
     <string name="theme_protosspylon">Незабудка</string>
-    <string name="theme_bluebell">Колокольчик</string>
+    <string name="theme_galaxy">Галактика</string>
     <string name="transliterate">Транслитерировать названия маршрутов и остановок</string>
     <string name="transliterate_summary">Полезно для иностранных пользователей</string>
     <string name="accessibility_info">Эти параметры полезны для пользователей с ограниченными возможностями</string>
     <string name="enable_reduced_motion_summary">Отключает некоторые анимации в приложении</string>
+    <string name="route_not_in_db">Этот маршрут был удален из базы данных.</string>
+    <string name="pref_category_navbar">Панель навигации</string>
+    <string name="pref_show_bottom_bar_labels">Всегда показывать названия меню</string>
+    <string name="route_direction">Направление маршрута</string>
+    <string name="payment_methods">Способы оплаты</string>
+    <string name="additional_info">Дополнительная информация</string>
+    <string name="schedule">Расписание</string>
+    <plurals name="route_num_stops">
+        <item quantity="one">%1$s остановка</item>
+        <item quantity="few">%1$s остановки</item>
+        <item quantity="many">%1$s остановок</item>
+        <item quantity="other">%1$s остановок</item>
+    </plurals>
+    <string name="qr">QR-код</string>
+    <string name="in_cash">Наличными</string>
+    <string name="methods_of_payment">Способы оплаты</string>
+    <string name="working_hours">Время работы</string>
+    <string name="add_to_favourites">Добавить в избранное</string>
+    <string name="carrier_company">Компания-перевозчик</string>
 </resources>

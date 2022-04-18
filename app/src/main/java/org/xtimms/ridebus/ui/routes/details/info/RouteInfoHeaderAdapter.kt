@@ -11,6 +11,7 @@ import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.databinding.RouteInfoHeaderBinding
 import org.xtimms.ridebus.ui.base.controller.getMainAppBarHeight
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
+import org.xtimms.ridebus.widget.RideBusChipGroup
 
 class RouteInfoHeaderAdapter(
     private val controller: RouteDetailsController,
@@ -88,12 +89,46 @@ class RouteInfoHeaderAdapter(
 
             binding.fare.text = route.fare
 
+            val tags = ArrayList<RideBusChipGroup.ChipModel>()
+            if (route.qrCode == 1) {
+                tags += RideBusChipGroup.ChipModel(
+                    title = view.context.getString(R.string.qr),
+                    icon = R.drawable.ic_qr_code
+                )
+            }
+            if (route.cash == 1) {
+                tags += RideBusChipGroup.ChipModel(
+                    title = view.context.getString(R.string.in_cash),
+                    icon = R.drawable.ic_account_balance_wallet
+                )
+            }
+            if (route.isSmall == 1) {
+                tags += RideBusChipGroup.ChipModel(
+                    title = view.context.getString(R.string.small_class),
+                    icon = R.drawable.ic_little_class
+                )
+            }
+            if (route.isBig == 1) {
+                tags += RideBusChipGroup.ChipModel(
+                    title = view.context.getString(R.string.big_class),
+                    icon = R.drawable.ic_big_class
+                )
+            }
+            if (route.isVeryBig == 1) {
+                tags += RideBusChipGroup.ChipModel(
+                    title = view.context.getString(R.string.very_big_class),
+                    icon = R.drawable.ic_very_big_class
+                )
+            }
+
             // Manga info section
+            binding.routeSummary.setTags(tags)
             binding.routeSummary.isVisible = route.following.isNotBlank()
             binding.routeSummary.description = view.context.getString(R.string.route_direction) +
-                ": " + route.following + "\n\n" + view.context.getString(R.string.payment_methods) +
-                ": " + route.paymentMethods + "\n\n" + view.context.getString(R.string.additional_info) +
-                ": " + route.techInfo
+                ": " + route.following + "\n\n" + view.context.getString(R.string.working_hours) +
+                ": " + route.workingHours + "\n\n" + view.context.getString(R.string.additional_info) +
+                ": " + route.techInfo + "\n\n" + view.context.getString(R.string.carrier_company) +
+                ": " + route.carrierCompany
         }
     }
 }

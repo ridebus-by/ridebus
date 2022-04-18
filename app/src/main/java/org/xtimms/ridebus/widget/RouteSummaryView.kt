@@ -18,8 +18,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.RouteSummaryBinding
 import org.xtimms.ridebus.util.system.animatorDurationScale
-import org.xtimms.ridebus.util.system.copyToClipboard
-import org.xtimms.ridebus.util.view.setChips
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
@@ -63,9 +61,9 @@ class RouteSummaryView @JvmOverloads constructor(
             }
         }
 
-    fun setTags(items: List<String>?) {
+    fun setTags(tags: List<RideBusChipGroup.ChipModel>) {
         listOfNotNull(binding.tagChipsShrunk, binding.tagChipsExpanded).forEach { chips ->
-            chips.setChips(items) { tag -> context.copyToClipboard(tag, tag) }
+            chips.setChips(tags)
         }
     }
 

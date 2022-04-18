@@ -18,8 +18,7 @@ import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.util.preference.minusAssign
 import org.xtimms.ridebus.util.preference.plusAssign
 import org.xtimms.ridebus.util.view.onAnimationsFinished
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
 class FavouritesController :
     NucleusController<FavouriteControllerBinding, FavouritesPresenter>(),
@@ -29,7 +28,7 @@ class FavouritesController :
     FlexibleAdapter.OnUpdateListener,
     FavouritesAdapter.OnFavouriteItemClickListener {
 
-    private val preferences: PreferencesHelper = Injekt.get()
+    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Adapter containing sources.
@@ -105,10 +104,7 @@ class FavouritesController :
         val isPinned = item.header?.type?.equals(FavouritesPresenter.PINNED_KEY) ?: false
 
         val items = mutableListOf(
-            Pair(
-                activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin),
-                { toggleFavouritePin(item.route) }
-            )
+            activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin) to { toggleFavouritePin(item.route) }
         )
 
         FavouriteOptionsDialog(item.route.title, items).showDialog(router)

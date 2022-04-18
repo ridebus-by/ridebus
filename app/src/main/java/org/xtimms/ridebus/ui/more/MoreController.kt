@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
-import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.nearby.NearbyController
@@ -20,8 +21,7 @@ import rx.subscriptions.CompositeSubscription
 
 class MoreController :
     SettingsController(),
-    RootController,
-    NoAppBarElevationController {
+    RootController {
 
     private var untilDestroySubscriptions = CompositeSubscription()
 
@@ -30,14 +30,16 @@ class MoreController :
 
         val tintColor = context.getResourceColor(R.attr.colorAccent)
 
-        add(MoreHeaderPreference(context))
-
         switchPreference {
             bindTo(preferences.autoUpdateSchedule())
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
             iconRes = R.drawable.ic_update
             iconTint = tintColor
+
+            preferences.autoUpdateSchedule().asFlow()
+                .onEach { isChecked = it }
+                .launchIn(viewScope)
         }
 
         listPreference {

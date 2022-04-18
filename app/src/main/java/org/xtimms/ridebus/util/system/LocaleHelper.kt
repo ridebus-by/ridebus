@@ -45,7 +45,7 @@ object LocaleHelper {
         } else {
             getLocale(lang)
         }
-        return locale.getDisplayName(locale).replaceFirstChar { it.uppercase(locale) }
+        return locale!!.getDisplayName(locale).replaceFirstChar { it.uppercase(locale) }
     }
 
     /**
@@ -82,7 +82,7 @@ object LocaleHelper {
      */
     private fun getLocaleFromString(pref: String?): Locale {
         if (pref.isNullOrEmpty()) {
-            return LocaleListCompat.getDefault()[0]
+            return LocaleListCompat.getDefault()[0]!!
         }
         return getLocale(pref)
     }

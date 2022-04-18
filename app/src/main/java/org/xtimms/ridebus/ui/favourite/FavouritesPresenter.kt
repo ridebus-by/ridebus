@@ -4,8 +4,6 @@ import android.os.Bundle
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
-import rx.Observable
-import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -28,11 +26,13 @@ class FavouritesPresenter(
             "Тест",
             "Тест",
             "Тест",
-            "Тест"
+            0,
+            0,
+            0,
+            0,
+            0
         )
     )
-
-    private var favouriteSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -40,8 +40,6 @@ class FavouritesPresenter(
     }
 
     private fun loadFavourites() {
-        favouriteSubscription?.unsubscribe()
-
         val pinnedFavourites = mutableListOf<FavouriteItem>()
         val pinnedFavouriteIds = preferences.pinnedFavourites().get()
 
@@ -61,8 +59,7 @@ class FavouritesPresenter(
             favouriteItems = pinnedFavourites + favouriteItems
         }
 
-        favouriteSubscription = Observable.just(favouriteItems)
-            .subscribeLatestCache(FavouritesController::setFavourites)
+        view?.setFavourites(favouriteItems)
     }
 
     fun updateFavourites() {

@@ -66,25 +66,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toggle_more">
 
-        <com.google.android.material.chip.ChipGroup
+        <org.xtimms.ridebus.widget.RideBusChipGroup
             android:id="@+id/tag_chips_shrunk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
-            app:chipSpacingHorizontal="4dp"
             app:singleLine="true" />
 
     </HorizontalScrollView>
 
-    <com.google.android.material.chip.ChipGroup
+    <org.xtimms.ridebus.widget.RideBusChipGroup
         android:id="@+id/tag_chips_expanded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
         android:visibility="gone"
-        app:chipSpacingHorizontal="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toggle_more"
