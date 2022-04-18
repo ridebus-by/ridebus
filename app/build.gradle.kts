@@ -138,15 +138,15 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     // AndroidX libraries
-    implementation("androidx.annotation:annotation:1.4.0-alpha01")
+    implementation("androidx.annotation:annotation:1.4.0-alpha02")
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha04")
     implementation("androidx.browser:browser:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
-    implementation("androidx.core:core-ktx:1.8.0-alpha02")
+    implementation("androidx.core:core-ktx:1.9.0-alpha02")
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
-    implementation("androidx.recyclerview:recyclerview:1.3.0-alpha01")
+    implementation("androidx.recyclerview:recyclerview:1.3.0-alpha02")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     val lifecycleVersion = "2.4.0"
@@ -155,20 +155,17 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
 
     // Job scheduling
-    implementation("androidx.work:work-runtime-ktx:2.6.0")
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
 
     // RX
     implementation("io.reactivex:rxandroid:1.2.1")
     implementation("io.reactivex:rxjava:1.3.8")
-    implementation("io.reactivex.rxjava2:rxkotlin:2.4.0")
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
 
     // Room
     val roomVersion = "2.3.0"
     implementation("androidx.room:room-runtime:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-rxjava2:$roomVersion")
 
     // Model View Presenter
     val nucleusVersion = "3.0.0"
@@ -184,15 +181,14 @@ dependencies {
     implementation("io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion")
 
     // UI libraries
-    implementation("com.google.android.material:material:1.6.0-alpha02")
+    implementation("com.google.android.material:material:1.7.0-alpha01")
     implementation("com.github.arkon.FlexibleAdapter:flexible-adapter:c8013533")
     implementation("com.github.arkon.FlexibleAdapter:flexible-adapter-ui:c8013533")
-    implementation("com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0")
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
     implementation("com.github.vipulasri:timelineview:1.1.5")
 
     // Preferences
-    implementation("androidx.preference:preference-ktx:1.2.0-rc01")
+    implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("com.github.tfcporciuncula.flow-preferences:flow-preferences:1.4.0")
 
     // Dependency injection
@@ -212,7 +208,7 @@ dependencies {
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.8.4")
-    implementation("com.google.firebase:firebase-analytics:20.0.2")
+    implementation("com.google.firebase:firebase-analytics:20.1.2")
 
     // Tests
     testImplementation("junit:junit:4.13.2")
