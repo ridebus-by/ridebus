@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.NotificationReceiver
 import org.xtimms.ridebus.databinding.MainActivityBinding
-import org.xtimms.ridebus.ui.base.activity.BaseViewBindingActivity
+import org.xtimms.ridebus.ui.base.activity.BaseActivity
 import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.more.MoreController
@@ -42,7 +42,9 @@ import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
 
-class MainActivity : BaseViewBindingActivity<MainActivityBinding>() {
+class MainActivity : BaseActivity() {
+
+    lateinit var binding: MainActivityBinding
 
     private lateinit var router: Router
 

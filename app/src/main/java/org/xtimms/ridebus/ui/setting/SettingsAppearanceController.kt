@@ -104,15 +104,27 @@ class SettingsAppearanceController : SettingsController() {
                     entryValues = arrayOf("0", "1", "2")
                     summary = "%s"
                 }
+                intListPreference {
+                    bindTo(preferences.sideNavLabels())
+                    titleRes = R.string.pref_side_nav_labels
+                    entriesRes = arrayOf(
+                        R.string.label_mode_auto,
+                        R.string.label_mode_selected,
+                        R.string.label_mode_labeled,
+                        R.string.label_mode_unlabeled,
+                    )
+                    entryValues = arrayOf("0", "1", "2", "3")
+                    summary = "%s"
+                }
             } else {
                 switchPreference {
                     bindTo(preferences.hideBottomBarOnScroll())
                     titleRes = R.string.pref_hide_bottom_bar_on_scroll
                 }
-            }
-            switchPreference {
-                bindTo(preferences.bottomBarLabels())
-                titleRes = R.string.pref_show_bottom_bar_labels
+                switchPreference {
+                    bindTo(preferences.bottomBarLabels())
+                    titleRes = R.string.pref_show_bottom_bar_labels
+                }
             }
         }
 

@@ -114,58 +114,31 @@
         <item name="colorPrimaryInverse">@color/pomegranate_primaryInverse</item>
     </style>
 
-    <!--== Orange theme ==-->
-    <style name="Theme.RideBus.Orange">
+    <!--== Honey theme ==-->
+    <style name="Theme.RideBus.Honey">
         <!-- Theme Colors -->
-        <item name="colorPrimary">@color/orange_primary</item>
-        <item name="colorOnPrimary">@color/orange_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/orange_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/orange_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/orange_secondary</item>
-        <item name="colorOnSecondary">@color/orange_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/orange_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/orange_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/orange_tertiary</item>
-        <item name="colorOnTertiary">@color/orange_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/orange_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/orange_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/orange_background</item>
-        <item name="colorOnBackground">@color/orange_onBackground</item>
-        <item name="colorSurface">@color/orange_surface</item>
-        <item name="colorOnSurface">@color/orange_onSurface</item>
-        <item name="colorSurfaceVariant">@color/orange_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/orange_onSurfaceVariant</item>
-        <item name="colorOutline">@color/orange_outline</item>
-        <item name="colorOnSurfaceInverse">@color/orange_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/orange_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/orange_primaryInverse</item>
-    </style>
-
-    <!--== Sunflower theme ==-->
-    <style name="Theme.RideBus.Sunflower">
-        <!-- Theme Colors -->
-        <item name="colorPrimary">@color/sunflower_primary</item>
-        <item name="colorOnPrimary">@color/sunflower_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/sunflower_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/sunflower_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/sunflower_secondary</item>
-        <item name="colorOnSecondary">@color/sunflower_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/sunflower_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/sunflower_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/sunflower_tertiary</item>
-        <item name="colorOnTertiary">@color/sunflower_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/sunflower_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/sunflower_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/sunflower_background</item>
-        <item name="colorOnBackground">@color/sunflower_onBackground</item>
-        <item name="colorSurface">@color/sunflower_surface</item>
-        <item name="colorOnSurface">@color/sunflower_onSurface</item>
-        <item name="colorSurfaceVariant">@color/sunflower_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/sunflower_onSurfaceVariant</item>
-        <item name="colorOutline">@color/sunflower_outline</item>
-        <item name="colorOnSurfaceInverse">@color/sunflower_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/sunflower_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/sunflower_primaryInverse</item>
+        <item name="colorPrimary">@color/honey_primary</item>
+        <item name="colorOnPrimary">@color/honey_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/honey_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/honey_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/honey_secondary</item>
+        <item name="colorOnSecondary">@color/honey_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/honey_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/honey_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/honey_tertiary</item>
+        <item name="colorOnTertiary">@color/honey_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/honey_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/honey_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/honey_background</item>
+        <item name="colorOnBackground">@color/honey_onBackground</item>
+        <item name="colorSurface">@color/honey_surface</item>
+        <item name="colorOnSurface">@color/honey_onSurface</item>
+        <item name="colorSurfaceVariant">@color/honey_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/honey_onSurfaceVariant</item>
+        <item name="colorOutline">@color/honey_outline</item>
+        <item name="colorOnSurfaceInverse">@color/honey_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/honey_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/honey_primaryInverse</item>
     </style>
 
     <!--== Green Apple theme ==-->
@@ -195,85 +168,58 @@
         <item name="colorPrimaryInverse">@color/greenapple_primaryInverse</item>
     </style>
 
-    <!--== Protoss Pylon theme ==-->
-    <style name="Theme.RideBus.ProtossPylon">
+    <!--== Galaxy theme ==-->
+    <style name="Theme.RideBus.Galaxy">
         <!-- Theme Colors -->
-        <item name="colorPrimary">@color/protosspylon_primary</item>
-        <item name="colorOnPrimary">@color/protosspylon_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/protosspylon_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/protosspylon_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/protosspylon_secondary</item>
-        <item name="colorOnSecondary">@color/protosspylon_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/protosspylon_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/protosspylon_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/protosspylon_tertiary</item>
-        <item name="colorOnTertiary">@color/protosspylon_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/protosspylon_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/protosspylon_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/protosspylon_background</item>
-        <item name="colorOnBackground">@color/protosspylon_onBackground</item>
-        <item name="colorSurface">@color/protosspylon_surface</item>
-        <item name="colorOnSurface">@color/protosspylon_onSurface</item>
-        <item name="colorSurfaceVariant">@color/protosspylon_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/protosspylon_onSurfaceVariant</item>
-        <item name="colorOutline">@color/protosspylon_outline</item>
-        <item name="colorOnSurfaceInverse">@color/protosspylon_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/protosspylon_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/protosspylon_primaryInverse</item>
-    </style>
-
-    <!--== Bluebell theme ==-->
-    <style name="Theme.RideBus.Bluebell">
-        <!-- Theme Colors -->
-        <item name="colorPrimary">@color/bluebell_primary</item>
-        <item name="colorOnPrimary">@color/bluebell_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/bluebell_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/bluebell_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/bluebell_secondary</item>
-        <item name="colorOnSecondary">@color/bluebell_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/bluebell_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/bluebell_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/bluebell_tertiary</item>
-        <item name="colorOnTertiary">@color/bluebell_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/bluebell_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/bluebell_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/bluebell_background</item>
-        <item name="colorOnBackground">@color/bluebell_onBackground</item>
-        <item name="colorSurface">@color/bluebell_surface</item>
-        <item name="colorOnSurface">@color/bluebell_onSurface</item>
-        <item name="colorSurfaceVariant">@color/bluebell_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/bluebell_onSurfaceVariant</item>
-        <item name="colorOutline">@color/bluebell_outline</item>
-        <item name="colorOnSurfaceInverse">@color/bluebell_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/bluebell_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/bluebell_primaryInverse</item>
+        <item name="colorPrimary">@color/galaxy_primary</item>
+        <item name="colorOnPrimary">@color/galaxy_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/galaxy_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/galaxy_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/galaxy_secondary</item>
+        <item name="colorOnSecondary">@color/galaxy_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/galaxy_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/galaxy_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/galaxy_tertiary</item>
+        <item name="colorOnTertiary">@color/galaxy_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/galaxy_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/galaxy_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/galaxy_background</item>
+        <item name="colorOnBackground">@color/galaxy_onBackground</item>
+        <item name="colorSurface">@color/galaxy_surface</item>
+        <item name="colorOnSurface">@color/galaxy_onSurface</item>
+        <item name="colorSurfaceVariant">@color/galaxy_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/galaxy_onSurfaceVariant</item>
+        <item name="colorOutline">@color/galaxy_outline</item>
+        <item name="colorOnSurfaceInverse">@color/galaxy_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/galaxy_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/galaxy_primaryInverse</item>
     </style>
 
     <!--== Pink theme ==-->
-    <style name="Theme.RideBus.Pink">
+    <style name="Theme.RideBus.Balloon">
         <!-- Theme Colors -->
-        <item name="colorPrimary">@color/pink_primary</item>
-        <item name="colorOnPrimary">@color/pink_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/pink_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/pink_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/pink_secondary</item>
-        <item name="colorOnSecondary">@color/pink_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/pink_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/pink_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/pink_tertiary</item>
-        <item name="colorOnTertiary">@color/pink_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/pink_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/pink_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/pink_background</item>
-        <item name="colorOnBackground">@color/pink_onBackground</item>
-        <item name="colorSurface">@color/pink_surface</item>
-        <item name="colorOnSurface">@color/pink_onSurface</item>
-        <item name="colorSurfaceVariant">@color/pink_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/pink_onSurfaceVariant</item>
-        <item name="colorOutline">@color/pink_outline</item>
-        <item name="colorOnSurfaceInverse">@color/pink_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/pink_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/pink_primaryInverse</item>
+        <item name="colorPrimary">@color/balloon_primary</item>
+        <item name="colorOnPrimary">@color/balloon_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/balloon_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/balloon_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/balloon_secondary</item>
+        <item name="colorOnSecondary">@color/balloon_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/balloon_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/balloon_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/balloon_tertiary</item>
+        <item name="colorOnTertiary">@color/balloon_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/balloon_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/balloon_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/balloon_background</item>
+        <item name="colorOnBackground">@color/balloon_onBackground</item>
+        <item name="colorSurface">@color/balloon_surface</item>
+        <item name="colorOnSurface">@color/balloon_onSurface</item>
+        <item name="colorSurfaceVariant">@color/balloon_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/balloon_onSurfaceVariant</item>
+        <item name="colorOutline">@color/balloon_outline</item>
+        <item name="colorOnSurfaceInverse">@color/balloon_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/balloon_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/balloon_primaryInverse</item>
     </style>
 
     <!--== AMOLED theme overlay ==-->

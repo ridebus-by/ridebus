@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="balloon_primary">#8E437D</color>
+    <color name="balloon_onPrimary">#FFFFFF</color>
+    <color name="balloon_primaryContainer">#FFD7F1</color>
+    <color name="balloon_onPrimaryContainer">#3A0032</color>
+    <color name="balloon_secondary">#6F5867</color>
+    <color name="balloon_onSecondary">#FFFFFF</color>
+    <color name="balloon_secondaryContainer">#F9DAEC</color>
+    <color name="balloon_onSecondaryContainer">#281623</color>
+    <color name="balloon_tertiary">#815341</color>
+    <color name="balloon_onTertiary">#FFFFFF</color>
+    <color name="balloon_tertiaryContainer">#FFDBCC</color>
+    <color name="balloon_onTertiaryContainer">#321205</color>
+    <color name="balloon_background">#FCFCFC</color>
+    <color name="balloon_onBackground">#1F1A1D</color>
+    <color name="balloon_surface">#FCFCFC</color>
+    <color name="balloon_onSurface">#1F1A1D</color>
+    <color name="balloon_surfaceVariant">#EFDEE6</color>
+    <color name="balloon_onSurfaceVariant">#4F434A</color>
+    <color name="balloon_outline">#80737A</color>
+    <color name="balloon_inverseOnSurface">#F9EEF2</color>
+    <color name="balloon_inverseSurface">#342F32</color>
+    <color name="balloon_inversePrimary">#FFACE9</color>
+    <color name="balloon_shadow">#000000</color>
+    <color name="balloon_primaryInverse">#FFACE9</color>
+</resources>

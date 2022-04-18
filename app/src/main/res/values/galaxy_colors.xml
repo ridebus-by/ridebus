@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="galaxy_primary">#6151A6</color>
+    <color name="galaxy_onPrimary">#FFFFFF</color>
+    <color name="galaxy_primaryContainer">#E8DEFF</color>
+    <color name="galaxy_onPrimaryContainer">#1D0161</color>
+    <color name="galaxy_secondary">#605B71</color>
+    <color name="galaxy_onSecondary">#FFFFFF</color>
+    <color name="galaxy_secondaryContainer">#E6DFF8</color>
+    <color name="galaxy_onSecondaryContainer">#1C192B</color>
+    <color name="galaxy_tertiary">#7D5263</color>
+    <color name="galaxy_onTertiary">#FFFFFF</color>
+    <color name="galaxy_tertiaryContainer">#FFD9E7</color>
+    <color name="galaxy_onTertiaryContainer">#30111F</color>
+    <color name="galaxy_background">#FFFBFF</color>
+    <color name="galaxy_onBackground">#1C1B1E</color>
+    <color name="galaxy_surface">#FFFBFF</color>
+    <color name="galaxy_onSurface">#1C1B1E</color>
+    <color name="galaxy_surfaceVariant">#E5E0EB</color>
+    <color name="galaxy_onSurfaceVariant">#48454F</color>
+    <color name="galaxy_outline">#79767F</color>
+    <color name="galaxy_inverseOnSurface">#F4EFF4</color>
+    <color name="galaxy_inverseSurface">#313033</color>
+    <color name="galaxy_inversePrimary">#CCBEFF</color>
+    <color name="galaxy_shadow">#000000</color>
+    <color name="galaxy_primaryInverse">#CCBEFF</color>
+</resources>

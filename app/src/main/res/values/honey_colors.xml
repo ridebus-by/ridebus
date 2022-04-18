@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="honey_primary">#7F5600</color>
+    <color name="honey_onPrimary">#FFFFFF</color>
+    <color name="honey_primaryContainer">#FFDDAA</color>
+    <color name="honey_onPrimaryContainer">#281800</color>
+    <color name="honey_secondary">#6E5C40</color>
+    <color name="honey_onSecondary">#FFFFFF</color>
+    <color name="honey_secondaryContainer">#F9DFBB</color>
+    <color name="honey_onSecondaryContainer">#261904</color>
+    <color name="honey_tertiary">#4F6542</color>
+    <color name="honey_onTertiary">#FFFFFF</color>
+    <color name="honey_tertiaryContainer">#D1EABF</color>
+    <color name="honey_onTertiaryContainer">#0D2005</color>
+    <color name="honey_background">#FCFCFC</color>
+    <color name="honey_onBackground">#1F1B16</color>
+    <color name="honey_surface">#FCFCFC</color>
+    <color name="honey_onSurface">#1F1B16</color>
+    <color name="honey_surfaceVariant">#EEE0CF</color>
+    <color name="honey_onSurfaceVariant">#4E4539</color>
+    <color name="honey_outline">#807567</color>
+    <color name="honey_inverseOnSurface">#F8EFE7</color>
+    <color name="honey_inverseSurface">#34302B</color>
+    <color name="honey_inversePrimary">#FBBB4A</color>
+    <color name="honey_shadow">#000000</color>
+    <color name="honey_primaryInverse">#FBBB4A</color>
+</resources>

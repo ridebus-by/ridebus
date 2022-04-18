@@ -9,7 +9,7 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.PrefThemeItemBinding
-import org.xtimms.ridebus.ui.base.activity.BaseThemedActivity
+import org.xtimms.ridebus.ui.base.activity.ThemingDelegate
 import org.xtimms.ridebus.util.system.getResourceColor
 import uy.kohesive.injekt.injectLazy
 
@@ -29,7 +29,7 @@ class ThemesPreferenceAdapter(private val clickListener: OnItemClickListener) :
         parent: ViewGroup,
         viewType: Int
     ): ThemeViewHolder {
-        val themeResIds = BaseThemedActivity.getThemeResIds(themes[viewType], preferences.themeDarkAmoled().get())
+        val themeResIds = ThemingDelegate.getThemeResIds(themes[viewType], preferences.themeDarkAmoled().get())
         val themedContext = themeResIds.fold(parent.context) {
             context, themeResId ->
             ContextThemeWrapper(context, themeResId)

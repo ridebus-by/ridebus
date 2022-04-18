@@ -39,7 +39,7 @@
     <string name="pref_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
     <string name="theme_default">Default</string>
     <string name="theme_greenapple">Green Apple</string>
-    <string name="theme_pink">Pink</string>
+    <string name="theme_balloon">Pink</string>
     <string name="theme_orange">Orange</string>
     <string name="pref_app_theme">App theme</string>
     <string name="pref_dark_theme_pure_black">Pure black dark mode</string>
@@ -102,15 +102,12 @@
     <string name="theme_pomegranate">Pomegranate</string>
     <string name="theme_sunflower">Sunflower</string>
     <string name="theme_protosspylon">Protoss Pylon</string>
-    <string name="theme_bluebell">Bluebell</string>
+    <string name="theme_galaxy">Galaxy</string>
     <string name="transliterate">Transliterate route names and stops</string>
     <string name="transliterate_summary">Useful for foreign users</string>
     <string name="accessibility_info">These parameters are useful for users with disabilities</string>
     <string name="enable_reduced_motion_summary">Disables some animations in the app</string>
     <string name="route_not_in_db">This route has been removed from the database.</string>
-    <string name="system">System</string>
-    <string name="utility">Utility</string>
-    <string name="actions">Actions</string>
     <string name="pref_category_navbar">Navigation bar</string>
     <string name="pref_show_bottom_bar_labels">Always show navigation labels</string>
     <string name="route_direction">Route direction</string>

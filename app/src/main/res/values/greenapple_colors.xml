@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="greenapple_primary">#006D2F</color>
+    <color name="greenapple_primary">#1F6C2F</color>
     <color name="greenapple_onPrimary">#FFFFFF</color>
-    <color name="greenapple_primaryContainer">#96F8A9</color>
-    <color name="greenapple_onPrimaryContainer">#002109</color>
-    <color name="greenapple_secondary">#006D2F</color>
+    <color name="greenapple_primaryContainer">#A6F5A8</color>
+    <color name="greenapple_onPrimaryContainer">#002106</color>
+    <color name="greenapple_secondary">#526350</color>
     <color name="greenapple_onSecondary">#FFFFFF</color>
-    <color name="greenapple_secondaryContainer">#96F8A9</color>
-    <color name="greenapple_onSecondaryContainer">#002109</color>
-    <color name="greenapple_tertiary">#B91D22</color>
+    <color name="greenapple_secondaryContainer">#D4E8D0</color>
+    <color name="greenapple_onSecondaryContainer">#0F1F10</color>
+    <color name="greenapple_tertiary">#39656C</color>
     <color name="greenapple_onTertiary">#FFFFFF</color>
-    <color name="greenapple_tertiaryContainer">#FFDAD5</color>
-    <color name="greenapple_onTertiaryContainer">#410003</color>
-    <color name="greenapple_background">#FBFDF7</color>
+    <color name="greenapple_tertiaryContainer">#BDEBF2</color>
+    <color name="greenapple_onTertiaryContainer">#001F23</color>
+    <color name="greenapple_background">#FCFDF7</color>
     <color name="greenapple_onBackground">#1A1C19</color>
-    <color name="greenapple_surface">#FBFDF7</color>
+    <color name="greenapple_surface">#FCFDF7</color>
     <color name="greenapple_onSurface">#1A1C19</color>
-    <color name="greenapple_surfaceVariant">#DDE5DA</color>
-    <color name="greenapple_onSurfaceVariant">#414941</color>
-    <color name="greenapple_outline">#717970</color>
-    <color name="greenapple_inverseOnSurface">#F0F2EC</color>
-    <color name="greenapple_inverseSurface">#2F312E</color>
-    <color name="greenapple_primaryInverse">#7ADB8F</color>
+    <color name="greenapple_surfaceVariant">#DEE5D9</color>
+    <color name="greenapple_onSurfaceVariant">#424840</color>
+    <color name="greenapple_outline">#72796F</color>
+    <color name="greenapple_inverseOnSurface">#F0F1EB</color>
+    <color name="greenapple_inverseSurface">#2E312D</color>
+    <color name="greenapple_inversePrimary">#8AD98E</color>
+    <color name="greenapple_shadow">#000000</color>
+    <color name="greenapple_primaryInverse">#8AD98E</color>
 </resources>

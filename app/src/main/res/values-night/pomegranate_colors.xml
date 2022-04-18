@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="pomegranate_primary">#FFB4A7</color>
-    <color name="pomegranate_onPrimary">#680000</color>
-    <color name="pomegranate_primaryContainer">#8E130C</color>
+    <color name="pomegranate_primary">#FFB4A8</color>
+    <color name="pomegranate_onPrimary">#680001</color>
+    <color name="pomegranate_primaryContainer">#940002</color>
     <color name="pomegranate_onPrimaryContainer">#FFDAD3</color>
     <color name="pomegranate_secondary">#E7BCB6</color>
-    <color name="pomegranate_onSecondary">#442925</color>
-    <color name="pomegranate_secondaryContainer">#5D3F3A</color>
+    <color name="pomegranate_onSecondary">#442A26</color>
+    <color name="pomegranate_secondaryContainer">#5D3F3B</color>
     <color name="pomegranate_onSecondaryContainer">#FFDAD4</color>
-    <color name="pomegranate_tertiary">#DEC38C</color>
-    <color name="pomegranate_onTertiary">#3E2E04</color>
-    <color name="pomegranate_tertiaryContainer">#564419</color>
-    <color name="pomegranate_onTertiaryContainer">#FBDFA5</color>
+    <color name="pomegranate_tertiary">#DFC38C</color>
+    <color name="pomegranate_onTertiary">#3F2E04</color>
+    <color name="pomegranate_tertiaryContainer">#574419</color>
+    <color name="pomegranate_onTertiaryContainer">#FCDFA6</color>
     <color name="pomegranate_background">#211A19</color>
     <color name="pomegranate_onBackground">#EDE0DE</color>
     <color name="pomegranate_surface">#211A19</color>
@@ -21,5 +21,7 @@
     <color name="pomegranate_outline">#A08C89</color>
     <color name="pomegranate_inverseOnSurface">#211A19</color>
     <color name="pomegranate_inverseSurface">#EDE0DE</color>
-    <color name="pomegranate_primaryInverse">#B02D21</color>
+    <color name="pomegranate_inversePrimary">#BC1714</color>
+    <color name="pomegranate_shadow">#000000</color>
+    <color name="pomegranate_primaryInverse">#BC1714</color>
 </resources>
