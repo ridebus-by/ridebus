@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "56324bc012264e003354c0338bab8805",
+    "identityHash": "7e11539a914a8daa36904de663b75031",
     "entities": [
       {
         "tableName": "Routes",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kind_id` INTEGER NOT NULL, `number` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `payment_methods` TEXT NOT NULL, `fare` TEXT NOT NULL, `weekly_traffic` TEXT NOT NULL, `working_hours` TEXT NOT NULL, `following` TEXT NOT NULL, `carrier_company` TEXT NOT NULL, `tech_info` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kind_id` INTEGER NOT NULL, `number` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `fare` TEXT NOT NULL, `weekly_traffic` TEXT NOT NULL, `working_hours` TEXT NOT NULL, `following` TEXT NOT NULL, `carrier_company` TEXT NOT NULL, `tech_info` TEXT NOT NULL, `cash` INTEGER NOT NULL, `qr_code` INTEGER NOT NULL, `is_small` INTEGER NOT NULL, `is_big` INTEGER NOT NULL, `is_very_big` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "routeId",
@@ -51,12 +51,6 @@
             "notNull": true
           },
           {
-            "fieldPath": "paymentMethods",
-            "columnName": "payment_methods",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
             "fieldPath": "fare",
             "columnName": "fare",
             "affinity": "TEXT",
@@ -90,6 +84,36 @@
             "fieldPath": "techInfo",
             "columnName": "tech_info",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cash",
+            "columnName": "cash",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "qrCode",
+            "columnName": "qr_code",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSmall",
+            "columnName": "is_small",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isBig",
+            "columnName": "is_big",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isVeryBig",
+            "columnName": "is_very_big",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -244,7 +268,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '56324bc012264e003354c0338bab8805')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7e11539a914a8daa36904de663b75031')"
     ]
   }
 }
