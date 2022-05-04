@@ -60,8 +60,6 @@ class PreferencesHelper(val context: Context) {
             else -> SimpleDateFormat(format, Locale.getDefault())
         }
 
-    fun lang() = flowPrefs.getString("app_language", "")
-
     fun transliterate() = flowPrefs.getBoolean("transliterate", false)
 
     fun autoUpdateSchedule() = flowPrefs.getBoolean("auto_update_schedule", true)
