@@ -187,6 +187,9 @@ dependencies {
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
     implementation("com.github.vipulasri:timelineview:1.1.5")
 
+    // Time
+    implementation("org.ocpsoft.prettytime:prettytime:3.2.7.Final")
+
     // Preferences
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("com.github.tfcporciuncula.flow-preferences:flow-preferences:1.4.0")

@@ -130,4 +130,5 @@
         <item quantity="one">1 stop</item>
         <item quantity="other">%1$s stops</item>
     </plurals>
+    <string name="token_time_now">right now</string>
 </resources>
