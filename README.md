@@ -11,7 +11,12 @@ ToDo:
 - [ ] Calculation of the optimal route with transfers.
 
 # Screenshots
-![readme-banner](https://user-images.githubusercontent.com/61558546/147972131-ae413a5c-7080-4edd-bbd4-1dc5b848715e.png)
+| ![Phone 1](./.github/readme-images/phoneScreenshots/1.png) | ![Phone 2](./.github/readme-images/phoneScreenshots/2.png) | ![Phone 3](./.github/readme-images/phoneScreenshots/3.png) |
+|------------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| ![Phone 4](./.github/readme-images/phoneScreenshots/4.png) | ![Phone 5](./.github/readme-images/phoneScreenshots/5.png) | ![Phone 6](./.github/readme-images/phoneScreenshots/6.png) |
+
+| ![Tablet 1](./.github/readme-images/tabletScreenshots/1.png) | ![Tablet 2](./.github/readme-images/tabletScreenshots/2.png) |
+|--------------------------------------------------------------|--------------------------------------------------------------|
 
 # License
 
