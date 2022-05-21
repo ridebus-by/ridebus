@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -16,6 +17,9 @@ plugins {
 if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
     apply(plugin = "com.google.gms.google-services")
 }
+
+val acraAuthLogin: String = gradleLocalProperties(rootDir).getProperty("authLogin")
+val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authPassword")
 
 shortcutHelper.setFilePath("./shortcuts.xml")
 
@@ -36,6 +40,8 @@ android {
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
+        buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin)
+        buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword)
 
         javaCompileOptions {
             annotationProcessorOptions {

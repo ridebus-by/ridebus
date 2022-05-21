@@ -62,6 +62,8 @@ open class App : Application(), DefaultLifecycleObserver {
                 arrayOf(".*username.*", ".*password.*", ".*token.*")
             httpSender {
                 uri = BuildConfig.ACRA_URI
+                basicAuthLogin = BuildConfig.ACRA_AUTH_LOGIN
+                basicAuthPassword = BuildConfig.ACRA_AUTH_PASSWORD
             }
         }
     }
