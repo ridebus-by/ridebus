@@ -7,13 +7,13 @@ import androidx.room.PrimaryKey
 //
 // Created by Xtimms on 01.09.2021.
 //
-@Entity(tableName = "Stops")
+@Entity(tableName = "stop")
 data class Stop(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val stopId: Int,
     @ColumnInfo(name = "city_id") val cityId: Int,
+    @ColumnInfo(name = "transport_id") val transportId: Int,
+    @ColumnInfo(name = "kindRoute_id") val kindId: Int,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "direction") val direction: String,
-    @ColumnInfo(name = "latitude") val latitude: Float,
-    @ColumnInfo(name = "longitude") val longitude: Float
+    @ColumnInfo(name = "direction") val direction: String
 )

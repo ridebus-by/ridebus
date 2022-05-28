@@ -7,15 +7,15 @@ import androidx.room.PrimaryKey
 //
 // Created by Xtimms on 28.08.2021.
 //
-@Entity(tableName = "Routes")
+@Entity(tableName = "route")
 data class Route(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val routeId: Int,
     @ColumnInfo(name = "city_id") val cityId: Int,
     @ColumnInfo(name = "transport_id") val transportId: Int,
-    @ColumnInfo(name = "kind_id") val kindId: Int,
-    @ColumnInfo(name = "number") val number: String,
-    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "kindRoute_id") val kindId: Int,
+    @ColumnInfo(name = "route_number") val number: String,
+    @ColumnInfo(name = "route_title") val title: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "fare") val fare: String,
     @ColumnInfo(name = "weekly_traffic") val weeklyTraffic: String,

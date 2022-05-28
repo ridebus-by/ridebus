@@ -9,15 +9,16 @@ import org.xtimms.ridebus.data.database.entity.Route
 //
 @Dao
 interface RouteDao {
-    @Query("SELECT * FROM Routes WHERE (transport_id = 1 AND city_id = :cityId)")
+
+    @Query("SELECT * FROM route WHERE (transport_id = 1 AND city_id = :cityId) ORDER BY LENGTH(route_number), route_number")
     fun getBuses(cityId: Int): List<Route>
 
-    @Query("SELECT * FROM Routes WHERE (transport_id = 2 AND city_id = :cityId)")
+    @Query("SELECT * FROM route WHERE (transport_id = 2 AND city_id = :cityId) ORDER BY LENGTH(route_number), route_number")
     fun getTaxis(cityId: Int): List<Route>
 
-    @Query("SELECT * FROM Routes WHERE (transport_id = 3 AND city_id = :cityId)")
+    @Query("SELECT * FROM route WHERE (transport_id = 3 AND city_id = :cityId) ORDER BY LENGTH(route_number), route_number")
     fun getExpresses(cityId: Int): List<Route>
 
-    @Query("SELECT * FROM Routes WHERE _id = :routeId")
+    @Query("SELECT * FROM route WHERE _id = :routeId")
     fun getRoute(routeId: Int): List<Route>
 }

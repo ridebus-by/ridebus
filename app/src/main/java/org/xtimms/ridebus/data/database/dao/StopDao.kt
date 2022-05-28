@@ -10,9 +10,9 @@ import org.xtimms.ridebus.data.database.entity.Stop
 @Dao
 interface StopDao {
 
-    @Query("SELECT * FROM Stops WHERE city_id = :cityId ORDER BY name ASC")
-    fun getAll(cityId: Int): List<Stop>
+    @Query("SELECT * FROM stop WHERE city_id = :cityId ORDER BY name ASC")
+    fun getAllStops(cityId: Int): List<Stop>
 
-    @Query("SELECT * FROM Stops WHERE _id = :stopId")
+    @Query("SELECT * FROM stop WHERE _id = :stopId")
     fun getStop(stopId: Int): List<Stop>
 }
