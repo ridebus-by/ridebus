@@ -18,8 +18,8 @@ if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
     apply(plugin = "com.google.gms.google-services")
 }
 
-val acraAuthLogin: String = gradleLocalProperties(rootDir).getProperty("authLogin")
-val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authPassword")
+val acraAuthLogin: String = gradleLocalProperties(rootDir).getProperty("authLogin") ?: "acra_login"
+val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authPassword") ?: "acra_password"
 
 shortcutHelper.setFilePath("./shortcuts.xml")
 
@@ -40,8 +40,8 @@ android {
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
-        buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin ?: "acra_login")
-        buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword ?: "acra_password")
+        buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin)
+        buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword)
 
         javaCompileOptions {
             annotationProcessorOptions {
