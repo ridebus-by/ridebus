@@ -7,9 +7,12 @@
     <color name="onError">#680003</color>
     <color name="onErrorContainer">#FFDAD4</color>
 
-    <color name="bus">#71DAA6</color>
-    <color name="minibus">#EFC209</color>
-    <color name="express">#FFB4A7</color>
+    <color name="bus_primary">#71DAA6</color>
+    <color name="bus_onPrimary">#003921</color>
+    <color name="minibus_primary">#EFC209</color>
+    <color name="minibus_onPrimary">#3F2F00</color>
+    <color name="express_primary">#FFB4A7</color>
+    <color name="express_onPrimary">#680000</color>
 
     <!-- Default Theme -->
     <color name="divider_default">@color/md_white_1000_12</color>

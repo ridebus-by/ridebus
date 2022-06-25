@@ -131,4 +131,6 @@
         <item quantity="other">%1$s stops</item>
     </plurals>
     <string name="token_time_now">right now</string>
+    <string name="label_working_days">Working days</string>
+    <string name="label_weekends">Weekends</string>
 </resources>

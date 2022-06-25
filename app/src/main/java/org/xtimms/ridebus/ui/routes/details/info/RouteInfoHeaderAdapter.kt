@@ -8,9 +8,10 @@ import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
-import org.xtimms.ridebus.databinding.RouteInfoHeaderBinding
+import org.xtimms.ridebus.databinding.RouteInfoHeaderNewBinding
 import org.xtimms.ridebus.ui.base.controller.getMainAppBarHeight
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
+import org.xtimms.ridebus.util.system.getThemeColor
 import org.xtimms.ridebus.widget.RideBusChipGroup
 
 class RouteInfoHeaderAdapter(
@@ -21,11 +22,11 @@ class RouteInfoHeaderAdapter(
 
     private var route: Route = controller.presenter.route
 
-    private lateinit var binding: RouteInfoHeaderBinding
+    private lateinit var binding: RouteInfoHeaderNewBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
-        binding = RouteInfoHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        updateCoverPosition()
+        binding = RouteInfoHeaderNewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        updateDetailsPosition()
 
         binding.routeSummary.expanded = isTablet
 
@@ -54,10 +55,10 @@ class RouteInfoHeaderAdapter(
         notifyItemChanged(0, this)
     }
 
-    private fun updateCoverPosition() {
+    private fun updateDetailsPosition() {
         if (isTablet) return
         val appBarHeight = controller.getMainAppBarHeight()
-        binding.number.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+        binding.details.updateLayoutParams<ViewGroup.MarginLayoutParams> {
             topMargin += appBarHeight
         }
     }
@@ -74,6 +75,24 @@ class RouteInfoHeaderAdapter(
          * @param route route object containing information about route.
          */
         private fun setRouteInfo() {
+            when (route.transportId) {
+                BUS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.busPrimary))
+                MINIBUS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.minibusPrimary))
+                EXPRESS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.expressPrimary))
+            }
+
+            when (route.transportId) {
+                BUS -> binding.type.setImageResource(R.drawable.ic_bus_side)
+                MINIBUS -> binding.type.setImageResource(R.drawable.ic_van_side)
+                EXPRESS -> binding.type.setImageResource(R.drawable.ic_lightning_bolt)
+            }
+
+            when (route.transportId) {
+                BUS -> binding.type.setColorFilter(itemView.context.getThemeColor(R.attr.busOnPrimary))
+                MINIBUS -> binding.type.setColorFilter(itemView.context.getThemeColor(R.attr.minibusOnPrimary))
+                EXPRESS -> binding.type.setColorFilter(itemView.context.getThemeColor(R.attr.expressOnPrimary))
+            }
+
             // Update number TextView
             binding.number.text = route.number
 
@@ -130,5 +149,11 @@ class RouteInfoHeaderAdapter(
                 ": " + route.techInfo + "\n\n" + view.context.getString(R.string.carrier_company) +
                 ": " + route.carrierCompany
         }
+    }
+
+    companion object {
+        private const val BUS = 1
+        private const val MINIBUS = 2
+        private const val EXPRESS = 3
     }
 }

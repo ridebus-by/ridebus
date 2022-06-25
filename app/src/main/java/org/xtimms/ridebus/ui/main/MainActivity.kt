@@ -33,6 +33,7 @@ import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
+import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
 import org.xtimms.ridebus.util.lang.launchUI
@@ -361,7 +362,7 @@ class MainActivity : BaseActivity() {
         } else {
             binding.tabs.setupWithViewPager(null)
         }
-        binding.tabs.isVisible = to is TabbedController
+        binding.tabs.isVisible = to is TabbedController && to !is ScheduleTabbedController
 
         if (!isTablet()) {
             // Save lift state
@@ -430,5 +431,7 @@ class MainActivity : BaseActivity() {
         const val SHORTCUT_ROUTE = "org.xtimms.ridebus.SHOW_ROUTE"
         const val SHORTCUT_STOP = "org.xtimms.ridebus.SHOW_STOP"
         const val SHORTCUT_FAVORITE = "org.xtimms.ridebus.SHOW_FAVORITE"
+
+        private const val REQUEST_PERMISSIONS_REQUEST_CODE = 1
     }
 }

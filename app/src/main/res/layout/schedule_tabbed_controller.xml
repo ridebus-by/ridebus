@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardElevation="0dp"
+            app:strokeColor="?android:attr/divider"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:minWidth="40dp"
+                        android:minHeight="40dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textStyle="bold"
+                            tools:text="21" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/route_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="normal"
+                        tools:text="Швейная фабрика - СХТ" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="TODO"
+                        android:gravity="center"
+                        android:minWidth="40dp"
+                        android:minHeight="40dp"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_stop"
+                        app:tint="?android:attr/textColorPrimary"
+                        tools:ignore="ContentDescription,HardcodedText" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/stop_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            tools:text="РСУ" />
+
+                        <TextView
+                            android:id="@+id/stop_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="12sp"
+                            tools:text="на ЖБИ" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+    <org.xtimms.ridebus.widget.EmptyView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs"
+        tools:visibility="gone" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

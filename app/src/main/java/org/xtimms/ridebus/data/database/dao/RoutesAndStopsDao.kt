@@ -8,12 +8,9 @@ import org.xtimms.ridebus.data.database.entity.Stop
 @Dao
 interface RoutesAndStopsDao {
 
-    @Query("SELECT Routes.* FROM RoutesAndStops INNER JOIN Routes on Routes._id = RoutesAndStops.route_id WHERE stop_id = :stopId")
+    @Query("SELECT route.* FROM routeStops INNER JOIN route on route._id = routeStops.route_id WHERE stop_id = :stopId")
     fun getRoutesByStop(stopId: Int): List<Route>
 
-    @Query("SELECT Stops.* FROM RoutesAndStops INNER JOIN Stops ON Stops._id = RoutesAndStops.stop_id WHERE RoutesAndStops.route_id = :routeId")
+    @Query("SELECT stop.* FROM routeStops INNER JOIN stop ON stop._id = routeStops.stop_id WHERE routeStops.route_id = :routeId ORDER BY stop_number ASC")
     fun getStopsByRoute(routeId: Int): List<Stop>
-
-    @Query("SELECT strftime('%Y-%m-%d %H:%M', 'now', 'localtime', 'start of day', Trips.hour || ' hours', Trips.minute || ' minutes', RoutesAndStops.shift_hour || ' hours', RoutesAndStops.shift_minute || ' minutes') AS arrival_time FROM Trips, RoutesAndStops, Routes WHERE Trips.route_id = Routes._id AND Trips.type_id IN (0, 1) AND arrival_time >= strftime('%Y-%m-%d %H:%M', 'now', 'localtime') ORDER BY Trips.hour, Trips.minute LIMIT 1")
-    fun getArrivalTime(): String
 }

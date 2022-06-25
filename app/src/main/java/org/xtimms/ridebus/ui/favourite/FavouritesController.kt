@@ -83,8 +83,7 @@ class FavouritesController :
 
     override fun onItemClick(position: Int) {
         val item = adapter?.getItem(position) as? FavouriteItem ?: return
-        val favourite = item.route
-        openRouteDetails(RouteDetailsController(favourite))
+        openRouteDetails(item.route)
     }
 
     override fun onPinClick(position: Int) {
@@ -121,8 +120,8 @@ class FavouritesController :
         presenter.updateFavourites()
     }
 
-    private fun openRouteDetails(controller: RouteDetailsController) {
-        parentController!!.router.pushController(controller.withFadeTransaction())
+    private fun openRouteDetails(route: Route) {
+        parentController!!.router.pushController(RouteDetailsController(route).withFadeTransaction())
     }
 
     fun setFavourites(list: List<IFlexible<*>>) {

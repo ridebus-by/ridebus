@@ -14,7 +14,7 @@ import uy.kohesive.injekt.api.get
 class RouteOnStopPresenter(
     val stop: Stop,
     private val db: RideBusDatabase = Injekt.get()
-) : BasePresenter<RoutesOnStopController>() {
+) : BasePresenter<StopDetailsController>() {
 
     /**
      * List containing stops.
@@ -34,6 +34,6 @@ class RouteOnStopPresenter(
             .doOnNext { stops = it }
             .map { it.map(::RoutesOnStopItem) }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(RoutesOnStopController::onNextStop)
+            .subscribeLatestCache(StopDetailsController::onNextStop)
     }
 }

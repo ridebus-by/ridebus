@@ -7,7 +7,7 @@ import eu.davidea.flexibleadapter.items.AbstractHeaderItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
 
-data class TypeItem(val type: String) : AbstractHeaderItem<TypeHolder>() {
+data class TypeItem(val type: Int) : AbstractHeaderItem<TypeHolder>() {
 
     override fun getLayoutRes(): Int {
         return R.layout.section_header_item

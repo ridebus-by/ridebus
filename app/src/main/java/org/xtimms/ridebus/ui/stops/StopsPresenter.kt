@@ -29,7 +29,7 @@ class StopsPresenter(
 
     private fun loadStops(cityId: Int) {
         stopsSubscription?.unsubscribe()
-        stopsSubscription = Observable.just(db.stopDao().getAll(cityId))
+        stopsSubscription = Observable.just(db.stopDao().getAllStops(cityId))
             .doOnNext { stops = it }
             .map { it.map(::StopsItem) }
             .observeOn(AndroidSchedulers.mainThread())

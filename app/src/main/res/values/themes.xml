@@ -37,6 +37,13 @@
         <item name="colorErrorContainer">@color/errorContainer</item>
         <item name="colorOnErrorContainer">@color/onErrorContainer</item>
 
+        <item name="busPrimary">@color/bus_primary</item>
+        <item name="minibusPrimary">@color/minibus_primary</item>
+        <item name="expressPrimary">@color/express_primary</item>
+        <item name="busOnPrimary">@color/bus_onPrimary</item>
+        <item name="minibusOnPrimary">@color/minibus_onPrimary</item>
+        <item name="expressOnPrimary">@color/express_onPrimary</item>
+
         <item name="android:divider">@color/divider_default</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 

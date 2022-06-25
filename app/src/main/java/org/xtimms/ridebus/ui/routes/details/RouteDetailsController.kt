@@ -26,7 +26,7 @@ import org.xtimms.ridebus.ui.routes.details.stop.RouteStopsHeaderAdapter
 import org.xtimms.ridebus.ui.routes.details.stop.StopOnRouteItem
 import org.xtimms.ridebus.ui.routes.details.stop.StopsOnRouteAdapter
 import org.xtimms.ridebus.ui.routes.details.stop.base.BaseStopsAdapter
-import org.xtimms.ridebus.ui.schedule.ScheduleController
+import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
 import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
 import uy.kohesive.injekt.Injekt
@@ -230,7 +230,7 @@ class RouteDetailsController :
         val adapter = stopsAdapter
         val route = route?.routeId ?: return
         val stop = adapter?.getItem(position)?.stop?.stopId ?: return
-        router.pushController(ScheduleController(route, stop).withFadeTransaction())
+        router.pushController(ScheduleTabbedController(route, stop).withFadeTransaction())
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
