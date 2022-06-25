@@ -18,8 +18,8 @@ if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
     apply(plugin = "com.google.gms.google-services")
 }
 
-val acraAuthLogin: String = gradleLocalProperties(rootDir).getProperty("authLogin") ?: "acra_login"
-val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authPassword") ?: "acra_password"
+val acraAuthLogin: String = gradleLocalProperties(rootDir).getProperty("authLogin") ?: "\"acra_login\""
+val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authPassword") ?: "\"acra_password\""
 
 shortcutHelper.setFilePath("./shortcuts.xml")
 
