@@ -40,8 +40,8 @@ android {
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
-        buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin)
-        buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword)
+        buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin ?: "acra_login")
+        buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword ?: "acra_password")
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -217,7 +217,7 @@ dependencies {
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.8.4")
-    implementation("com.google.firebase:firebase-analytics:20.1.2")
+    implementation("com.google.firebase:firebase-analytics:21.0.0")
 
     // Tests
     testImplementation("junit:junit:4.13.2")
