@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.V23.RideBus" parent="Base.Theme.RideBus">
+        <item name="android:windowLightStatusBar">@bool/lightStatusBar</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/surface_amoled</item>
+    </style>
+
+    <style name="Theme.RideBus" parent="Base.V23.RideBus" />
+
+</resources>
