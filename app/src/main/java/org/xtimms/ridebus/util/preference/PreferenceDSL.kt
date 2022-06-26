@@ -8,7 +8,6 @@ import org.xtimms.ridebus.util.system.getResourceColor
 import org.xtimms.ridebus.widget.preference.AdaptiveTitlePreferenceCategory
 import org.xtimms.ridebus.widget.preference.IntListPreference
 import org.xtimms.ridebus.widget.preference.SwitchPreferenceCategory
-import org.xtimms.ridebus.widget.preference.SwitchSettingsPreference
 
 @DslMarker
 @Target(AnnotationTarget.TYPE)
@@ -24,14 +23,13 @@ inline fun PreferenceGroup.preference(block: (@DSL Preference).() -> Unit): Pref
 
 inline fun PreferenceGroup.infoPreference(@StringRes infoRes: Int): Preference {
     return initThenAdd(
-        Preference(context),
-        {
-            iconRes = R.drawable.ic_info
-            iconTint = context.getResourceColor(android.R.attr.textColorHint)
-            summaryRes = infoRes
-            isSelectable = false
-        }
-    )
+        Preference(context)
+    ) {
+        iconRes = R.drawable.ic_info
+        iconTint = context.getResourceColor(android.R.attr.textColorHint)
+        summaryRes = infoRes
+        isSelectable = false
+    }
 }
 
 inline fun PreferenceGroup.switchPreference(block: (@DSL SwitchPreferenceCompat).() -> Unit): SwitchPreferenceCompat {
@@ -40,10 +38,6 @@ inline fun PreferenceGroup.switchPreference(block: (@DSL SwitchPreferenceCompat)
 
 inline fun PreferenceGroup.switchPreferenceCategory(block: (@DSL SwitchPreferenceCategory).() -> Unit): SwitchPreferenceCategory {
     return initThenAdd(SwitchPreferenceCategory(context), block)
-}
-
-inline fun PreferenceGroup.switchSettingsPreference(block: (@DSL SwitchSettingsPreference).() -> Unit): SwitchSettingsPreference {
-    return initThenAdd(SwitchSettingsPreference(context), block)
 }
 
 inline fun PreferenceGroup.checkBoxPreference(block: (@DSL CheckBoxPreference).() -> Unit): CheckBoxPreference {

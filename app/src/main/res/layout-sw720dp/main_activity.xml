@@ -32,9 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:elevation="1dp"
+            app:headerLayout="@layout/header_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/main_nav"
-            app:headerLayout="@layout/header_layout" />
+            app:menu="@menu/main_nav" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"

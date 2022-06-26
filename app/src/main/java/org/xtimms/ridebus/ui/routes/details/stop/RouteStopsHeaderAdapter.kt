@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.databinding.RouteStopsHeaderBinding
+import org.xtimms.ridebus.databinding.RouteDetailStopsHeaderBinding
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 
 class RouteStopsHeaderAdapter(
@@ -15,10 +15,10 @@ class RouteStopsHeaderAdapter(
 
     private var numChapters: Int? = null
 
-    private lateinit var binding: RouteStopsHeaderBinding
+    private lateinit var binding: RouteDetailStopsHeaderBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
-        binding = RouteStopsHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = RouteDetailStopsHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HeaderViewHolder(binding.root)
     }
 
@@ -37,7 +37,7 @@ class RouteStopsHeaderAdapter(
 
     inner class HeaderViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            binding.chaptersLabel.text = if (numChapters == null) {
+            binding.stopsLabel.text = if (numChapters == null) {
                 view.context.getString(R.string.information_no_stops_on_route)
             } else {
                 view.context.resources.getQuantityString(R.plurals.route_num_stops, numChapters!!, numChapters)

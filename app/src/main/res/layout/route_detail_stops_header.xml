@@ -10,7 +10,7 @@
     android:paddingBottom="8dp">
 
     <TextView
-        android:id="@+id/chapters_label"
+        android:id="@+id/stops_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/title_stops"

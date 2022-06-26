@@ -22,7 +22,7 @@ class RouteItem(val route: Route) : AbstractFlexibleItem<RouteHolder>() {
     }
 
     override fun getLayoutRes(): Int {
-        return R.layout.routes_item
+        return R.layout.route_item
     }
 
     override fun createViewHolder(

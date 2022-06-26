@@ -24,19 +24,18 @@
             app:layout_constraintWidth_max="@dimen/tablet_sidebar_max_width"
             app:layout_constraintWidth_percent="0.5"
             tools:itemCount="1"
-            tools:listitem="@layout/route_info_header" />
+            tools:listitem="@layout/route_detail_header" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/stops_recycler"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="88dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/info_recycler"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/route_stop_item" />
+            tools:listitem="@layout/route_detail_stop_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

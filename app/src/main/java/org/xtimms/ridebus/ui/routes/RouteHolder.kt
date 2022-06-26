@@ -3,7 +3,7 @@ package org.xtimms.ridebus.ui.routes
 import android.view.View
 import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.data.preference.PreferencesHelper
-import org.xtimms.ridebus.databinding.RoutesItemBinding
+import org.xtimms.ridebus.databinding.RouteItemBinding
 import org.xtimms.ridebus.util.lang.transliterate
 import uy.kohesive.injekt.injectLazy
 
@@ -12,7 +12,7 @@ class RouteHolder(view: View, val adapter: RouteAdapter) :
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private val binding = RoutesItemBinding.bind(view)
+    private val binding = RouteItemBinding.bind(view)
 
     init {
         binding.holder.setOnClickListener {

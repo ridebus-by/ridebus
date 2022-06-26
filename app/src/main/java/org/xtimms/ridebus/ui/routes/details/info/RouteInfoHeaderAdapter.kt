@@ -8,7 +8,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
-import org.xtimms.ridebus.databinding.RouteInfoHeaderNewBinding
+import org.xtimms.ridebus.databinding.RouteDetailHeaderBinding
 import org.xtimms.ridebus.ui.base.controller.getMainAppBarHeight
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.util.system.getThemeColor
@@ -22,10 +22,10 @@ class RouteInfoHeaderAdapter(
 
     private var route: Route = controller.presenter.route
 
-    private lateinit var binding: RouteInfoHeaderNewBinding
+    private lateinit var binding: RouteDetailHeaderBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
-        binding = RouteInfoHeaderNewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = RouteDetailHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         updateDetailsPosition()
 
         binding.routeSummary.expanded = isTablet

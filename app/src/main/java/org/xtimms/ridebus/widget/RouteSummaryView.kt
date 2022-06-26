@@ -16,7 +16,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.databinding.RouteSummaryBinding
+import org.xtimms.ridebus.databinding.RouteDetailSummaryBinding
 import org.xtimms.ridebus.util.system.animatorDurationScale
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
@@ -28,7 +28,7 @@ class RouteSummaryView @JvmOverloads constructor(
     @StyleRes defStyleRes: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val binding = RouteSummaryBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = RouteDetailSummaryBinding.inflate(LayoutInflater.from(context), this, true)
 
     private var animatorSet: AnimatorSet? = null
 

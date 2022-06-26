@@ -11,5 +11,4 @@ interface ScheduleDao {
 
     @Query("SELECT schedule.typeDay_id FROM schedule WHERE schedule.routeStop_id = (SELECT routeStops._id FROM routeStops WHERE route_id = :routeId AND stop_id = :stopId) GROUP BY schedule.typeDay_id")
     fun getTypeDay(routeId: Int, stopId: Int): List<Int>
-
 }

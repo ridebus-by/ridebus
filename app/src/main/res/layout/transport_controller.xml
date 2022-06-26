@@ -12,7 +12,7 @@
         android:clipToPadding="false"
         android:paddingTop="8dp"
         android:paddingBottom="88dp"
-        tools:listitem="@layout/routes_item" />
+        tools:listitem="@layout/route_item" />
 
     <org.xtimms.ridebus.widget.MaterialFastScroll
         android:id="@+id/fast_scroller"

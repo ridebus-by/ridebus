@@ -14,7 +14,7 @@ class StopOnRouteItem(stop: Stop) :
     BaseStopItem<StopOnRouteHolder, AbstractHeaderItem<FlexibleViewHolder>>(stop) {
 
     override fun getLayoutRes(): Int {
-        return R.layout.route_stop_item
+        return R.layout.route_detail_stop_item
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): StopOnRouteHolder {
