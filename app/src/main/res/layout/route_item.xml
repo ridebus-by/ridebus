@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.RideBus.Circle" />
 
-    <org.xtimms.ridebus.widget.AutoFitTextView
+    <TextView
         android:id="@+id/route_number"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:gravity="center"
         android:textColor="?attr/colorOnPrimary"
-        android:textSize="30sp"
         android:textStyle="bold"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="@+id/circle"
         app:layout_constraintStart_toStartOf="@+id/circle"
