@@ -11,7 +11,7 @@ import org.xtimms.ridebus.R
 class RideBusChipGroup @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = R.attr.chipGroupStyle
+    defStyleAttr: Int = com.google.android.material.R.attr.chipGroupStyle
 ) : ChipGroup(context, attrs, defStyleAttr) {
 
     private var isLayoutSuppressedCompat = false

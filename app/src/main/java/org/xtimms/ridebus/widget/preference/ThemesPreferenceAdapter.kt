@@ -54,7 +54,7 @@ class ThemesPreferenceAdapter(private val clickListener: OnItemClickListener) :
 
     inner class ThemeViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        private val selectedColor = view.context.getResourceColor(R.attr.colorAccent)
+        private val selectedColor = view.context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
         private val unselectedColor = view.context.getResourceColor(android.R.attr.textColorHint)
 
         fun bind(appTheme: PreferenceValues.AppTheme) {

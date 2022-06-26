@@ -86,7 +86,7 @@ fun Context.openInBrowser(uri: Uri, @ColorInt toolbarColor: Int? = null) {
         val intent = CustomTabsIntent.Builder()
             .setDefaultColorSchemeParams(
                 CustomTabColorSchemeParams.Builder()
-                    .setToolbarColor(toolbarColor ?: getResourceColor(R.attr.colorPrimary))
+                    .setToolbarColor(toolbarColor ?: getResourceColor(androidx.appcompat.R.attr.colorPrimary))
                     .build()
             )
             .build()

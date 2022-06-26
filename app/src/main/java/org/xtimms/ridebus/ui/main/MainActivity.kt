@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -98,7 +99,9 @@ class MainActivity : BaseActivity() {
             val elapsed = System.currentTimeMillis() - startTime
             elapsed <= SPLASH_MIN_DURATION || (!ready && elapsed <= SPLASH_MAX_DURATION)
         }
-        setSplashScreenExitAnimation(splashScreen)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setSplashScreenExitAnimation(splashScreen)
+        }
 
         if (binding.sideNav != null) {
             preferences.sideNavIconAlignment()
@@ -192,6 +195,7 @@ class MainActivity : BaseActivity() {
      * When custom animation is used, status and navigation bar color will be set to transparent and will be restored
      * after the animation is finished.
      */
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setSplashScreenExitAnimation(splashScreen: SplashScreen?) {
         val setNavbarScrim = {
             // Make sure navigation bar is on bottom before we modify it

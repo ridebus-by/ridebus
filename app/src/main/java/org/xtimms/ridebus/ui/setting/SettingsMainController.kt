@@ -16,7 +16,7 @@ class SettingsMainController : SettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.label_settings
 
-        val tintColor = context.getResourceColor(R.attr.colorAccent)
+        val tintColor = context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
 
         preference {
             iconRes = R.drawable.ic_tune

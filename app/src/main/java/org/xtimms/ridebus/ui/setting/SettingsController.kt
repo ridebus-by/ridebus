@@ -91,7 +91,7 @@ abstract class SettingsController : PreferenceController() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val tv = TypedValue()
-        activity!!.theme.resolveAttribute(R.attr.preferenceTheme, tv, true)
+        activity!!.theme.resolveAttribute(androidx.preference.R.attr.preferenceTheme, tv, true)
         themedContext = ContextThemeWrapper(activity, tv.resourceId)
 
         val screen = preferenceManager.createPreferenceScreen(themedContext!!)
@@ -104,7 +104,7 @@ abstract class SettingsController : PreferenceController() {
     private fun animatePreferenceHighlight(view: View) {
         val origBackground = view.background
         ValueAnimator
-            .ofObject(ArgbEvaluator(), Color.TRANSPARENT, view.context.getResourceColor(R.attr.colorControlHighlight))
+            .ofObject(ArgbEvaluator(), Color.TRANSPARENT, view.context.getResourceColor(androidx.appcompat.R.attr.colorControlHighlight))
             .apply {
                 duration = 200L
                 repeatCount = 5

@@ -27,7 +27,7 @@ class FavouriteHolder(view: View, val adapter: FavouritesAdapter) :
 
         binding.pin.isVisible = true
         if (item.isPinned) {
-            binding.pin.setVectorCompat(R.drawable.ic_push_pin_filled, R.attr.colorAccent)
+            binding.pin.setVectorCompat(R.drawable.ic_push_pin_filled, androidx.appcompat.R.attr.colorAccent)
         } else {
             binding.pin.setVectorCompat(R.drawable.ic_push_pin_outline, android.R.attr.textColorHint)
         }

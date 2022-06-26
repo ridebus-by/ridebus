@@ -109,7 +109,7 @@ class RideBusAppBarLayout @JvmOverloads constructor(
         }
         if (start != end) {
             statusBarForegroundAnimator = ValueAnimator.ofInt(start, end).apply {
-                duration = resources.getInteger(R.integer.app_bar_elevation_anim_duration).toLong()
+                duration = resources.getInteger(com.google.android.material.R.integer.app_bar_elevation_anim_duration).toLong()
                 interpolator = LINEAR_INTERPOLATOR
                 addUpdateListener {
                     foreground.alpha = it.animatedValue as Int
@@ -155,7 +155,7 @@ class RideBusAppBarLayout @JvmOverloads constructor(
 
         val fromElevation = elevation
         val toElevation = if (lifted) {
-            resources.getDimension(R.dimen.design_appbar_elevation)
+            resources.getDimension(com.google.android.material.R.dimen.design_appbar_elevation)
         } else {
             0F
         }
@@ -185,7 +185,7 @@ class RideBusAppBarLayout @JvmOverloads constructor(
         if (animators.isNotEmpty()) {
             animatorSet?.cancel()
             animatorSet = AnimatorSet().apply {
-                duration = resources.getInteger(R.integer.app_bar_elevation_anim_duration).toLong()
+                duration = resources.getInteger(com.google.android.material.R.integer.app_bar_elevation_anim_duration).toLong()
                 interpolator = LINEAR_INTERPOLATOR
                 playTogether(*animators.toTypedArray())
                 start()

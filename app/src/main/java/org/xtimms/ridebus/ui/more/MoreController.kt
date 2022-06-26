@@ -28,7 +28,7 @@ class MoreController :
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.label_more
 
-        val tintColor = context.getResourceColor(R.attr.colorAccent)
+        val tintColor = context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
 
         switchPreference {
             bindTo(preferences.autoUpdateSchedule())

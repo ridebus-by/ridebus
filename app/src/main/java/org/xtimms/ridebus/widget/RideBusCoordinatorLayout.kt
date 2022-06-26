@@ -39,7 +39,7 @@ import reactivecircus.flowbinding.android.view.hierarchyChangeEvents
 class RideBusCoordinatorLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = R.attr.coordinatorLayoutStyle
+    defStyleAttr: Int = androidx.coordinatorlayout.R.attr.coordinatorLayoutStyle
 ) : CoordinatorLayout(context, attrs, defStyleAttr) {
 
     /**
