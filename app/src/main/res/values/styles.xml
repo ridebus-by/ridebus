@@ -108,6 +108,9 @@
     <!--Widgets.Switch-->
     <!--==============-->
     <style name="Widget.RideBus.Switch" parent="Widget.Material3.CompoundButton.Switch">
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="track">@drawable/switch_track</item>
+        <item name="useMaterialThemeColors">false</item>
         <item name="materialThemeOverlay">@style/ThemeOverlay.RideBus.Switch</item>
     </style>
 
