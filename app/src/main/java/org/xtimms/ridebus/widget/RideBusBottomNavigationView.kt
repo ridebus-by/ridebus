@@ -18,7 +18,6 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.flow.launchIn
-import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.util.preference.asImmediateFlow
 import org.xtimms.ridebus.util.system.applySystemAnimatorScale
@@ -26,10 +25,10 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class RideBusBottomNavigationView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = com.google.android.material.R.attr.bottomNavigationStyle,
-        defStyleRes: Int = com.google.android.material.R.style.Widget_Design_BottomNavigationView
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = com.google.android.material.R.attr.bottomNavigationStyle,
+    defStyleRes: Int = com.google.android.material.R.style.Widget_Design_BottomNavigationView
 ) : BottomNavigationView(context, attrs, defStyleAttr, defStyleRes) {
 
     private var currentAnimator: ViewPropertyAnimator? = null
@@ -124,7 +123,7 @@ class RideBusBottomNavigationView @JvmOverloads constructor(
             .setDuration(duration)
             .applySystemAnimatorScale(context)
             .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
+                override fun onAnimationEnd(animation: Animator) {
                     currentAnimator = null
                     postInvalidate()
                 }

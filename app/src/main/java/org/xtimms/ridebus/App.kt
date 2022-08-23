@@ -59,7 +59,7 @@ open class App : Application(), DefaultLifecycleObserver {
             buildConfigClass = BuildConfig::class.java
             reportFormat = StringFormat.JSON
             excludeMatchingSharedPreferencesKeys =
-                arrayOf(".*username.*", ".*password.*", ".*token.*")
+                listOf(".*username.*", ".*password.*", ".*token.*")
             httpSender {
                 uri = BuildConfig.ACRA_URI
                 basicAuthLogin = BuildConfig.ACRA_AUTH_LOGIN

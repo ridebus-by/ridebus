@@ -39,7 +39,7 @@ android {
         buildConfigField("String", "DEVELOPER_EMAIL", "\"mailto:ztimms73@gmail.com\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
-        buildConfigField("String", "ACRA_URI", "\"http://192.168.1.5:8080/report\"")
+        buildConfigField("String", "ACRA_URI", "\"http://86.57.183.214:8082/report\"")
         buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin)
         buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword)
 
@@ -148,11 +148,11 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.4.1")
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha04")
     implementation("androidx.browser:browser:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("androidx.core:core-ktx:1.9.0-alpha02")
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
-    implementation("androidx.recyclerview:recyclerview:1.3.0-alpha02")
+    implementation("androidx.recyclerview:recyclerview:1.3.0-beta02")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     val lifecycleVersion = "2.4.0"
@@ -216,8 +216,8 @@ dependencies {
     implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
 
     // Crash reports/analytics
-    implementation("ch.acra:acra-http:5.8.4")
-    implementation("com.google.firebase:firebase-analytics:21.0.0")
+    implementation("ch.acra:acra-http:5.9.5")
+    implementation("com.google.firebase:firebase-analytics:21.1.0")
 
     // Tests
     testImplementation("junit:junit:4.13.2")
