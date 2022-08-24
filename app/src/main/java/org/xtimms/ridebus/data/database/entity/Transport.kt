@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class Transport(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val transportId: Int,
-    @ColumnInfo(name = "type") val type: String,
+    @ColumnInfo(name = "type") val type: String
 )

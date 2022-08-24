@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class City(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val cityId: Int,
-    @ColumnInfo(name = "cityName") val city: String,
+    @ColumnInfo(name = "cityName") val city: String
 )

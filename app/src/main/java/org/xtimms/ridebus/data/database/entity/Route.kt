@@ -27,5 +27,5 @@ data class Route(
     @ColumnInfo(name = "qr_code") val qrCode: Int,
     @ColumnInfo(name = "is_small") val isSmall: Int,
     @ColumnInfo(name = "is_big") val isBig: Int,
-    @ColumnInfo(name = "is_very_big") val isVeryBig: Int,
+    @ColumnInfo(name = "is_very_big") val isVeryBig: Int
 )

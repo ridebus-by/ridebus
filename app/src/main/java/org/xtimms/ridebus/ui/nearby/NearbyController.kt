@@ -42,7 +42,7 @@ class NearbyController : // TODO
                 EmptyView.Action(R.string.grant_permission, R.drawable.ic_marker_check) {
                     activity?.toast("KEKW")
                 }
-            ),
+            )
         )
     }
 }

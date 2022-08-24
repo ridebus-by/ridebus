@@ -70,7 +70,7 @@ class RideBusChipGroup @JvmOverloads constructor(
 
     class ChipModel(
         @DrawableRes val icon: Int,
-        val title: CharSequence,
+        val title: CharSequence
     ) {
 
         override fun equals(other: Any?): Boolean {

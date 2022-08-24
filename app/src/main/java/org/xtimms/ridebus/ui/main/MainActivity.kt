@@ -336,7 +336,7 @@ class MainActivity : BaseActivity() {
     private fun syncActivityViewWithController(
         to: Controller? = router.backstack.lastOrNull()?.controller,
         from: Controller? = null,
-        isPush: Boolean = true,
+        isPush: Boolean = true
     ) {
         if (from is DialogController || to is DialogController) {
             return

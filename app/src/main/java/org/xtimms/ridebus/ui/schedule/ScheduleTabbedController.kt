@@ -94,7 +94,7 @@ class ScheduleTabbedController :
 
         private val tabTitles = listOf(
             R.string.label_working_days,
-            R.string.label_weekends,
+            R.string.label_weekends
         )
             .map { resources!!.getString(it) }
 

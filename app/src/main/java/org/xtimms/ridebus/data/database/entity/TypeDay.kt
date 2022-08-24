@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class TypeDay(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val transportId: Int,
-    @ColumnInfo(name = "typeDay") val typeDay: String,
+    @ColumnInfo(name = "typeDay") val typeDay: String
 )

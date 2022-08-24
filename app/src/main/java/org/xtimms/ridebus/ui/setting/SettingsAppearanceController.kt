@@ -99,7 +99,7 @@ class SettingsAppearanceController : SettingsController() {
                     entriesRes = arrayOf(
                         R.string.alignment_top,
                         R.string.alignment_center,
-                        R.string.alignment_bottom,
+                        R.string.alignment_bottom
                     )
                     entryValues = arrayOf("0", "1", "2")
                     summary = "%s"
@@ -111,7 +111,7 @@ class SettingsAppearanceController : SettingsController() {
                         R.string.label_mode_auto,
                         R.string.label_mode_selected,
                         R.string.label_mode_labeled,
-                        R.string.label_mode_unlabeled,
+                        R.string.label_mode_unlabeled
                     )
                     entryValues = arrayOf("0", "1", "2", "3")
                     summary = "%s"

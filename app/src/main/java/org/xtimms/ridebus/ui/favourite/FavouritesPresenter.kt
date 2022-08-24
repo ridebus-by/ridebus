@@ -33,7 +33,7 @@ class FavouritesPresenter(
             0,
             1,
             1
-        ),
+        )
     )
 
     private var favouriteSubscription: Subscription? = null

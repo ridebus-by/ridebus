@@ -16,7 +16,7 @@ import org.xtimms.ridebus.widget.RideBusChipGroup
 
 class RouteInfoHeaderAdapter(
     private val controller: RouteDetailsController,
-    private val isTablet: Boolean,
+    private val isTablet: Boolean
 ) :
     RecyclerView.Adapter<RouteInfoHeaderAdapter.HeaderViewHolder>() {
 

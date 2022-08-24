@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class KindOfRoute(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val kindId: Int,
-    @ColumnInfo(name = "kindRoute") val kindRoute: String,
+    @ColumnInfo(name = "kindRoute") val kindRoute: String
 )
