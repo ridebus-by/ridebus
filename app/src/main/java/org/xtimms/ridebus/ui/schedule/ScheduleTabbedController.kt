@@ -14,8 +14,6 @@ import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.databinding.ScheduleTabbedControllerBinding
 import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
-import org.xtimms.ridebus.ui.schedule.weekends.WeekendScheduleController
-import org.xtimms.ridebus.ui.stub.StubController
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -107,8 +105,8 @@ class ScheduleTabbedController :
         override fun configureRouter(router: Router, position: Int) {
             if (!router.hasRootController()) {
                 val controller: Controller = when (position) {
-                    WORKING_DAYS_CONTROLLER -> StubController()
-                    WEEKENDS_CONTROLLER -> WeekendScheduleController()
+                    WORKING_DAYS_CONTROLLER -> ScheduleController(WORKING_DAY, route, stop)
+                    WEEKENDS_CONTROLLER -> ScheduleController(WEEKEND, route, stop)
                     else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))
@@ -125,5 +123,7 @@ class ScheduleTabbedController :
         const val WEEKENDS_CONTROLLER = 1
         const val ROUTE_EXTRA = "route"
         const val STOP_EXTRA = "stop"
+        const val WORKING_DAY = 1
+        const val WEEKEND = 2
     }
 }

@@ -21,6 +21,7 @@ ToDo:
 # License
 
     Copyright 2021 Zakhar Timoshenko
+    Copyright 2015 Javier Tomás
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
