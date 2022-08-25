@@ -1,38 +1,26 @@
 package org.xtimms.ridebus.util.system
 
+import org.xtimms.ridebus.util.TypeOfDay
+import java.text.SimpleDateFormat
 import java.util.*
 
 object TimeUtil {
 
-    /*@Throws(ParseException::class)
-    fun getTypeDay(currentDate: String, typeDayList: List<Int?>): Int {
-        var typeDay: Int = TypeOfDay.WEEKDAYS.getIdInDatabase()
-        val date: Date = SimpleDateFormat("EEEE", Locale.getDefault()).parse(currentDate)
+    fun getTypeDay(currentDate: String): Int {
+        val formatter = SimpleDateFormat("EEEE", Locale.getDefault())
+        val date = formatter.parse(currentDate) ?: Calendar.getInstance().time
         val calendar: Calendar = Calendar.getInstance()
         calendar.time = date
         val currentDay: Int = calendar.get(Calendar.DAY_OF_WEEK)
-        if (currentDay == Calendar.SATURDAY) {
-            typeDay = TypeOfDay.ON_SATURDAYS.getIdInDatabase()
-            if (!typeDayList.contains(typeDay)) {
-                typeDay = TypeOfDay.WEEKEND.getIdInDatabase()
-            }
-        }
-        if (currentDay == Calendar.SUNDAY) {
-            typeDay = TypeOfDay.ON_SUNDAYS.getIdInDatabase()
-            if (!typeDayList.contains(typeDay)) {
-                typeDay = TypeOfDay.WEEKEND.getIdInDatabase()
-            }
-        }
-        if (currentDay == Calendar.FRIDAY) {
-            typeDay = TypeOfDay.ON_FRIDAY.getIdInDatabase()
-            if (!typeDayList.contains(typeDay)) {
-                typeDay = TypeOfDay.WEEKDAYS.getIdInDatabase()
-            }
+        val typeDay = if (currentDay == Calendar.SATURDAY && currentDay == Calendar.SUNDAY) {
+            TypeOfDay.WEEKEND.idInDatabase
+        } else {
+            TypeOfDay.WEEKDAYS.idInDatabase
         }
         return typeDay
     }
 
-    @Throws(ParseException::class)
+    /*@Throws(ParseException::class)
     fun getRemainingClosestTime(timeList: List<String>, currentTime: String): ResultTime {
         val hiLoTimes = closestTime(timeList, currentTime)
         val loClosestTime = hiLoTimes[0]

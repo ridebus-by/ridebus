@@ -17,5 +17,6 @@ class StopOnRouteHolder(
         binding.timeline.initLine(TimelineView.getTimeLineViewType(bindingAdapterPosition, adapter.itemCount))
         binding.stopTitle.text = stop.name
         binding.stopDescription.text = stop.direction
+        binding.timeView.times = item.times
     }
 }

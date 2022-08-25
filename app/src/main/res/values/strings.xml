@@ -133,4 +133,7 @@
     <string name="token_time_now">right now</string>
     <string name="label_working_days">Working days</string>
     <string name="label_weekends">Weekends</string>
+    <string name="reltime_hours">%1$d h</string>
+    <string name="reltime_minutes">%1$d m</string>
+    <string name="reltime_hours_minutes">%1$d h %2$d m</string>
 </resources>

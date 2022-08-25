@@ -9,8 +9,9 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.ui.routes.details.stop.base.BaseStopItem
+import org.xtimms.ridebus.util.Times
 
-class StopOnRouteItem(stop: Stop) :
+class StopOnRouteItem(stop: Stop, val times: Times) :
     BaseStopItem<StopOnRouteHolder, AbstractHeaderItem<FlexibleViewHolder>>(stop) {
 
     override fun getLayoutRes(): Int {
@@ -28,5 +29,23 @@ class StopOnRouteItem(stop: Stop) :
         payloads: List<Any?>?
     ) {
         holder.bind(this)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        if (!super.equals(other)) return false
+
+        other as StopOnRouteItem
+
+        if (times != other.times) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + times.hashCode()
+        return result
     }
 }

@@ -125,4 +125,16 @@
     <string name="working_hours">Время работы</string>
     <string name="add_to_favourites">Добавить в избранное</string>
     <string name="carrier_company">Компания-перевозчик</string>
+    <string name="theme_honey">Мёд</string>
+    <string name="pref_side_nav_labels">Режимы отображения надписей</string>
+    <string name="label_mode_auto">Автоматически</string>
+    <string name="label_mode_selected">Когда выбрано</string>
+    <string name="label_mode_labeled">Маркированный</string>
+    <string name="label_mode_unlabeled">Немаркированный</string>
+    <string name="token_time_now">только что</string>
+    <string name="label_working_days">Будни</string>
+    <string name="label_weekends">Выходные</string>
+    <string name="reltime_hours">%1$d ч</string>
+    <string name="reltime_minutes">%1$d м</string>
+    <string name="reltime_hours_minutes">%1$d ч %2$d м</string>
 </resources>
