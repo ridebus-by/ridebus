@@ -51,7 +51,9 @@ class RouteDetailsPresenter(
                     ),
                     stop.stopId
                 ).map { times -> StopOnRouteItem(stop, times) }
-            }.toList()
+            }.toSortedList { p1, p2 ->
+                p1?.stop?.stopId?.compareTo(p2?.stop?.stopId!!) // FIXME Sort by number of stop on route
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(RouteDetailsController::onNextStops)
     }

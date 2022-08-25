@@ -51,7 +51,9 @@ class RouteOnStopPresenter(
                     route.routeId
                 )
                     .map { times -> RoutesOnStopItem(route, times) }
-            }.toList()
+            }.toSortedList { p1, p2 ->
+                p1?.route?.routeId?.compareTo(p2?.route?.routeId!!) // TODO Sort by time
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(RoutesOnStopController::onNextRoute)
     }
