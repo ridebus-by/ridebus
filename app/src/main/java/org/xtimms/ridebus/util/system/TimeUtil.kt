@@ -12,7 +12,7 @@ object TimeUtil {
         val calendar: Calendar = Calendar.getInstance()
         calendar.time = date
         val currentDay: Int = calendar.get(Calendar.DAY_OF_WEEK)
-        val typeDay = if (currentDay == Calendar.SATURDAY && currentDay == Calendar.SUNDAY) {
+        val typeDay = if (currentDay == Calendar.SATURDAY || currentDay == Calendar.SUNDAY) {
             TypeOfDay.WEEKEND.idInDatabase
         } else {
             TypeOfDay.WEEKDAYS.idInDatabase
