@@ -5,26 +5,23 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import androidx.annotation.FloatRange
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bluelinelabs.conductor.ControllerChangeHandler
-import com.bluelinelabs.conductor.ControllerChangeType
+import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.databinding.StopsRouteControllerBinding
-import org.xtimms.ridebus.ui.base.controller.DialogController
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
-import org.xtimms.ridebus.ui.stops.details.info.StopInfoHeaderAdapter
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.text.SimpleDateFormat
+import java.util.*
 
-class StopDetailsController :
+class RoutesOnStopController :
     NucleusController<StopsRouteControllerBinding, RouteOnStopPresenter>,
     NoAppBarElevationController,
     FlexibleAdapter.OnItemClickListener,
@@ -47,35 +44,21 @@ class StopDetailsController :
     var stop: Stop? = null
         private set
 
-    private var stopInfoAdapter: StopInfoHeaderAdapter? = null
-    private var routesAdapter: RoutesOnStopAdapter? = null
-
-    private var dialog: DialogController? = null
-
-    /**
-     * For [recyclerViewUpdatesToolbarTitleAlpha]
-     */
-    private var recyclerViewToolbarTitleAlphaUpdaterAdded = false
-    private val recyclerViewToolbarTitleAlphaUpdater = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            updateToolbarTitleAlpha()
-        }
-    }
-
     init {
         setHasOptionsMenu(true)
     }
+
+    /**
+     * Adapter containing a list of routes on stop.
+     */
+    private var adapter: RoutesOnStopAdapter? = null
 
     override fun getTitle(): String {
         return "${stop?.name}"
     }
 
-    override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
-        super.onChangeStarted(handler, type)
-        if (dialog == null) {
-            updateToolbarTitleAlpha(if (type.isEnter) 0F else 1F)
-        }
-        recyclerViewUpdatesToolbarTitleAlpha(type.isEnter)
+    override fun getSubtitle(): String {
+        return "${stop?.direction}"
     }
 
     override fun createBinding(inflater: LayoutInflater) = StopsRouteControllerBinding.inflate(inflater)
@@ -87,15 +70,25 @@ class StopDetailsController :
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
+        binding.recycler.applyInsetter {
+            type(navigationBars = true) {
+                padding()
+            }
+        }
+
+        val calendar: Calendar = Calendar.getInstance()
+        val date: Date = calendar.time
+        binding.dayOfWeek.text = SimpleDateFormat("EEEE", Locale.getDefault()).format(date.time)
+
         // Init RecyclerView and adapter
-        routesAdapter = RoutesOnStopAdapter(this)
-        binding.recycler.adapter = routesAdapter
+        adapter = RoutesOnStopAdapter(this)
+        binding.recycler.adapter = adapter
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.setHasFixedSize(true)
     }
 
     override fun onDestroyView(view: View) {
-        routesAdapter = null
+        adapter = null
         super.onDestroyView(view)
     }
 
@@ -111,8 +104,8 @@ class StopDetailsController :
         }
     }
 
-    fun onNextStop(routesOnStop: List<RoutesOnStopItem>) {
-        routesAdapter?.updateDataSet(routesOnStop)
+    fun onNextRoute(routesOnStop: List<RoutesOnStopItem>) {
+        adapter?.updateDataSet(routesOnStop)
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
@@ -121,15 +114,9 @@ class StopDetailsController :
     }
 
     override fun onItemClick(position: Int) {
-        val route = routesAdapter?.getItem(position)?.route?.routeId ?: return
+        val route = adapter?.getItem(position)?.route?.routeId ?: return
         val stop = stop?.stopId ?: return
         router.pushController(ScheduleTabbedController(route, stop).withFadeTransaction())
-    }
-
-    private fun recyclerViewUpdatesToolbarTitleAlpha(enable: Boolean) {
-    }
-
-    private fun updateToolbarTitleAlpha(@FloatRange(from = 0.0, to = 1.0) alpha: Float? = null) {
     }
 
     companion object {

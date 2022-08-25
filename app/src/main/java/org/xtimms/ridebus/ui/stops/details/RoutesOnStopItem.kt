@@ -7,8 +7,9 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.util.Times
 
-class RoutesOnStopItem(val route: Route) :
+class RoutesOnStopItem(val route: Route, val times: Times) :
     AbstractFlexibleItem<RouteOnStopHolder>() {
 
     override fun getLayoutRes(): Int {

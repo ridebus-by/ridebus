@@ -45,10 +45,12 @@ class RouteDetailsPresenter(
             .observeOn(Schedulers.computation())
             .flatMapObservable { Observable.from(it) }
             .flatMapSingle { stop ->
-                getTimes(TimeUtil.getTypeDay(
-                        SimpleDateFormat("EEEE", Locale.getDefault()).format(Date())),
-                        stop.stopId)
-                    .map { times -> StopOnRouteItem(stop, times) }
+                getTimes(
+                    TimeUtil.getTypeDay(
+                        SimpleDateFormat("EEEE", Locale.getDefault()).format(Date())
+                    ),
+                    stop.stopId
+                ).map { times -> StopOnRouteItem(stop, times) }
             }.toList()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(RouteDetailsController::onNextStops)

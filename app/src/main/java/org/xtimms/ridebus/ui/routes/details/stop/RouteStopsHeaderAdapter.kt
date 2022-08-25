@@ -13,7 +13,7 @@ class RouteStopsHeaderAdapter(
 ) :
     RecyclerView.Adapter<RouteStopsHeaderAdapter.HeaderViewHolder>() {
 
-    private var numChapters: Int? = null
+    private var numStops: Int? = null
 
     private lateinit var binding: RouteDetailStopsHeaderBinding
 
@@ -30,17 +30,17 @@ class RouteStopsHeaderAdapter(
         holder.bind()
     }
 
-    fun setNumStops(numChapters: Int) {
-        this.numChapters = numChapters
+    fun setNumStops(numStops: Int) {
+        this.numStops = numStops
         notifyItemChanged(0, this)
     }
 
     inner class HeaderViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun bind() {
-            binding.stopsLabel.text = if (numChapters == null) {
+            binding.stopsLabel.text = if (numStops == null) {
                 view.context.getString(R.string.information_no_stops_on_route)
             } else {
-                view.context.resources.getQuantityString(R.plurals.route_num_stops, numChapters!!, numChapters)
+                view.context.resources.getQuantityString(R.plurals.route_num_stops, numStops!!, numStops)
             }
         }
     }

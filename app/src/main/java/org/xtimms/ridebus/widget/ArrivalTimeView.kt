@@ -11,7 +11,7 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.databinding.StopTimeViewBinding
 import org.xtimms.ridebus.util.Times
 
-class StopTimeView @JvmOverloads constructor(
+class ArrivalTimeView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs) {
@@ -44,6 +44,7 @@ class StopTimeView @JvmOverloads constructor(
         } else {
             val relative = time - now
             binding.remainingTime.text = when {
+                relative.hours == 0 && relative.minutes == 0 -> context.getString(R.string.token_time_now)
                 relative.hours == 0 -> context.getString(
                     R.string.reltime_minutes,
                     relative.minutes

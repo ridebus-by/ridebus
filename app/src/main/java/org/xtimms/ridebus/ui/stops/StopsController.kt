@@ -13,7 +13,7 @@ import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.main.MainActivity
-import org.xtimms.ridebus.ui.stops.details.StopDetailsController
+import org.xtimms.ridebus.ui.stops.details.RoutesOnStopController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import uy.kohesive.injekt.injectLazy
@@ -123,7 +123,7 @@ class StopsController :
 
     override fun onItemClick(position: Int) {
         val stop = (adapter?.getItem(position) as? StopsItem)?.stop?.stopId ?: return
-        router.pushController(StopDetailsController(stop).withFadeTransaction())
+        router.pushController(RoutesOnStopController(stop).withFadeTransaction())
     }
 
     override fun onUpdateEmptyView(size: Int) {
