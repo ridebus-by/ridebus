@@ -26,7 +26,7 @@ class RouteDetailsPresenter(
     /**
      * List containing stops.
      */
-    private var stops: List<Stop> = emptyList()
+    private var stops: List<IndexedValue<Stop>> = emptyList()
 
     private var stopsSubscription: Subscription? = null
 
@@ -38,20 +38,20 @@ class RouteDetailsPresenter(
     private fun loadStops(route: Route) {
         stopsSubscription?.unsubscribe()
         stopsSubscription = Single.fromCallable {
-            db.routesAndStopsDao().getStopsByRoute(route.routeId)
+            db.routesAndStopsDao().getStopsByRoute(route.routeId).withIndex()
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSuccess { stops = it }
+            .doOnSuccess { stops = it.toList() }
             .observeOn(Schedulers.computation())
             .flatMapObservable { Observable.from(it) }
-            .flatMapSingle { stop ->
+            .flatMapSingle { (index, stop) ->
                 getTimes(
                     TimeUtil.getTypeDay(
                         SimpleDateFormat("EEEE", Locale.getDefault()).format(Date())
                     ),
                     stop.stopId
-                ).map { times -> StopOnRouteItem(stop, times) }
-            }.toList()
+                ).map { times -> StopOnRouteItem(stop, times, index) }
+            }.toSortedList()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeLatestCache(RouteDetailsController::onNextStops)
     }

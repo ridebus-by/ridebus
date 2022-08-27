@@ -14,10 +14,6 @@ plugins {
     id("com.github.zellius.shortcut-helper")
 }
 
-if (gradle.startParameter.taskRequests.toString().contains("Standard")) {
-    apply(plugin = "com.google.gms.google-services")
-}
-
 val acraAuthLogin: String = gradleLocalProperties(rootDir).getProperty("authLogin") ?: "\"acra_login\""
 val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authPassword") ?: "\"acra_password\""
 
@@ -217,7 +213,6 @@ dependencies {
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.9.5")
-    implementation("com.google.firebase:firebase-analytics:21.1.0")
 
     // Tests
     testImplementation("junit:junit:4.13.2")

@@ -58,7 +58,6 @@ class ArrivalTimeView @JvmOverloads constructor(
                     relative.minutes
                 )
             }
-            binding.remainingTime.invalidate()
         }
     }
 

@@ -11,8 +11,9 @@ import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.ui.routes.details.stop.base.BaseStopItem
 import org.xtimms.ridebus.util.Times
 
-class StopOnRouteItem(stop: Stop, val times: Times) :
-    BaseStopItem<StopOnRouteHolder, AbstractHeaderItem<FlexibleViewHolder>>(stop) {
+class StopOnRouteItem(stop: Stop, val times: Times, private val index: Int) :
+    BaseStopItem<StopOnRouteHolder, AbstractHeaderItem<FlexibleViewHolder>>(stop),
+    Comparable<StopOnRouteItem> {
 
     override fun getLayoutRes(): Int {
         return R.layout.route_detail_stop_item
@@ -47,5 +48,9 @@ class StopOnRouteItem(stop: Stop, val times: Times) :
         var result = super.hashCode()
         result = 31 * result + times.hashCode()
         return result
+    }
+
+    override fun compareTo(other: StopOnRouteItem): Int {
+        return index.compareTo(other.index)
     }
 }
