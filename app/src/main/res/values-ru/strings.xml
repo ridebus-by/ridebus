@@ -134,7 +134,7 @@
     <string name="token_time_now">прямо сейчас</string>
     <string name="label_working_days">Будни</string>
     <string name="label_weekends">Выходные</string>
-    <string name="reltime_hours">%1$d ч</string>
-    <string name="reltime_minutes">%1$d м</string>
-    <string name="reltime_hours_minutes">%1$d ч %2$d м</string>
+    <string name="reltime_hours">через %1$d ч</string>
+    <string name="reltime_minutes">через %1$d м</string>
+    <string name="reltime_hours_minutes">через %1$d ч %2$d м</string>
 </resources>

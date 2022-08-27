@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/holder"
@@ -9,51 +9,49 @@
     android:orientation="horizontal"
     tools:ignore="Overdraw">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.github.vipulasri.timelineview.TimelineView
+        android:id="@+id/timeline"
+        android:layout_width="56dp"
         android:layout_height="match_parent"
-        android:layout_toStartOf="@+id/time_view"
-        android:orientation="horizontal"
-        tools:ignore="RelativeOverlap">
+        app:endLineColor="?attr/colorTertiary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineWidth="3dp"
+        app:marker="@drawable/oval_colored"
+        app:markerSize="14dp"
+        app:startLineColor="?attr/colorTertiary" />
 
-        <com.github.vipulasri.timelineview.TimelineView
-            android:id="@+id/timeline"
-            android:layout_width="56dp"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginHorizontal="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/time_view"
+        app:layout_constraintStart_toEndOf="@+id/timeline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/stop_title"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:endLineColor="?attr/colorTertiary"
-            app:lineWidth="3dp"
-            app:marker="@drawable/oval_colored"
-            app:markerSize="14dp"
-            app:startLineColor="?attr/colorTertiary" />
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            tools:text="@tools:sample/lorem[3]" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/stop_description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginHorizontal="8dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/stop_title"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:ellipsize="end"
-                android:gravity="center|start"
-                android:maxLines="1"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                tools:text="@tools:sample/lorem[3]" />
-
-            <TextView
-                android:id="@+id/stop_description"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ellipsize="end"
-                android:gravity="center|start"
-                android:maxLines="1"
-                android:textAppearance="?attr/textAppearanceBodySmall"
-                tools:text="@tools:sample/lorem/random" />
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            tools:text="@tools:sample/lorem/random" />
 
     </LinearLayout>
 
@@ -61,10 +59,10 @@
         android:id="@+id/time_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,6 @@ class ArrivalTimeView @JvmOverloads constructor(
 
     private val binding = StopTimeViewBinding.inflate(LayoutInflater.from(context), this)
     private val timeReceiver = TimeReceiver()
-    private var cachedTime: Times.Time? = null
 
     var times: Times? = null
         set(value) {
@@ -59,8 +58,8 @@ class ArrivalTimeView @JvmOverloads constructor(
                     relative.minutes
                 )
             }
+            binding.remainingTime.invalidate()
         }
-        cachedTime = time
     }
 
     private fun update() {
@@ -70,9 +69,7 @@ class ArrivalTimeView @JvmOverloads constructor(
             return
         }
         val closestTime = times?.closest(now)
-        if (closestTime != cachedTime) {
-            bind(closestTime, now)
-        }
+        bind(closestTime, now)
     }
 
     private inner class TimeReceiver : BroadcastReceiver() {
