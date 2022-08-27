@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Base.V27.RideBus" parent="Base.Theme.RideBus">
+        <item name="android:windowLightStatusBar">@bool/lightStatusBar</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="android:windowLightNavigationBar">@bool/lightNavigationBar</item>
     </style>
