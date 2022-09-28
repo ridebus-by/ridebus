@@ -13,11 +13,11 @@ class SettingsScheduleController : SettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.pref_category_schedule
 
-        switchPreference {
+        /*switchPreference {
             bindTo(preferences.autoUpdateSchedule())
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
-        }
+        }*/
 
         listPreference {
             bindTo(preferences.city())

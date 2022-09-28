@@ -11,7 +11,10 @@ import android.widget.Toast
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.*
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.lifecycle.lifecycleScope
@@ -28,8 +31,11 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.NotificationReceiver
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.activity.BaseActivity
-import org.xtimms.ridebus.ui.base.controller.*
-import org.xtimms.ridebus.ui.favourite.FavouritesController
+import org.xtimms.ridebus.ui.base.controller.DialogController
+import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
+import org.xtimms.ridebus.ui.base.controller.RootController
+import org.xtimms.ridebus.ui.base.controller.TabbedController
+import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
@@ -42,6 +48,11 @@ import org.xtimms.ridebus.util.system.dpToPx
 import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
+import kotlin.collections.firstOrNull
+import kotlin.collections.getOrElse
+import kotlin.collections.lastOrNull
+import kotlin.collections.mutableMapOf
+import kotlin.collections.set
 
 class MainActivity : BaseActivity() {
 
@@ -52,7 +63,6 @@ class MainActivity : BaseActivity() {
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
             2 -> R.id.nav_stops
-            3 -> R.id.nav_favorite
             else -> R.id.nav_routes
         }
     }
@@ -98,9 +108,7 @@ class MainActivity : BaseActivity() {
             val elapsed = System.currentTimeMillis() - startTime
             elapsed <= SPLASH_MIN_DURATION || (!ready && elapsed <= SPLASH_MAX_DURATION)
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setSplashScreenExitAnimation(splashScreen)
-        }
+        setSplashScreenExitAnimation(splashScreen)
 
         if (binding.sideNav != null) {
             preferences.sideNavIconAlignment()
@@ -132,7 +140,6 @@ class MainActivity : BaseActivity() {
                 when (id) {
                     R.id.nav_routes -> setRoot(RoutesTabbedController(), id)
                     R.id.nav_stops -> setRoot(StopsController(), id)
-                    R.id.nav_favorite -> setRoot(FavouritesController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
                 }
             } else if (!isHandlingShortcut) {
@@ -266,7 +273,6 @@ class MainActivity : BaseActivity() {
         when (intent.action) {
             SHORTCUT_ROUTE -> setSelectedNavItem(R.id.nav_routes)
             SHORTCUT_STOP -> setSelectedNavItem(R.id.nav_stops)
-            SHORTCUT_FAVORITE -> setSelectedNavItem(R.id.nav_favorite)
             else -> {
                 isHandlingShortcut = false
                 return false
@@ -283,13 +289,12 @@ class MainActivity : BaseActivity() {
         syncActivityViewWithController()
     }
 
-    @Suppress("UNNECESSARY_SAFE_CALL")
     override fun onDestroy() {
         super.onDestroy()
 
         // Binding sometimes isn't actually instantiated yet somehow
-        nav?.setOnItemSelectedListener(null)
-        binding?.toolbar.setNavigationOnClickListener(null)
+        nav.setOnItemSelectedListener(null)
+        binding.toolbar.setNavigationOnClickListener(null)
     }
 
     override fun onBackPressed() {
@@ -321,7 +326,7 @@ class MainActivity : BaseActivity() {
             !isConfirmingExit
     }
 
-    fun setSelectedNavItem(itemId: Int) {
+    private fun setSelectedNavItem(itemId: Int) {
         if (!isFinishing) {
             nav.selectedItemId = itemId
         }
@@ -400,7 +405,7 @@ class MainActivity : BaseActivity() {
     }
 
     // Also used from some controllers to swap bottom nav with action toolbar
-    fun showBottomNav(visible: Boolean) {
+    private fun showBottomNav(visible: Boolean) {
         if (visible) {
             binding.bottomNav?.slideUp()
         } else {
@@ -432,8 +437,6 @@ class MainActivity : BaseActivity() {
         // Shortcut actions
         const val SHORTCUT_ROUTE = "org.xtimms.ridebus.SHOW_ROUTE"
         const val SHORTCUT_STOP = "org.xtimms.ridebus.SHOW_STOP"
-        const val SHORTCUT_FAVORITE = "org.xtimms.ridebus.SHOW_FAVORITE"
-
-        private const val REQUEST_PERMISSIONS_REQUEST_CODE = 1
+        // const val SHORTCUT_FAVORITE = "org.xtimms.ridebus.SHOW_FAVORITE"
     }
 }

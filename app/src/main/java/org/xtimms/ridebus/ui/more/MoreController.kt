@@ -5,16 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
-import org.xtimms.ridebus.ui.nearby.NearbyController
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
-import org.xtimms.ridebus.ui.stub.StubController
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.getResourceColor
 import rx.subscriptions.CompositeSubscription
@@ -30,7 +26,7 @@ class MoreController :
 
         val tintColor = context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
 
-        switchPreference {
+        /*switchPreference {
             bindTo(preferences.autoUpdateSchedule())
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
@@ -40,7 +36,7 @@ class MoreController :
             preferences.autoUpdateSchedule().asFlow()
                 .onEach { isChecked = it }
                 .launchIn(viewScope)
-        }
+        }*/
 
         listPreference {
             bindTo(preferences.city())
@@ -60,7 +56,7 @@ class MoreController :
             summary = "%s"
         }
 
-        preferenceCategory {
+        /*preferenceCategory {
             preference {
                 titleRes = R.string.near_me
                 iconRes = R.drawable.ic_near_me
@@ -85,7 +81,7 @@ class MoreController :
                     router.pushController(StubController().withFadeTransaction())
                 }
             }
-        }
+        }*/
 
         preferenceCategory {
             preference {
@@ -100,12 +96,12 @@ class MoreController :
                 titleRes = R.string.pref_category_about
                 onClick { router.pushController(AboutController().withFadeTransaction()) }
             }
-            preference {
+            /*preference {
                 iconRes = R.drawable.ic_help
                 iconTint = tintColor
                 titleRes = R.string.help
                 onClick { router.pushController(StubController().withFadeTransaction()) }
-            }
+            }*/
         }
     }
 

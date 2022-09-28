@@ -2,8 +2,6 @@ package org.xtimms.ridebus.ui.stops.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
@@ -43,10 +41,6 @@ class RoutesOnStopController :
 
     var stop: Stop? = null
         private set
-
-    init {
-        setHasOptionsMenu(true)
-    }
 
     /**
      * Adapter containing a list of routes on stop.
@@ -90,10 +84,6 @@ class RoutesOnStopController :
     override fun onDestroyView(view: View) {
         adapter = null
         super.onDestroyView(view)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.stops_on_route, menu)
     }
 
     override fun onUpdateEmptyView(size: Int) {

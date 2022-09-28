@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/info_barrier"
@@ -195,42 +195,12 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="details" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_favorite"
-        style="@style/Widget.RideBus.Button.IconOnly"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        app:icon="@drawable/ic_favorite"
-        app:iconSize="24dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_barrier" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_webview"
-        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:minWidth="12dp"
-        android:minHeight="12dp"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp"
-        android:text="WikiRoutes"
-        app:icon="@drawable/ic_public"
-        app:layout_constraintStart_toEndOf="@+id/btn_favorite"
-        app:layout_constraintTop_toBottomOf="@+id/info_barrier" />
-
     <org.xtimms.ridebus.widget.RouteSummaryView
         android:id="@+id/route_summary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_favorite" />
+        app:layout_constraintTop_toBottomOf="@id/info_barrier" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

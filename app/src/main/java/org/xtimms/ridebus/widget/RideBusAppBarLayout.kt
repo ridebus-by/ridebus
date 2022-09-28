@@ -1,3 +1,5 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package com.google.android.material.appbar
 
 import android.animation.AnimatorSet
@@ -28,7 +30,7 @@ import reactivecircus.flowbinding.android.view.hierarchyChangeEvents
  */
 class RideBusAppBarLayout @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet? = null
+    attrs: AttributeSet? = null,
 ) : AppBarLayout(context, attrs) {
 
     private var lifted = true
@@ -202,6 +204,7 @@ class RideBusAppBarLayout @JvmOverloads constructor(
             type(statusBars = true) {
                 padding(top = true)
             }
+            ignoreVisibility(true)
         }
     }
 
