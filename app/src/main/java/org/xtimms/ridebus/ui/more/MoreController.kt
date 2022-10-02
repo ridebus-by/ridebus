@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
+import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.setting.SettingsController
@@ -26,17 +29,19 @@ class MoreController :
 
         val tintColor = context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
 
-        /*switchPreference {
+        switchPreference {
             bindTo(preferences.autoUpdateSchedule())
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
             iconRes = R.drawable.ic_update
             iconTint = tintColor
 
-            preferences.autoUpdateSchedule().asFlow()
-                .onEach { isChecked = it }
-                .launchIn(viewScope)
-        }*/
+            onChange { newValue ->
+                val checked = newValue as Boolean
+                DatabaseUpdateJob.setupTask(activity!!, checked)
+                true
+            }
+        }
 
         listPreference {
             bindTo(preferences.city())

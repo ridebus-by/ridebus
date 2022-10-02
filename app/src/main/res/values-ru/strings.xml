@@ -56,7 +56,7 @@
     <string name="map">Карта</string>
     <string name="backup">Резервное копирование и восстановление</string>
     <string name="automatic_schedule_updates">Автоматическое обновление расписания</string>
-    <string name="automatic_schedule_updates_summary">Позволяет получать текущее расписание, когда оно доступно</string>
+    <string name="automatic_schedule_updates_summary">Позволяет получать новое расписание, когда оно доступно</string>
     <string name="near_me">Остановки рядом</string>
     <string name="help">Помощь</string>
     <string name="city_polotsk">Полоцк</string>
@@ -137,4 +137,26 @@
     <string name="reltime_hours">через %1$d ч</string>
     <string name="reltime_minutes">через %1$d м</string>
     <string name="reltime_hours_minutes">через %1$d ч %2$d м</string>
+    <string name="channel_app_updates">Обновления приложения</string>
+    <string name="update_check_notification_update_available">Доступна новая версия!</string>
+    <string name="action_download">Загрузить</string>
+    <string name="whats_new">Что нового</string>
+    <string name="update_check_notification_download_in_progress">Загрузка…</string>
+    <string name="update_check_notification_download_complete">Нажмите для установки</string>
+    <string name="action_install">Установить</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="update_check_notification_download_error">Ошибка загрузки</string>
+    <string name="action_retry">Повторить</string>
+    <string name="check_for_updates">Проверить наличие обновлений</string>
+    <string name="update_check_look_for_updates">Проверка обновлений…</string>
+    <string name="update_check_no_new_updates">Новых обновлений не обнаружено</string>
+    <string name="update_check_confirm">Загрузить</string>
+    <string name="update_check_open">Открыть в GitHub</string>
+    <string name="updated_version">Обновлено до версии %1$s</string>
+    <string name="channel_databases_updates">Обновления базы данных расписания</string>
+    <string name="update_check_notification_database_update_available">Доступна новая версия базы данных расписания!</string>
+    <string name="update_check_notification_download_database_complete">Расписание обновлено</string>
+    <string name="check_for_new_database">Проверить наличие новой версии базы данных расписания</string>
+    <string name="new_version_s">Новая версия: %1$s</string>
+    <string name="database_version_s">Версия базы данных: %1$s</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.preference.PreferenceManager
 import com.tfcporciuncula.flow.FlowSharedPreferences
+import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.DEFAULT
 import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.MONET
 import org.xtimms.ridebus.data.preference.PreferenceValues.City.POLOTSK
@@ -71,4 +72,12 @@ class PreferencesHelper(val context: Context) {
     fun pinnedFavourites() = flowPrefs.getStringSet("pinned_favourites", emptySet())
 
     fun bottomBarLabels() = flowPrefs.getBoolean("pref_show_bottom_bar_labels", true)
+
+    fun lastAppCheck() = flowPrefs.getLong("last_app_check", 0)
+
+    fun lastVersionCode() = flowPrefs.getInt("last_version_code", 0)
+
+    fun lastDatabaseCheck() = flowPrefs.getLong("last_database_check", 0)
+
+    fun databaseVersion() = flowPrefs.getString("database_version", BuildConfig.DATABASE_VERSION)
 }

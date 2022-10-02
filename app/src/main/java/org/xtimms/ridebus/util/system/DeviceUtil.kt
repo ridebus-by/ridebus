@@ -12,4 +12,6 @@ object DeviceUtil {
     val isDynamicColorAvailable by lazy {
         DynamicColors.isDynamicColorAvailable() || (isSamsung && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
     }
+
+    val invalidDefaultBrowsers = listOf("android", "com.huawei.android.internal.app")
 }

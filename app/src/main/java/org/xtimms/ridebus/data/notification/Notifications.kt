@@ -1,11 +1,11 @@
 package org.xtimms.ridebus.data.notification
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
-import android.os.Build
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
+import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.util.system.notificationManager
+import org.xtimms.ridebus.util.system.buildNotificationChannel
 
 object Notifications {
 
@@ -15,15 +15,29 @@ object Notifications {
     const val CHANNEL_CRASH_LOGS = "crash_logs_channel"
     const val ID_CRASH_LOGS = -601
 
-    fun createChannels(context: Context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
+    /**
+     * Notification channel used for app and database updates.
+     */
+    const val CHANNEL_APP_UPDATE = "app_apk_update_channel"
+    const val ID_APP_UPDATER = 1
+    const val CHANNEL_DATABASE_UPDATE = "database_update_channel"
+    const val ID_DATABASE_UPDATER = 1
 
-        listOf(
-            NotificationChannel(
-                CHANNEL_CRASH_LOGS,
-                context.getString(R.string.channel_crash_logs),
-                NotificationManager.IMPORTANCE_HIGH
+    fun createChannels(context: Context) {
+        val notificationService = NotificationManagerCompat.from(context)
+
+        notificationService.createNotificationChannelsCompat(
+            listOf(
+                buildNotificationChannel(CHANNEL_CRASH_LOGS, IMPORTANCE_HIGH) {
+                    setName(context.getString(R.string.channel_crash_logs))
+                },
+                buildNotificationChannel(CHANNEL_APP_UPDATE, IMPORTANCE_DEFAULT) {
+                    setName(context.getString(R.string.channel_app_updates))
+                },
+                buildNotificationChannel(CHANNEL_DATABASE_UPDATE, IMPORTANCE_HIGH) {
+                    setName(context.getString(R.string.channel_databases_updates))
+                }
             )
-        ).forEach(context.notificationManager::createNotificationChannel)
+        )
     }
 }

@@ -58,7 +58,7 @@
     <string name="map">Map</string>
     <string name="backup">Backup and restore</string>
     <string name="automatic_schedule_updates">Automatic schedule updates</string>
-    <string name="automatic_schedule_updates_summary">Allows to get the current schedule when it is available</string>
+    <string name="automatic_schedule_updates_summary">Allows to get the new schedule when it is available</string>
     <string name="near_me">Stops nearby</string>
     <string name="help">Help</string>
     <string name="city_polotsk">Polotsk</string>
@@ -136,4 +136,26 @@
     <string name="reltime_hours">in %1$d h</string>
     <string name="reltime_minutes">in %1$d m</string>
     <string name="reltime_hours_minutes">in %1$d h %2$d m</string>
+    <string name="channel_app_updates">App updates</string>
+    <string name="update_check_notification_update_available">New version available!</string>
+    <string name="action_download">Download</string>
+    <string name="whats_new">What\'s new</string>
+    <string name="update_check_notification_download_in_progress">Downloading…</string>
+    <string name="update_check_notification_download_complete">Tap to install</string>
+    <string name="action_install">Install</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="update_check_notification_download_error">Download error</string>
+    <string name="action_retry">Retry</string>
+    <string name="check_for_updates">Check for updates</string>
+    <string name="update_check_look_for_updates">Searching for updates…</string>
+    <string name="update_check_no_new_updates">No new updates available</string>
+    <string name="update_check_confirm">Download</string>
+    <string name="update_check_open">Open on GitHub</string>
+    <string name="updated_version">Updated to version %1$s</string>
+    <string name="channel_databases_updates">Database updates</string>
+    <string name="update_check_notification_database_update_available">A new version of the schedule is available!</string>
+    <string name="update_check_notification_download_database_complete">The schedule has been updated</string>
+    <string name="check_for_new_database">Check for a new version of the schedule database</string>
+    <string name="new_version_s">New version: %1$s</string>
+    <string name="database_version_s">Database version: %1$s</string>
 </resources>

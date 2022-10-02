@@ -140,7 +140,7 @@ class RouteInfoHeaderAdapter(
                 )
             }
 
-            // Manga info section
+            // Route info section
             binding.routeSummary.setTags(tags)
             binding.routeSummary.isVisible = route.following.isNotBlank()
             binding.routeSummary.description = view.context.getString(R.string.route_direction) +

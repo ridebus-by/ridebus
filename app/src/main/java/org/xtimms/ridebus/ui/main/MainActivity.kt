@@ -27,6 +27,8 @@ import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
+import org.xtimms.ridebus.BuildConfig
+import org.xtimms.ridebus.Migrations
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.NotificationReceiver
 import org.xtimms.ridebus.databinding.MainActivityBinding
@@ -83,6 +85,8 @@ class MainActivity : BaseActivity() {
         val splashScreen = if (savedInstanceState == null) installSplashScreen() else null
 
         super.onCreate(savedInstanceState)
+
+        val didMigration = if (savedInstanceState == null) Migrations.upgrade(preferences) else false
 
         binding = MainActivityBinding.inflate(layoutInflater)
 
@@ -156,17 +160,6 @@ class MainActivity : BaseActivity() {
 
         val container: ViewGroup = binding.controllerContainer
         router = Conductor.attachRouter(this, container, savedInstanceState)
-        if (!router.hasRootController()) {
-            // Set start screen
-            if (!handleIntentAction(intent)) {
-                setSelectedNavItem(startScreenId)
-            }
-        }
-
-        binding.toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-
         router.addChangeListener(
             object : ControllerChangeHandler.ControllerChangeListener {
                 override fun onChangeStarted(
@@ -174,7 +167,7 @@ class MainActivity : BaseActivity() {
                     from: Controller?,
                     isPush: Boolean,
                     container: ViewGroup,
-                    handler: ControllerChangeHandler
+                    handler: ControllerChangeHandler,
                 ) {
                     syncActivityViewWithController(to, from, isPush)
                 }
@@ -184,11 +177,34 @@ class MainActivity : BaseActivity() {
                     from: Controller?,
                     isPush: Boolean,
                     container: ViewGroup,
-                    handler: ControllerChangeHandler
+                    handler: ControllerChangeHandler,
                 ) {
                 }
-            }
+            },
         )
+        if (!router.hasRootController()) {
+            // Set start screen
+            if (!handleIntentAction(intent)) {
+                setSelectedNavItem(startScreenId)
+            }
+        }
+        syncActivityViewWithController()
+
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
+        if (savedInstanceState == null) {
+            // Show changelog prompt on update
+            if (didMigration && !BuildConfig.DEBUG) {
+                WhatsNewDialogController().showDialog(router)
+            }
+        } else {
+            // Restore selected nav item
+            router.backstack.firstOrNull()?.tag()?.toIntOrNull()?.let {
+                nav.menu.findItem(it).isChecked = true
+            }
+        }
 
         preferences.bottomBarLabels()
             .asImmediateFlow { setNavLabelVisibility() }

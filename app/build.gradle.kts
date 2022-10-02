@@ -19,8 +19,12 @@ val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authP
 
 shortcutHelper.setFilePath("./shortcuts.xml")
 
+val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86")
+
 android {
+    namespace = "org.xtimms.ridebus"
     compileSdk = AndroidConfig.compileSdk
+    ndkVersion = AndroidConfig.ndk
 
     defaultConfig {
         applicationId = "org.xtimms.ridebus"
@@ -32,10 +36,12 @@ android {
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
+        buildConfigField("boolean", "INCLUDE_UPDATER", "false")
         buildConfigField("String", "DEVELOPER_EMAIL", "\"mailto:ztimms73@gmail.com\"")
+        buildConfigField("String", "DATABASE_VERSION", "\"2.0\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
-        buildConfigField("String", "ACRA_URI", "\"http://86.57.183.214:8082/report\"")
+        buildConfigField("String", "ACRA_URI", "\"https://acra.rumblur.space/report\"")
         buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin)
         buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword)
 
@@ -49,7 +55,20 @@ android {
             }
         }
 
+        ndk {
+            abiFilters += SUPPORTED_ABIS
+        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include(*SUPPORTED_ABIS.toTypedArray())
+            isUniversalApk = true
+        }
     }
 
     buildTypes {
@@ -80,7 +99,11 @@ android {
     flavorDimensions("default")
 
     productFlavors {
+        create("play") {
+            dimension = "default"
+        }
         create("standard") {
+            buildConfigField("boolean", "INCLUDE_UPDATER", "true")
             dimension = "default"
         }
         create("dev") {
@@ -142,7 +165,6 @@ dependencies {
     // AndroidX libraries
     implementation("androidx.annotation:annotation:1.4.0-alpha02")
     implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha04")
     implementation("androidx.browser:browser:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
@@ -156,8 +178,20 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-process:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
 
+    // Data serialization (JSON, protobuf)
+    val kotlinSerializationVersion = "1.3.2"
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion")
+
     // Job scheduling
     implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation("com.github.Koitharu.pausing-coroutine-dispatcher:pausing-coroutine-dispatcher:5213d53420")
+
+    // Network
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10")
 
     // RX
     implementation("io.reactivex:rxandroid:1.2.1")
@@ -214,6 +248,9 @@ dependencies {
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.9.5")
 
+    // Markdown
+    implementation("io.noties.markwon:core:4.6.2")
+
     // Tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.assertj:assertj-core:3.16.1")
@@ -236,6 +273,7 @@ tasks {
             "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
             "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
             "-Xuse-experimental=coil.annotation.ExperimentalCoilApi",
+            "-Xjvm-default=enable",
         )
     }
 
