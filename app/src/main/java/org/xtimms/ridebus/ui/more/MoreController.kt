@@ -59,13 +59,11 @@ class MoreController :
             titleRes = R.string.city
             entriesRes = arrayOf(
                 R.string.city_polotsk,
-                R.string.city_novopolotsk,
-                R.string.city_ushachi
+                R.string.city_novopolotsk
             )
             entryValues = arrayOf(
                 PreferenceValues.City.POLOTSK.name,
-                PreferenceValues.City.NOVOPOLOTSK.name,
-                PreferenceValues.City.USHACHI.name
+                PreferenceValues.City.NOVOPOLOTSK.name
             )
             summary = "%s"
         }
