@@ -39,7 +39,7 @@ android {
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
         buildConfigField("boolean", "INCLUDE_UPDATER", "false")
         buildConfigField("String", "DEVELOPER_EMAIL", "\"mailto:ztimms73@gmail.com\"")
-        buildConfigField("String", "DATABASE_VERSION", "\"2.0\"")
+        buildConfigField("String", "DATABASE_VERSION", "\"2.47\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"https://acra.rumblur.space/report\"")

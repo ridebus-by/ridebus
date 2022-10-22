@@ -23,12 +23,12 @@ class AboutLinksPreference @JvmOverloads constructor(context: Context, attrs: At
             setTooltip(contentDescription.toString())
             setOnClickListener { context.openInBrowser("https://t.me/ridebus") }
         }
-        holder.findViewById(R.id.btn_vk).apply {
+        /*holder.findViewById(R.id.btn_vk).apply {
             setTooltip(contentDescription.toString())
         }
         holder.findViewById(R.id.btn_discord).apply {
             setTooltip(contentDescription.toString())
-        }
+        }*/
         holder.findViewById(R.id.btn_github).apply {
             setTooltip(contentDescription.toString())
             setOnClickListener { context.openInBrowser("https://github.com/ztimms73/RideBus") }

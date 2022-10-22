@@ -17,7 +17,7 @@
         app:tint="?attr/colorAccent"
         tools:ignore="HardcodedText" />
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/btn_vk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:padding="16dp"
         android:src="@drawable/ic_discord"
         app:tint="?attr/colorAccent"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText" />-->
 
     <ImageButton
         android:id="@+id/btn_github"
