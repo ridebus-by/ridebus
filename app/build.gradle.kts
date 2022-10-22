@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -96,7 +97,7 @@ android {
         getByName("debugFull").res.srcDirs("src/debug/res")
     }
 
-    flavorDimensions("default")
+    flavorDimensions.add("default")
 
     productFlavors {
         create("play") {
@@ -139,9 +140,9 @@ android {
     }
 
     lint {
-        disable("MissingTranslation", "ExtraTranslation")
-        isAbortOnError = false
-        isCheckReleaseBuilds = false
+        disable.addAll(listOf("MissingTranslation", "ExtraTranslation"))
+        abortOnError = false
+        checkReleaseBuilds = false
     }
 
     compileOptions {
@@ -158,7 +159,7 @@ dependencies {
 
     implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
 
-    val coroutinesVersion = "1.6.0"
+    val coroutinesVersion = "1.6.4"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
@@ -173,13 +174,13 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.0-beta02")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
-    val lifecycleVersion = "2.4.0"
+    val lifecycleVersion = "2.5.1"
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-process:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
 
     // Data serialization (JSON, protobuf)
-    val kotlinSerializationVersion = "1.3.2"
+    val kotlinSerializationVersion = "1.3.3"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion")
 
@@ -228,7 +229,7 @@ dependencies {
 
     // Preferences
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("com.github.tfcporciuncula.flow-preferences:flow-preferences:1.4.0")
+    implementation("com.fredporciuncula:flow-preferences:1.8.0")
 
     // Dependency injection
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
@@ -240,39 +241,37 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries-core:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
 
     // Conductor
-    val conductorVersion = "3.1.1"
+    val conductorVersion = "3.1.7"
     implementation("com.bluelinelabs:conductor:$conductorVersion")
     implementation("com.bluelinelabs:conductor-viewpager:$conductorVersion")
     implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
 
     // Crash reports/analytics
-    implementation("ch.acra:acra-http:5.9.5")
+    implementation("ch.acra:acra-http:5.9.6")
 
     // Markdown
     implementation("io.noties.markwon:core:4.6.2")
-
-    // Tests
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.assertj:assertj-core:3.16.1")
-    testImplementation("org.mockito:mockito-core:1.10.19")
-
-    val robolectricVersion = "3.1.4"
-    testImplementation("org.robolectric:robolectric:$robolectricVersion")
-    testImplementation("org.robolectric:shadows-play-services:$robolectricVersion")
 }
 
 tasks {
+    withType<Test> {
+        useJUnitPlatform()
+        testLogging {
+            events(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+        }
+    }
+
     // See https://kotlinlang.org/docs/reference/experimental.html#experimental-status-of-experimental-api(-markers)
     withType<KotlinCompile> {
         kotlinOptions.freeCompilerArgs += listOf(
-            "-Xopt-in=kotlin.Experimental",
-            "-Xopt-in=kotlin.RequiresOptIn",
-            "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
-            "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.serialization.ExperimentalSerializationApi",
-            "-Xuse-experimental=coil.annotation.ExperimentalCoilApi",
+                "-opt-in=kotlin.Experimental",
+                "-opt-in=kotlin.RequiresOptIn",
+                "-opt-in=kotlin.ExperimentalStdlibApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview",
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.InternalCoroutinesApi",
+                "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+                "-opt-in=coil.annotation.ExperimentalCoilApi",
             "-Xjvm-default=enable",
         )
     }

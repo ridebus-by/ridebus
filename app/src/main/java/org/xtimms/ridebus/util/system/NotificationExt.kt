@@ -13,7 +13,7 @@ import androidx.core.app.NotificationChannelCompat
 fun buildNotificationChannel(
     channelId: String,
     channelImportance: Int,
-    block: (NotificationChannelCompat.Builder.() -> Unit),
+    block: (NotificationChannelCompat.Builder.() -> Unit)
 ): NotificationChannelCompat {
     val builder = NotificationChannelCompat.Builder(channelId, channelImportance)
     builder.block()

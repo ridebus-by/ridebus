@@ -28,18 +28,9 @@
         android:id="@+id/version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
         android:textAppearance="?attr/textAppearanceBody1"
         android:textColor="?android:textColorSecondary"
         tools:text="Version r1234" />
-
-    <TextView
-        android:id="@+id/database_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceBody1"
-        android:textColor="?android:textColorSecondary"
-        tools:text="Database version: 2.2" />
 
     <View
         android:layout_width="match_parent"

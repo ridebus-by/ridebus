@@ -9,6 +9,8 @@ import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.noties.markwon.Markwon
 import org.xtimms.ridebus.R
+import org.xtimms.ridebus.data.notification.NotificationReceiver
+import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.updater.app.AppUpdateResult
 import org.xtimms.ridebus.data.updater.app.AppUpdateService
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
@@ -23,8 +25,8 @@ class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundl
         bundleOf(
             BODY_KEY to update.release.info,
             RELEASE_URL_KEY to update.release.releaseLink,
-            DOWNLOAD_URL_KEY to update.release.getDownloadLink(),
-        ),
+            DOWNLOAD_URL_KEY to update.release.getDownloadLink()
+        )
     )
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
@@ -45,6 +47,9 @@ class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundl
             }
             .setNeutralButton(R.string.update_check_open) { _, _ ->
                 openInBrowser(args.getString(RELEASE_URL_KEY)!!)
+            }
+            .setNeutralButton(R.string.action_postpone) { _, _ ->
+                dialog?.dismiss()
             }
             .create()
     }
@@ -68,8 +73,8 @@ class NewScheduleDialogController(bundle: Bundle? = null) : DialogController(bun
         bundleOf(
             NEW_SCHEDULE_BODY_KEY to update.update.info,
             NEW_SCHEDULE_VERSION_KEY to update.update.version,
-            NEW_SCHEDULE_DOWNLOAD_URL_KEY to update.update.getDownloadLink(),
-        ),
+            NEW_SCHEDULE_DOWNLOAD_URL_KEY to update.update.getDownloadLink()
+        )
     )
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
@@ -92,7 +97,13 @@ class NewScheduleDialogController(bundle: Bundle? = null) : DialogController(bun
                     // Start download
                     val url = args.getString(NEW_SCHEDULE_DOWNLOAD_URL_KEY)!!
                     val version = args.getString(NEW_SCHEDULE_VERSION_KEY)!!
-                    DatabaseUpdateService.start(context, url, version = version)
+                    DatabaseUpdateService.start(context, url, title = infoBody, version = version)
+                }
+            }
+            .setNeutralButton(R.string.action_postpone) { _, _ ->
+                dialog?.dismiss()
+                applicationContext?.let { context ->
+                    NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_DATABASE_UPDATER)
                 }
             }
             .create()

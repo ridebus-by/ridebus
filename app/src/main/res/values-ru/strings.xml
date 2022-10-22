@@ -159,4 +159,13 @@
     <string name="check_for_new_database">Проверить наличие новой версии базы данных расписания</string>
     <string name="new_version_s">Новая версия: %1$s</string>
     <string name="database_version_s">Версия базы данных: %1$s</string>
+    <string name="schedule_info">Для применения нового обновления базы данных расписания может потребоваться перезагрузка приложения</string>
+    <string name="label_background_activity">Фоновые задания</string>
+    <string name="pref_disable_battery_optimization">Отключить оптимизацию батареи</string>
+    <string name="pref_disable_battery_optimization_summary">Помогает с фоновыми проверками обновлений приложения и базы данных</string>
+    <string name="battery_optimization_setting_activity_not_found">Не удалось открыть настройки устройства</string>
+    <string name="battery_optimization_disabled">Оптимизация батареи уже отключена</string>
+    <string name="about_dont_kill_my_app">Некоторые производители имеют дополнительные ограничения для приложений, которые отключают фоновые службы. На этом веб-сайте есть больше информации о том, как это исправить.</string>
+    <string name="database_version">Версия базы данных</string>
+    <string name="action_postpone">Отложить</string>
 </resources>

@@ -43,14 +43,14 @@ class DatabaseUpdateJob(private val context: Context, workerParameters: WorkerPa
 
                 val request = PeriodicWorkRequestBuilder<DatabaseUpdateJob>(
                     4,
-                    TimeUnit.HOURS,
+                    TimeUnit.HOURS
                 )
                     .addTag(TAG)
                     .setConstraints(constraints)
                     .setBackoffCriteria(BackoffPolicy.LINEAR, 30, TimeUnit.MINUTES)
                     .build()
 
-                WorkManager.getInstance(context).enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.REPLACE, request)
+                WorkManager.getInstance(context).enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.KEEP, request)
             } else {
                 WorkManager.getInstance(context).cancelAllWorkByTag(TAG)
             }

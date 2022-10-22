@@ -1,7 +1,9 @@
 package org.xtimms.ridebus.ui.main
 
+import android.Manifest
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -9,6 +11,8 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.animation.doOnEnd
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
@@ -27,10 +31,13 @@ import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
+import logcat.LogPriority
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.Migrations
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.NotificationReceiver
+import org.xtimms.ridebus.data.updater.database.DatabaseUpdateChecker
+import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.activity.BaseActivity
 import org.xtimms.ridebus.ui.base.controller.DialogController
@@ -39,15 +46,18 @@ import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.more.MoreController
+import org.xtimms.ridebus.ui.more.NewScheduleDialogController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
+import org.xtimms.ridebus.util.lang.launchNow
 import org.xtimms.ridebus.util.lang.launchUI
 import org.xtimms.ridebus.util.preference.asImmediateFlow
 import org.xtimms.ridebus.util.system.dpToPx
 import org.xtimms.ridebus.util.system.isTablet
+import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
 import kotlin.collections.firstOrNull
@@ -167,7 +177,7 @@ class MainActivity : BaseActivity() {
                     from: Controller?,
                     isPush: Boolean,
                     container: ViewGroup,
-                    handler: ControllerChangeHandler,
+                    handler: ControllerChangeHandler
                 ) {
                     syncActivityViewWithController(to, from, isPush)
                 }
@@ -177,10 +187,10 @@ class MainActivity : BaseActivity() {
                     from: Controller?,
                     isPush: Boolean,
                     container: ViewGroup,
-                    handler: ControllerChangeHandler,
+                    handler: ControllerChangeHandler
                 ) {
                 }
-            },
+            }
         )
         if (!router.hasRootController()) {
             // Set start screen
@@ -195,6 +205,9 @@ class MainActivity : BaseActivity() {
         }
 
         if (savedInstanceState == null) {
+            launchUI {
+                requestNotificationsPermission()
+            }
             // Show changelog prompt on update
             if (didMigration && !BuildConfig.DEBUG) {
                 WhatsNewDialogController().showDialog(router)
@@ -275,6 +288,25 @@ class MainActivity : BaseActivity() {
     override fun onNewIntent(intent: Intent) {
         if (!handleIntentAction(intent)) {
             super.onNewIntent(intent)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        checkForUpdates()
+    }
+
+    private fun checkForUpdates() {
+        launchNow {
+            // Database updates
+            try {
+                val result = DatabaseUpdateChecker().checkForUpdate(this@MainActivity)
+                if (result is DatabaseUpdateResult.NewUpdate) {
+                    NewScheduleDialogController(result).showDialog(router)
+                }
+            } catch (e: Exception) {
+                logcat(LogPriority.ERROR, e)
+            }
         }
     }
 
@@ -441,6 +473,15 @@ class MainActivity : BaseActivity() {
             binding.bottomNav?.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         } else {
             binding.bottomNav?.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
+        }
+    }
+
+    private fun requestNotificationsPermission() {
+        if (
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
         }
     }
 

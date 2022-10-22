@@ -3,7 +3,7 @@ package org.xtimms.ridebus.data.preference
 import android.content.Context
 import android.os.Build
 import androidx.preference.PreferenceManager
-import com.tfcporciuncula.flow.FlowSharedPreferences
+import com.fredporciuncula.flow.preferences.FlowSharedPreferences
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.DEFAULT
 import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.MONET

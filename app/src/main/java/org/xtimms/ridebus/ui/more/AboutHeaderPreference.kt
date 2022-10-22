@@ -35,8 +35,7 @@ class AboutHeaderPreference @JvmOverloads constructor(
         } else {
             "v${BuildConfig.VERSION_NAME}"
         }
-        (holder.findViewById(R.id.database_version) as TextView).text =
-            context.getString(R.string.database_version_s, preferences.databaseVersion().get())
+
         version.setOnClickListener {
             val deviceInfo = CrashLogUtil(context).getDebugInfo()
             context.copyToClipboard("Debug information", deviceInfo)

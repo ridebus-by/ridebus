@@ -158,4 +158,13 @@
     <string name="check_for_new_database">Check for a new version of the schedule database</string>
     <string name="new_version_s">New version: %1$s</string>
     <string name="database_version_s">Database version: %1$s</string>
+    <string name="schedule_info">To apply a new schedule database update, you may need to restart the application</string>
+    <string name="label_background_activity">Background activity</string>
+    <string name="pref_disable_battery_optimization">Disable battery optimization</string>
+    <string name="pref_disable_battery_optimization_summary">Helps with background app and database updates</string>
+    <string name="battery_optimization_setting_activity_not_found">Couldn\'t open device settings</string>
+    <string name="battery_optimization_disabled">Battery optimization is already disabled</string>
+    <string name="about_dont_kill_my_app">Some manufacturers have additional app restrictions that kill background services. This website has more info on how to fix it.</string>
+    <string name="database_version">Database version</string>
+    <string name="action_postpone">Postpone</string>
 </resources>

@@ -43,6 +43,11 @@ class AboutController : SettingsController(), NoAppBarElevationController {
             summary = "${getFormattedBuildTime()} (${BuildConfig.COMMIT_SHA})"
         }
         preference {
+            key = "pref_about_database_version"
+            titleRes = R.string.database_version
+            summary = preferences.databaseVersion().get()
+        }
+        preference {
             key = "pref_about_copy_debug_info"
             titleRes = R.string.copy_debug_info
             onClick {

@@ -15,6 +15,7 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.util.TypedValue
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -139,6 +140,9 @@ val Context.notificationManager: NotificationManager
     get() = getSystemService()!!
 
 val Context.powerManager: PowerManager
+    get() = getSystemService()!!
+
+val Context.inputMethodManager: InputMethodManager
     get() = getSystemService()!!
 
 val Resources.isLTR

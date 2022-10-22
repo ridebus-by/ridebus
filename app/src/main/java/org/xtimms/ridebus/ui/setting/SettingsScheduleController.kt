@@ -57,6 +57,8 @@ class SettingsScheduleController : SettingsController() {
             )
             summary = "%s"
         }
+
+        infoPreference(R.string.schedule_info)
     }
 
     /**

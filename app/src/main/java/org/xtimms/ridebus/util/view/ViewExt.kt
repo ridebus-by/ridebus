@@ -7,6 +7,7 @@ import androidx.appcompat.widget.TooltipCompat
 import androidx.core.view.children
 import androidx.core.view.descendants
 import androidx.recyclerview.widget.RecyclerView
+import org.xtimms.ridebus.util.system.inputMethodManager
 
 /**
  * Adds a tooltip shown on long press.
@@ -55,4 +56,8 @@ inline fun <reified T> ViewGroup.findChild(): T? {
  */
 inline fun <reified T> ViewGroup.findDescendant(): T? {
     return descendants.find { it is T } as? T
+}
+
+fun View.hideKeyboard() {
+    context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }

@@ -21,7 +21,7 @@ object Notifications {
     const val CHANNEL_APP_UPDATE = "app_apk_update_channel"
     const val ID_APP_UPDATER = 1
     const val CHANNEL_DATABASE_UPDATE = "database_update_channel"
-    const val ID_DATABASE_UPDATER = 1
+    const val ID_DATABASE_UPDATER = 2
 
     fun createChannels(context: Context) {
         val notificationService = NotificationManagerCompat.from(context)

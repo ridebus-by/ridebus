@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
@@ -14,7 +12,18 @@ import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
-import org.xtimms.ridebus.util.preference.*
+import org.xtimms.ridebus.util.preference.bindTo
+import org.xtimms.ridebus.util.preference.entriesRes
+import org.xtimms.ridebus.util.preference.iconRes
+import org.xtimms.ridebus.util.preference.iconTint
+import org.xtimms.ridebus.util.preference.listPreference
+import org.xtimms.ridebus.util.preference.onChange
+import org.xtimms.ridebus.util.preference.onClick
+import org.xtimms.ridebus.util.preference.preference
+import org.xtimms.ridebus.util.preference.preferenceCategory
+import org.xtimms.ridebus.util.preference.summaryRes
+import org.xtimms.ridebus.util.preference.switchPreference
+import org.xtimms.ridebus.util.preference.titleRes
 import org.xtimms.ridebus.util.system.getResourceColor
 import rx.subscriptions.CompositeSubscription
 

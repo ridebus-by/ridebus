@@ -42,12 +42,12 @@ internal class AppUpdateNotifier(private val context: Context) {
             addAction(
                 android.R.drawable.stat_sys_download_done,
                 context.getString(R.string.action_download),
-                updateIntent,
+                updateIntent
             )
             addAction(
                 R.drawable.ic_info,
                 context.getString(R.string.whats_new),
-                releaseInfoIntent,
+                releaseInfoIntent
             )
         }
         notificationBuilder.show()
@@ -86,12 +86,12 @@ internal class AppUpdateNotifier(private val context: Context) {
             addAction(
                 R.drawable.ic_system_update_alt,
                 context.getString(R.string.action_install),
-                installIntent,
+                installIntent
             )
             addAction(
                 R.drawable.ic_close,
                 context.getString(R.string.action_cancel),
-                NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_APP_UPDATER),
+                NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_APP_UPDATER)
             )
         }
         notificationBuilder.show()
@@ -108,12 +108,12 @@ internal class AppUpdateNotifier(private val context: Context) {
             addAction(
                 R.drawable.ic_refresh,
                 context.getString(R.string.action_retry),
-                AppUpdateService.downloadApkPendingService(context, url),
+                AppUpdateService.downloadApkPendingService(context, url)
             )
             addAction(
                 R.drawable.ic_close,
                 context.getString(R.string.action_cancel),
-                NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_APP_UPDATER),
+                NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_APP_UPDATER)
             )
         }
         notificationBuilder.show(Notifications.ID_APP_UPDATER)

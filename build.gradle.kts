@@ -14,7 +14,7 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "org.jmailen.kotlinter")
+    apply<org.jmailen.gradle.kotlinter.KotlinterPlugin>()
 
     kotlinter {
         experimentalRules = true

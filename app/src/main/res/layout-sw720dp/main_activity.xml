@@ -33,6 +33,7 @@
             android:layout_height="match_parent"
             app:elevation="1dp"
             app:headerLayout="@layout/header_layout"
+            app:itemActiveIndicatorStyle="@style/Widget.RideBus.BottomNavigationView.ActiveIndicator"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/main_nav" />
 

@@ -82,7 +82,7 @@ class DatabaseUpdateService : Service() {
     }
 
     private suspend fun downloadDatabase(title: String, url: String, version: String) {
-        notifier.onDownloadStarted(title)
+        notifier.onDownloadStarted()
 
         val progressListener = object : ProgressListener {
             var savedProgress = 0
@@ -103,12 +103,16 @@ class DatabaseUpdateService : Service() {
 
         try {
             val databasePath = database.openHelper.writableDatabase.path.replace("ridebus.db", "")
-            val databaseFile = withIOContext { File(databasePath, "ridebus.db") }
+            val oldDatabaseFile = withIOContext { File(databasePath, "ridebus.db") }
+            val databaseFile = withIOContext { File(databasePath, "ridebus_new.db") }
 
             if (response.isSuccessful) {
-                database.close()
-                databaseFile.delete()
+                if (database.isOpen) {
+                    database.close()
+                }
+                oldDatabaseFile.delete()
                 response.body.source().saveTo(databaseFile)
+                databaseFile.renameTo(oldDatabaseFile)
                 database.openHelper.writableDatabase.beginTransaction()
                 preferences.databaseVersion().set(version)
                 database.openHelper.writableDatabase.setTransactionSuccessful()
@@ -116,7 +120,7 @@ class DatabaseUpdateService : Service() {
                 response.close()
                 throw Exception("Unsuccessful response")
             }
-            notifier.onDownloadFinished()
+            notifier.onDownloadFinished(title)
         } catch (e: Exception) {
             logcat(LogPriority.ERROR, e)
             notifier.onDownloadError(url, version)
@@ -139,7 +143,7 @@ class DatabaseUpdateService : Service() {
             context: Context,
             url: String,
             title: String = context.getString(R.string.app_name),
-            version: String,
+            version: String
         ) {
             if (!isRunning(context)) {
                 val intent = Intent(context, DatabaseUpdateService::class.java).apply {
@@ -156,7 +160,7 @@ class DatabaseUpdateService : Service() {
                 putExtra(EXTRA_DOWNLOAD_URL, url)
                 putExtra(EXTRA_DOWNLOAD_VERSION, version)
             }
-            return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         }
     }
 }
