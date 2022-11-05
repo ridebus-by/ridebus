@@ -11,10 +11,13 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
 import android.util.TypedValue
+import android.view.Display
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.AttrRes
@@ -228,4 +231,16 @@ fun Context.defaultBrowserPackageName(): String? {
     return packageManager.resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY)
         ?.activityInfo?.packageName
         ?.takeUnless { it in DeviceUtil.invalidDefaultBrowsers }
+}
+
+val Context.displayCompat: Display?
+    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        display
+    } else {
+        @Suppress("DEPRECATION")
+        getSystemService<WindowManager>()?.defaultDisplay
+    }
+
+fun Context.isNightMode(): Boolean {
+    return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }

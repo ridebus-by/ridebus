@@ -25,7 +25,7 @@ class AppUpdateChecker {
 
         return withIOContext {
             val result = networkService.client
-                .newCall(GET("https://api.github.com/repos/ztimms73/RideBus/releases/latest"))
+                .newCall(GET("https://api.github.com/repos/ridebus-by/ridebus/releases/latest"))
                 .await()
                 .parseAs<GithubRelease>()
                 .let {
@@ -47,4 +47,4 @@ class AppUpdateChecker {
     }
 }
 
-val RELEASE_URL = "https://github.com/ztimms73/RideBus/releases/tag/v${BuildConfig.VERSION_NAME}"
+val RELEASE_URL = "https://github.com/ridebus-by/ridebus/releases/tag/v${BuildConfig.VERSION_NAME}"

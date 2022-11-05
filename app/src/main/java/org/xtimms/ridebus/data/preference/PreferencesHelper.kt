@@ -80,4 +80,8 @@ class PreferencesHelper(val context: Context) {
     fun lastDatabaseCheck() = flowPrefs.getLong("last_database_check", 0)
 
     fun databaseVersion() = flowPrefs.getString("database_version", BuildConfig.DATABASE_VERSION)
+
+    fun categoryTabs() = flowPrefs.getBoolean("display_category_tabs", true)
+
+    fun categoryNumberOfItems() = flowPrefs.getBoolean("display_number_of_items", false)
 }

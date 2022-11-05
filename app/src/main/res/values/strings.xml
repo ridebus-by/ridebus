@@ -167,4 +167,10 @@
     <string name="about_dont_kill_my_app">Some manufacturers have additional app restrictions that kill background services. This website has more info on how to fix it.</string>
     <string name="database_version">Database version</string>
     <string name="action_postpone">Postpone</string>
+    <string name="label_tram">Trams</string>
+    <string name="action_display">Display</string>
+    <string name="tabs_header">Tabs</string>
+    <string name="action_display_show_tabs">Show tabs</string>
+    <string name="action_display_show_number_of_items">Show number of items</string>
+    <string name="filter">Filter</string>
 </resources>

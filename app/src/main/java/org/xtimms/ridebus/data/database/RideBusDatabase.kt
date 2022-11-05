@@ -21,6 +21,8 @@ abstract class RideBusDatabase : RoomDatabase() {
 
     abstract fun scheduleDao(): ScheduleDao
 
+    abstract fun transportDao(): TransportDao
+
     companion object {
         @Volatile
         private var INSTANCE: RideBusDatabase? = null

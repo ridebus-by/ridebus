@@ -45,6 +45,7 @@ import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.more.NewScheduleDialogController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
@@ -75,6 +76,7 @@ class MainActivity : BaseActivity() {
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
             2 -> R.id.nav_stops
+            3 -> R.id.nav_favorites
             else -> R.id.nav_routes
         }
     }
@@ -154,6 +156,7 @@ class MainActivity : BaseActivity() {
                 when (id) {
                     R.id.nav_routes -> setRoot(RoutesTabbedController(), id)
                     R.id.nav_stops -> setRoot(StopsController(), id)
+                    R.id.nav_favorites -> setRoot(FavouritesController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
                 }
             } else if (!isHandlingShortcut) {
@@ -321,6 +324,7 @@ class MainActivity : BaseActivity() {
         when (intent.action) {
             SHORTCUT_ROUTE -> setSelectedNavItem(R.id.nav_routes)
             SHORTCUT_STOP -> setSelectedNavItem(R.id.nav_stops)
+            SHORTCUT_FAVORITE -> setSelectedNavItem(R.id.nav_favorites)
             else -> {
                 isHandlingShortcut = false
                 return false
@@ -413,11 +417,16 @@ class MainActivity : BaseActivity() {
             from.cleanupTabs(binding.tabs)
         }
         if (to is TabbedController) {
-            to.configureTabs(binding.tabs)
+            if (to.configureTabs(binding.tabs)) {
+                binding.tabs.isVisible = true
+            }
         } else {
-            binding.tabs.setupWithViewPager(null)
+            binding.tabs.isVisible = false
         }
-        binding.tabs.isVisible = to is TabbedController && to !is ScheduleTabbedController
+
+        if (to is ScheduleTabbedController) {
+            binding.tabs.isVisible = false
+        }
 
         if (!isTablet()) {
             // Save lift state
@@ -494,6 +503,6 @@ class MainActivity : BaseActivity() {
         // Shortcut actions
         const val SHORTCUT_ROUTE = "org.xtimms.ridebus.SHOW_ROUTE"
         const val SHORTCUT_STOP = "org.xtimms.ridebus.SHOW_STOP"
-        // const val SHORTCUT_FAVORITE = "org.xtimms.ridebus.SHOW_FAVORITE"
+        const val SHORTCUT_FAVORITE = "org.xtimms.ridebus.SHOW_FAVORITE"
     }
 }

@@ -12,6 +12,11 @@
         android:title="@string/title_stops" />
 
     <item
+        android:id="@+id/nav_favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/title_favorite" />
+
+    <item
         android:id="@+id/nav_more"
         android:icon="@drawable/ic_more_selector"
         android:title="@string/title_more" />

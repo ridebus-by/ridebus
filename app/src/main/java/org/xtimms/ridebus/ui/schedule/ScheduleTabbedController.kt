@@ -85,11 +85,12 @@ class ScheduleTabbedController :
         }
     }
 
-    override fun configureTabs(tabs: TabLayout) {
+    override fun configureTabs(tabs: TabLayout): Boolean {
         with(tabs) {
             tabGravity = TabLayout.GRAVITY_FILL
             tabMode = TabLayout.MODE_FIXED
         }
+        return false
     }
 
     private inner class ScheduleRouterPagerAdapter : RouterPagerAdapter(this@ScheduleTabbedController) {

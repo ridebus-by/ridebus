@@ -24,7 +24,7 @@ class DatabaseUpdateChecker {
 
         return withIOContext {
             val result = networkService.client
-                .newCall(GET("https://raw.githubusercontent.com/ztimms73/ridebus-database/main/index.json"))
+                .newCall(GET("https://raw.githubusercontent.com/ridebus-by/database/main/index.json"))
                 .await()
                 .parseAs<GithubDatabase>()
                 .let {

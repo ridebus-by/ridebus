@@ -165,7 +165,7 @@ dependencies {
 
     // AndroidX libraries
     implementation("androidx.annotation:annotation:1.4.0-alpha02")
-    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("androidx.appcompat:appcompat:1.6.0-beta01")
     implementation("androidx.browser:browser:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
@@ -197,6 +197,7 @@ dependencies {
     // RX
     implementation("io.reactivex:rxandroid:1.2.1")
     implementation("io.reactivex:rxjava:1.3.8")
+    implementation("com.jakewharton.rxrelay:rxrelay:1.2.0")
 
     // Room
     val roomVersion = "2.3.0"
