@@ -12,6 +12,7 @@ import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.databinding.ScheduleTabbedControllerBinding
+import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import uy.kohesive.injekt.Injekt
@@ -19,6 +20,7 @@ import uy.kohesive.injekt.api.get
 
 class ScheduleTabbedController :
     RxController<ScheduleTabbedControllerBinding>,
+    NoAppBarElevationController,
     TabbedController {
 
     constructor(route: Route?, stop: Stop?) : super(
@@ -83,11 +85,12 @@ class ScheduleTabbedController :
         }
     }
 
-    override fun configureTabs(tabs: TabLayout) {
+    override fun configureTabs(tabs: TabLayout): Boolean {
         with(tabs) {
             tabGravity = TabLayout.GRAVITY_FILL
             tabMode = TabLayout.MODE_FIXED
         }
+        return false
     }
 
     private inner class ScheduleRouterPagerAdapter : RouterPagerAdapter(this@ScheduleTabbedController) {

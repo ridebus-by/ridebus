@@ -31,7 +31,7 @@ class ThemesPreferenceAdapter(private val clickListener: OnItemClickListener) :
     ): ThemeViewHolder {
         val themeResIds = ThemingDelegate.getThemeResIds(themes[viewType], preferences.themeDarkAmoled().get())
         val themedContext = themeResIds.fold(parent.context) {
-            context, themeResId ->
+                context, themeResId ->
             ContextThemeWrapper(context, themeResId)
         }
 

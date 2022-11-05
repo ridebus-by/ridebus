@@ -3,14 +3,20 @@ package org.xtimms.ridebus.ui.routes.details
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.FloatRange
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bluelinelabs.conductor.*
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import logcat.LogPriority
@@ -19,7 +25,11 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.databinding.RoutesDetailControllerBinding
-import org.xtimms.ridebus.ui.base.controller.*
+import org.xtimms.ridebus.ui.base.controller.DialogController
+import org.xtimms.ridebus.ui.base.controller.FabController
+import org.xtimms.ridebus.ui.base.controller.NucleusController
+import org.xtimms.ridebus.ui.base.controller.getMainAppBarHeight
+import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.main.MainActivity
 import org.xtimms.ridebus.ui.routes.details.info.RouteInfoHeaderAdapter
 import org.xtimms.ridebus.ui.routes.details.stop.RouteStopsHeaderAdapter
@@ -199,9 +209,14 @@ class RouteDetailsController :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_favorite -> addToFavourites(route!!)
             R.id.action_report -> report()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun addToFavourites(route: Route) {
+        // TODO use PreferenceHelper and save route to favourites
     }
 
     private fun report() {

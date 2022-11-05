@@ -22,7 +22,7 @@
             android:action="org.xtimms.ridebus.SHOW_STOP"
             android:targetClass="org.xtimms.ridebus.ui.main.MainActivity" />
     </shortcut>
-    <shortcut
+    <!--<shortcut
         android:enabled="true"
         android:icon="@drawable/sc_outline_favorite_border_48dp"
         android:shortcutDisabledMessage="@string/app_not_available"
@@ -32,5 +32,5 @@
         <intent
             android:action="org.xtimms.ridebus.SHOW_FAVORITE"
             android:targetClass="org.xtimms.ridebus.ui.main.MainActivity" />
-    </shortcut>
+    </shortcut>-->
 </shortcuts>

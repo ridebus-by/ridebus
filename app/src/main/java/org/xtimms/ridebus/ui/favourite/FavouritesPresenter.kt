@@ -49,9 +49,9 @@ class FavouritesPresenter(
         val pinnedFavourites = mutableListOf<FavouriteItem>()
         val pinnedFavouriteIds = preferences.pinnedFavourites().get()
 
-        val byType = favourites.groupBy { it.kindId }
+        val byType = favourites.groupBy { it.transportId }
         var favouriteItems = byType.flatMap {
-            val typeItem = TypeItem(it.key) // TODO
+            val typeItem = TypeItem(it.key)
             it.value.map { favourite ->
                 val isPinned = favourite.routeId.toString() in pinnedFavouriteIds
                 if (isPinned) {

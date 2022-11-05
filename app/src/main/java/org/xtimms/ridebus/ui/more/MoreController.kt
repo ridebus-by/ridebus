@@ -5,17 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
+import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
-import org.xtimms.ridebus.ui.nearby.NearbyController
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
-import org.xtimms.ridebus.ui.stub.StubController
-import org.xtimms.ridebus.util.preference.*
+import org.xtimms.ridebus.util.preference.bindTo
+import org.xtimms.ridebus.util.preference.entriesRes
+import org.xtimms.ridebus.util.preference.iconRes
+import org.xtimms.ridebus.util.preference.iconTint
+import org.xtimms.ridebus.util.preference.listPreference
+import org.xtimms.ridebus.util.preference.onChange
+import org.xtimms.ridebus.util.preference.onClick
+import org.xtimms.ridebus.util.preference.preference
+import org.xtimms.ridebus.util.preference.preferenceCategory
+import org.xtimms.ridebus.util.preference.summaryRes
+import org.xtimms.ridebus.util.preference.switchPreference
+import org.xtimms.ridebus.util.preference.titleRes
 import org.xtimms.ridebus.util.system.getResourceColor
 import rx.subscriptions.CompositeSubscription
 
@@ -37,9 +45,11 @@ class MoreController :
             iconRes = R.drawable.ic_update
             iconTint = tintColor
 
-            preferences.autoUpdateSchedule().asFlow()
-                .onEach { isChecked = it }
-                .launchIn(viewScope)
+            onChange { newValue ->
+                val checked = newValue as Boolean
+                DatabaseUpdateJob.setupTask(activity!!, checked)
+                true
+            }
         }
 
         listPreference {
@@ -49,18 +59,16 @@ class MoreController :
             titleRes = R.string.city
             entriesRes = arrayOf(
                 R.string.city_polotsk,
-                R.string.city_novopolotsk,
-                R.string.city_ushachi
+                R.string.city_novopolotsk
             )
             entryValues = arrayOf(
                 PreferenceValues.City.POLOTSK.name,
-                PreferenceValues.City.NOVOPOLOTSK.name,
-                PreferenceValues.City.USHACHI.name
+                PreferenceValues.City.NOVOPOLOTSK.name
             )
             summary = "%s"
         }
 
-        preferenceCategory {
+        /*preferenceCategory {
             preference {
                 titleRes = R.string.near_me
                 iconRes = R.drawable.ic_near_me
@@ -85,7 +93,7 @@ class MoreController :
                     router.pushController(StubController().withFadeTransaction())
                 }
             }
-        }
+        }*/
 
         preferenceCategory {
             preference {
@@ -100,12 +108,12 @@ class MoreController :
                 titleRes = R.string.pref_category_about
                 onClick { router.pushController(AboutController().withFadeTransaction()) }
             }
-            preference {
+            /*preference {
                 iconRes = R.drawable.ic_help
                 iconTint = tintColor
                 titleRes = R.string.help
                 onClick { router.pushController(StubController().withFadeTransaction()) }
-            }
+            }*/
         }
     }
 

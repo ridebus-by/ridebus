@@ -1,16 +1,24 @@
 package org.xtimms.ridebus.util.system
 
+import android.app.ActivityManager
 import android.app.NotificationManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
+import android.os.PowerManager
 import android.provider.Settings
 import android.util.TypedValue
+import android.view.Display
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -134,6 +142,12 @@ val Int.dpToPx: Int
 val Context.notificationManager: NotificationManager
     get() = getSystemService()!!
 
+val Context.powerManager: PowerManager
+    get() = getSystemService()!!
+
+val Context.inputMethodManager: InputMethodManager
+    get() = getSystemService()!!
+
 val Resources.isLTR
     get() = configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
 
@@ -191,3 +205,42 @@ fun Context.prepareTabletUiContext(): Context {
  */
 val Context.animatorDurationScale: Float
     get() = Settings.Global.getFloat(this.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
+
+/**
+ * Convenience method to acquire a partial wake lock.
+ */
+fun Context.acquireWakeLock(tag: String): PowerManager.WakeLock {
+    val wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "$tag:WakeLock")
+    wakeLock.acquire()
+    return wakeLock
+}
+
+/**
+ * Returns true if the given service class is running.
+ */
+fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
+    val className = serviceClass.name
+    val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    @Suppress("DEPRECATION")
+    return manager.getRunningServices(Integer.MAX_VALUE)
+        .any { className == it.service.className }
+}
+
+fun Context.defaultBrowserPackageName(): String? {
+    val browserIntent = Intent(Intent.ACTION_VIEW, "http://".toUri())
+    return packageManager.resolveActivity(browserIntent, PackageManager.MATCH_DEFAULT_ONLY)
+        ?.activityInfo?.packageName
+        ?.takeUnless { it in DeviceUtil.invalidDefaultBrowsers }
+}
+
+val Context.displayCompat: Display?
+    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        display
+    } else {
+        @Suppress("DEPRECATION")
+        getSystemService<WindowManager>()?.defaultDisplay
+    }
+
+fun Context.isNightMode(): Boolean {
+    return resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+}

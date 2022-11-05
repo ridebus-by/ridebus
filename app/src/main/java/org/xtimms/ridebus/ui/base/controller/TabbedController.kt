@@ -4,7 +4,7 @@ import com.google.android.material.tabs.TabLayout
 
 interface TabbedController {
 
-    fun configureTabs(tabs: TabLayout) {}
+    fun configureTabs(tabs: TabLayout): Boolean = true
 
     fun cleanupTabs(tabs: TabLayout) {}
 }

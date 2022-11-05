@@ -1,7 +1,6 @@
 package org.xtimms.ridebus
 
 import android.app.Application
-import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
@@ -17,6 +16,7 @@ import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.util.preference.asImmediateFlow
+import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.injectLazy
 
@@ -29,6 +29,7 @@ open class App : Application(), DefaultLifecycleObserver {
 
         Injekt.importModule(AppModule(this))
 
+        setupAcra()
         setupNotificationChannels()
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
@@ -49,11 +50,6 @@ open class App : Application(), DefaultLifecycleObserver {
         }
     }
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        setupAcra()
-    }
-
     protected open fun setupAcra() {
         initAcra {
             buildConfigClass = BuildConfig::class.java
@@ -69,6 +65,10 @@ open class App : Application(), DefaultLifecycleObserver {
     }
 
     protected open fun setupNotificationChannels() {
-        Notifications.createChannels(this)
+        try {
+            Notifications.createChannels(this)
+        } catch (e: Exception) {
+            logcat(LogPriority.ERROR, e) { "Failed to modify notification channels" }
+        }
     }
 }

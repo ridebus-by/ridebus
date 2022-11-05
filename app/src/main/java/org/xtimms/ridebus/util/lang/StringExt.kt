@@ -1,6 +1,5 @@
 package org.xtimms.ridebus.util.lang
 
-import java.util.*
 import kotlin.math.floor
 
 fun String.truncateCenter(count: Int, replacement: String = "..."): String {

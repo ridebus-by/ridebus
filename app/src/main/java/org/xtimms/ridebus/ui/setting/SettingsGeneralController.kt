@@ -18,10 +18,9 @@ class SettingsGeneralController : SettingsController() {
             titleRes = R.string.pref_start_screen
             entriesRes = arrayOf(
                 R.string.title_routes,
-                R.string.title_stops,
-                R.string.title_favorite
+                R.string.title_stops
             )
-            entryValues = arrayOf("1", "2", "3")
+            entryValues = arrayOf("1", "2")
             defaultValue = "1"
             summary = "%s"
         }

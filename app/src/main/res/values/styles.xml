@@ -126,6 +126,10 @@
         <item name="labelVisibilityMode">selected</item>
     </style>
 
+    <style name="Widget.RideBus.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/bottom_menu_active_indicator</item>
+    </style>
+
     <style name="Widget.RideBus.NavigationRailView" parent="Widget.Material3.NavigationRailView">
         <item name="itemRippleColor">@color/ripple_toolbar_fainter</item>
     </style>

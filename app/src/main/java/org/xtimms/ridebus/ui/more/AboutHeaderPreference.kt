@@ -7,13 +7,17 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
+import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.util.CrashLogUtil
 import org.xtimms.ridebus.util.system.copyToClipboard
+import uy.kohesive.injekt.injectLazy
 
 class AboutHeaderPreference @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : Preference(context, attrs) {
+
+    private val preferences: PreferencesHelper by injectLazy()
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
@@ -31,6 +35,7 @@ class AboutHeaderPreference @JvmOverloads constructor(
         } else {
             "v${BuildConfig.VERSION_NAME}"
         }
+
         version.setOnClickListener {
             val deviceInfo = CrashLogUtil(context).getDebugInfo()
             context.copyToClipboard("Debug information", deviceInfo)

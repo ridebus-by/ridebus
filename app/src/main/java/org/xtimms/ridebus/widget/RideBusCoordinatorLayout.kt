@@ -5,23 +5,15 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.doOnLayout
+import androidx.core.view.isVisible
 import androidx.customview.view.AbsSavedState
-import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.viewpager.widget.ViewPager
-import com.bluelinelabs.conductor.ChangeHandlerFrameLayout
 import com.google.android.material.appbar.AppBarLayout
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import com.google.android.material.tabs.TabLayout
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.view.findChild
-import org.xtimms.ridebus.util.view.findDescendant
-import reactivecircus.flowbinding.android.view.HierarchyChangeEvent
-import reactivecircus.flowbinding.android.view.hierarchyChangeEvents
 
 /**
  * [CoordinatorLayout] with its own app bar lift state handler.
@@ -33,8 +25,6 @@ import reactivecircus.flowbinding.android.view.hierarchyChangeEvents
  * With those conditions, this view expects the following direct child:
  *
  * 1. An [AppBarLayout].
- *
- * 2. A [ChangeHandlerFrameLayout] that contains an optional [ViewPager].
  */
 class RideBusCoordinatorLayout @JvmOverloads constructor(
     context: Context,
@@ -48,7 +38,7 @@ class RideBusCoordinatorLayout @JvmOverloads constructor(
     private val isTablet = context.isTablet()
 
     private var appBarLayout: AppBarLayout? = null
-    private var viewPager: ViewPager? = null
+    private var tabLayout: TabLayout? = null
 
     /**
      * If true, [AppBarLayout] child will be lifted on nested scroll.
@@ -72,32 +62,21 @@ class RideBusCoordinatorLayout @JvmOverloads constructor(
     ) {
         super.onNestedScroll(target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type, consumed)
         // Disable elevation overlay when tabs are visible
-        if (canLiftAppBarOnScroll && viewPager == null) {
-            appBarLayout?.isLifted = dyConsumed != 0 || dyUnconsumed >= 0
+        if (canLiftAppBarOnScroll) {
+            appBarLayout?.isLifted = (dyConsumed != 0 || dyUnconsumed >= 0) && tabLayout?.isVisible == false
         }
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         appBarLayout = findChild()
-        viewPager = findChild<ChangeHandlerFrameLayout>()?.findDescendant()
-
-        // Updates ViewPager reference when controller is changed
-        findViewTreeLifecycleOwner()?.lifecycle?.coroutineScope?.let { scope ->
-            findChild<ChangeHandlerFrameLayout>()?.hierarchyChangeEvents()
-                ?.onEach {
-                    if (it is HierarchyChangeEvent.ChildRemoved) {
-                        viewPager = (it.parent as? ViewGroup)?.findDescendant()
-                    }
-                }
-                ?.launchIn(scope)
-        }
+        tabLayout = appBarLayout?.findChild()
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         appBarLayout = null
-        viewPager = null
+        tabLayout = null
     }
 
     override fun onSaveInstanceState(): Parcelable? {

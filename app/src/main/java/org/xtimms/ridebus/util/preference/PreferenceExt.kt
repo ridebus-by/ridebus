@@ -1,6 +1,6 @@
 package org.xtimms.ridebus.util.preference
 
-import com.tfcporciuncula.flow.Preference
+import com.fredporciuncula.flow.preferences.Preference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 

@@ -3,7 +3,6 @@ package org.xtimms.ridebus.ui.routes.details.info
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import org.xtimms.ridebus.R
@@ -71,8 +70,6 @@ class RouteInfoHeaderAdapter(
 
         /**
          * Update the view with route information.
-         *
-         * @param route route object containing information about route.
          */
         private fun setRouteInfo() {
             when (route.transportId) {
@@ -140,9 +137,8 @@ class RouteInfoHeaderAdapter(
                 )
             }
 
-            // Manga info section
+            // Route info section
             binding.routeSummary.setTags(tags)
-            binding.routeSummary.isVisible = route.following.isNotBlank()
             binding.routeSummary.description = view.context.getString(R.string.route_direction) +
                 ": " + route.following + "\n\n" + view.context.getString(R.string.working_hours) +
                 ": " + route.workingHours + "\n\n" + view.context.getString(R.string.additional_info) +
