@@ -1,7 +1,7 @@
 <resources>
     <string name="title_routes">Маршруты</string>
     <string name="title_stops">Остановки</string>
-    <string name="title_favorite">Избранное</string>
+    <string name="title_favourite">Избранное</string>
     <string name="title_more">Ещё</string>
     <string name="label_more">Ещё</string>
     <string name="label_settings">Настройки</string>
@@ -62,7 +62,7 @@
     <string name="city_polotsk">Полоцк</string>
     <string name="city_novopolotsk">Новополоцк</string>
     <string name="city">Город</string>
-    <string name="information_no_favorite_stops">Нет избранных остановок и маршрутов</string>
+    <string name="information_no_favourite_stops">Нет избранных маршрутов</string>
     <string name="pref_category_display">Отображение</string>
     <string name="pref_tablet_ui_mode">Планшетный вид</string>
     <string name="requires_app_restart">Для вступления в силу требуется перезапуск приложения</string>

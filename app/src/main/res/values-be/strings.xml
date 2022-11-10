@@ -2,7 +2,7 @@
 <resources>
     <string name="title_routes">Рухi</string>
     <string name="title_stops">Прыпынкi</string>
-    <string name="title_favorite">Абраныя</string>
+    <string name="title_favourite">Абраныя</string>
     <string name="title_more">Яшчэ</string>
     <string name="label_more">Яшчэ</string>
     <string name="label_settings">Налады</string>
@@ -64,7 +64,7 @@
     <string name="city_polotsk">Полацк</string>
     <string name="city_novopolotsk">Наваполацк</string>
     <string name="city">Горад</string>
-    <string name="information_no_favorite_stops">Няма абраных прыпынкаў</string>
+    <string name="information_no_favourite_stops">Няма абраных маршрутаў</string>
     <string name="pref_category_display">Адлюстраванне</string>
     <string name="pref_tablet_ui_mode">Планшэтны выгляд</string>
     <string name="requires_app_restart">Для ўступлення ў сілу патрабуецца перазапуск прыкладання</string>

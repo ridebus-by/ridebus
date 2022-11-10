@@ -84,4 +84,12 @@ class PreferencesHelper(val context: Context) {
     fun categoryTabs() = flowPrefs.getBoolean("display_category_tabs", true)
 
     fun categoryNumberOfItems() = flowPrefs.getBoolean("display_number_of_items", false)
+
+    fun lastUsedFavouriteItem() = flowPrefs.getInt("last_favourite_item", -1)
+
+    fun favourites() = flowPrefs.getStringSet("favourites", emptySet())
+
+    fun enabledTypes() = flowPrefs.getStringSet("transport_types", setOf("1", "2", "3", "4"))
+
+    fun disabledRoutes() = flowPrefs.getStringSet("hidden_routes", emptySet())
 }

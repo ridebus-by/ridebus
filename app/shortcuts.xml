@@ -22,15 +22,15 @@
             android:action="org.xtimms.ridebus.SHOW_STOP"
             android:targetClass="org.xtimms.ridebus.ui.main.MainActivity" />
     </shortcut>
-    <!--<shortcut
+    <shortcut
         android:enabled="true"
-        android:icon="@drawable/sc_outline_favorite_border_48dp"
+        android:icon="@drawable/sc_outline_favourite_border_48dp"
         android:shortcutDisabledMessage="@string/app_not_available"
-        android:shortcutId="show_favorite"
-        android:shortcutLongLabel="@string/title_favorite"
-        android:shortcutShortLabel="@string/title_favorite">
+        android:shortcutId="show_favourite"
+        android:shortcutLongLabel="@string/title_favourite"
+        android:shortcutShortLabel="@string/title_favourite">
         <intent
-            android:action="org.xtimms.ridebus.SHOW_FAVORITE"
+            android:action="org.xtimms.ridebus.SHOW_FAVOURITE"
             android:targetClass="org.xtimms.ridebus.ui.main.MainActivity" />
-    </shortcut>-->
+    </shortcut>
 </shortcuts>

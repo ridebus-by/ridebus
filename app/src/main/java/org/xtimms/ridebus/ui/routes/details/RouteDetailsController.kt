@@ -24,6 +24,7 @@ import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.RoutesDetailControllerBinding
 import org.xtimms.ridebus.ui.base.controller.DialogController
 import org.xtimms.ridebus.ui.base.controller.FabController
@@ -37,10 +38,13 @@ import org.xtimms.ridebus.ui.routes.details.stop.StopOnRouteItem
 import org.xtimms.ridebus.ui.routes.details.stop.StopsOnRouteAdapter
 import org.xtimms.ridebus.ui.routes.details.stop.base.BaseStopsAdapter
 import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
+import org.xtimms.ridebus.util.preference.minusAssign
+import org.xtimms.ridebus.util.preference.plusAssign
 import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 import kotlin.math.min
 
 class RouteDetailsController :
@@ -48,6 +52,8 @@ class RouteDetailsController :
     FabController,
     FlexibleAdapter.OnItemClickListener,
     BaseStopsAdapter.OnStopClickListener {
+
+    private val preferences: PreferencesHelper by injectLazy()
 
     constructor(route: Route?) : super(
         Bundle().apply {
@@ -205,18 +211,32 @@ class RouteDetailsController :
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.route_info, menu)
+        menu.findItem(R.id.action_favourite).icon?.mutate()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_favorite -> addToFavourites(route!!)
+            R.id.action_favourite -> addToFavourites(route!!)
             R.id.action_report -> report()
         }
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val isAdded = route?.routeId.toString() in preferences.favourites().get()
+        menu.findItem(R.id.action_favourite).setIcon(
+            if (isAdded) R.drawable.ic_favourite_filled else R.drawable.ic_favourite
+        )
+    }
+
     private fun addToFavourites(route: Route) {
-        // TODO use PreferenceHelper and save route to favourites
+        val isAdded = route.routeId.toString() in preferences.favourites().get()
+        if (isAdded) {
+            preferences.favourites() -= route.routeId.toString()
+        } else {
+            preferences.favourites() += route.routeId.toString()
+        }
+        activity?.invalidateOptionsMenu()
     }
 
     private fun report() {

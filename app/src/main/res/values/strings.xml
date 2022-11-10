@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">RideBus</string>
     <string name="title_routes">Routes</string>
     <string name="title_stops">Stops</string>
-    <string name="title_favorite">Favorite</string>
+    <string name="title_favourite">favourite</string>
     <string name="title_more">More</string>
     <string name="label_more">More</string>
     <string name="label_settings">Settings</string>
@@ -64,7 +64,7 @@
     <string name="city_polotsk">Polotsk</string>
     <string name="city_novopolotsk">Novopolotsk</string>
     <string name="city">City</string>
-    <string name="information_no_favorite_stops">There are no favorite stops or routes</string>
+    <string name="information_no_favourite_stops">There are no favourite routes</string>
     <string name="pref_category_display">Display</string>
     <string name="pref_tablet_ui_mode">Tablet UI</string>
     <string name="requires_app_restart">Requires app restart to take effect</string>
@@ -118,7 +118,7 @@
     <string name="in_cash">In cash</string>
     <string name="methods_of_payment">Methods of payment</string>
     <string name="working_hours">Working hours</string>
-    <string name="add_to_favourites">Add to favorites</string>
+    <string name="add_to_favourites">Add to favourites</string>
     <string name="carrier_company">Carrier company</string>
     <string name="theme_honey">Honey</string>
     <string name="pref_side_nav_labels">Label visibility modes</string>
@@ -173,4 +173,5 @@
     <string name="action_display_show_tabs">Show tabs</string>
     <string name="action_display_show_number_of_items">Show number of items</string>
     <string name="filter">Filter</string>
+    <string name="last_used">Last used</string>
 </resources>

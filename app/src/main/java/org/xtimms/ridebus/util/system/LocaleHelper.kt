@@ -10,16 +10,22 @@ import java.util.*
  */
 object LocaleHelper {
 
+    private const val BUS_ID = 1
+    private const val ROUTE_TAXI_ID = 2
+    private const val EXPRESS_ID = 3
+    private const val TRAM_ID = 4
+
     /**
      * Returns Display name of a favourite type
      */
     fun getTypeDisplayName(type: Int?, context: Context): String {
         return when (type) {
+            FavouritesPresenter.LAST_USED_KEY -> context.getString(R.string.last_used)
             FavouritesPresenter.PINNED_KEY -> context.getString(R.string.pinned)
-            1 -> context.getString(R.string.label_bus)
-            2 -> context.getString(R.string.label_route_taxi)
-            3 -> context.getString(R.string.label_express)
-            4 -> context.getString(R.string.label_tram)
+            BUS_ID -> context.getString(R.string.label_bus)
+            ROUTE_TAXI_ID -> context.getString(R.string.label_route_taxi)
+            EXPRESS_ID -> context.getString(R.string.label_express)
+            TRAM_ID -> context.getString(R.string.label_tram)
             else -> context.getString(R.string.other)
         }
     }

@@ -22,18 +22,18 @@ class FavouriteHolder(view: View, val adapter: FavouritesAdapter) :
     fun bind(item: FavouriteItem) {
         val favourite = item.route
 
-        binding.routeNumber.text = favourite.number
-        binding.routeTitle.text = favourite.title
-        binding.routeDescription.text = favourite.description
+        binding.routeNumber.text = favourite?.number
+        binding.routeTitle.text = favourite?.title
+        binding.routeDescription.text = favourite?.description
 
         // TODO better
-        when (favourite.transportId) {
+        when (favourite?.transportId) {
             1 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.bus_primary))
             2 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.minibus_primary))
             3 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.express_primary))
         }
 
-        when (favourite.transportId) {
+        when (favourite?.transportId) {
             1 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.bus_onPrimary))
             2 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.minibus_onPrimary))
             3 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.express_onPrimary))

@@ -9,7 +9,7 @@ import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
 
 data class FavouriteItem(
-    val route: Route,
+    val route: Route?,
     val header: TypeItem? = null,
     val isPinned: Boolean = false
 ) :
@@ -17,7 +17,7 @@ data class FavouriteItem(
 
     override fun equals(other: Any?): Boolean {
         if (other is FavouriteItem) {
-            return route.routeId == other.route.routeId &&
+            return route?.routeId == other.route?.routeId &&
                 getHeader()?.type == other.getHeader()?.type &&
                 isPinned == other.isPinned
         }
@@ -45,7 +45,7 @@ data class FavouriteItem(
     }
 
     override fun hashCode(): Int {
-        var result = route.routeId.hashCode()
+        var result = route?.routeId.hashCode()
         result = 31 * result + (header?.hashCode() ?: 0)
         result = 31 * result + isPinned.hashCode()
         return result

@@ -36,7 +36,7 @@ class FavouritesController :
     private var adapter: FavouritesAdapter? = null
 
     override fun getTitle(): String? {
-        return resources?.getString(R.string.title_favorite)
+        return resources?.getString(R.string.title_favourite)
     }
 
     override fun createBinding(inflater: LayoutInflater) =
@@ -63,6 +63,8 @@ class FavouritesController :
             (activity as? MainActivity)?.ready = true
         }
         adapter?.fastScroller = binding.fastScroller
+
+        presenter.updateFavourites()
     }
 
     override fun onDestroyView(view: View) {
@@ -75,20 +77,20 @@ class FavouritesController :
             binding.emptyView.hide()
         } else {
             binding.emptyView.show(
-                R.drawable.ic_favorite_off,
-                R.string.information_no_favorite_stops
+                R.drawable.ic_favourite_off,
+                R.string.information_no_favourite_stops
             )
         }
     }
 
     override fun onItemClick(position: Int) {
-        val item = adapter?.getItem(position) as? FavouriteItem ?: return
-        openRouteDetails(item.route)
+        val item = (adapter?.getItem(position) as? FavouriteItem)?.route?.routeId ?: return
+        router.pushController(RouteDetailsController(item).withFadeTransaction())
     }
 
     override fun onPinClick(position: Int) {
         val item = adapter?.getItem(position) as? FavouriteItem ?: return
-        toggleFavouritePin(item.route)
+        toggleFavouritePin(item.route!!)
     }
 
     override fun onItemClick(view: View, position: Int): Boolean {
@@ -103,10 +105,10 @@ class FavouritesController :
         val isPinned = item.header?.type?.equals(FavouritesPresenter.PINNED_KEY) ?: false
 
         val items = mutableListOf(
-            activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin) to { toggleFavouritePin(item.route) }
+            activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin) to { toggleFavouritePin(item.route!!) }
         )
 
-        FavouriteOptionsDialog(item.route.title, items).showDialog(router)
+        FavouriteOptionsDialog(item.route!!.title, items).showDialog(router)
     }
 
     private fun toggleFavouritePin(favourite: Route) {
@@ -118,10 +120,6 @@ class FavouritesController :
         }
 
         presenter.updateFavourites()
-    }
-
-    private fun openRouteDetails(route: Route) {
-        parentController!!.router.pushController(RouteDetailsController(route).withFadeTransaction())
     }
 
     fun setFavourites(list: List<IFlexible<*>>) {

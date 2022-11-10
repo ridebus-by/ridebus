@@ -1,6 +1,7 @@
 package org.xtimms.ridebus.ui.favourite
 
 import android.os.Bundle
+import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
@@ -8,33 +9,14 @@ import rx.Observable
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
+import java.util.TreeMap
 
 class FavouritesPresenter(
     private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<FavouritesController>() {
 
-    var favourites = mutableListOf( // TODO
-        Route(
-            1,
-            0,
-            1,
-            1,
-            "1",
-            "Швейная фабрика − Богатырская",
-            "через мкр-н Громы в д. Богатырская",
-            "0,80 BYN",
-            "ежедневно",
-            "05:25 - 20:12",
-            "Октябрьская улица - улица Гагарина - улица Суворова - д.Богатырская",
-            "ОАО \"Витебскоблавтотранс\" филиал \"Автобусный парк №2 г. Полоцка\"",
-            "Неизвестно",
-            1,
-            0,
-            0,
-            1,
-            1
-        )
-    )
+    private val db: RideBusDatabase by injectLazy()
 
     private var favouriteSubscription: Subscription? = null
 
@@ -45,15 +27,29 @@ class FavouritesPresenter(
 
     private fun loadFavourites() {
         favouriteSubscription?.unsubscribe()
-
+        val favourites = mutableListOf<Route?>()
+        val favouriteIds = preferences.favourites().get()
         val pinnedFavourites = mutableListOf<FavouriteItem>()
         val pinnedFavouriteIds = preferences.pinnedFavourites().get()
 
-        val byType = favourites.groupBy { it.transportId }
+        for (element in favouriteIds) {
+            favourites += db.routeDao().getRoute(element.toInt())
+        }
+
+        val map = TreeMap<Int, MutableList<Route?>> { d1, d2 ->
+            // Routes without a transport type defined will be placed at the end
+            when {
+                d1 == 0 && d2 != 0 -> 1
+                d2 == 0 && d1 != 0 -> -1
+                else -> d1.compareTo(d2)
+            }
+        }
+
+        val byType = favourites.sortedBy { it?.number }.groupByTo(map) { it?.transportId ?: EMPTY }
         var favouriteItems = byType.flatMap {
             val typeItem = TypeItem(it.key)
             it.value.map { favourite ->
-                val isPinned = favourite.routeId.toString() in pinnedFavouriteIds
+                val isPinned = favourite?.routeId.toString() in pinnedFavouriteIds
                 if (isPinned) {
                     pinnedFavourites.add(FavouriteItem(favourite, TypeItem(PINNED_KEY), isPinned))
                 }
@@ -74,6 +70,8 @@ class FavouritesPresenter(
     }
 
     companion object {
-        const val PINNED_KEY = 0b00000000
+        const val EMPTY = 0
+        const val PINNED_KEY = 100
+        const val LAST_USED_KEY = 101
     }
 }

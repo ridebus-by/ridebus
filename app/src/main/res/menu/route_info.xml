@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_favourite"
         android:title="@string/add_to_favourites"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/ic_favourite"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 

@@ -76,7 +76,7 @@ class MainActivity : BaseActivity() {
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
             2 -> R.id.nav_stops
-            3 -> R.id.nav_favorites
+            3 -> R.id.nav_favourites
             else -> R.id.nav_routes
         }
     }
@@ -156,7 +156,7 @@ class MainActivity : BaseActivity() {
                 when (id) {
                     R.id.nav_routes -> setRoot(RoutesTabbedController(), id)
                     R.id.nav_stops -> setRoot(StopsController(), id)
-                    R.id.nav_favorites -> setRoot(FavouritesController(), id)
+                    R.id.nav_favourites -> setRoot(FavouritesController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
                 }
             } else if (!isHandlingShortcut) {
@@ -324,7 +324,7 @@ class MainActivity : BaseActivity() {
         when (intent.action) {
             SHORTCUT_ROUTE -> setSelectedNavItem(R.id.nav_routes)
             SHORTCUT_STOP -> setSelectedNavItem(R.id.nav_stops)
-            SHORTCUT_FAVORITE -> setSelectedNavItem(R.id.nav_favorites)
+            SHORTCUT_FAVOURITE -> setSelectedNavItem(R.id.nav_favourites)
             else -> {
                 isHandlingShortcut = false
                 return false
@@ -503,6 +503,6 @@ class MainActivity : BaseActivity() {
         // Shortcut actions
         const val SHORTCUT_ROUTE = "org.xtimms.ridebus.SHOW_ROUTE"
         const val SHORTCUT_STOP = "org.xtimms.ridebus.SHOW_STOP"
-        const val SHORTCUT_FAVORITE = "org.xtimms.ridebus.SHOW_FAVORITE"
+        const val SHORTCUT_FAVOURITE = "org.xtimms.ridebus.SHOW_FAVOURITE"
     }
 }
