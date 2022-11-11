@@ -73,7 +73,7 @@ jobs:
           echo "APK_X86_SHA=$sha" >> $GITHUB_ENV
 
       - name: Create Release
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'rideus-by/ridebus'
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ridebus-by/ridebus'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.VERSION_TAG }}
