@@ -38,7 +38,7 @@ android {
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
         buildConfigField("boolean", "INCLUDE_UPDATER", "false")
-        buildConfigField("String", "DEVELOPER_EMAIL", "\"mailto:ztimms73@gmail.com\"")
+        buildConfigField("String", "DEVELOPER_EMAIL", "\"mailto:xtimms@live.com\"")
         buildConfigField("String", "DATABASE_VERSION", "\"2.47\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
