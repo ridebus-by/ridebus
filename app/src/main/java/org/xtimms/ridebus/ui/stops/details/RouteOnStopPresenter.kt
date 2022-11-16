@@ -1,12 +1,14 @@
 package org.xtimms.ridebus.ui.stops.details
 
 import android.os.Bundle
+import logcat.LogPriority
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import org.xtimms.ridebus.util.Times
 import org.xtimms.ridebus.util.system.TimeUtil
+import org.xtimms.ridebus.util.system.logcat
 import rx.Observable
 import rx.Single
 import rx.Subscription
@@ -51,11 +53,15 @@ class RouteOnStopPresenter(
                     route.routeId
                 )
                     .map { times -> RoutesOnStopItem(route, times) }
-            }.toSortedList { p1, p2 ->
-                p1?.route?.routeId?.compareTo(p2?.route?.routeId!!) // TODO Sort by time
+            }.toSortedList { t1, t2 ->
+                t1.times.closest(Times.Time.now()).toString()
+                    .compareTo(t2.times.closest(Times.Time.now()).toString())
             }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(RoutesOnStopController::onNextRoute)
+            .subscribeLatestCache(RoutesOnStopController::onNextRoute) { view, error ->
+                logcat(LogPriority.ERROR, error)
+                view.onNextRouteError(error)
+            }
     }
 
     private fun getTimes(typeDay: Int, routeId: Int): Single<Times> {

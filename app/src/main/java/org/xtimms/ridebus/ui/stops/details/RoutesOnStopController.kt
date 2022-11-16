@@ -3,9 +3,11 @@ package org.xtimms.ridebus.ui.stops.details
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import logcat.LogPriority
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Stop
@@ -14,6 +16,7 @@ import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
+import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.text.SimpleDateFormat
@@ -23,7 +26,6 @@ class RoutesOnStopController :
     NucleusController<StopsRouteControllerBinding, RouteOnStopPresenter>,
     NoAppBarElevationController,
     FlexibleAdapter.OnItemClickListener,
-    FlexibleAdapter.OnUpdateListener,
     RoutesOnStopAdapter.OnItemClickListener {
 
     constructor(stop: Stop?) : super(
@@ -79,6 +81,8 @@ class RoutesOnStopController :
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.setHasFixedSize(true)
+
+        binding.progress.isVisible = true
     }
 
     override fun onDestroyView(view: View) {
@@ -86,16 +90,21 @@ class RoutesOnStopController :
         super.onDestroyView(view)
     }
 
-    override fun onUpdateEmptyView(size: Int) {
-        if (size > 0) {
-            binding.emptyView.hide()
-        } else {
-            binding.emptyView.show(R.drawable.ic_alert, R.string.information_no_route_on_stop)
-        }
+    fun onNextRoute(routesOnStop: List<RoutesOnStopItem>) {
+        val adapter = adapter ?: return
+        hideProgressBar()
+        adapter.updateDataSet(routesOnStop)
     }
 
-    fun onNextRoute(routesOnStop: List<RoutesOnStopItem>) {
-        adapter?.updateDataSet(routesOnStop)
+    fun onNextRouteError(error: Throwable) {
+        logcat(LogPriority.ERROR, error)
+        val adapter = adapter ?: return
+        adapter.onLoadMoreComplete(null)
+        hideProgressBar()
+
+        if (adapter.isEmpty) {
+            binding.emptyView.show(R.drawable.ic_alert, R.string.information_no_route_on_stop)
+        }
     }
 
     override fun onItemClick(view: View?, position: Int): Boolean {
@@ -107,6 +116,14 @@ class RoutesOnStopController :
         val route = adapter?.getItem(position)?.route?.routeId ?: return
         val stop = stop?.stopId ?: return
         router.pushController(ScheduleTabbedController(route, stop).withFadeTransaction())
+    }
+
+    /**
+     * Hides active progress bars.
+     */
+    private fun hideProgressBar() {
+        binding.emptyView.hide()
+        binding.progress.isVisible = false
     }
 
     companion object {

@@ -31,13 +31,18 @@ class RoutesOnStopItem(val route: Route, val times: Times) :
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other is RoutesOnStopItem) {
-            return route.routeId == other.route.routeId
-        }
-        return false
+        if (javaClass != other?.javaClass) return false
+
+        other as RoutesOnStopItem
+
+        if (times != other.times) return false
+
+        return true
     }
 
     override fun hashCode(): Int {
-        return route.routeId.hashCode()
+        var result = super.hashCode()
+        result = 31 * result + times.hashCode()
+        return result
     }
 }
