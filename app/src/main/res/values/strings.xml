@@ -174,4 +174,5 @@
     <string name="action_display_show_number_of_items">Show number of items</string>
     <string name="filter">Filter</string>
     <string name="last_used">Last used</string>
+    <string name="action_remove">Remove</string>
 </resources>

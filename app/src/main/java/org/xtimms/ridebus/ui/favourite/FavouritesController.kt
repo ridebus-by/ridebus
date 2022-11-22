@@ -105,7 +105,8 @@ class FavouritesController :
         val isPinned = item.header?.type?.equals(FavouritesPresenter.PINNED_KEY) ?: false
 
         val items = mutableListOf(
-            activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin) to { toggleFavouritePin(item.route!!) }
+            activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin) to { toggleFavouritePin(item.route!!) },
+            activity.getString(R.string.action_remove) to { removeFavouriteItem(item.route!!) }
         )
 
         FavouriteOptionsDialog(item.route!!.title, items).showDialog(router)
@@ -117,6 +118,15 @@ class FavouritesController :
             preferences.pinnedFavourites() -= favourite.routeId.toString()
         } else {
             preferences.pinnedFavourites() += favourite.routeId.toString()
+        }
+
+        presenter.updateFavourites()
+    }
+
+    private fun removeFavouriteItem(favourite: Route) {
+        val isFavourited = favourite.routeId.toString() in preferences.favourites().get()
+        if (isFavourited) {
+            preferences.favourites() -= favourite.routeId.toString()
         }
 
         presenter.updateFavourites()

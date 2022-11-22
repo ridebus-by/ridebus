@@ -168,4 +168,12 @@
     <string name="about_dont_kill_my_app">Некоторые производители имеют дополнительные ограничения для приложений, которые отключают фоновые службы. На этом веб-сайте есть больше информации о том, как это исправить.</string>
     <string name="database_version">Версия базы данных</string>
     <string name="action_postpone">Отложить</string>
+    <string name="label_tram">Трамваи</string>
+    <string name="action_display">Отображение</string>
+    <string name="tabs_header">Вкладки</string>
+    <string name="action_display_show_tabs">Показывать вкладки</string>
+    <string name="action_display_show_number_of_items">Показывать число маршрутов</string>
+    <string name="filter">Фильтр</string>
+    <string name="last_used">Последнее</string>
+    <string name="action_remove">Убрать</string>
 </resources>
