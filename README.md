@@ -1,4 +1,4 @@
-[![CI](https://github.com/ridebus-by/ridebus/workflows/build.yml/badge.svg)](https://github.com/ridebus-by/ridebus/actions/workflows/build.yml) ![License](https://img.shields.io/github/license/ztimms73/Ridebus-Next)
+[![CI](https://github.com/ridebus-by/ridebus/actions/workflows/build.yml/badge.svg)](https://github.com/ridebus-by/ridebus/actions/workflows/build.yml) ![License](https://img.shields.io/github/license/ztimms73/Ridebus-Next)
 ![GitHub repo size](https://img.shields.io/github/repo-size/ztimms73/RideBus-Next) ![GitHub top language](https://img.shields.io/github/languages/top/ztimms73/RideBus-Next) [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 
