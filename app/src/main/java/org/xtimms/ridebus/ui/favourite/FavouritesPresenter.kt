@@ -45,7 +45,17 @@ class FavouritesPresenter(
             }
         }
 
-        val byType = favourites.sortedBy { it?.number }.groupByTo(map) { it?.transportId ?: EMPTY }
+        val byType = favourites.sortedWith(object : Comparator<Route?> {
+
+            override fun compare(o1: Route?, o2: Route?): Int {
+                return extractInt(o1!!) - extractInt(o2!!)
+            }
+
+            fun extractInt(s: Route): Int {
+                val num = s.number.replace("\\D".toRegex(), "")
+                return if (num.isEmpty()) 0 else Integer.parseInt(num)
+            }
+        }).groupByTo(map) { it?.transportId ?: EMPTY }
         var favouriteItems = byType.flatMap {
             val typeItem = TypeItem(it.key)
             it.value.map { favourite ->
