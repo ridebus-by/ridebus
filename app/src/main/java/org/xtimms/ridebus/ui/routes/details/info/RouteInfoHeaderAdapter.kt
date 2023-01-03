@@ -5,13 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.RouteDetailHeaderBinding
 import org.xtimms.ridebus.ui.base.controller.getMainAppBarHeight
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.util.system.getThemeColor
 import org.xtimms.ridebus.widget.RideBusChipGroup
+import reactivecircus.flowbinding.android.view.clicks
+import uy.kohesive.injekt.injectLazy
 
 class RouteInfoHeaderAdapter(
     private val controller: RouteDetailsController,
@@ -64,6 +69,8 @@ class RouteInfoHeaderAdapter(
 
     inner class HeaderViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
+        private val preferences by injectLazy<PreferencesHelper>()
+
         fun bind() {
             setRouteInfo()
         }
@@ -72,6 +79,12 @@ class RouteInfoHeaderAdapter(
          * Update the view with route information.
          */
         private fun setRouteInfo() {
+            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote().get()) binding.noteChip.visibility = View.VISIBLE
+
+            binding.noteChip.clicks()
+                .onEach { controller.showAttentionDialog() }
+                .launchIn(controller.viewScope)
+
             when (route.transportId) {
                 BUS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.busPrimary))
                 MINIBUS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.minibusPrimary))

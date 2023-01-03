@@ -268,6 +268,13 @@ class RouteDetailsController :
         router.pushController(ScheduleTabbedController(route, stop).withFadeTransaction())
     }
 
+    fun showAttentionDialog() {
+        activity?.let {
+            AttentionDialog(this).showDialog(router)
+        }
+        preferences.isVisibleAttentionNote().set(false)
+    }
+
     override fun onItemClick(view: View?, position: Int): Boolean {
         onStopClick(position)
         return false
