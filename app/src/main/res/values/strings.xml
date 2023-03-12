@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">RideBus</string>
     <string name="title_routes">Routes</string>
     <string name="title_stops">Stops</string>
-    <string name="title_favourite">favourite</string>
+    <string name="title_favourite">Favourites</string>
     <string name="title_more">More</string>
     <string name="label_more">More</string>
     <string name="label_settings">Settings</string>
@@ -175,4 +175,73 @@
     <string name="filter">Filter</string>
     <string name="last_used">Last used</string>
     <string name="action_remove">Remove</string>
+    <string name="note">Note</string>
+    <string name="pref_sources_used">Sources used</string>
+    <string name="polotsk_novopolotsk">Polotsk and Novopolotsk</string>
+    <string name="empty_backup_error">No entries to back up</string>
+    <string name="creating_backup">Creating backup</string>
+    <string name="creating_backup_error">Backup failed</string>
+    <string name="backup_created">Backup created</string>
+    <string name="restoring_backup">Restoring backup</string>
+    <string name="action_stop">Stop</string>
+    <string name="restoring_backup_error">Restoring backup failed</string>
+    <string name="restore_duration">%02d min, %02d sec</string>
+    <string name="restore_completed">Restore completed</string>
+    <string name="action_show_errors">Tap to see details</string>
+    <string name="label_backup">Backup and restore</string>
+    <string name="channel_progress">Progress</string>
+    <string name="channel_complete">Complete</string>
+    <string name="restoring_backup_cancelled">Cancelled restore</string>
+    <string name="backup_restore_content_full">Data from the backup file will be restored.</string>
+    <string name="pref_restore_backup">Restore backup</string>
+    <string name="action_restore">Restore</string>
+    <string name="invalid_backup_file">Invalid backup file</string>
+    <string name="action_create">Create</string>
+    <string name="backup_choice">What do you want to backup?</string>
+    <string name="file_picker_error">No file picker app found</string>
+    <string name="backup_restore_invalid_uri">Error: empty URI</string>
+    <string name="backup_info">Automatic backups are highly recommended. You should keep copies in other places as well.</string>
+    <string name="pref_backup_slots">Maximum backups</string>
+    <string name="pref_backup_directory">Backup location</string>
+    <string name="pref_backup_flags">Backup options</string>
+    <string name="pref_backup_flags_summ">What information to include in the backup file</string>
+    <string name="update_never">Off</string>
+    <string name="update_6hour">Every 6 hours</string>
+    <string name="update_12hour">Every 12 hours</string>
+    <string name="update_24hour">Daily</string>
+    <string name="update_48hour">Every 48 hours</string>
+    <string name="update_weekly">Weekly</string>
+    <string name="pref_backup_interval">Backup frequency</string>
+    <string name="pref_backup_service_category">Automatic backups</string>
+    <string name="restore_in_progress">Restore is already in progress</string>
+    <string name="file_select_backup">Select backup file</string>
+    <string name="restore_miui_warning">Backup/restore may not function properly if MIUI Optimization is disabled.</string>
+    <string name="pref_restore_backup_summ">Restore library from backup file</string>
+    <string name="backup_in_progress">Backup is already in progress</string>
+    <string name="pref_create_backup">Create backup</string>
+    <string name="pref_category_backup">Backup and restore</string>
+    <string name="attention_title">Minibuses may arrive at the wrong time…</string>
+    <string name="attention_message">…and it doesn\'t depend on us.
+        \n\n
+        Most of the minibuses are owned by private entrepreneurs.
+        \n\n
+        Sometimes it happens that the control of the schedule there is worse and therefore the minibuses do not arrive on time.
+        \n\n
+        The schedule in our application is taken from open sources on the Internet, so we cannot predict whether the minibus will arrive on time at the stop or not.</string>
+    <string name="ecotransport">Ecotransport</string>
+    <string name="wifi" translatable="false">Wi-Fi</string>
+    <string name="low_floor">Low floor</string>
+    <string name="label_everyday">Everyday</string>
+    <string name="label_saturday">Saturday</string>
+    <string name="label_sunday">Sunday</string>
+    <string name="label_friday">Friday</string>
+    <string name="label_monday_thursday">Monday-thursday</string>
+    <string name="unknown_error_message">Unknown error</string>
+    <string name="remote_error_message">Remote server error</string>
+    <string name="network_error_message">Network error</string>
+    <string name="invalid_api_key">Invalid API key</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Done in %1$s with %2$s error</item>
+        <item quantity="other">Done in %1$s with %2$s errors</item>
+    </plurals>
 </resources>

@@ -44,7 +44,7 @@ class StopsController :
     override fun createBinding(inflater: LayoutInflater) = StopsControllerBinding.inflate(inflater)
 
     override fun createPresenter(): StopsPresenter {
-        return StopsPresenter(preferences.city().get().ordinal)
+        return StopsPresenter(preferences.city().get().toInt())
     }
 
     override fun onViewCreated(view: View) {

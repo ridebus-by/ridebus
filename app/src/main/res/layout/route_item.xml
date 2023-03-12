@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/holder"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="72dp"
     android:background="?selectableItemBackground">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/circle"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
@@ -26,7 +26,7 @@
         android:layout_height="30dp"
         android:gravity="center"
         android:textColor="?attr/colorOnPrimary"
-        android:textStyle="bold"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="@+id/circle"
@@ -42,9 +42,9 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
         app:layout_constraintBottom_toTopOf="@+id/route_description"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/swap"
         app:layout_constraintStart_toEndOf="@+id/circle"
         app:layout_constraintTop_toTopOf="@+id/circle"
         tools:text="Title" />
@@ -57,11 +57,24 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="?attr/textAppearanceBodySmall"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
         app:layout_constraintBottom_toBottomOf="@+id/circle"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/swap"
         app:layout_constraintStart_toEndOf="@+id/circle"
         app:layout_constraintTop_toBottomOf="@+id/route_title"
         tools:text="Description" />
+
+    <ImageButton
+        android:id="@+id/swap"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_swap"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

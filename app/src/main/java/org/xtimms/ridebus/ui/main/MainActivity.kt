@@ -22,6 +22,7 @@ import androidx.core.view.isVisible
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenResumed
 import androidx.preference.PreferenceDialogController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
@@ -36,18 +37,18 @@ import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.Migrations
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.NotificationReceiver
+import org.xtimms.ridebus.data.updater.app.AppUpdateChecker
+import org.xtimms.ridebus.data.updater.app.AppUpdateResult
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateChecker
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.activity.BaseActivity
-import org.xtimms.ridebus.ui.base.controller.DialogController
-import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
-import org.xtimms.ridebus.ui.base.controller.RootController
-import org.xtimms.ridebus.ui.base.controller.TabbedController
-import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favourite.FavouritesController
+import org.xtimms.ridebus.ui.main.welcome.WelcomeDialogController
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.more.NewScheduleDialogController
+import org.xtimms.ridebus.ui.more.NewUpdateDialogController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
@@ -61,10 +62,6 @@ import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
-import kotlin.collections.firstOrNull
-import kotlin.collections.getOrElse
-import kotlin.collections.lastOrNull
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
 class MainActivity : BaseActivity() {
@@ -154,10 +151,10 @@ class MainActivity : BaseActivity() {
             val currentRoot = router.backstack.firstOrNull()
             if (currentRoot?.tag()?.toIntOrNull() != id) {
                 when (id) {
-                    R.id.nav_routes -> setRoot(RoutesTabbedController(), id)
-                    R.id.nav_stops -> setRoot(StopsController(), id)
-                    R.id.nav_favourites -> setRoot(FavouritesController(), id)
-                    R.id.nav_more -> setRoot(MoreController(), id)
+                    R.id.nav_routes -> router.setRoot(RoutesTabbedController(), id)
+                    R.id.nav_stops -> router.setRoot(StopsController(), id)
+                    R.id.nav_favourites -> router.setRoot(FavouritesController(), id)
+                    R.id.nav_more -> router.setRoot(MoreController(), id)
                 }
             } else if (!isHandlingShortcut) {
                 when (id) {
@@ -210,6 +207,11 @@ class MainActivity : BaseActivity() {
         if (savedInstanceState == null) {
             launchUI {
                 requestNotificationsPermission()
+                when (preferences.city().defaultValue) {
+                    "-1" -> whenResumed {
+                        WelcomeDialogController().showDialog(router)
+                    }
+                }
             }
             // Show changelog prompt on update
             if (didMigration && !BuildConfig.DEBUG) {
@@ -294,8 +296,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         checkForUpdates()
     }
 
@@ -309,6 +311,18 @@ class MainActivity : BaseActivity() {
                 }
             } catch (e: Exception) {
                 logcat(LogPriority.ERROR, e)
+            }
+
+            // App updates
+            if (BuildConfig.INCLUDE_UPDATER) {
+                try {
+                    val result = AppUpdateChecker().checkForUpdate(this@MainActivity)
+                    if (result is AppUpdateResult.NewUpdate) {
+                        NewUpdateDialogController(result).showDialog(router)
+                    }
+                } catch (e: Exception) {
+                    logcat(LogPriority.ERROR, e)
+                }
             }
         }
     }
@@ -334,11 +348,6 @@ class MainActivity : BaseActivity() {
         ready = true
         isHandlingShortcut = false
         return true
-    }
-
-    override fun onResume() {
-        super.onResume()
-        syncActivityViewWithController()
     }
 
     override fun onDestroy() {
@@ -382,10 +391,6 @@ class MainActivity : BaseActivity() {
         if (!isFinishing) {
             nav.selectedItemId = itemId
         }
-    }
-
-    private fun setRoot(controller: Controller, id: Int) {
-        router.setRoot(controller.withFadeTransaction().tag(id.toString()))
     }
 
     private fun syncActivityViewWithController(

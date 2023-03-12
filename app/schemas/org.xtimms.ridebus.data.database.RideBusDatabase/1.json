@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "969b235ed8b4a9cfaa9f8b2561276dc7",
+    "identityHash": "aaca072103ff50e50c6ec43832b0e7c6",
     "entities": [
       {
         "tableName": "route",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kindRoute_id` INTEGER NOT NULL, `route_number` TEXT NOT NULL, `route_title` TEXT NOT NULL, `description` TEXT NOT NULL, `fare` TEXT NOT NULL, `weekly_traffic` TEXT NOT NULL, `working_hours` TEXT NOT NULL, `following` TEXT NOT NULL, `carrier_company` TEXT NOT NULL, `tech_info` TEXT NOT NULL, `cash` INTEGER NOT NULL, `qr_code` INTEGER NOT NULL, `is_small` INTEGER NOT NULL, `is_big` INTEGER NOT NULL, `is_very_big` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kindRoute_id` INTEGER NOT NULL, `route_number` TEXT NOT NULL, `route_title` TEXT NOT NULL, `description` TEXT NOT NULL, `fare` TEXT NOT NULL, `weekly_traffic` TEXT NOT NULL, `working_hours` TEXT NOT NULL, `following` TEXT NOT NULL, `carrier_company` TEXT NOT NULL, `tech_info` TEXT NOT NULL, `cash` INTEGER NOT NULL, `qr_code` INTEGER NOT NULL, `is_small` INTEGER NOT NULL, `is_big` INTEGER NOT NULL, `is_very_big` INTEGER NOT NULL, `eco` INTEGER NOT NULL, `wifi` INTEGER NOT NULL, `low_floor` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "routeId",
@@ -115,6 +115,24 @@
             "columnName": "is_very_big",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "isEco",
+            "columnName": "eco",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wifi",
+            "columnName": "wifi",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLowFloor",
+            "columnName": "low_floor",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -128,7 +146,7 @@
       },
       {
         "tableName": "stop",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kindRoute_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `direction` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `city_id` INTEGER NOT NULL, `transport_id` INTEGER NOT NULL, `kindRoute_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `direction` TEXT NOT NULL, `latitude` TEXT NOT NULL, `longitude` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "stopId",
@@ -165,6 +183,18 @@
             "columnName": "direction",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -178,7 +208,7 @@
       },
       {
         "tableName": "routeStops",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `route_id` INTEGER NOT NULL, `stop_id` INTEGER NOT NULL, `stop_number` INTEGER NOT NULL, PRIMARY KEY(`_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER NOT NULL, `route_id` INTEGER NOT NULL, `stop_id` INTEGER NOT NULL, `shift_hour` INTEGER NOT NULL, `shift_minute` INTEGER NOT NULL, PRIMARY KEY(`_id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -199,8 +229,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "stopNumber",
-            "columnName": "stop_number",
+            "fieldPath": "shiftHour",
+            "columnName": "shift_hour",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shiftMinute",
+            "columnName": "shift_minute",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -216,7 +252,7 @@
       },
       {
         "tableName": "city",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `cityName` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `cityName` TEXT NOT NULL, `latitude` TEXT NOT NULL, `longitude` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "cityId",
@@ -227,6 +263,18 @@
           {
             "fieldPath": "city",
             "columnName": "cityName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -294,7 +342,7 @@
       },
       {
         "tableName": "schedule",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `routeStop_id` INTEGER NOT NULL, `typeDay_id` INTEGER NOT NULL, `time` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `route_id` INTEGER NOT NULL, `type_day` INTEGER NOT NULL, `hour` INTEGER NOT NULL, `minute` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -303,21 +351,27 @@
             "notNull": true
           },
           {
-            "fieldPath": "routeStopId",
-            "columnName": "routeStop_id",
+            "fieldPath": "routeId",
+            "columnName": "route_id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "typeDayId",
-            "columnName": "typeDay_id",
+            "fieldPath": "typeDay",
+            "columnName": "type_day",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "time",
-            "columnName": "time",
-            "affinity": "TEXT",
+            "fieldPath": "hour",
+            "columnName": "hour",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "minute",
+            "columnName": "minute",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -360,7 +414,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '969b235ed8b4a9cfaa9f8b2561276dc7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'aaca072103ff50e50c6ec43832b0e7c6')"
     ]
   }
 }

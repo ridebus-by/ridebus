@@ -6,37 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.preference.PreferenceScreen
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.preference.PreferenceValues
+import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
+import org.xtimms.ridebus.ui.more.map.MapStopsDialog
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
-import org.xtimms.ridebus.util.preference.bindTo
-import org.xtimms.ridebus.util.preference.entriesRes
-import org.xtimms.ridebus.util.preference.iconRes
-import org.xtimms.ridebus.util.preference.iconTint
-import org.xtimms.ridebus.util.preference.listPreference
-import org.xtimms.ridebus.util.preference.onChange
-import org.xtimms.ridebus.util.preference.onClick
-import org.xtimms.ridebus.util.preference.preference
-import org.xtimms.ridebus.util.preference.preferenceCategory
-import org.xtimms.ridebus.util.preference.summaryRes
-import org.xtimms.ridebus.util.preference.switchPreference
-import org.xtimms.ridebus.util.preference.titleRes
+import org.xtimms.ridebus.ui.stub.StubController
+import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.getResourceColor
 import rx.subscriptions.CompositeSubscription
+import uy.kohesive.injekt.injectLazy
 
 class MoreController :
     SettingsController(),
     RootController {
 
+    private val database: RideBusDatabase by injectLazy()
     private var untilDestroySubscriptions = CompositeSubscription()
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
         titleRes = R.string.label_more
 
         val tintColor = context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
+
+        add(MoreHeaderPreference(context))
 
         switchPreference {
             bindTo(preferences.autoUpdateSchedule())
@@ -57,24 +52,18 @@ class MoreController :
             iconRes = R.drawable.ic_city
             iconTint = tintColor
             titleRes = R.string.city
-            entriesRes = arrayOf(
-                R.string.city_polotsk,
-                R.string.city_novopolotsk
-            )
-            entryValues = arrayOf(
-                PreferenceValues.City.POLOTSK.name,
-                PreferenceValues.City.NOVOPOLOTSK.name
-            )
+            entriesName = database.cityDao().getCitiesNames().map { it }.toTypedArray()
+            entryValues = database.cityDao().getCitiesIds().map { it.toString() }.toTypedArray()
             summary = "%s"
         }
 
-        /*preferenceCategory {
+        preferenceCategory {
             preference {
                 titleRes = R.string.near_me
                 iconRes = R.drawable.ic_near_me
                 iconTint = tintColor
                 onClick {
-                    router.pushController(NearbyController().withFadeTransaction())
+                    router.pushController(StubController().withFadeTransaction())
                 }
             }
             preference {
@@ -82,7 +71,7 @@ class MoreController :
                 iconRes = R.drawable.ic_map
                 iconTint = tintColor
                 onClick {
-                    router.pushController(StubController().withFadeTransaction())
+                    MapStopsDialog().showDialog(router)
                 }
             }
             preference {
@@ -93,7 +82,7 @@ class MoreController :
                     router.pushController(StubController().withFadeTransaction())
                 }
             }
-        }*/
+        }
 
         preferenceCategory {
             preference {

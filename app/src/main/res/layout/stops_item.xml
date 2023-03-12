@@ -1,29 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/holder"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:background="@drawable/list_item_selector_background"
-    android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:paddingHorizontal="16dp">
+    android:layout_height="72dp"
+    android:background="@drawable/list_item_selector_background">
 
-    <TextView
-        android:id="@+id/stop_title"
+    <ImageView
+        android:id="@+id/stop_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textAppearance="?attr/textAppearanceBodyMedium"
-        tools:text="@tools:sample/lorem/random" />
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_polymir"
+        android:visibility="gone"
+        app:tint="?attr/colorOnSurfaceVariant"
+        tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/stop_description"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/stop_icon"
+        android:layout_toStartOf="@+id/tram_icon"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:id="@+id/stop_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            tools:text="Polymir" />
+
+        <TextView
+            android:id="@+id/stop_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            tools:text="@tools:sample/lorem/random" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/tram_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textAppearance="?attr/textAppearanceBodySmall"
-        tools:text="@tools:sample/lorem/random" />
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_tram"
+        android:visibility="gone"
+        app:tint="?attr/colorOnSurfaceVariant"
+        tools:visibility="visible" />
 
-</LinearLayout>
+</RelativeLayout>

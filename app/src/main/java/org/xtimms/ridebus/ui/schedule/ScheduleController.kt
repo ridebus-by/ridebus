@@ -22,6 +22,7 @@ class ScheduleController :
 
     constructor(typeDay: Int, route: Route?, stop: Stop?) : super(
         Bundle().apply {
+            putInt(TYPEDAY_EXTRA, typeDay)
             putInt(ROUTE_EXTRA, route?.routeId ?: 0)
             putInt(STOP_EXTRA, stop?.stopId ?: 0)
         }

@@ -42,7 +42,7 @@ class RoutesTabbedController :
     private var tabsVisibilitySubscription: Subscription? = null
 
     private val typesOfTransport: List<Int>
-        get() = db.transportDao().getTypesOfTransportPerCity(preferences.city().get().ordinal)
+        get() = db.transportDao().getTypesOfTransportPerCity(preferences.city().get().toInt())
 
     private var adapter: RoutesAdapter? = null
 
@@ -147,31 +147,17 @@ class RoutesTabbedController :
         }.map { resources!!.getString(it) }
 
         override fun getCount(): Int {
-            return db.transportDao().getTypesOfTransportPerCity(preferences.city().get().ordinal).size
+            return typesOfTransport.size
         }
 
         override fun configureRouter(router: Router, position: Int) {
             if (!router.hasRootController()) {
-                val controller: Controller = when (position) {
-                    BUS_CONTROLLER -> BusController()
-                    ROUTE_TAXI_CONTROLLER -> TaxiController()
-                    EXPRESS_CONTROLLER -> ExpressController()
-                    TRAM_CONTROLLER -> TramController()
-                    else -> error("Wrong position $position")
-                }
-                router.setRoot(RouterTransaction.with(controller))
+                router.setRoot(RouterTransaction.with(RouteController(typesOfTransport[position])))
             }
         }
 
         override fun getPageTitle(position: Int): CharSequence {
             return tabTitles[position]
         }
-    }
-
-    companion object {
-        const val BUS_CONTROLLER = 0
-        const val ROUTE_TAXI_CONTROLLER = 1
-        const val EXPRESS_CONTROLLER = 2
-        const val TRAM_CONTROLLER = 3
     }
 }

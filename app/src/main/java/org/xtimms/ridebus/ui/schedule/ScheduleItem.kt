@@ -6,9 +6,9 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.entity.Schedule
+import org.xtimms.ridebus.data.database.dao.ScheduleDao
 
-class ScheduleItem(val schedule: Schedule) : AbstractFlexibleItem<ScheduleHolder>() {
+class ScheduleItem(val schedule: ScheduleDao.Timetable) : AbstractFlexibleItem<ScheduleHolder>() {
 
     override fun equals(other: Any?): Boolean {
         if (other is ScheduleItem) {

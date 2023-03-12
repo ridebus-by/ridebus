@@ -2,6 +2,7 @@ package org.xtimms.ridebus.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
+import org.xtimms.ridebus.data.database.entity.Coordinates
 import org.xtimms.ridebus.data.database.entity.Stop
 
 //
@@ -15,4 +16,7 @@ interface StopDao {
 
     @Query("SELECT * FROM stop WHERE _id = :stopId")
     fun getStop(stopId: Int): List<Stop>
+
+    @Query("SELECT latitude, longitude FROM stop WHERE city_id = :cityId")
+    fun getCoordinates(cityId: Int): List<Coordinates>
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import com.yandex.mapkit.MapKitFactory
 import kotlinx.coroutines.flow.launchIn
 import logcat.AndroidLogcatLogger
 import logcat.LogPriority
@@ -33,6 +34,8 @@ open class App : Application(), DefaultLifecycleObserver {
         setupNotificationChannels()
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+
+        MapKitFactory.setApiKey("397822a9-4d94-49cb-b402-d419ed3d5355")
 
         preferences.themeMode()
             .asImmediateFlow {

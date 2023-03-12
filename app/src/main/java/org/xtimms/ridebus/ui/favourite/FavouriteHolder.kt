@@ -28,22 +28,24 @@ class FavouriteHolder(view: View, val adapter: FavouritesAdapter) :
 
         // TODO better
         when (favourite?.transportId) {
-            1 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.bus_primary))
-            2 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.minibus_primary))
-            3 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.express_primary))
+            1 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.bus_primaryContainer))
+            2 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.minibus_primaryContainer))
+            3 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.express_primaryContainer))
+            4 -> binding.circle.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.tram_primaryContainer))
         }
 
         when (favourite?.transportId) {
-            1 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.bus_onPrimary))
-            2 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.minibus_onPrimary))
-            3 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.express_onPrimary))
+            1 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.bus_onPrimaryContainer))
+            2 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.minibus_onPrimaryContainer))
+            3 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.express_onPrimaryContainer))
+            4 -> binding.routeNumber.setTextColor(ContextCompat.getColor(itemView.context, R.color.tram_onPrimaryContainer))
         }
 
         binding.pin.isVisible = true
         if (item.isPinned) {
-            binding.pin.setVectorCompat(R.drawable.ic_push_pin_filled, com.google.android.material.R.attr.colorAccent)
+            binding.pin.setVectorCompat(R.drawable.ic_push_pin_filled, com.google.android.material.R.attr.colorPrimary)
         } else {
-            binding.pin.setVectorCompat(R.drawable.ic_push_pin_outline, android.R.attr.textColorHint)
+            binding.pin.setVectorCompat(R.drawable.ic_push_pin_outline, com.google.android.material.R.attr.colorOnSurfaceVariant)
         }
     }
 }

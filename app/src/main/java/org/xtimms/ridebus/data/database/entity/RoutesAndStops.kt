@@ -10,5 +10,6 @@ data class RoutesAndStops(
     val id: Int,
     @ColumnInfo(name = "route_id") val routeId: Int,
     @ColumnInfo(name = "stop_id") val stopId: Int,
-    @ColumnInfo(name = "stop_number") val stopNumber: Int
+    @ColumnInfo(name = "shift_hour") val shiftHour: Int,
+    @ColumnInfo(name = "shift_minute") val shiftMinute: Int
 )

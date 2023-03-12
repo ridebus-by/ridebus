@@ -7,6 +7,7 @@ import androidx.appcompat.widget.TooltipCompat
 import androidx.core.view.children
 import androidx.core.view.descendants
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import org.xtimms.ridebus.util.system.inputMethodManager
 
 /**
@@ -60,4 +61,22 @@ inline fun <reified T> ViewGroup.findDescendant(): T? {
 
 fun View.hideKeyboard() {
     context.inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+}
+
+/**
+ * Shows a snackbar in this view.
+ *
+ * @param message the message to show.
+ * @param length the duration of the snack.
+ * @param f a function to execute in the snack, allowing for example to define a custom action.
+ */
+inline fun View.snack(
+    message: String,
+    length: Int = Snackbar.LENGTH_SHORT,
+    f: Snackbar.() -> Unit = {}
+): Snackbar {
+    val snack = Snackbar.make(this, message, length)
+    snack.f()
+    snack.show()
+    return snack
 }

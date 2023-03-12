@@ -3,7 +3,6 @@ package org.xtimms.ridebus.util.system
 import android.content.Context
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.ui.favourite.FavouritesPresenter
-import java.util.*
 
 /**
  * Utility class to change the application's language in runtime.

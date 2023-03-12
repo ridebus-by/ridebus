@@ -5,6 +5,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.preference.*
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.util.system.getResourceColor
+import org.xtimms.ridebus.widget.preference.ActivityListPreference
 import org.xtimms.ridebus.widget.preference.AdaptiveTitlePreferenceCategory
 import org.xtimms.ridebus.widget.preference.IntListPreference
 import org.xtimms.ridebus.widget.preference.SwitchPreferenceCategory
@@ -50,6 +51,10 @@ inline fun PreferenceGroup.editTextPreference(block: (@DSL EditTextPreference).(
 
 inline fun PreferenceGroup.listPreference(block: (@DSL ListPreference).() -> Unit): ListPreference {
     return initThenAdd(ListPreference(context), block).also(::initDialog)
+}
+
+inline fun PreferenceGroup.activityListPreference(block: (@DSL ActivityListPreference).() -> Unit): ActivityListPreference {
+    return initThenAdd(ActivityListPreference(context), block).also(::initDialog)
 }
 
 inline fun PreferenceGroup.intListPreference(block: (@DSL IntListPreference).() -> Unit): IntListPreference {
@@ -155,6 +160,12 @@ var ListPreference.entriesRes: Array<Int>
     get() = emptyArray() // set only
     set(value) {
         entries = value.map { context.getString(it) }.toTypedArray()
+    }
+
+var ListPreference.entriesName: Array<String>
+    get() = emptyArray() // set only
+    set(value) {
+        entries = value.map { it }.toTypedArray()
     }
 
 var MultiSelectListPreference.entriesRes: Array<Int>

@@ -7,12 +7,19 @@
     <color name="onError">#680003</color>
     <color name="onErrorContainer">#FFDAD4</color>
 
-    <color name="bus_primary">#71DAA6</color>
-    <color name="bus_onPrimary">#003921</color>
-    <color name="minibus_primary">#EFC209</color>
-    <color name="minibus_onPrimary">#3F2F00</color>
-    <color name="express_primary">#FFB4A7</color>
-    <color name="express_onPrimary">#680000</color>
+    <color name="warning">#FFDFA9</color>
+    <color name="warningContainer">#935D00</color>
+    <color name="onWarning">#684200</color>
+    <color name="onWarningContainer">#FFEAD4</color>
+
+    <color name="bus_primaryContainer">#71DAA6</color>
+    <color name="bus_onPrimaryContainer">#003921</color>
+    <color name="minibus_primaryContainer">#EFC209</color>
+    <color name="minibus_onPrimaryContainer">#3F2F00</color>
+    <color name="express_primaryContainer">#FFB4A7</color>
+    <color name="express_onPrimaryContainer">#680000</color>
+    <color name="tram_primaryContainer">#ABC7FF</color>
+    <color name="tram_onPrimaryContainer">#002F65</color>
 
     <!-- Default Theme -->
     <color name="divider_default">@color/md_white_1000_12</color>

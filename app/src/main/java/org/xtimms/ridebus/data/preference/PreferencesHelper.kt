@@ -2,18 +2,21 @@ package org.xtimms.ridebus.data.preference
 
 import android.content.Context
 import android.os.Build
+import android.os.Environment
+import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import com.fredporciuncula.flow.preferences.FlowSharedPreferences
 import org.xtimms.ridebus.BuildConfig
+import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.DEFAULT
 import org.xtimms.ridebus.data.preference.PreferenceValues.AppTheme.MONET
-import org.xtimms.ridebus.data.preference.PreferenceValues.City.POLOTSK
 import org.xtimms.ridebus.data.preference.PreferenceValues.TabletUiMode.ALWAYS
 import org.xtimms.ridebus.data.preference.PreferenceValues.TabletUiMode.NEVER
 import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.light
 import org.xtimms.ridebus.data.preference.PreferenceValues.ThemeMode.system
 import org.xtimms.ridebus.util.system.DeviceUtil
 import org.xtimms.ridebus.util.system.isTablet
+import java.io.File
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,6 +26,12 @@ class PreferencesHelper(val context: Context) {
 
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     private val flowPrefs = FlowSharedPreferences(prefs)
+
+    private val defaultBackupDir = File(
+        Environment.getExternalStorageDirectory().absolutePath + File.separator +
+            context.getString(R.string.app_name),
+        "backup"
+    ).toUri()
 
     fun confirmExit() = prefs.getBoolean(Keys.confirmExit, false)
 
@@ -49,7 +58,7 @@ class PreferencesHelper(val context: Context) {
         if (context.applicationContext.isTablet()) ALWAYS else NEVER
     )
 
-    fun city() = flowPrefs.getEnum("pref_city_key", POLOTSK)
+    fun city() = flowPrefs.getString("pref_city_key", "-1")
 
     fun themeDarkAmoled() = flowPrefs.getBoolean("pref_theme_dark_amoled_key", false)
 
@@ -92,4 +101,8 @@ class PreferencesHelper(val context: Context) {
     fun enabledTypes() = flowPrefs.getStringSet("transport_types", setOf("1", "2", "3", "4"))
 
     fun disabledRoutes() = flowPrefs.getStringSet("hidden_routes", emptySet())
+
+    fun isVisibleAttentionNote() = flowPrefs.getBoolean("attention_note", true)
+
+    fun appLocale() = flowPrefs.getString("app_locale", "0")
 }

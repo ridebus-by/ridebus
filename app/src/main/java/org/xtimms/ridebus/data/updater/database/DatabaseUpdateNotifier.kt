@@ -35,7 +35,6 @@ class DatabaseUpdateNotifier(private val context: Context) {
             setContentText(context.getString(R.string.new_version_s, release.version))
             setSmallIcon(R.drawable.ic_ridebus)
             setContentIntent(updateIntent)
-            setOngoing(true)
             clearActions()
             addAction(
                 android.R.drawable.stat_sys_download_done,

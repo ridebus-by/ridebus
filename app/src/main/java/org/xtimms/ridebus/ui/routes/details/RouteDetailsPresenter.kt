@@ -7,7 +7,6 @@ import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import org.xtimms.ridebus.ui.routes.details.stop.StopOnRouteItem
 import org.xtimms.ridebus.util.Times
-import org.xtimms.ridebus.util.system.TimeUtil
 import rx.Observable
 import rx.Single
 import rx.Subscription
@@ -15,7 +14,6 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.text.SimpleDateFormat
 import java.util.*
 
 class RouteDetailsPresenter(
@@ -46,9 +44,7 @@ class RouteDetailsPresenter(
             .flatMapObservable { Observable.from(it) }
             .flatMapSingle { (index, stop) ->
                 getTimes(
-                    TimeUtil.getTypeDay(
-                        SimpleDateFormat("EEEE", Locale.getDefault()).format(Date())
-                    ),
+                    db.scheduleDao().getTypesOfDay(route.routeId)[0],
                     stop.stopId
                 ).map { times -> StopOnRouteItem(stop, times, index) }
             }.toSortedList()
@@ -56,10 +52,10 @@ class RouteDetailsPresenter(
             .subscribeLatestCache(RouteDetailsController::onNextStops)
     }
 
-    private fun getTimes(typeDay: Int, stopId: Int): Single<Times> {
+    private fun getTimes(typeDay: Int?, stopId: Int): Single<Times> {
         return Single.fromCallable {
-            db.scheduleDao().getArrivalTimeOnStop(typeDay, route.routeId, stopId)
-                .map { it.time }
+            db.scheduleDao().getArrivalTime(typeDay!!, route.routeId, stopId)
+                .map { it.arrivalTime }
         }.subscribeOn(Schedulers.io())
             .map { Times(it) }
     }

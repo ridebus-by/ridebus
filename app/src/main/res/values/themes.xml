@@ -37,12 +37,14 @@
         <item name="colorErrorContainer">@color/errorContainer</item>
         <item name="colorOnErrorContainer">@color/onErrorContainer</item>
 
-        <item name="busPrimary">@color/bus_primary</item>
-        <item name="minibusPrimary">@color/minibus_primary</item>
-        <item name="expressPrimary">@color/express_primary</item>
-        <item name="busOnPrimary">@color/bus_onPrimary</item>
-        <item name="minibusOnPrimary">@color/minibus_onPrimary</item>
-        <item name="expressOnPrimary">@color/express_onPrimary</item>
+        <item name="busPrimaryContainer">@color/bus_primaryContainer</item>
+        <item name="minibusPrimaryContainer">@color/minibus_primaryContainer</item>
+        <item name="expressPrimaryContainer">@color/express_primaryContainer</item>
+        <item name="tramPrimaryContainer">@color/tram_primaryContainer</item>
+        <item name="busOnPrimaryContainer">@color/bus_onPrimaryContainer</item>
+        <item name="minibusOnPrimaryContainer">@color/minibus_onPrimaryContainer</item>
+        <item name="expressOnPrimaryContainer">@color/express_onPrimaryContainer</item>
+        <item name="tramOnPrimaryContainer">@color/tram_onPrimaryContainer</item>
 
         <item name="android:divider">@color/divider_default</item>
         <item name="android:listDivider">@drawable/line_divider</item>
@@ -242,7 +244,7 @@
         <item name="postSplashScreenTheme">@style/Theme.RideBus</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 

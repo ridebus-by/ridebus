@@ -2,9 +2,9 @@ package org.xtimms.ridebus.util
 
 import java.util.*
 
-class Times(times: Collection<String>) {
+class Times(times: List<String?>) {
 
-    private val data = TreeSet(times.map { Time(it) })
+    private val data = TreeSet(times.map { Time(it!!) })
 
     fun closest(time: Time): Time? {
         return data.ceiling(time)

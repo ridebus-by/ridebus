@@ -7,6 +7,7 @@ import androidx.core.os.bundleOf
 import com.bluelinelabs.conductor.*
 import com.bluelinelabs.conductor.viewpager.RouterPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import com.jakewharton.rxrelay.BehaviorRelay
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
@@ -15,13 +16,24 @@ import org.xtimms.ridebus.databinding.ScheduleTabbedControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
+import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
+import java.util.*
 
 class ScheduleTabbedController :
     RxController<ScheduleTabbedControllerBinding>,
     NoAppBarElevationController,
     TabbedController {
+
+    private val db: RideBusDatabase by injectLazy()
+
+    private var tabsVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
+    private var tabsVisibilitySubscription: Subscription? = null
+
+    private val typesOfDay: List<Int>
+        get() = db.scheduleDao().getTypesOfDay(route?.routeId ?: 0)
 
     constructor(route: Route?, stop: Stop?) : super(
         bundleOf(
@@ -79,7 +91,7 @@ class ScheduleTabbedController :
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            binding.tabs.apply {
+            binding.tabLayout.apply {
                 setupWithViewPager(binding.pager)
             }
         }
@@ -88,31 +100,33 @@ class ScheduleTabbedController :
     override fun configureTabs(tabs: TabLayout): Boolean {
         with(tabs) {
             tabGravity = TabLayout.GRAVITY_FILL
-            tabMode = TabLayout.MODE_FIXED
+            tabMode = TabLayout.MODE_SCROLLABLE
         }
         return false
     }
 
     private inner class ScheduleRouterPagerAdapter : RouterPagerAdapter(this@ScheduleTabbedController) {
 
-        private val tabTitles = listOf(
-            R.string.label_working_days,
-            R.string.label_weekends
-        )
-            .map { resources!!.getString(it) }
+        private val tabTitles = typesOfDay.map {
+            when (it) {
+                1 -> R.string.label_working_days
+                2 -> R.string.label_weekends
+                5 -> R.string.label_friday
+                6 -> R.string.label_monday_thursday
+                7 -> R.string.label_everyday
+                else -> R.string.unknown
+            }
+        }.map { resources!!.getString(it) }
 
         override fun getCount(): Int {
-            return tabTitles.size
+            return typesOfDay.size
         }
 
         override fun configureRouter(router: Router, position: Int) {
             if (!router.hasRootController()) {
-                val controller: Controller = when (position) {
-                    WORKING_DAYS_CONTROLLER -> ScheduleController(WORKING_DAY, route, stop)
-                    WEEKENDS_CONTROLLER -> ScheduleController(WEEKEND, route, stop)
-                    else -> error("Wrong position $position")
-                }
-                router.setRoot(RouterTransaction.with(controller))
+                // меняем таб в зависимости от типа дня
+                // binding.pager.currentItem = typesOfDay[position] - 1
+                router.setRoot(RouterTransaction.with(ScheduleController(typesOfDay[position], route, stop)))
             }
         }
 
@@ -122,11 +136,7 @@ class ScheduleTabbedController :
     }
 
     companion object {
-        const val WORKING_DAYS_CONTROLLER = 0
-        const val WEEKENDS_CONTROLLER = 1
         const val ROUTE_EXTRA = "route"
         const val STOP_EXTRA = "stop"
-        const val WORKING_DAY = 1
-        const val WEEKEND = 2
     }
 }

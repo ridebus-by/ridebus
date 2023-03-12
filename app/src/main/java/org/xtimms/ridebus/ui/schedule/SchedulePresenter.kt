@@ -2,8 +2,8 @@ package org.xtimms.ridebus.ui.schedule
 
 import android.os.Bundle
 import org.xtimms.ridebus.data.database.RideBusDatabase
+import org.xtimms.ridebus.data.database.dao.ScheduleDao.Timetable
 import org.xtimms.ridebus.data.database.entity.Route
-import org.xtimms.ridebus.data.database.entity.Schedule
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import rx.Observable
@@ -19,10 +19,7 @@ class SchedulePresenter(
     private val db: RideBusDatabase = Injekt.get()
 ) : BasePresenter<ScheduleController>() {
 
-    /**
-     * List containing stops.
-     */
-    private var timeList: List<Schedule> = emptyList()
+    private var timeList: List<Timetable> = emptyList()
 
     private var scheduleSubscription: Subscription? = null
 
@@ -33,7 +30,7 @@ class SchedulePresenter(
 
     private fun loadSchedule(typeDay: Int, route: Route, stop: Stop) {
         scheduleSubscription?.unsubscribe()
-        scheduleSubscription = Observable.just(db.scheduleDao().getArrivalTimeOnStop(typeDay, route.routeId, stop.stopId))
+        scheduleSubscription = Observable.just(db.scheduleDao().getArrivalTime(typeDay, route.routeId, stop.stopId))
             .doOnNext { timeList = it }
             .map { it.map(::ScheduleItem) }
             .observeOn(AndroidSchedulers.mainThread())

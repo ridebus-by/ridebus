@@ -1,6 +1,7 @@
 package org.xtimms.ridebus.ui.stops
 
 import android.view.View
+import androidx.core.view.isVisible
 import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.StopsItemBinding
@@ -31,6 +32,10 @@ class StopsHolder(view: View, val adapter: StopsAdapter) :
         } else {
             binding.stopTitle.text = stop.name
             binding.stopDescription.text = stop.direction
+        }
+        binding.tramIcon.isVisible = when (stop.transportId) {
+            4 -> true
+            else -> false
         }
     }
 }

@@ -15,5 +15,7 @@ data class Stop(
     @ColumnInfo(name = "transport_id") val transportId: Int,
     @ColumnInfo(name = "kindRoute_id") val kindId: Int,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "direction") val direction: String
+    @ColumnInfo(name = "direction") val direction: String,
+    @ColumnInfo(name = "latitude") val latitude: String,
+    @ColumnInfo(name = "longitude") val longitude: String
 )

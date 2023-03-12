@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 data class Schedule(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "_id")
     val id: Int,
-    @ColumnInfo(name = "routeStop_id") val routeStopId: Int,
-    @ColumnInfo(name = "typeDay_id") val typeDayId: Int,
-    @ColumnInfo(name = "time") val time: String
+    @ColumnInfo(name = "route_id") val routeId: Int,
+    @ColumnInfo(name = "type_day") val typeDay: Int,
+    @ColumnInfo(name = "hour") val hour: Int,
+    @ColumnInfo(name = "minute") val minute: Int
 )

@@ -3,7 +3,7 @@ package org.xtimms.ridebus.ui.setting
 import androidx.preference.PreferenceScreen
 import logcat.LogPriority
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.preference.PreferenceValues
+import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateChecker
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
@@ -12,12 +12,14 @@ import org.xtimms.ridebus.util.lang.launchNow
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
+import uy.kohesive.injekt.injectLazy
 
 //
 // Created by Xtimms on 28.08.2021.
 //
 class SettingsScheduleController : SettingsController() {
 
+    private val database: RideBusDatabase by injectLazy()
     private val updateChecker by lazy { DatabaseUpdateChecker() }
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = screen.apply {
@@ -45,14 +47,8 @@ class SettingsScheduleController : SettingsController() {
         listPreference {
             bindTo(preferences.city())
             titleRes = R.string.city
-            entriesRes = arrayOf(
-                R.string.city_polotsk,
-                R.string.city_novopolotsk
-            )
-            entryValues = arrayOf(
-                PreferenceValues.City.POLOTSK.name,
-                PreferenceValues.City.NOVOPOLOTSK.name
-            )
+            entriesName = database.cityDao().getCitiesNames().map { it }.toTypedArray()
+            entryValues = database.cityDao().getCitiesIds().map { it.toString() }.toTypedArray()
             summary = "%s"
         }
 

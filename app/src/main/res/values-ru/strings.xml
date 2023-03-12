@@ -176,4 +176,54 @@
     <string name="filter">Фильтр</string>
     <string name="last_used">Последнее</string>
     <string name="action_remove">Убрать</string>
+    <string name="note">Примечание</string>
+    <string name="pref_sources_used">Использованные источники</string>
+    <string name="polotsk_novopolotsk">Полоцк и Новополоцк</string>
+    <string name="empty_backup_error">Нет записей для резервного копирования</string>
+    <string name="creating_backup">Создание резервной копии</string>
+    <string name="creating_backup_error">Резервная копия не создана</string>
+    <string name="backup_created">Резервная копия создана</string>
+    <string name="restoring_backup">Восстановление из резервной копии</string>
+    <string name="action_stop">Остановить</string>
+    <string name="restoring_backup_error">Восстановление из резервной копии завершилось неудачно</string>
+    <string name="restore_duration">%02d минут, %02d секунд</string>
+    <string name="restore_completed">Восстановление успешно завершено</string>
+    <string name="action_show_errors">Нажмите, чтобы увидеть подробности</string>
+    <string name="label_backup">Резервное копирование и восстановление</string>
+    <string name="channel_progress">Прогресс</string>
+    <string name="channel_complete">Готово</string>
+    <string name="restoring_backup_cancelled">Восстановление отменено</string>
+    <string name="backup_restore_content_full">Данные из файла резервной копии будут восстановлены.</string>
+    <string name="pref_restore_backup">Восстановить из резервной копии</string>
+    <string name="action_restore">Восстановить</string>
+    <string name="invalid_backup_file">Невалидный файл резервной копии</string>
+    <string name="action_create">Создать</string>
+    <string name="backup_choice">Что вы хотите сохранить в резервную копию?</string>
+    <string name="file_picker_error">Не обнаружено файлового менеджера</string>
+    <string name="backup_restore_invalid_uri">Ошибка: пустой URI</string>
+    <string name="backup_info">Автоматическое создание резервных копий очень рекомендуется. Вы должны хранить копии файлов в других местах как правило.</string>
+    <string name="pref_backup_slots">Максимальное количество резервных копий</string>
+    <string name="pref_backup_directory">Место хранения резервных копий</string>
+    <string name="pref_backup_flags">Настройки резервного копирования</string>
+    <string name="update_never">Выключено</string>
+    <string name="update_6hour">Каждые 6 часов</string>
+    <string name="update_12hour">Каждые 12 часов</string>
+    <string name="update_24hour">Каждый день</string>
+    <string name="update_48hour">Каждые 2 дня</string>
+    <string name="update_weekly">Еженедельно</string>
+    <string name="attention_title">Маршрутки могут приезжать не вовремя…</string>
+    <string name="attention_message">…и это зависит не от нас.
+        \n\n
+        Большая часть маршрутных такси принадлежат частным предпринимателям.
+        \n\n
+        Иногда бывает так, что контроль за расписанием там хуже, и поэтому маршрутки не прибывают вовремя.
+        \n\n
+        Расписание в нашем приложении взято из открытых источников в сети Интернет, поэтому мы не можем предсказать, прибудет маршрутка вовремя на остановку или нет.</string>
+    <string name="ecotransport">Экотранспорт</string>
+    <string name="low_floor">Низкопольный</string>
+    <string name="label_everyday">Каждый день</string>
+    <string name="label_saturday">По субботам</string>
+    <string name="label_sunday">По воскресеньям</string>
+    <string name="label_friday">По пятницам</string>
+    <string name="label_monday_thursday">С понедельника по четверг</string>
 </resources>

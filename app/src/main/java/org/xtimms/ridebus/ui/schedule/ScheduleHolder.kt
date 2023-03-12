@@ -11,6 +11,6 @@ class ScheduleHolder(view: View, val adapter: ScheduleAdapter) :
 
     fun bind(item: ScheduleItem) {
         val schedule = item.schedule
-        binding.textTimeExact.text = schedule.time
+        binding.textTimeExact.text = schedule.arrivalTime
     }
 }

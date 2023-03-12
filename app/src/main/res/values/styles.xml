@@ -21,6 +21,16 @@
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
+    <style name="ThemeOverlay.RideBus.Dialog.Fullscreen" parent="ThemeOverlay.Material3">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@style/Animation.RideBus.Dialog</item>
+    </style>
+
+    <style name="Animation.RideBus.Dialog" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/fade_in_short</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_short</item>
+    </style>
+
     <!--===============-->
     <!--Text Appearance-->
     <!--===============-->

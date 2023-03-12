@@ -23,9 +23,10 @@ class RouteOnStopHolder(view: View, val adapter: RoutesOnStopAdapter) :
         binding.routeNumber.text = route.number
         binding.timeView.times = item.times
         when (route.transportId) {
-            1 -> binding.decorView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.bus_primary))
-            2 -> binding.decorView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.minibus_primary))
-            3 -> binding.decorView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.express_primary))
+            1 -> binding.decorView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.bus_primaryContainer))
+            2 -> binding.decorView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.minibus_primaryContainer))
+            3 -> binding.decorView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.express_primaryContainer))
+            4 -> binding.decorView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.tram_primaryContainer))
         }
     }
 }

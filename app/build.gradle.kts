@@ -20,7 +20,7 @@ val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authP
 
 shortcutHelper.setFilePath("./shortcuts.xml")
 
-val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86")
+val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
 
 android {
     namespace = "org.xtimms.ridebus"
@@ -31,15 +31,15 @@ android {
         applicationId = "org.xtimms.ridebus"
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-        versionCode = 2
-        versionName = "0.2"
+        versionCode = 3
+        versionName = "0.3"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
         buildConfigField("boolean", "INCLUDE_UPDATER", "false")
         buildConfigField("String", "DEVELOPER_EMAIL", "\"mailto:xtimms@live.com\"")
-        buildConfigField("String", "DATABASE_VERSION", "\"2.47\"")
+        buildConfigField("String", "DATABASE_VERSION", "\"3.0\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
         buildConfigField("String", "ACRA_URI", "\"https://acra.rumblur.space/report\"")
@@ -165,11 +165,11 @@ dependencies {
 
     // AndroidX libraries
     implementation("androidx.annotation:annotation:1.4.0-alpha02")
-    implementation("androidx.appcompat:appcompat:1.6.0-beta01")
+    implementation("androidx.appcompat:appcompat:1.6.0")
     implementation("androidx.browser:browser:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
-    implementation("androidx.core:core-ktx:1.9.0-alpha02")
+    implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
     implementation("androidx.recyclerview:recyclerview:1.3.0-beta02")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
@@ -186,6 +186,7 @@ dependencies {
 
     // Job scheduling
     implementation("androidx.work:work-runtime-ktx:2.7.1")
+    implementation("com.google.guava:guava:31.1-android")
     implementation("com.github.Koitharu.pausing-coroutine-dispatcher:pausing-coroutine-dispatcher:5213d53420")
 
     // Network
@@ -193,6 +194,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10")
+
+    // Files
+    implementation("com.github.seven332:unifile:1.0.0")
 
     // RX
     implementation("io.reactivex:rxandroid:1.2.1")
@@ -225,12 +229,12 @@ dependencies {
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
     implementation("com.github.vipulasri:timelineview:1.1.5")
 
-    // Time
-    implementation("org.ocpsoft.prettytime:prettytime:3.2.7.Final")
-
     // Preferences
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("com.fredporciuncula:flow-preferences:1.8.0")
+
+    // Map
+    implementation("com.yandex.android:maps.mobile:4.2.2-full")
 
     // Dependency injection
     implementation("com.github.inorichi.injekt:injekt-core:65b0440")
@@ -249,6 +253,8 @@ dependencies {
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.9.6")
+
+    implementation("org.jsoup:jsoup:1.15.3")
 
     // Markdown
     implementation("io.noties.markwon:core:4.6.2")
