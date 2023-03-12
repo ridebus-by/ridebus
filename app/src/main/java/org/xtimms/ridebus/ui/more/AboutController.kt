@@ -11,6 +11,7 @@ import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.openInBrowser
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.more.licenses.LicensesController
+import org.xtimms.ridebus.ui.more.sources.UsedSourcesController
 import org.xtimms.ridebus.ui.setting.SettingsController
 import org.xtimms.ridebus.util.CrashLogUtil
 import org.xtimms.ridebus.util.lang.launchNow
@@ -73,6 +74,13 @@ class AboutController : SettingsController(), NoAppBarElevationController {
                 onClick {
                     openInBrowser(RELEASE_URL)
                 }
+            }
+        }
+        preference {
+            key = "pref_sources_used"
+            titleRes = R.string.pref_sources_used
+            onClick {
+                router.pushController(UsedSourcesController().withFadeTransaction())
             }
         }
         preference {
