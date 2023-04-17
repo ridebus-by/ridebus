@@ -27,6 +27,8 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
+const val YANDEX_MAPS_TERMS_OF_USE = "https://yandex.ru/legal/maps_termsofuse"
+
 class AboutController : SettingsController(), NoAppBarElevationController {
 
     private val updateChecker by lazy { AppUpdateChecker() }
@@ -81,6 +83,14 @@ class AboutController : SettingsController(), NoAppBarElevationController {
             titleRes = R.string.pref_sources_used
             onClick {
                 router.pushController(UsedSourcesController().withFadeTransaction())
+            }
+        }
+        preference {
+            key = "pref_yandex_maps_terms_of_use"
+            titleRes = R.string.yandex_maps_terms_of_use
+
+            onClick {
+                openInBrowser(YANDEX_MAPS_TERMS_OF_USE)
             }
         }
         preference {
