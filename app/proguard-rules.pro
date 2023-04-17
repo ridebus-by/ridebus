@@ -1,5 +1,3 @@
--dontobfuscate
-
 # Keep extension's common dependencies
 -keep,allowoptimization class org.xtimms.ridebus.** { public protected *; }
 -keep,allowoptimization class androidx.preference.** { *; }
