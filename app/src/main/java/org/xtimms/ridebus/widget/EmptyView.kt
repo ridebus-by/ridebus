@@ -43,7 +43,9 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
         binding.actionsContainer.removeAllViews()
         val buttonContext = ContextThemeWrapper(context, R.style.Widget_RideBus_Button_ActionButton)
-        val buttonColor = ColorStateList.valueOf(context.getThemeColor(com.google.android.material.R.attr.colorOnBackground))
+        val buttonColor = ColorStateList.valueOf(
+            context.getThemeColor(com.google.android.material.R.attr.colorOnBackground)
+        )
         actions?.forEach {
             val button = MaterialButton(
                 buttonContext,

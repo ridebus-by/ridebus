@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        tools:listitem="@layout/stops_item" />
+        tools:listitem="@layout/route_detail_stop_item" />
 
     <org.xtimms.ridebus.widget.MaterialFastScroll
         android:id="@+id/fast_scroller"

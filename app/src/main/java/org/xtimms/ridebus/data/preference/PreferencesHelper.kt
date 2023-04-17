@@ -58,7 +58,7 @@ class PreferencesHelper(val context: Context) {
         if (context.applicationContext.isTablet()) ALWAYS else NEVER
     )
 
-    fun city() = flowPrefs.getString("pref_city_key", "-1")
+    fun city() = flowPrefs.getString(Keys.city, "0")
 
     fun themeDarkAmoled() = flowPrefs.getBoolean("pref_theme_dark_amoled_key", false)
 

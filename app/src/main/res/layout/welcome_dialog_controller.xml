@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Выберите город из списка"
+            android:text="Выберите город из списка. Изменить город в дальнейшем вы можете в настройках приложения."
             android:textAppearance="?attr/textAppearanceBodyLarge"/>
 
         <androidx.recyclerview.widget.RecyclerView

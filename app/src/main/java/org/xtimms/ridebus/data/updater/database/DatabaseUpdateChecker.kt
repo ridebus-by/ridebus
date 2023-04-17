@@ -17,8 +17,13 @@ class DatabaseUpdateChecker {
     private val networkService: NetworkHelper by injectLazy()
     private val preferences: PreferencesHelper by injectLazy()
 
-    suspend fun checkForUpdate(context: Context, isUserPrompt: Boolean = false): DatabaseUpdateResult {
-        if (isUserPrompt.not() && Date().time < preferences.lastDatabaseCheck().get() + TimeUnit.DAYS.toMillis(1)) {
+    suspend fun checkForUpdate(
+        context: Context,
+        isUserPrompt: Boolean = false
+    ): DatabaseUpdateResult {
+        if (isUserPrompt.not() && Date().time < preferences.lastDatabaseCheck()
+            .get() + TimeUnit.DAYS.toMillis(1)
+        ) {
             return DatabaseUpdateResult.NoNewUpdate
         }
 
@@ -29,7 +34,11 @@ class DatabaseUpdateChecker {
                 .parseAs<GithubDatabase>()
                 .let {
                     preferences.lastDatabaseCheck().set(Date().time)
-                    if (SemanticVersioning.isNewVersion(it.version, preferences.databaseVersion().get())) {
+                    if (SemanticVersioning.isNewVersion(
+                            it.version,
+                            preferences.databaseVersion().get()
+                        )
+                    ) {
                         DatabaseUpdateResult.NewUpdate(it)
                     } else {
                         DatabaseUpdateResult.NoNewUpdate
@@ -37,7 +46,9 @@ class DatabaseUpdateChecker {
                 }
 
             when (result) {
-                is DatabaseUpdateResult.NewUpdate -> DatabaseUpdateNotifier(context).promptUpdate(result.update)
+                is DatabaseUpdateResult.NewUpdate -> DatabaseUpdateNotifier(context).promptUpdate(
+                    result.update
+                )
                 else -> {}
             }
             result

@@ -1,10 +1,10 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -42,7 +42,7 @@ android {
         buildConfigField("String", "DATABASE_VERSION", "\"3.0\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
-        buildConfigField("String", "ACRA_URI", "\"https://acra.rumblur.space/report\"")
+        buildConfigField("String", "ACRA_URI", "\"https://acra.kotatsu.app/report\"")
         buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin)
         buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword)
 
@@ -108,22 +108,24 @@ android {
             dimension = "default"
         }
         create("dev") {
-            resConfigs("xxhdpi")
+            resourceConfigurations += setOf("xxhdpi")
             dimension = "default"
         }
     }
 
     packagingOptions {
-        resources.excludes.addAll(listOf(
-            "META-INF/DEPENDENCIES",
-            "LICENSE.txt",
-            "META-INF/LICENSE",
-            "META-INF/LICENSE.txt",
-            "META-INF/README.md",
-            "META-INF/NOTICE",
-            "META-INF/*.kotlin_module",
-            "META-INF/*.version",
-        ))
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/DEPENDENCIES",
+                "LICENSE.txt",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/README.md",
+                "META-INF/NOTICE",
+                "META-INF/*.kotlin_module",
+                "META-INF/*.version"
+            )
+        )
     }
 
     dependenciesInfo {
@@ -166,7 +168,7 @@ dependencies {
     // AndroidX libraries
     implementation("androidx.annotation:annotation:1.4.0-alpha02")
     implementation("androidx.appcompat:appcompat:1.6.0")
-    implementation("androidx.browser:browser:1.4.0")
+    implementation("androidx.browser:browser:1.5.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("androidx.core:core-ktx:1.9.0")
@@ -182,12 +184,16 @@ dependencies {
     // Data serialization (JSON, protobuf)
     val kotlinSerializationVersion = "1.3.3"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion")
+    implementation(
+        "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$kotlinSerializationVersion"
+    )
 
     // Job scheduling
     implementation("androidx.work:work-runtime-ktx:2.7.1")
     implementation("com.google.guava:guava:31.1-android")
-    implementation("com.github.Koitharu.pausing-coroutine-dispatcher:pausing-coroutine-dispatcher:5213d53420")
+    implementation(
+        "com.github.Koitharu.pausing-coroutine-dispatcher:pausing-coroutine-dispatcher:5213d53420"
+    )
 
     // Network
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -218,12 +224,16 @@ dependencies {
     val flowbindingVersion = "1.2.0"
     implementation("io.github.reactivecircus.flowbinding:flowbinding-android:$flowbindingVersion")
     implementation("io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowbindingVersion")
-    implementation("io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbindingVersion")
-    implementation("io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbindingVersion")
+    implementation(
+        "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbindingVersion"
+    )
+    implementation(
+        "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbindingVersion"
+    )
     implementation("io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion")
 
     // UI libraries
-    implementation("com.google.android.material:material:1.7.0-alpha01")
+    implementation("com.google.android.material:material:1.8.0")
     implementation("com.github.arkon.FlexibleAdapter:flexible-adapter:c8013533")
     implementation("com.github.arkon.FlexibleAdapter:flexible-adapter-ui:c8013533")
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
@@ -252,7 +262,7 @@ dependencies {
     implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
 
     // Crash reports/analytics
-    implementation("ch.acra:acra-http:5.9.6")
+    implementation("ch.acra:acra-http:5.9.7")
 
     implementation("org.jsoup:jsoup:1.15.3")
 
@@ -271,15 +281,15 @@ tasks {
     // See https://kotlinlang.org/docs/reference/experimental.html#experimental-status-of-experimental-api(-markers)
     withType<KotlinCompile> {
         kotlinOptions.freeCompilerArgs += listOf(
-                "-opt-in=kotlin.Experimental",
-                "-opt-in=kotlin.RequiresOptIn",
-                "-opt-in=kotlin.ExperimentalStdlibApi",
-                "-opt-in=kotlinx.coroutines.FlowPreview",
-                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                "-opt-in=kotlinx.coroutines.InternalCoroutinesApi",
-                "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
-                "-opt-in=coil.annotation.ExperimentalCoilApi",
-            "-Xjvm-default=enable",
+            "-opt-in=kotlin.Experimental",
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlin.ExperimentalStdlibApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview",
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.InternalCoroutinesApi",
+            "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+            "-opt-in=coil.annotation.ExperimentalCoilApi",
+            "-Xjvm-default=enable"
         )
     }
 

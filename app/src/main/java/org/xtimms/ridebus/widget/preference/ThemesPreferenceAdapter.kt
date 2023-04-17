@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.recyclerview.widget.RecyclerView
-import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.PrefThemeItemBinding
@@ -29,7 +28,10 @@ class ThemesPreferenceAdapter(private val clickListener: OnItemClickListener) :
         parent: ViewGroup,
         viewType: Int
     ): ThemeViewHolder {
-        val themeResIds = ThemingDelegate.getThemeResIds(themes[viewType], preferences.themeDarkAmoled().get())
+        val themeResIds = ThemingDelegate.getThemeResIds(
+            themes[viewType],
+            preferences.themeDarkAmoled().get()
+        )
         val themedContext = themeResIds.fold(parent.context) {
                 context, themeResId ->
             ContextThemeWrapper(context, themeResId)
@@ -54,7 +56,9 @@ class ThemesPreferenceAdapter(private val clickListener: OnItemClickListener) :
 
     inner class ThemeViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-        private val selectedColor = view.context.getResourceColor(androidx.appcompat.R.attr.colorAccent)
+        private val selectedColor = view.context.getResourceColor(
+            androidx.appcompat.R.attr.colorAccent
+        )
         private val unselectedColor = view.context.getResourceColor(android.R.attr.textColorHint)
 
         fun bind(appTheme: PreferenceValues.AppTheme) {

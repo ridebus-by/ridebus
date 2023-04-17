@@ -11,4 +11,6 @@ object PreferenceKeys {
     const val reducedMotion = "reduced_motion"
 
     const val verboseLogging = "verbose_logging"
+
+    const val city = "pref_city_key"
 }

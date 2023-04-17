@@ -37,16 +37,15 @@ open class App : Application(), DefaultLifecycleObserver {
 
         MapKitFactory.setApiKey("397822a9-4d94-49cb-b402-d419ed3d5355")
 
-        preferences.themeMode()
-            .asImmediateFlow {
-                AppCompatDelegate.setDefaultNightMode(
-                    when (it) {
-                        PreferenceValues.ThemeMode.light -> AppCompatDelegate.MODE_NIGHT_NO
-                        PreferenceValues.ThemeMode.dark -> AppCompatDelegate.MODE_NIGHT_YES
-                        PreferenceValues.ThemeMode.system -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                    }
-                )
-            }.launchIn(ProcessLifecycleOwner.get().lifecycleScope)
+        preferences.themeMode().asImmediateFlow {
+            AppCompatDelegate.setDefaultNightMode(
+                when (it) {
+                    PreferenceValues.ThemeMode.light -> AppCompatDelegate.MODE_NIGHT_NO
+                    PreferenceValues.ThemeMode.dark -> AppCompatDelegate.MODE_NIGHT_YES
+                    PreferenceValues.ThemeMode.system -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                }
+            )
+        }.launchIn(ProcessLifecycleOwner.get().lifecycleScope)
 
         if (!LogcatLogger.isInstalled && preferences.verboseLogging()) {
             LogcatLogger.install(AndroidLogcatLogger(LogPriority.VERBOSE))

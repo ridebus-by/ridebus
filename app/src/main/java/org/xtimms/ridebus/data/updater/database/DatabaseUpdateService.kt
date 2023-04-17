@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
 import androidx.core.content.ContextCompat
+import java.io.File
 import logcat.LogPriority
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
@@ -25,7 +26,6 @@ import org.xtimms.ridebus.util.system.acquireWakeLock
 import org.xtimms.ridebus.util.system.isServiceRunning
 import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.injectLazy
-import java.io.File
 
 class DatabaseUpdateService : Service() {
 
@@ -104,7 +104,7 @@ class DatabaseUpdateService : Service() {
         try {
             val databasePath = database.openHelper.writableDatabase.path.replace("ridebus.db", "")
             val oldDatabaseFile = withIOContext { File(databasePath, "ridebus.db") }
-            val databaseFile = withIOContext { File(databasePath, "ridebus_new.db") }
+            val databaseFile = withIOContext { File(databasePath, "update.db") }
 
             if (response.isSuccessful) {
                 if (database.isOpen) {
@@ -132,9 +132,12 @@ class DatabaseUpdateService : Service() {
 
     companion object {
 
-        internal const val EXTRA_DOWNLOAD_URL = "${BuildConfig.APPLICATION_ID}.DatabaseUpdaterService.DOWNLOAD_URL"
-        internal const val EXTRA_DOWNLOAD_TITLE = "${BuildConfig.APPLICATION_ID}.DatabaseUpdaterService.DOWNLOAD_TITLE"
-        internal const val EXTRA_DOWNLOAD_VERSION = "${BuildConfig.APPLICATION_ID}.DatabaseUpdaterService.DOWNLOAD_VERSION"
+        internal const val EXTRA_DOWNLOAD_URL =
+            "${BuildConfig.APPLICATION_ID}.DatabaseUpdaterService.DOWNLOAD_URL"
+        internal const val EXTRA_DOWNLOAD_TITLE =
+            "${BuildConfig.APPLICATION_ID}.DatabaseUpdaterService.DOWNLOAD_TITLE"
+        internal const val EXTRA_DOWNLOAD_VERSION =
+            "${BuildConfig.APPLICATION_ID}.DatabaseUpdaterService.DOWNLOAD_VERSION"
 
         private fun isRunning(context: Context): Boolean =
             context.isServiceRunning(DatabaseUpdateService::class.java)
@@ -155,12 +158,21 @@ class DatabaseUpdateService : Service() {
             }
         }
 
-        internal fun downloadDatabasePendingService(context: Context, url: String, version: String): PendingIntent {
+        internal fun downloadDatabasePendingService(
+            context: Context,
+            url: String,
+            version: String
+        ): PendingIntent {
             val intent = Intent(context, DatabaseUpdateService::class.java).apply {
                 putExtra(EXTRA_DOWNLOAD_URL, url)
                 putExtra(EXTRA_DOWNLOAD_VERSION, version)
             }
-            return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            return PendingIntent.getService(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
         }
     }
 }

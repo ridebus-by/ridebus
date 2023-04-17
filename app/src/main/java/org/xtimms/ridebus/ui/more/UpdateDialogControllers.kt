@@ -34,7 +34,10 @@ class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundl
             .replace("""---(\R|.)*Checksums(\R|.)*""".toRegex(), "")
         val info = Markwon.create(activity!!).toMarkdown(releaseBody)
 
-        return MaterialAlertDialogBuilder(activity!!, materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered)
+        return MaterialAlertDialogBuilder(
+            activity!!,
+            materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
+        )
             .setTitle(R.string.update_check_notification_update_available)
             .setMessage(info)
             .setIcon(R.drawable.ic_update)
@@ -88,7 +91,10 @@ class NewScheduleDialogController(bundle: Bundle? = null) : DialogController(bun
             append(infoBody)
         }
 
-        return MaterialAlertDialogBuilder(activity!!, materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered)
+        return MaterialAlertDialogBuilder(
+            activity!!,
+            materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
+        )
             .setTitle(R.string.update_check_notification_database_update_available)
             .setMessage(message)
             .setIcon(R.drawable.ic_database_update)
@@ -103,7 +109,10 @@ class NewScheduleDialogController(bundle: Bundle? = null) : DialogController(bun
             .setNeutralButton(R.string.action_postpone) { _, _ ->
                 dialog?.dismiss()
                 applicationContext?.let { context ->
-                    NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_DATABASE_UPDATER)
+                    NotificationReceiver.dismissNotificationPendingBroadcast(
+                        context,
+                        Notifications.ID_DATABASE_UPDATER
+                    )
                 }
             }
             .create()

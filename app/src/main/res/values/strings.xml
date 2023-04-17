@@ -57,8 +57,8 @@
     <string name="pref_category_schedule">Schedule</string>
     <string name="map">Map</string>
     <string name="backup">Backup and restore</string>
-    <string name="automatic_schedule_updates">Automatic schedule updates</string>
-    <string name="automatic_schedule_updates_summary">Allows to get the new schedule when it is available</string>
+    <string name="automatic_schedule_updates">Notify about the availability of a new version of the schedule</string>
+    <string name="automatic_schedule_updates_summary">You will receive a notification if a new version of the schedule database is available</string>
     <string name="near_me">Stops nearby</string>
     <string name="help">Help</string>
     <string name="city_polotsk">Polotsk</string>
@@ -240,6 +240,9 @@
     <string name="remote_error_message">Remote server error</string>
     <string name="network_error_message">Network error</string>
     <string name="invalid_api_key">Invalid API key</string>
+    <string name="yandex_maps_terms_of_use">Yandex.Maps Terms of Use</string>
+    <string name="critical_database_update_title">The database structure has changed in this version</string>
+    <string name="critical_database_update_message">To continue working, you need to download a compatible database from the server. This action cannot be skipped.</string>
     <plurals name="restore_completed_message">
         <item quantity="one">Done in %1$s with %2$s error</item>
         <item quantity="other">Done in %1$s with %2$s errors</item>

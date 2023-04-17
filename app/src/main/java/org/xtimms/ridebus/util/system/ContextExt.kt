@@ -51,7 +51,11 @@ private const val TABLET_UI_MIN_SCREEN_WIDTH_DP = 720
  * @param resource the text resource.
  * @param duration the duration of the toast. Defaults to short.
  */
-fun Context.toast(@StringRes resource: Int, duration: Int = Toast.LENGTH_SHORT, block: (Toast) -> Unit = {}): Toast {
+fun Context.toast(
+    @StringRes resource: Int,
+    duration: Int = Toast.LENGTH_SHORT,
+    block: (Toast) -> Unit = {}
+): Toast {
     return toast(getString(resource), duration, block)
 }
 
@@ -61,7 +65,12 @@ fun Context.toast(@StringRes resource: Int, duration: Int = Toast.LENGTH_SHORT, 
  * @param text the text to display.
  * @param duration the duration of the toast. Defaults to short.
  */
-fun Context.toast(text: String?, duration: Int = Toast.LENGTH_SHORT, block: (Toast) -> Unit = {}): Toast {
+fun Context.toast(
+    text: String?,
+    duration: Int = Toast.LENGTH_SHORT,
+    block: (Toast) -> Unit = {
+    }
+): Toast {
     return Toast.makeText(this, text.orEmpty(), duration).also {
         block(it)
         it.show()
@@ -94,7 +103,9 @@ fun Context.openInBrowser(uri: Uri, @ColorInt toolbarColor: Int? = null) {
         val intent = CustomTabsIntent.Builder()
             .setDefaultColorSchemeParams(
                 CustomTabColorSchemeParams.Builder()
-                    .setToolbarColor(toolbarColor ?: getResourceColor(androidx.appcompat.R.attr.colorPrimary))
+                    .setToolbarColor(
+                        toolbarColor ?: getResourceColor(androidx.appcompat.R.attr.colorPrimary)
+                    )
                     .build()
             )
             .build()
@@ -104,9 +115,11 @@ fun Context.openInBrowser(uri: Uri, @ColorInt toolbarColor: Int? = null) {
     }
 }
 
-fun Context.notificationBuilder(channelId: String, block: (NotificationCompat.Builder.() -> Unit)? = null): NotificationCompat.Builder {
+fun Context.notificationBuilder(
+    channelId: String,
+    block: (NotificationCompat.Builder.() -> Unit)? = null
+): NotificationCompat.Builder {
     val builder = NotificationCompat.Builder(this, channelId)
-        .setColor(ContextCompat.getColor(this, R.color.accent_blue))
     if (block != null) {
         builder.block()
     }
@@ -204,7 +217,11 @@ fun Context.prepareTabletUiContext(): Context {
  * @see Settings.Global.ANIMATOR_DURATION_SCALE
  */
 val Context.animatorDurationScale: Float
-    get() = Settings.Global.getFloat(this.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f)
+    get() = Settings.Global.getFloat(
+        this.contentResolver,
+        Settings.Global.ANIMATOR_DURATION_SCALE,
+        1f
+    )
 
 /**
  * Convenience method to acquire a partial wake lock.

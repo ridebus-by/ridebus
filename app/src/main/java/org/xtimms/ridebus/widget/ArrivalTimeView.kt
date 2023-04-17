@@ -47,7 +47,9 @@ class ArrivalTimeView @JvmOverloads constructor(
         } else {
             val relative = time - now
             binding.remainingTime.text = when {
-                relative.hours == 0 && relative.minutes == 0 -> context.getString(R.string.token_time_now)
+                relative.hours == 0 && relative.minutes == 0 -> context.getString(
+                    R.string.token_time_now
+                )
                 relative.hours == 0 -> context.getString(
                     R.string.reltime_minutes,
                     relative.minutes

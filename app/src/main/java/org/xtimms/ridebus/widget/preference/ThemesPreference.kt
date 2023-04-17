@@ -36,7 +36,11 @@ class ThemesPreference @JvmOverloads constructor(context: Context, attrs: Attrib
         super.onBindViewHolder(holder)
 
         recycler = holder.findViewById(R.id.themes_list) as RecyclerView
-        recycler?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recycler?.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
         recycler?.adapter = adapter
 
         // Retain scroll position on activity recreate after changing theme

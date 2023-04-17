@@ -27,7 +27,11 @@ class HideBottomNavigationOnScrollBehavior @JvmOverloads constructor(
 
     private var dyRatio = 1F
 
-    override fun layoutDependsOn(parent: CoordinatorLayout, child: BottomNavigationView, dependency: View): Boolean {
+    override fun layoutDependsOn(
+        parent: CoordinatorLayout,
+        child: BottomNavigationView,
+        dependency: View
+    ): Boolean {
         return dependency is AppBarLayout
     }
 
@@ -71,7 +75,10 @@ class HideBottomNavigationOnScrollBehavior @JvmOverloads constructor(
         type: Int
     ) {
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type)
-        child.translationY = (child.translationY + (dy * dyRatio)).coerceIn(0F, child.height.toFloat())
+        child.translationY = (child.translationY + (dy * dyRatio)).coerceIn(
+            0F,
+            child.height.toFloat()
+        )
     }
 
     override fun onStopNestedScroll(

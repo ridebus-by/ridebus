@@ -55,8 +55,8 @@
     <string name="pref_category_schedule">Расписание</string>
     <string name="map">Карта</string>
     <string name="backup">Резервное копирование и восстановление</string>
-    <string name="automatic_schedule_updates">Автоматическое обновление расписания</string>
-    <string name="automatic_schedule_updates_summary">Позволяет получать новое расписание, когда оно доступно</string>
+    <string name="automatic_schedule_updates">Оповещать о наличии новой версии расписания</string>
+    <string name="automatic_schedule_updates_summary">Вам придёт уведомление, если будет доступна новая версия базы данных расписания</string>
     <string name="near_me">Остановки рядом</string>
     <string name="help">Помощь</string>
     <string name="city_polotsk">Полоцк</string>
@@ -226,4 +226,5 @@
     <string name="label_sunday">По воскресеньям</string>
     <string name="label_friday">По пятницам</string>
     <string name="label_monday_thursday">С понедельника по четверг</string>
+    <string name="yandex_maps_terms_of_use">Условия использования Яндекс.Карт</string>
 </resources>

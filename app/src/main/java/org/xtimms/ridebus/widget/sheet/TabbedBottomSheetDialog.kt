@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import org.xtimms.ridebus.databinding.CommonTabbedSheetBinding
 import org.xtimms.ridebus.widget.ViewPagerAdapter
 
-abstract class TabbedBottomSheetDialog(private val activity: Activity) : BaseBottomSheetDialog(activity) {
+abstract class TabbedBottomSheetDialog(private val activity: Activity) :
+    BaseBottomSheetDialog(activity) {
 
     lateinit var binding: CommonTabbedSheetBinding
 

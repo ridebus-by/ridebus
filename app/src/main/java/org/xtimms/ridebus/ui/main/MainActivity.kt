@@ -30,6 +30,7 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
 import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
+import kotlin.collections.set
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import logcat.LogPriority
@@ -46,6 +47,7 @@ import org.xtimms.ridebus.ui.base.activity.BaseActivity
 import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.main.welcome.WelcomeDialogController
+import org.xtimms.ridebus.ui.more.CriticalDatabaseUpdateDialogController
 import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.more.NewScheduleDialogController
 import org.xtimms.ridebus.ui.more.NewUpdateDialogController
@@ -62,7 +64,6 @@ import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
-import kotlin.collections.set
 
 class MainActivity : BaseActivity() {
 
@@ -330,7 +331,11 @@ class MainActivity : BaseActivity() {
     private fun handleIntentAction(intent: Intent): Boolean {
         val notificationId = intent.getIntExtra("notificationId", -1)
         if (notificationId > -1) {
-            NotificationReceiver.dismissNotification(applicationContext, notificationId, intent.getIntExtra("groupId", 0))
+            NotificationReceiver.dismissNotification(
+                applicationContext,
+                notificationId,
+                intent.getIntExtra("groupId", 0)
+            )
         }
 
         isHandlingShortcut = true
@@ -495,7 +500,11 @@ class MainActivity : BaseActivity() {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1)
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                1
+            )
         }
     }
 

@@ -42,6 +42,7 @@ import org.xtimms.ridebus.util.preference.minusAssign
 import org.xtimms.ridebus.util.preference.plusAssign
 import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
+import org.xtimms.ridebus.util.view.snack
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
@@ -259,6 +260,10 @@ class RouteDetailsController :
 
         val adapter = stopsAdapter ?: return
         adapter.updateDataSet(stops)
+    }
+
+    fun onError() {
+        binding.root.snack("No stops")
     }
 
     override fun onStopClick(position: Int) {

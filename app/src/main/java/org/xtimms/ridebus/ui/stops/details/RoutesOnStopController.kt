@@ -1,5 +1,9 @@
 package org.xtimms.ridebus.ui.stops.details
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +11,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import java.text.SimpleDateFormat
+import java.util.*
 import logcat.LogPriority
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
@@ -19,8 +25,6 @@ import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
 import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.text.SimpleDateFormat
-import java.util.*
 
 class RoutesOnStopController :
     NucleusController<StopsRouteControllerBinding, RouteOnStopPresenter>,
@@ -36,7 +40,9 @@ class RoutesOnStopController :
         this.stop = stop
     }
 
-    constructor(stopId: Int) : this(Injekt.get<RideBusDatabase>().stopDao().getStop(stopId).firstOrNull())
+    constructor(stopId: Int) : this(
+        Injekt.get<RideBusDatabase>().stopDao().getStop(stopId).firstOrNull()
+    )
 
     @Suppress("unused")
     constructor(bundle: Bundle) : this(bundle.getInt(STOP_EXTRA))
@@ -49,6 +55,8 @@ class RoutesOnStopController :
      */
     private var adapter: RoutesOnStopAdapter? = null
 
+    private val timeReceiver = TimeReceiver()
+
     override fun getTitle(): String {
         return "${stop?.name}"
     }
@@ -57,7 +65,9 @@ class RoutesOnStopController :
         return "${stop?.direction}"
     }
 
-    override fun createBinding(inflater: LayoutInflater) = StopsRouteControllerBinding.inflate(inflater)
+    override fun createBinding(inflater: LayoutInflater) = StopsRouteControllerBinding.inflate(
+        inflater
+    )
 
     override fun createPresenter(): RouteOnStopPresenter {
         return RouteOnStopPresenter(stop!!)
@@ -93,7 +103,7 @@ class RoutesOnStopController :
     fun onNextRoute(routesOnStop: List<RoutesOnStopItem>) {
         val adapter = adapter ?: return
         hideProgressBar()
-        adapter.updateDataSet(routesOnStop)
+        adapter.updateDataSet(routesOnStop, false)
     }
 
     fun onNextRouteError(error: Throwable) {
@@ -124,6 +134,24 @@ class RoutesOnStopController :
     private fun hideProgressBar() {
         binding.emptyView.hide()
         binding.progress.isVisible = false
+    }
+
+    override fun onAttach(view: View) {
+        super.onAttach(view)
+        view.context.registerReceiver(timeReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
+        adapter?.notifyDataSetChanged()
+    }
+
+    override fun onDetach(view: View) {
+        view.context.registerReceiver(timeReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
+        super.onDetach(view)
+    }
+
+    private inner class TimeReceiver : BroadcastReceiver() {
+
+        override fun onReceive(context: Context?, intent: Intent?) {
+            adapter?.notifyDataSetChanged()
+        }
     }
 
     companion object {

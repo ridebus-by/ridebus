@@ -6,7 +6,11 @@ import kotlinx.serialization.json.Json
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.network.NetworkHelper
-import uy.kohesive.injekt.api.*
+import uy.kohesive.injekt.api.InjektModule
+import uy.kohesive.injekt.api.InjektRegistrar
+import uy.kohesive.injekt.api.addSingleton
+import uy.kohesive.injekt.api.addSingletonFactory
+import uy.kohesive.injekt.api.get
 
 class AppModule(val app: Application) : InjektModule {
 
