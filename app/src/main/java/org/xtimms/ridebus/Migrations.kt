@@ -29,6 +29,17 @@ object Migrations {
             if (oldVersion == 0) {
                 return false
             }
+
+            if (oldVersion < 3) {
+                // Since version 0.3 checks city from database
+                when (preferences.city().get()) {
+                    "POLOTSK" -> preferences.city().set("0")
+                    "NOVOPOLOTSK" -> preferences.city().set("1")
+                    else -> preferences.city().set("0")
+                }
+                preferences.databaseVersion().set("3.0")
+            }
+
             return true
         }
         return false

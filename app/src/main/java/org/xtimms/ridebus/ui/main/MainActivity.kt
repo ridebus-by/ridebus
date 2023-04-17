@@ -216,7 +216,17 @@ class MainActivity : BaseActivity() {
             }
             // Show changelog prompt on update
             if (didMigration && !BuildConfig.DEBUG) {
-                WhatsNewDialogController().showDialog(router)
+                launchNow {
+                    try {
+                        val result = DatabaseUpdateChecker().checkForUpdate(this@MainActivity, true)
+                        if (result is DatabaseUpdateResult.NewUpdate) {
+                            CriticalDatabaseUpdateDialogController(result).showDialog(router)
+                        }
+                    } catch (error: Exception) {
+                        this@MainActivity.toast(error.message)
+                        logcat(LogPriority.ERROR, error)
+                    }
+                }
             }
         } else {
             // Restore selected nav item

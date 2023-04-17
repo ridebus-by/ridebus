@@ -37,7 +37,7 @@ class MoreController :
             bindTo(preferences.autoUpdateSchedule())
             titleRes = R.string.automatic_schedule_updates
             summaryRes = R.string.automatic_schedule_updates_summary
-            iconRes = R.drawable.ic_update
+            iconRes = R.drawable.ic_database_update
             iconTint = tintColor
 
             onChange { newValue ->
