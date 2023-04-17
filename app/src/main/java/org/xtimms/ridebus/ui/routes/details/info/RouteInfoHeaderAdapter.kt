@@ -3,21 +3,23 @@ package org.xtimms.ridebus.ui.routes.details.info
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.RequestPoint
 import com.yandex.mapkit.RequestPointType
 import com.yandex.mapkit.directions.DirectionsFactory
-import com.yandex.mapkit.directions.driving.*
+import com.yandex.mapkit.directions.driving.DrivingOptions
+import com.yandex.mapkit.directions.driving.DrivingRoute
+import com.yandex.mapkit.directions.driving.DrivingRouter
+import com.yandex.mapkit.directions.driving.DrivingSession
+import com.yandex.mapkit.directions.driving.VehicleOptions
 import com.yandex.mapkit.geometry.BoundingBox
 import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.logo.Alignment
-import com.yandex.mapkit.logo.HorizontalAlignment
-import com.yandex.mapkit.logo.VerticalAlignment
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
-import com.yandex.mapkit.transport.masstransit.*
 import com.yandex.runtime.Error
 import com.yandex.runtime.network.NetworkError
 import com.yandex.runtime.network.UnauthorizedError
@@ -55,60 +57,98 @@ class RouteInfoHeaderAdapter(
     private lateinit var binding: RouteDetailHeaderBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
-        binding = RouteDetailHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding =
+            RouteDetailHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         updateDetailsPosition()
 
         MapKitFactory.initialize(parent.context)
         MapKitFactory.getInstance()
 
-        for (coordinate in db.routesAndStopsDao().getStopsCoordinates(route.routeId)) {
-            stopsPoints.add(
-                Point(
-                    coordinate.latitude,
-                    coordinate.longitude
+        val constraintLayout: ConstraintLayout = binding.root
+        val constraintSet = ConstraintSet()
+
+        if (db.routesAndStopsDao().getStopsCoordinates(route.routeId).isNotEmpty()) {
+            for (coordinate in db.routesAndStopsDao().getStopsCoordinates(route.routeId)) {
+                stopsPoints.add(
+                    Point(
+                        coordinate.latitude,
+                        coordinate.longitude
+                    )
                 )
+            }
+
+            val boundingBox = BoundingBox(
+                Point(stopsPoints.first().latitude, stopsPoints.last().longitude),
+                Point(stopsPoints.last().latitude, stopsPoints.first().longitude)
             )
+
+            val cameraPosition = binding.mapView.map.cameraPosition(boundingBox)
+
+            constraintSet.clone(constraintLayout)
+            constraintSet.connect(
+                R.id.backdrop_overlay,
+                ConstraintSet.BOTTOM,
+                R.id.map_view,
+                ConstraintSet.BOTTOM,
+                0
+            )
+            constraintSet.applyTo(constraintLayout)
+            binding.mapView.visibility = View.VISIBLE
+            binding.backdrop.visibility = View.GONE
+
+            binding.mapView.map.apply {
+                isNightModeEnabled = parent.context.isNightMode()
+                isRotateGesturesEnabled = false
+                isScrollGesturesEnabled = false
+                isTiltGesturesEnabled = false
+                isZoomGesturesEnabled = false
+                isModelsEnabled = false
+                move(
+                    CameraPosition(
+                        cameraPosition.target,
+                        cameraPosition.zoom - 0.8f,
+                        cameraPosition.azimuth,
+                        cameraPosition.tilt
+                    )
+                )
+            }
+
+            drivingRouter = DirectionsFactory.getInstance().createDrivingRouter()
+            mapObjects = binding.mapView.map.mapObjects.addCollection()
+            val drivingOptions = DrivingOptions()
+            val vehicleOptions = VehicleOptions()
+            val requestPoints: ArrayList<RequestPoint> = ArrayList()
+
+            for (stopLocation in stopsPoints) {
+                requestPoints.add(
+                    RequestPoint(
+                        Point(
+                            stopLocation.latitude,
+                            stopLocation.longitude
+                        ),
+                        RequestPointType.WAYPOINT,
+                        null
+                    )
+                )
+            }
+
+            drivingSession =
+                drivingRouter!!.requestRoutes(requestPoints, drivingOptions, vehicleOptions, this)
+        } else {
+            constraintSet.clone(constraintLayout)
+            constraintSet.connect(
+                R.id.backdrop_overlay,
+                ConstraintSet.BOTTOM,
+                R.id.backdrop,
+                ConstraintSet.BOTTOM,
+                0
+            )
+            constraintSet.applyTo(constraintLayout)
+            binding.mapView.visibility = View.GONE
+            binding.backdrop.visibility = View.VISIBLE
         }
-
-        val boundingBox = BoundingBox(
-            Point(stopsPoints.first().latitude, stopsPoints.first().longitude),
-            Point(stopsPoints.last().latitude, stopsPoints.last().longitude)
-        )
-
-        val cameraPosition = binding.map.map.cameraPosition(boundingBox)
 
         binding.routeSummary.expanded = isTablet
-        binding.map.map.apply {
-            logo.setAlignment(Alignment(HorizontalAlignment.RIGHT, VerticalAlignment.TOP))
-            isNightModeEnabled = parent.context.isNightMode()
-            /*isRotateGesturesEnabled = false
-            isScrollGesturesEnabled = false
-            isTiltGesturesEnabled = false
-            isZoomGesturesEnabled = false*/
-            isModelsEnabled = false
-            move(CameraPosition(cameraPosition.target, cameraPosition.zoom - 0.8f, cameraPosition.azimuth, cameraPosition.tilt))
-        }
-
-        drivingRouter = DirectionsFactory.getInstance().createDrivingRouter()
-        mapObjects = binding.map.map.mapObjects.addCollection()
-        val drivingOptions = DrivingOptions()
-        val vehicleOptions = VehicleOptions()
-        val requestPoints: ArrayList<RequestPoint> = ArrayList()
-
-        for (stopLocation in stopsPoints) {
-            requestPoints.add(
-                RequestPoint(
-                    Point(
-                        stopLocation.latitude,
-                        stopLocation.longitude
-                    ),
-                    RequestPointType.WAYPOINT,
-                    null
-                )
-            )
-        }
-
-        drivingSession = drivingRouter!!.requestRoutes(requestPoints, drivingOptions, vehicleOptions, this)
 
         return HeaderViewHolder(binding.root)
     }
@@ -155,17 +195,36 @@ class RouteInfoHeaderAdapter(
          * Update the view with route information.
          */
         private fun setRouteInfo() {
-            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote().get()) binding.noteChip.visibility = View.VISIBLE
+            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote()
+                .get()
+            ) {
+                binding.noteChip.visibility = View.VISIBLE
+            }
 
             binding.noteChip.clicks()
                 .onEach { controller.showAttentionDialog() }
                 .launchIn(controller.viewScope)
 
             when (route.transportId) {
-                BUS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.busPrimaryContainer))
-                MINIBUS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.minibusPrimaryContainer))
-                EXPRESS -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.expressPrimaryContainer))
-                TRAM -> binding.circleTransport.setBackgroundColor(itemView.context.getThemeColor(R.attr.tramPrimaryContainer))
+                BUS -> binding.circleTransport.setBackgroundColor(
+                    itemView.context.getThemeColor(R.attr.busPrimaryContainer)
+                )
+
+                MINIBUS -> binding.circleTransport.setBackgroundColor(
+                    itemView.context.getThemeColor(
+                        R.attr.minibusPrimaryContainer
+                    )
+                )
+
+                EXPRESS -> binding.circleTransport.setBackgroundColor(
+                    itemView.context.getThemeColor(
+                        R.attr.expressPrimaryContainer
+                    )
+                )
+
+                TRAM -> binding.circleTransport.setBackgroundColor(
+                    itemView.context.getThemeColor(R.attr.tramPrimaryContainer)
+                )
             }
 
             when (route.transportId) {
@@ -176,10 +235,21 @@ class RouteInfoHeaderAdapter(
             }
 
             when (route.transportId) {
-                BUS -> binding.type.setColorFilter(itemView.context.getThemeColor(R.attr.busOnPrimaryContainer))
-                MINIBUS -> binding.type.setColorFilter(itemView.context.getThemeColor(R.attr.minibusOnPrimaryContainer))
-                EXPRESS -> binding.type.setColorFilter(itemView.context.getThemeColor(R.attr.expressOnPrimaryContainer))
-                TRAM -> binding.type.setColorFilter(itemView.context.getThemeColor(R.attr.tramOnPrimaryContainer))
+                BUS -> binding.type.setColorFilter(
+                    itemView.context.getThemeColor(R.attr.busOnPrimaryContainer)
+                )
+
+                MINIBUS -> binding.type.setColorFilter(
+                    itemView.context.getThemeColor(R.attr.minibusOnPrimaryContainer)
+                )
+
+                EXPRESS -> binding.type.setColorFilter(
+                    itemView.context.getThemeColor(R.attr.expressOnPrimaryContainer)
+                )
+
+                TRAM -> binding.type.setColorFilter(
+                    itemView.context.getThemeColor(R.attr.tramOnPrimaryContainer)
+                )
             }
 
             // Update number TextView
@@ -251,8 +321,12 @@ class RouteInfoHeaderAdapter(
             binding.routeSummary.setTags(tags)
             binding.routeSummary.description = view.context.getString(R.string.route_direction) +
                 ": " + route.following + "\n\n" + view.context.getString(R.string.working_hours) +
-                ": " + route.workingHours + "\n\n" + view.context.getString(R.string.additional_info) +
-                ": " + route.techInfo + "\n\n" + view.context.getString(R.string.carrier_company) +
+                ": " + route.workingHours + "\n\n" + view.context.getString(
+                R.string.additional_info
+            ) +
+                ": " + route.techInfo + "\n\n" + view.context.getString(
+                R.string.carrier_company
+            ) +
                 ": " + route.carrierCompany
         }
     }
@@ -260,12 +334,12 @@ class RouteInfoHeaderAdapter(
     override fun onViewAttachedToWindow(holder: HeaderViewHolder) {
         super.onViewAttachedToWindow(holder)
         MapKitFactory.getInstance().onStart()
-        binding.map.onStart()
+        binding.mapView.onStart()
     }
 
     override fun onViewDetachedFromWindow(holder: HeaderViewHolder) {
         MapKitFactory.getInstance().onStop()
-        binding.map.onStop()
+        binding.mapView.onStop()
         super.onViewDetachedFromWindow(holder)
     }
 
@@ -281,6 +355,7 @@ class RouteInfoHeaderAdapter(
             is UnauthorizedError -> {
                 errorMessage = controller.resources?.getString(R.string.invalid_api_key)
             }
+
             is NetworkError -> {
                 errorMessage = controller.resources?.getString(R.string.network_error_message)
             }
