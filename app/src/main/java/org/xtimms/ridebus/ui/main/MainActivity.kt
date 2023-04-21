@@ -9,7 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,7 +21,7 @@ import androidx.core.view.isVisible
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenResumed
+import androidx.lifecycle.withResumed
 import androidx.preference.PreferenceDialogController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
@@ -30,8 +29,6 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
 import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
-import kotlin.collections.set
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import logcat.LogPriority
 import org.xtimms.ridebus.BuildConfig
@@ -64,6 +61,7 @@ import org.xtimms.ridebus.util.system.isTablet
 import org.xtimms.ridebus.util.system.logcat
 import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
+import kotlin.collections.set
 
 class MainActivity : BaseActivity() {
 
@@ -171,6 +169,8 @@ class MainActivity : BaseActivity() {
 
         val container: ViewGroup = binding.controllerContainer
         router = Conductor.attachRouter(this, container, savedInstanceState)
+            .setPopRootControllerMode(Router.PopRootControllerMode.NEVER)
+            .setOnBackPressedDispatcherEnabled(true)
         router.addChangeListener(
             object : ControllerChangeHandler.ControllerChangeListener {
                 override fun onChangeStarted(
@@ -209,7 +209,7 @@ class MainActivity : BaseActivity() {
             launchUI {
                 requestNotificationsPermission()
                 when (preferences.city().defaultValue) {
-                    "-1" -> whenResumed {
+                    "-1" -> withResumed {
                         WelcomeDialogController().showDialog(router)
                     }
                 }
@@ -371,35 +371,6 @@ class MainActivity : BaseActivity() {
         // Binding sometimes isn't actually instantiated yet somehow
         nav.setOnItemSelectedListener(null)
         binding.toolbar.setNavigationOnClickListener(null)
-    }
-
-    override fun onBackPressed() {
-        val backstackSize = router.backstackSize
-        if (backstackSize == 1 && router.getControllerWithTag("$startScreenId") == null) {
-            // Return to start screen
-            setSelectedNavItem(startScreenId)
-        } else if (shouldHandleExitConfirmation()) {
-            // Exit confirmation (resets after 2 seconds)
-            lifecycleScope.launchUI { resetExitConfirmation() }
-        } else if (backstackSize == 1 || !router.handleBack()) {
-            // Regular back
-            super.onBackPressed()
-        }
-    }
-
-    private suspend fun resetExitConfirmation() {
-        isConfirmingExit = true
-        val toast = toast(R.string.confirm_exit, Toast.LENGTH_LONG)
-        delay(2000)
-        toast.cancel()
-        isConfirmingExit = false
-    }
-
-    private fun shouldHandleExitConfirmation(): Boolean {
-        return router.backstackSize == 1 &&
-            router.getControllerWithTag("$startScreenId") != null &&
-            preferences.confirmExit() &&
-            !isConfirmingExit
     }
 
     private fun setSelectedNavItem(itemId: Int) {

@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
 import androidx.core.content.ContextCompat
-import java.io.File
 import logcat.LogPriority
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
@@ -26,6 +25,7 @@ import org.xtimms.ridebus.util.system.acquireWakeLock
 import org.xtimms.ridebus.util.system.isServiceRunning
 import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.injectLazy
+import java.io.File
 
 class DatabaseUpdateService : Service() {
 

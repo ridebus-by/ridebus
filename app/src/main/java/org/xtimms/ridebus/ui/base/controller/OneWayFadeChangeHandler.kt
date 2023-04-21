@@ -5,20 +5,10 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
 import android.view.ViewGroup
-import com.bluelinelabs.conductor.ControllerChangeHandler
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.bluelinelabs.conductor.changehandler.AnimatorChangeHandler
 
-/**
- * A variation of [FadeChangeHandler] that only fades in.
- */
-class OneWayFadeChangeHandler : FadeChangeHandler {
-    constructor()
-    constructor(removesFromViewOnPush: Boolean) : super(removesFromViewOnPush)
-    constructor(duration: Long) : super(duration)
-    constructor(duration: Long, removesFromViewOnPush: Boolean) : super(
-        duration,
-        removesFromViewOnPush
-    )
+class OneWayFadeChangeHandler :
+    AnimatorChangeHandler(DEFAULT_ANIMATION_DURATION, true) {
 
     override fun getAnimator(
         container: ViewGroup,
@@ -33,14 +23,12 @@ class OneWayFadeChangeHandler : FadeChangeHandler {
             animator.play(ObjectAnimator.ofFloat(to, View.ALPHA, start, 1f))
         }
 
-        if (from != null && (!isPush || removesFromViewOnPush())) {
+        if (from != null) {
             from.alpha = 0f
         }
 
         return animator
     }
 
-    override fun copy(): ControllerChangeHandler {
-        return OneWayFadeChangeHandler(animationDuration, removesFromViewOnPush())
-    }
+    override fun resetFromView(from: View) = Unit
 }

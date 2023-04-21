@@ -256,10 +256,10 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries-core:${BuildPluginsVersion.ABOUTLIB_PLUGIN}")
 
     // Conductor
-    val conductorVersion = "3.1.7"
+    val conductorVersion = "4.0.0-preview-2"
     implementation("com.bluelinelabs:conductor:$conductorVersion")
     implementation("com.bluelinelabs:conductor-viewpager:$conductorVersion")
-    implementation("com.github.tachiyomiorg:conductor-support-preference:$conductorVersion")
+    implementation("com.github.tachiyomiorg:conductor-support-preference:3.1.7")
 
     // Crash reports/analytics
     implementation("ch.acra:acra-http:5.9.7")
@@ -268,6 +268,9 @@ dependencies {
 
     // Markdown
     implementation("io.noties.markwon:core:4.6.2")
+
+    // Memory leaks
+    implementation("com.squareup.leakcanary:leakcanary-android:2.7")
 }
 
 tasks {

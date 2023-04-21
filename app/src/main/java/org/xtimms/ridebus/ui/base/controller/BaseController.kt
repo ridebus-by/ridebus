@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.bluelinelabs.conductor.Controller
@@ -23,6 +24,10 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
         private set
 
     lateinit var viewScope: CoroutineScope
+
+    init {
+        watchForLeaks()
+    }
 
     init {
         addLifecycleListener(
@@ -59,7 +64,8 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
         return binding.root
     }
 
-    open fun onViewCreated(view: View) {}
+    @CallSuper
+    open fun onViewCreated(view: View) = Unit
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         view?.hideKeyboard()
