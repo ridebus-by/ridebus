@@ -2,13 +2,18 @@ package org.xtimms.ridebus.ui.base.presenter
 
 import android.os.Bundle
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import nucleus.presenter.RxPresenter
-import nucleus.presenter.delivery.Delivery
 import rx.Observable
+import kotlin.coroutines.CoroutineContext
 
-open class BasePresenter<V> : RxPresenter<V>() {
+open class BasePresenter<V> : RxPresenter<V>(), CoroutineScope {
+
+    private val job = Job()
+    override val coroutineContext: CoroutineContext = job + Dispatchers.IO
 
     lateinit var presenterScope: CoroutineScope
 
@@ -39,15 +44,6 @@ open class BasePresenter<V> : RxPresenter<V>() {
     }
 
     /**
-     * Subscribes an observable with [deliverFirst] and adds it to the presenter's lifecycle
-     * subscription list.
-     *
-     * @param onNext function to execute when the observable emits an item.
-     * @param onError function to execute when the observable throws an error.
-     */
-    fun <T> Observable<T>.subscribeFirst(onNext: (V, T) -> Unit, onError: ((V, Throwable) -> Unit) = { _, _ -> }) = compose(deliverFirst<T>()).subscribe(split(onNext, onError)).apply { add(this) }
-
-    /**
      * Subscribes an observable with [deliverLatestCache] and adds it to the presenter's lifecycle
      * subscription list.
      *
@@ -55,37 +51,4 @@ open class BasePresenter<V> : RxPresenter<V>() {
      * @param onError function to execute when the observable throws an error.
      */
     fun <T> Observable<T>.subscribeLatestCache(onNext: (V, T) -> Unit, onError: ((V, Throwable) -> Unit) = { _, _ -> }) = compose(deliverLatestCache<T>()).subscribe(split(onNext, onError)).apply { add(this) }
-
-    /**
-     * Subscribes an observable with [deliverReplay] and adds it to the presenter's lifecycle
-     * subscription list.
-     *
-     * @param onNext function to execute when the observable emits an item.
-     * @param onError function to execute when the observable throws an error.
-     */
-    fun <T> Observable<T>.subscribeReplay(onNext: (V, T) -> Unit, onError: ((V, Throwable) -> Unit) = { _, _ -> }) = compose(deliverReplay<T>()).subscribe(split(onNext, onError)).apply { add(this) }
-
-    /**
-     * Subscribes an observable with [DeliverWithView] and adds it to the presenter's lifecycle
-     * subscription list.
-     *
-     * @param onNext function to execute when the observable emits an item.
-     * @param onError function to execute when the observable throws an error.
-     */
-    fun <T> Observable<T>.subscribeWithView(onNext: (V, T) -> Unit, onError: ((V, Throwable) -> Unit) = { _, _ -> }) = compose(DeliverWithView<V, T>(view())).subscribe(split(onNext, onError)).apply { add(this) }
-
-    /**
-     * A deliverable that only emits to the view if attached, otherwise the event is ignored.
-     */
-    class DeliverWithView<View, T>(private val view: Observable<View>) : Observable.Transformer<T, Delivery<View, T>> {
-
-        override fun call(observable: Observable<T>): Observable<Delivery<View, T>> {
-            return observable
-                .materialize()
-                .filter { notification -> !notification.isOnCompleted }
-                .flatMap { notification ->
-                    view.take(1).filter { it != null }.map { Delivery(it, notification) }
-                }
-        }
-    }
 }

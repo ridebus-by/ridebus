@@ -11,8 +11,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import java.text.SimpleDateFormat
-import java.util.*
 import logcat.LogPriority
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
@@ -25,6 +23,8 @@ import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
 import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RoutesOnStopController :
     NucleusController<StopsRouteControllerBinding, RouteOnStopPresenter>,

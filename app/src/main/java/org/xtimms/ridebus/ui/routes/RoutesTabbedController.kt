@@ -17,8 +17,8 @@ import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateChecker
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
 import org.xtimms.ridebus.databinding.PagerControllerBinding
+import org.xtimms.ridebus.ui.base.controller.BaseController
 import org.xtimms.ridebus.ui.base.controller.RootController
-import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.main.MainActivity
 import org.xtimms.ridebus.ui.more.NewScheduleDialogController
@@ -29,7 +29,7 @@ import rx.Subscription
 import uy.kohesive.injekt.injectLazy
 
 class RoutesTabbedController :
-    RxController<PagerControllerBinding>(),
+    BaseController<PagerControllerBinding>(),
     RootController,
     TabbedController {
 
@@ -44,7 +44,7 @@ class RoutesTabbedController :
     private val typesOfTransport: List<Int>
         get() = db.transportDao().getTypesOfTransportPerCity(preferences.city().get().toInt())
 
-    private var adapter: RoutesAdapter? = null
+    private var adapter: RoutesPagerAdapter? = null
 
     init {
         setHasOptionsMenu(true)
@@ -60,14 +60,17 @@ class RoutesTabbedController :
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
-        adapter = RoutesAdapter()
+        adapter = RoutesPagerAdapter()
         binding.pager.adapter = adapter
 
         tabsVisibilityRelay.call((adapter?.count ?: 0) > 1)
     }
 
     override fun onDestroyView(view: View) {
-        adapter = null
+        if (!activity!!.isChangingConfigurations) {
+            binding.pager.adapter = null
+        }
+        (activity as? MainActivity)?.binding?.tabs?.setupWithViewPager(null)
         tabsVisibilitySubscription?.unsubscribe()
         tabsVisibilitySubscription = null
         super.onDestroyView(view)
@@ -134,7 +137,7 @@ class RoutesTabbedController :
         }
     }
 
-    private inner class RoutesAdapter : RouterPagerAdapter(this@RoutesTabbedController) {
+    private inner class RoutesPagerAdapter : RouterPagerAdapter(this@RoutesTabbedController) {
 
         private val tabTitles = typesOfTransport.map {
             when (it) {

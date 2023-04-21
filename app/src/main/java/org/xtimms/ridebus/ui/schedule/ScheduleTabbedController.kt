@@ -13,8 +13,8 @@ import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.databinding.ScheduleTabbedControllerBinding
+import org.xtimms.ridebus.ui.base.controller.BaseController
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
-import org.xtimms.ridebus.ui.base.controller.RxController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
@@ -23,7 +23,7 @@ import uy.kohesive.injekt.injectLazy
 import java.util.*
 
 class ScheduleTabbedController :
-    RxController<ScheduleTabbedControllerBinding>,
+    BaseController<ScheduleTabbedControllerBinding>,
     NoAppBarElevationController,
     TabbedController {
 
