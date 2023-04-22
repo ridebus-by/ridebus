@@ -19,7 +19,6 @@
     <string name="action_search">Поиск</string>
     <string name="action_search_settings">Поиск настроек</string>
     <string name="confirm_exit">Нажмите ещё раз чтобы выйти</string>
-    <string name="channel_crash_logs">Отчёты об ошибках</string>
     <string name="action_open_log">Открыть отчёт</string>
     <string name="action_share">Поделиться</string>
     <string name="crash_log_saved">Отчёты об ошибках сохранены</string>
@@ -226,5 +225,12 @@
     <string name="label_sunday">По воскресеньям</string>
     <string name="label_friday">По пятницам</string>
     <string name="label_monday_thursday">С понедельника по четверг</string>
+    <string name="unknown_error_message">Неизвестная ошибка</string>
+    <string name="remote_error_message">Ошибка удаленного сервера</string>
+    <string name="network_error_message">Ошибка сети</string>
+    <string name="invalid_api_key">Недопустимый ключ API</string>
     <string name="yandex_maps_terms_of_use">Условия использования Яндекс.Карт</string>
+    <string name="critical_database_update_title">В этой версии изменилась структура базы данных</string>
+    <string name="critical_database_update_message">Чтобы продолжить работу, вам необходимо загрузить совместимую базу данных с сервера. Это действие нельзя пропустить.</string>
+    <string name="map_provider">Провайдер карт</string>
 </resources>

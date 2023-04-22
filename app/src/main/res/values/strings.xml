@@ -242,6 +242,7 @@
     <string name="yandex_maps_terms_of_use">Yandex.Maps Terms of Use</string>
     <string name="critical_database_update_title">The database structure has changed in this version</string>
     <string name="critical_database_update_message">To continue working, you need to download a compatible database from the server. This action cannot be skipped.</string>
+    <string name="map_provider">Maps provider</string>
     <plurals name="restore_completed_message">
         <item quantity="one">Done in %1$s with %2$s error</item>
         <item quantity="other">Done in %1$s with %2$s errors</item>
