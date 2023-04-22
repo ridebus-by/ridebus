@@ -6,6 +6,7 @@ import android.os.Build
 import android.provider.Settings
 import androidx.core.net.toUri
 import androidx.preference.PreferenceScreen
+import kotlinx.coroutines.launch
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.ui.base.controller.openInBrowser
@@ -33,7 +34,9 @@ class SettingsAdvancedController : SettingsController() {
             summaryRes = R.string.pref_dump_crash_logs_summary
 
             onClick {
-                CrashLogUtil(context).dumpLogs()
+                viewScope.launch {
+                    CrashLogUtil(context).dumpLogs()
+                }
             }
         }
 

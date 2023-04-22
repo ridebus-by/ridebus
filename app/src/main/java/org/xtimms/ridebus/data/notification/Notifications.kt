@@ -10,12 +10,6 @@ import org.xtimms.ridebus.util.system.buildNotificationChannel
 object Notifications {
 
     /**
-     * Notification channel used for crash log file sharing.
-     */
-    const val CHANNEL_CRASH_LOGS = "crash_logs_channel"
-    const val ID_CRASH_LOGS = -601
-
-    /**
      * Notification channel used for app and database updates.
      */
     const val CHANNEL_APP_UPDATE = "app_apk_update_channel"
@@ -23,14 +17,17 @@ object Notifications {
     const val CHANNEL_DATABASE_UPDATE = "database_update_channel"
     const val ID_DATABASE_UPDATER = 2
 
+    private val deprecatedChannels = listOf(
+        "crash_logs_channel"
+    )
+
     fun createChannels(context: Context) {
         val notificationService = NotificationManagerCompat.from(context)
 
+        deprecatedChannels.forEach(notificationService::deleteNotificationChannel)
+
         notificationService.createNotificationChannelsCompat(
             listOf(
-                buildNotificationChannel(CHANNEL_CRASH_LOGS, IMPORTANCE_HIGH) {
-                    setName(context.getString(R.string.channel_crash_logs))
-                },
                 buildNotificationChannel(CHANNEL_APP_UPDATE, IMPORTANCE_DEFAULT) {
                     setName(context.getString(R.string.channel_app_updates))
                 },
