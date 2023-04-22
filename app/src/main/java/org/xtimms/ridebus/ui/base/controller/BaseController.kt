@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import logcat.logcat
+import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.util.view.hideKeyboard
 
 abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
@@ -26,7 +27,9 @@ abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
     lateinit var viewScope: CoroutineScope
 
     init {
-        watchForLeaks()
+        if (BuildConfig.DEBUG) {
+            // FIXME watchForLeaks()
+        }
     }
 
     init {

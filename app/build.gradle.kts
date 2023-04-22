@@ -270,7 +270,7 @@ dependencies {
     implementation("io.noties.markwon:core:4.6.2")
 
     // Memory leaks
-    implementation("com.squareup.leakcanary:leakcanary-android:2.7")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.7")
 }
 
 tasks {

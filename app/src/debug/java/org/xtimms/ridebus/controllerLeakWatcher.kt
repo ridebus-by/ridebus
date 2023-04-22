@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.ui.base.controller
+package org.xtimms.ridebus
 
 import android.view.View
 import com.bluelinelabs.conductor.Controller
