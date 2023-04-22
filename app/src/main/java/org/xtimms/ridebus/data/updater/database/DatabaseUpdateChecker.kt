@@ -1,6 +1,7 @@
 package org.xtimms.ridebus.data.updater.database
 
 import android.content.Context
+import org.xtimms.ridebus.Migrations
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.network.GET
 import org.xtimms.ridebus.network.NetworkHelper
@@ -37,9 +38,11 @@ class DatabaseUpdateChecker {
                     if (SemanticVersioning.isNewVersion(
                             it.version,
                             preferences.databaseVersion().get()
-                        )
+                        ) && !Migrations.isDatabaseSchemaChanged
                     ) {
                         DatabaseUpdateResult.NewUpdate(it)
+                    } else if (Migrations.isDatabaseSchemaChanged) {
+                        DatabaseUpdateResult.CriticalUpdate(it)
                     } else {
                         DatabaseUpdateResult.NoNewUpdate
                     }
@@ -47,6 +50,9 @@ class DatabaseUpdateChecker {
 
             when (result) {
                 is DatabaseUpdateResult.NewUpdate -> DatabaseUpdateNotifier(context).promptUpdate(
+                    result.update
+                )
+                is DatabaseUpdateResult.CriticalUpdate -> DatabaseUpdateNotifier(context).promptCriticalUpdate(
                     result.update
                 )
                 else -> {}

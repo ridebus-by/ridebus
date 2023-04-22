@@ -95,6 +95,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         val didMigration = if (savedInstanceState == null) Migrations.upgrade(preferences) else false
+        val isDatabaseMigrated = if (savedInstanceState == null) Migrations.isDatabaseSchemaChanged else false
 
         binding = MainActivityBinding.inflate(layoutInflater)
 
@@ -214,12 +215,12 @@ class MainActivity : BaseActivity() {
                     }
                 }
             }
-            // Show changelog prompt on update
+            // Show database critical update dialog if database is migrated
             if (didMigration && !BuildConfig.DEBUG) {
                 launchNow {
                     try {
                         val result = DatabaseUpdateChecker().checkForUpdate(this@MainActivity, true)
-                        if (result is DatabaseUpdateResult.NewUpdate) {
+                        if (isDatabaseMigrated && result is DatabaseUpdateResult.CriticalUpdate) {
                             CriticalDatabaseUpdateDialogController(result).showDialog(router)
                         }
                     } catch (error: Exception) {

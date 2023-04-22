@@ -50,6 +50,31 @@ class DatabaseUpdateNotifier(private val context: Context) {
         notificationBuilder.show()
     }
 
+    @SuppressLint("LaunchActivityFromNotification")
+    fun promptCriticalUpdate(release: GithubDatabase) {
+        val intent = Intent(context, DatabaseUpdateService::class.java).apply {
+            putExtra(DatabaseUpdateService.EXTRA_DOWNLOAD_URL, release.getDownloadLink())
+            putExtra(DatabaseUpdateService.EXTRA_DOWNLOAD_TITLE, release.info)
+            putExtra(DatabaseUpdateService.EXTRA_DOWNLOAD_VERSION, release.version)
+        }
+        val updateIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
+        with(notificationBuilder) {
+            setContentTitle(context.getString(R.string.update_check_notification_database_update_available))
+            setContentText(context.getString(R.string.new_version_s, release.version))
+            setSmallIcon(R.drawable.ic_ridebus)
+            setContentIntent(updateIntent)
+            setOngoing(true)
+            clearActions()
+            addAction(
+                android.R.drawable.stat_sys_download_done,
+                context.getString(R.string.action_download),
+                updateIntent
+            )
+        }
+        notificationBuilder.show()
+    }
+
     fun onDownloadStarted(): NotificationCompat.Builder {
         with(notificationBuilder) {
             setContentTitle(context.getString(R.string.app_name))

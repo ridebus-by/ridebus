@@ -6,6 +6,8 @@ import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
 
 object Migrations {
 
+    var isDatabaseSchemaChanged: Boolean = false
+
     /**
      * Performs a migration when the application is updated.
      *
@@ -38,10 +40,11 @@ object Migrations {
                     else -> preferences.city().set("0")
                 }
                 preferences.databaseVersion().set("3.0")
+                isDatabaseSchemaChanged = true
             }
-
             return true
         }
+        isDatabaseSchemaChanged = false
         return false
     }
 }

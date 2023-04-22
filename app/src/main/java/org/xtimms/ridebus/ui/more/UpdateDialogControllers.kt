@@ -125,7 +125,7 @@ private const val NEW_SCHEDULE_VERSION_KEY = "NewScheduleDialogController.versio
 
 class CriticalDatabaseUpdateDialogController(bundle: Bundle? = null) : DialogController(bundle) {
 
-    constructor(update: DatabaseUpdateResult.NewUpdate) : this(
+    constructor(update: DatabaseUpdateResult.CriticalUpdate) : this(
         bundleOf(
             CRITICAL_DATABASE_UPDATE_BODY_KEY to update.update.info,
             CRITICAL_DATABASE_UPDATE_VERSION_KEY to update.update.version,

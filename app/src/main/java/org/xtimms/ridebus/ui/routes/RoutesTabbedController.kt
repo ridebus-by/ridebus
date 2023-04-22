@@ -21,6 +21,7 @@ import org.xtimms.ridebus.ui.base.controller.BaseController
 import org.xtimms.ridebus.ui.base.controller.RootController
 import org.xtimms.ridebus.ui.base.controller.TabbedController
 import org.xtimms.ridebus.ui.main.MainActivity
+import org.xtimms.ridebus.ui.more.CriticalDatabaseUpdateDialogController
 import org.xtimms.ridebus.ui.more.NewScheduleDialogController
 import org.xtimms.ridebus.util.lang.launchNow
 import org.xtimms.ridebus.util.system.logcat
@@ -125,6 +126,9 @@ class RoutesTabbedController :
                 when (val result = updateChecker.checkForUpdate(activity!!, isUserPrompt = true)) {
                     is DatabaseUpdateResult.NewUpdate -> {
                         NewScheduleDialogController(result).showDialog(router)
+                    }
+                    is DatabaseUpdateResult.CriticalUpdate -> {
+                        CriticalDatabaseUpdateDialogController(result).showDialog(router)
                     }
                     is DatabaseUpdateResult.NoNewUpdate -> {
                         activity?.toast(R.string.update_check_no_new_updates)

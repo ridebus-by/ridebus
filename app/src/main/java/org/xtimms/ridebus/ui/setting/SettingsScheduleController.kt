@@ -7,6 +7,7 @@ import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateChecker
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
 import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
+import org.xtimms.ridebus.ui.more.CriticalDatabaseUpdateDialogController
 import org.xtimms.ridebus.ui.more.NewScheduleDialogController
 import org.xtimms.ridebus.util.lang.launchNow
 import org.xtimms.ridebus.util.preference.*
@@ -68,6 +69,9 @@ class SettingsScheduleController : SettingsController() {
                 when (val result = updateChecker.checkForUpdate(activity!!, isUserPrompt = true)) {
                     is DatabaseUpdateResult.NewUpdate -> {
                         NewScheduleDialogController(result).showDialog(router)
+                    }
+                    is DatabaseUpdateResult.CriticalUpdate -> {
+                        CriticalDatabaseUpdateDialogController(result).showDialog(router)
                     }
                     is DatabaseUpdateResult.NoNewUpdate -> {
                         activity?.toast(R.string.update_check_no_new_updates)
