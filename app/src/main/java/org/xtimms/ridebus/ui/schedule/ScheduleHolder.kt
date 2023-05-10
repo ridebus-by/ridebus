@@ -19,10 +19,17 @@ class ScheduleHolder(view: View, val adapter: ScheduleAdapter) :
     private val highlightColor = view.context.getThemeColor(materialR.attr.colorPrimary)
     private val bgHighlightColor =
         view.context.getThemeColor(materialR.attr.colorSecondaryContainer)
+    private val bgTextColor =
+        view.context.getThemeColor(materialR.attr.colorOnSecondaryContainer)
+    private val defaultTextColor =
+        view.context.getThemeColor(materialR.attr.colorOnSurface)
 
     fun bind(item: ScheduleRow) {
         binding.textHour.text = item.hour.toString()
-        binding.textHour.setBackgroundColor(
+        binding.textHour.setTextColor(
+            if (item.isCurrentHour()) bgTextColor else defaultTextColor
+        )
+        binding.row.setBackgroundColor(
             if (item.isCurrentHour()) bgHighlightColor else Color.TRANSPARENT
         )
         val closestMinute = item.getClosestMinute()

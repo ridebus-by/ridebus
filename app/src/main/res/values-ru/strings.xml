@@ -90,7 +90,7 @@
     <string name="enable_reduced_motion">Включить пониженное движение</string>
     <string name="pref_verbose_logging">Подробное ведение журнала логов</string>
     <string name="pref_verbose_logging_summary">Передавать подробные журналы логов в системный журнал логов (снижает производительность приложения)</string>
-    <string name="information_no_schedule_on_route">Этот маршрут не имеет расписания</string>
+    <string name="information_no_schedule_on_route">В эти дни транспорт не ходит</string>
     <string name="pinned">Закреплено</string>
     <string name="other">Другие</string>
     <string name="action_unpin">Открепить</string>

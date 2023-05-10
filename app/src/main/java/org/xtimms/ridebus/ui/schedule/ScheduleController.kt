@@ -77,6 +77,7 @@ class ScheduleController :
 
         adapter = ScheduleAdapter(this)
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.itemAnimator = null
         binding.recycler.adapter = adapter
         binding.recycler.setHasFixedSize(true)
     }
