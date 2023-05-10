@@ -1,14 +1,23 @@
 package org.xtimms.ridebus.ui.schedule
 
 import android.os.Bundle
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.isActive
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
-import org.xtimms.ridebus.util.lang.withUIContext
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.NavigableSet
+import java.util.TreeSet
+import java.util.concurrent.TimeUnit
 
 class SchedulePresenter(
     private val typeDay: Int,
@@ -19,15 +28,31 @@ class SchedulePresenter(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        loadSchedule(typeDay, route, stop)
+        observeSchedule(typeDay, route, stop)
     }
 
-    private fun loadSchedule(typeDay: Int, route: Route, stop: Stop) {
-        presenterScope.launch {
-            val arrivalTimes = db.scheduleDao().getArrivalTime(typeDay, route.routeId, stop.stopId)
-            withUIContext {
-                view?.setSchedule(arrivalTimes.map(::ScheduleItem))
+    private fun observeSchedule(typeDay: Int, route: Route, stop: Stop) {
+        combine(
+            db.scheduleDao().observeArrivalTime(typeDay, route.routeId, stop.stopId),
+            tickerFlow()
+        ) { schedule, time ->
+            val rows = HashMap<Int, NavigableSet<Int>>(schedule.size)
+            for (item in schedule) {
+                val (hour, minute) = item.arrivalTime?.split(':') ?: continue
+                rows.getOrPut(hour.toInt()) { TreeSet() }.add(minute.toInt())
             }
+            rows.entries.map {
+                ScheduleRow(it.key, it.value, time)
+            }
+        }.flowOn(Dispatchers.Default)
+            .onEach { view?.setSchedule(it) }
+            .launchIn(presenterScope)
+    }
+
+    private fun tickerFlow() = flow {
+        while (isActive) {
+            emit(System.currentTimeMillis())
+            delay(TimeUnit.MINUTES.toMillis(1))
         }
     }
 }

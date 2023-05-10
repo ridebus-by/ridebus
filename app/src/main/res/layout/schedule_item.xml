@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.xtimms.ridebus.widget.ScheduleView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/schedule_view"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:minHeight="?listPreferredItemHeightSmall"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/text_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:minWidth="52dp"
+        android:singleLine="true"
+        android:textAppearance="?textAppearanceTitleMedium"
+        tools:text="17" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="1dp"
+        android:layout_height="match_parent" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/text_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="?listPreferredItemPaddingEnd"
+            android:singleLine="true"
+            android:textAppearance="?textAppearanceBodyLarge"
+            tools:text="02\t33\t52" />
+
+    </HorizontalScrollView>
+
+</LinearLayout>

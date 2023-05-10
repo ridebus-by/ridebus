@@ -58,7 +58,7 @@ class ScheduleController :
 
     private var adapter: ScheduleAdapter? = null
 
-    private var schedule: List<ScheduleItem> = emptyList()
+    private var schedule: List<ScheduleRow> = emptyList()
 
     override fun createBinding(inflater: LayoutInflater) = ScheduleControllerBinding.inflate(inflater)
 
@@ -94,7 +94,7 @@ class ScheduleController :
         }
     }
 
-    fun setSchedule(schedule: List<ScheduleItem>) {
+    fun setSchedule(schedule: List<ScheduleRow>) {
         this.schedule = schedule
         adapter?.updateDataSet(schedule)
     }
