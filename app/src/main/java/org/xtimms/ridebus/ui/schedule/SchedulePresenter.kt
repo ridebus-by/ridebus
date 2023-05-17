@@ -38,12 +38,11 @@ class SchedulePresenter(
         ) { schedule, time ->
             val rows = HashMap<Int, NavigableSet<Int>>(schedule.size)
             for (item in schedule) {
-                val hour = item.hour ?: continue
-                val minute = item.minute ?: continue
-                rows.getOrPut(hour) { TreeSet() }.add(minute)
+                val (hour, minute) = item.arrivalTime?.split(':') ?: continue
+                rows.getOrPut(hour.toInt()) { TreeSet() }.add(minute.toInt())
             }
-            rows.entries.map { (hour, minutesInHour) ->
-                ScheduleRow(hour, minutesInHour, time)
+            rows.entries.map {
+                ScheduleRow(it.key, it.value, time)
             }
         }.flowOn(Dispatchers.Default)
             .onEach { view?.setSchedule(it) }
