@@ -90,7 +90,7 @@
     <string name="enable_reduced_motion">Включить пониженное движение</string>
     <string name="pref_verbose_logging">Подробное ведение журнала логов</string>
     <string name="pref_verbose_logging_summary">Передавать подробные журналы логов в системный журнал логов (снижает производительность приложения)</string>
-    <string name="information_no_schedule_on_route">Этот маршрут не имеет расписания</string>
+    <string name="information_no_schedule_on_route">В эти дни транспорт не ходит</string>
     <string name="pinned">Закреплено</string>
     <string name="other">Другие</string>
     <string name="action_unpin">Открепить</string>
@@ -130,7 +130,7 @@
     <string name="label_mode_selected">Когда выбрано</string>
     <string name="label_mode_labeled">Маркированный</string>
     <string name="label_mode_unlabeled">Немаркированный</string>
-    <string name="token_time_now">прямо сейчас</string>
+    <string name="token_time_now">прибывает</string>
     <string name="label_working_days">Будни</string>
     <string name="label_weekends">Выходные</string>
     <string name="reltime_hours">через %1$d ч</string>

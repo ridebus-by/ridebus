@@ -12,6 +12,8 @@
         android:gravity="center"
         android:singleLine="true"
         android:textAppearance="?attr/textAppearanceBodyLarge"
+        tools:drawablePadding="4dp"
+        tools:drawableStartCompat="@drawable/anim_arriving_dot"
         tools:text="12h 12m" />
 
     <TextView

@@ -23,12 +23,12 @@ data class Route(
     @ColumnInfo(name = "following") val following: String,
     @ColumnInfo(name = "carrier_company") val carrierCompany: String,
     @ColumnInfo(name = "tech_info") val techInfo: String,
-    @ColumnInfo(name = "cash") val cash: Int,
-    @ColumnInfo(name = "qr_code") val qrCode: Int,
-    @ColumnInfo(name = "is_small") val isSmall: Int,
-    @ColumnInfo(name = "is_big") val isBig: Int,
-    @ColumnInfo(name = "is_very_big") val isVeryBig: Int,
-    @ColumnInfo(name = "eco") val isEco: Int,
-    @ColumnInfo(name = "wifi") val wifi: Int,
-    @ColumnInfo(name = "low_floor") val isLowFloor: Int
+    @ColumnInfo(name = "cash") val cash: Boolean,
+    @ColumnInfo(name = "qr_code") val qrCode: Boolean,
+    @ColumnInfo(name = "is_small") val isSmall: Boolean,
+    @ColumnInfo(name = "is_big") val isBig: Boolean,
+    @ColumnInfo(name = "is_very_big") val isVeryBig: Boolean,
+    @ColumnInfo(name = "eco") val isEco: Boolean,
+    @ColumnInfo(name = "wifi") val wifi: Boolean,
+    @ColumnInfo(name = "low_floor") val isLowFloor: Boolean
 )

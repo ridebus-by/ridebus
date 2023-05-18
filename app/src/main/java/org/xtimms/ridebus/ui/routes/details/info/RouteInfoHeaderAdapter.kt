@@ -16,8 +16,9 @@ import com.yandex.mapkit.directions.driving.DrivingRoute
 import com.yandex.mapkit.directions.driving.DrivingRouter
 import com.yandex.mapkit.directions.driving.DrivingSession
 import com.yandex.mapkit.directions.driving.VehicleOptions
-import com.yandex.mapkit.geometry.BoundingBox
+import com.yandex.mapkit.geometry.BoundingBoxHelper
 import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.geometry.Polyline
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
 import com.yandex.runtime.Error
@@ -77,12 +78,9 @@ class RouteInfoHeaderAdapter(
                 )
             }
 
-            val boundingBox = BoundingBox(
-                Point(stopsPoints.first().latitude, stopsPoints.last().longitude),
-                Point(stopsPoints.last().latitude, stopsPoints.first().longitude)
-            )
+            val boundsHelper = BoundingBoxHelper.getBounds(Polyline(stopsPoints))
 
-            val cameraPosition = binding.mapView.map.cameraPosition(boundingBox)
+            val cameraPosition = binding.mapView.map.cameraPosition(boundsHelper)
 
             constraintSet.clone(constraintLayout)
             constraintSet.connect(
@@ -195,9 +193,7 @@ class RouteInfoHeaderAdapter(
          * Update the view with route information.
          */
         private fun setRouteInfo() {
-            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote()
-                .get()
-            ) {
+            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote().get()) {
                 binding.noteChip.visibility = View.VISIBLE
             }
 
@@ -268,49 +264,49 @@ class RouteInfoHeaderAdapter(
             binding.fare.text = route.fare
 
             val tags = ArrayList<RideBusChipGroup.ChipModel>()
-            if (route.qrCode == 1) {
+            if (route.qrCode) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.qr),
                     icon = R.drawable.ic_qr_code
                 )
             }
-            if (route.cash == 1) {
+            if (route.cash) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.in_cash),
                     icon = R.drawable.ic_account_balance_wallet
                 )
             }
-            if (route.isSmall == 1) {
+            if (route.isSmall) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.small_class),
                     icon = R.drawable.ic_little_class
                 )
             }
-            if (route.isBig == 1) {
+            if (route.isBig) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.big_class),
                     icon = R.drawable.ic_big_class
                 )
             }
-            if (route.isVeryBig == 1) {
+            if (route.isVeryBig) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.very_big_class),
                     icon = R.drawable.ic_very_big_class
                 )
             }
-            if (route.isEco == 1) {
+            if (route.isEco) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.ecotransport),
                     icon = R.drawable.ic_eco
                 )
             }
-            if (route.wifi == 1) {
+            if (route.wifi) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.wifi),
                     icon = R.drawable.ic_wifi
                 )
             }
-            if (route.isLowFloor == 1) {
+            if (route.isLowFloor) {
                 tags += RideBusChipGroup.ChipModel(
                     title = view.context.getString(R.string.low_floor),
                     icon = R.drawable.ic_wheelchair
