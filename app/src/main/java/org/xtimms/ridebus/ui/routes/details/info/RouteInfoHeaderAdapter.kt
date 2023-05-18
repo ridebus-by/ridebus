@@ -16,8 +16,9 @@ import com.yandex.mapkit.directions.driving.DrivingRoute
 import com.yandex.mapkit.directions.driving.DrivingRouter
 import com.yandex.mapkit.directions.driving.DrivingSession
 import com.yandex.mapkit.directions.driving.VehicleOptions
-import com.yandex.mapkit.geometry.BoundingBox
+import com.yandex.mapkit.geometry.BoundingBoxHelper
 import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.geometry.Polyline
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.MapObjectCollection
 import com.yandex.runtime.Error
@@ -77,12 +78,9 @@ class RouteInfoHeaderAdapter(
                 )
             }
 
-            val boundingBox = BoundingBox(
-                Point(stopsPoints.first().latitude, stopsPoints.last().longitude),
-                Point(stopsPoints.last().latitude, stopsPoints.first().longitude)
-            )
+            val boundsHelper = BoundingBoxHelper.getBounds(Polyline(stopsPoints))
 
-            val cameraPosition = binding.mapView.map.cameraPosition(boundingBox)
+            val cameraPosition = binding.mapView.map.cameraPosition(boundsHelper)
 
             constraintSet.clone(constraintLayout)
             constraintSet.connect(
@@ -195,9 +193,7 @@ class RouteInfoHeaderAdapter(
          * Update the view with route information.
          */
         private fun setRouteInfo() {
-            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote()
-                .get()
-            ) {
+            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote().get()) {
                 binding.noteChip.visibility = View.VISIBLE
             }
 
