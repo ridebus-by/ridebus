@@ -130,7 +130,7 @@
     <string name="label_mode_selected">Когда выбрано</string>
     <string name="label_mode_labeled">Маркированный</string>
     <string name="label_mode_unlabeled">Немаркированный</string>
-    <string name="token_time_now">прямо сейчас</string>
+    <string name="token_time_now">прибывает</string>
     <string name="label_working_days">Будни</string>
     <string name="label_weekends">Выходные</string>
     <string name="reltime_hours">через %1$d ч</string>

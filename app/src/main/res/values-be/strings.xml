@@ -125,7 +125,7 @@
     <string name="label_mode_selected">Калі выбрана</string>
     <string name="label_mode_labeled">Маркіраваны</string>
     <string name="label_mode_unlabeled">Немаркіраваны</string>
-    <string name="token_time_now">прама зараз</string>
+    <string name="token_time_now">прыбывае</string>
     <string name="label_working_days">Будныя дні</string>
     <string name="label_weekends">Выхадныя</string>
     <string name="reltime_hours">праз %1$d г</string>
