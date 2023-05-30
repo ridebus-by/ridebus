@@ -7,7 +7,14 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
 import androidx.core.content.ContextCompat
-import logcat.LogPriority
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import okhttp3.internal.http2.ErrorCode
+import okhttp3.internal.http2.StreamResetException
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
@@ -18,30 +25,26 @@ import org.xtimms.ridebus.network.NetworkHelper
 import org.xtimms.ridebus.network.ProgressListener
 import org.xtimms.ridebus.network.await
 import org.xtimms.ridebus.network.newCallWithProgress
-import org.xtimms.ridebus.util.lang.launchIO
 import org.xtimms.ridebus.util.lang.withIOContext
 import org.xtimms.ridebus.util.storage.saveTo
 import org.xtimms.ridebus.util.system.acquireWakeLock
 import org.xtimms.ridebus.util.system.isServiceRunning
-import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 
 class DatabaseUpdateService : Service() {
 
     private val network: NetworkHelper by injectLazy()
-
     private val preferences: PreferencesHelper by injectLazy()
-
     private val database: RideBusDatabase by injectLazy()
 
     private lateinit var wakeLock: PowerManager.WakeLock
-
     private lateinit var notifier: DatabaseUpdateNotifier
 
-    override fun onCreate() {
-        super.onCreate()
+    private val job = SupervisorJob()
+    private val serviceScope = CoroutineScope(Dispatchers.IO + job)
 
+    override fun onCreate() {
         notifier = DatabaseUpdateNotifier(this)
         wakeLock = acquireWakeLock(javaClass.name)
 
@@ -57,11 +60,11 @@ class DatabaseUpdateService : Service() {
         val title = intent.getStringExtra(EXTRA_DOWNLOAD_TITLE) ?: getString(R.string.app_name)
         val version = intent.getStringExtra(EXTRA_DOWNLOAD_VERSION) ?: BuildConfig.DATABASE_VERSION
 
-        launchIO {
+        serviceScope.launch {
             downloadDatabase(title, url, version)
         }
 
-        stopSelf(startId)
+        job.invokeOnCompletion { stopSelf(startId) }
         return START_NOT_STICKY
     }
 
@@ -72,10 +75,11 @@ class DatabaseUpdateService : Service() {
 
     override fun onDestroy() {
         destroyJob()
-        super.onDestroy()
     }
 
     private fun destroyJob() {
+        serviceScope.cancel()
+        job.cancel()
         if (wakeLock.isHeld) {
             wakeLock.release()
         }
@@ -99,9 +103,9 @@ class DatabaseUpdateService : Service() {
             }
         }
 
-        val response = network.client.newCallWithProgress(GET(url), progressListener).await()
-
         try {
+            val response = network.client.newCallWithProgress(GET(url), progressListener).await()
+
             val databasePath = database.openHelper.writableDatabase.path.replace("ridebus.db", "")
             val oldDatabaseFile = withIOContext { File(databasePath, "ridebus.db") }
             val databaseFile = withIOContext { File(databasePath, "update.db") }
@@ -122,11 +126,13 @@ class DatabaseUpdateService : Service() {
             }
             notifier.onDownloadFinished(title)
         } catch (e: Exception) {
-            logcat(LogPriority.ERROR, e)
-            notifier.onDownloadError(url, version)
-        } finally {
-            response.close()
-            database.openHelper.writableDatabase.endTransaction()
+            val shouldCancel = e is CancellationException ||
+                    (e is StreamResetException && e.errorCode == ErrorCode.CANCEL)
+            if (shouldCancel) {
+                notifier.cancel()
+            } else {
+                notifier.onDownloadError(url, version)
+            }
         }
     }
 
@@ -158,6 +164,10 @@ class DatabaseUpdateService : Service() {
             }
         }
 
+        fun stop(context: Context) {
+            context.stopService(Intent(context, DatabaseUpdateService::class.java))
+        }
+
         internal fun downloadDatabasePendingService(
             context: Context,
             url: String,
@@ -171,7 +181,7 @@ class DatabaseUpdateService : Service() {
                 context,
                 0,
                 intent,
-                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         }
     }

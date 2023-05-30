@@ -7,7 +7,15 @@ import android.content.Intent
 import android.os.IBinder
 import android.os.PowerManager
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import logcat.LogPriority
+import okhttp3.internal.http2.ErrorCode
+import okhttp3.internal.http2.StreamResetException
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.Notifications
@@ -29,13 +37,16 @@ class AppUpdateService : Service() {
 
     private val network: NetworkHelper by injectLazy()
 
+    /**
+     * Wake lock that will be held until the service is destroyed.
+     */
     private lateinit var wakeLock: PowerManager.WakeLock
-
     private lateinit var notifier: AppUpdateNotifier
 
-    override fun onCreate() {
-        super.onCreate()
+    private val job = SupervisorJob()
+    private val serviceScope = CoroutineScope(Dispatchers.IO + job)
 
+    override fun onCreate() {
         notifier = AppUpdateNotifier(this)
         wakeLock = acquireWakeLock(javaClass.name)
 
@@ -50,11 +61,11 @@ class AppUpdateService : Service() {
         val url = intent.getStringExtra(EXTRA_DOWNLOAD_URL) ?: return START_NOT_STICKY
         val title = intent.getStringExtra(EXTRA_DOWNLOAD_TITLE) ?: getString(R.string.app_name)
 
-        launchIO {
+        serviceScope.launch {
             downloadApk(title, url)
         }
 
-        stopSelf(startId)
+        job.invokeOnCompletion { stopSelf(startId) }
         return START_NOT_STICKY
     }
 
@@ -65,10 +76,11 @@ class AppUpdateService : Service() {
 
     override fun onDestroy() {
         destroyJob()
-        super.onDestroy()
     }
 
     private fun destroyJob() {
+        serviceScope.cancel()
+        job.cancel()
         if (wakeLock.isHeld) {
             wakeLock.release()
         }
@@ -92,9 +104,8 @@ class AppUpdateService : Service() {
             }
         }
 
-        val response = network.client.newCallWithProgress(GET(url), progressListener).await()
-
         try {
+            val response = network.client.newCallWithProgress(GET(url), progressListener).await()
             val apkFile = File(externalCacheDir, "update.apk")
 
             if (response.isSuccessful) {
@@ -105,36 +116,54 @@ class AppUpdateService : Service() {
             }
             notifier.onDownloadFinished(apkFile.getUriCompat(this))
         } catch (e: Exception) {
-            logcat(LogPriority.ERROR, e)
-            notifier.onDownloadError(url)
-        } finally {
-            response.close()
+            val shouldCancel = e is CancellationException ||
+                    (e is StreamResetException && e.errorCode == ErrorCode.CANCEL)
+            if (shouldCancel) {
+                notifier.cancel()
+            } else {
+                notifier.onDownloadError(url)
+            }
         }
     }
 
     companion object {
 
-        internal const val EXTRA_DOWNLOAD_URL = "${BuildConfig.APPLICATION_ID}.UpdaterService.DOWNLOAD_URL"
-        internal const val EXTRA_DOWNLOAD_TITLE = "${BuildConfig.APPLICATION_ID}.UpdaterService.DOWNLOAD_TITLE"
+        internal const val EXTRA_DOWNLOAD_URL =
+            "${BuildConfig.APPLICATION_ID}.UpdaterService.DOWNLOAD_URL"
+        internal const val EXTRA_DOWNLOAD_TITLE =
+            "${BuildConfig.APPLICATION_ID}.UpdaterService.DOWNLOAD_TITLE"
 
         private fun isRunning(context: Context): Boolean =
             context.isServiceRunning(AppUpdateService::class.java)
 
-        fun start(context: Context, url: String, title: String = context.getString(R.string.app_name)) {
-            if (!isRunning(context)) {
-                val intent = Intent(context, AppUpdateService::class.java).apply {
-                    putExtra(EXTRA_DOWNLOAD_TITLE, title)
-                    putExtra(EXTRA_DOWNLOAD_URL, url)
-                }
-                ContextCompat.startForegroundService(context, intent)
+        fun start(
+            context: Context,
+            url: String,
+            title: String = context.getString(R.string.app_name)
+        ) {
+            if (isRunning(context)) return
+
+            Intent(context, AppUpdateService::class.java).apply {
+                putExtra(EXTRA_DOWNLOAD_TITLE, title)
+                putExtra(EXTRA_DOWNLOAD_URL, url)
+                ContextCompat.startForegroundService(context, this)
             }
+        }
+
+        fun stop(context: Context) {
+            context.stopService(Intent(context, AppUpdateService::class.java))
         }
 
         internal fun downloadApkPendingService(context: Context, url: String): PendingIntent {
             val intent = Intent(context, AppUpdateService::class.java).apply {
                 putExtra(EXTRA_DOWNLOAD_URL, url)
             }
-            return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            return PendingIntent.getService(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
         }
     }
 }

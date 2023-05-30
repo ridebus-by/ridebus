@@ -21,6 +21,10 @@ internal class AppUpdateNotifier(private val context: Context) {
         context.notificationManager.notify(id, build())
     }
 
+    fun cancel() {
+        NotificationReceiver.dismissNotification(context, Notifications.ID_APP_UPDATER)
+    }
+
     fun promptUpdate(release: GithubRelease) {
         val intent = Intent(context, AppUpdateService::class.java).apply {
             putExtra(AppUpdateService.EXTRA_DOWNLOAD_URL, release.getDownloadLink())
@@ -59,6 +63,13 @@ internal class AppUpdateNotifier(private val context: Context) {
             setContentText(context.getString(R.string.update_check_notification_download_in_progress))
             setSmallIcon(android.R.drawable.stat_sys_download)
             setOngoing(true)
+
+            clearActions()
+            addAction(
+                R.drawable.ic_close,
+                context.getString(R.string.action_cancel),
+                NotificationReceiver.cancelUpdateDownloadPendingBroadcast(context),
+            )
         }
         notificationBuilder.show()
         return notificationBuilder
