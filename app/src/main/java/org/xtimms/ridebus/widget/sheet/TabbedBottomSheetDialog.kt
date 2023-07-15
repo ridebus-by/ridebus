@@ -38,7 +38,7 @@ abstract class TabbedBottomSheetDialog(private val activity: Activity) :
         }
 
         override fun getPageTitle(position: Int): CharSequence {
-            return activity.resources!!.getString(getTabTitles()[position])
+            return checkNotNull(activity.resources).getString(getTabTitles()[position])
         }
     }
 }

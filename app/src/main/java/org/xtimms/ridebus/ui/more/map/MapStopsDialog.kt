@@ -34,9 +34,9 @@ class MapStopsDialog :
     private val points = mutableListOf<Point>()
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        binding = MapStopsDialogBinding.inflate(activity!!.layoutInflater)
+        binding = MapStopsDialogBinding.inflate(checkNotNull(activity).layoutInflater)
 
-        MapKitFactory.initialize(activity!!)
+        MapKitFactory.initialize(checkNotNull(activity))
 
         val cityPoint = db.cityDao().getCityCoordinates(preferences.city().get().toInt()).map {
             Point(
@@ -80,14 +80,14 @@ class MapStopsDialog :
             )
             map?.mapObjects?.addCollection()?.addPlacemarks(
                 points,
-                ImageProvider.fromResource(activity!!, R.drawable.ic_stop_bitmap),
+                ImageProvider.fromResource(checkNotNull(activity), R.drawable.ic_stop_bitmap),
                 IconStyle()
             )
         }
 
-        binding?.mapView?.map?.isNightModeEnabled = activity!!.isNightMode()
+        binding?.mapView?.map?.isNightModeEnabled = checkNotNull(activity).isNightMode()
 
-        return RideBusFullscreenDialog(activity!!, binding!!.root).apply {
+        return RideBusFullscreenDialog(checkNotNull(activity), checkNotNull(binding).root).apply {
             val typedValue = TypedValue()
             val theme = context.theme
             theme.resolveAttribute(android.R.attr.colorBackground, typedValue, true)

@@ -21,14 +21,14 @@ class WelcomeDialogController :
     private var binding: WelcomeDialogControllerBinding? = null
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        binding = WelcomeDialogControllerBinding.inflate(activity!!.layoutInflater)
+        binding = WelcomeDialogControllerBinding.inflate(checkNotNull(activity).layoutInflater)
 
         adapter = CityAdapter(this)
 
         binding?.recyclerView?.layoutManager = LinearLayoutManager(view?.context)
         binding?.recyclerView?.adapter = adapter
 
-        return RideBusFullscreenDialog(activity!!, binding!!.root).apply {
+        return RideBusFullscreenDialog(checkNotNull(activity), checkNotNull(binding).root).apply {
             val typedValue = TypedValue()
             val theme = context.theme
             theme.resolveAttribute(android.R.attr.colorBackground, typedValue, true)

@@ -10,7 +10,7 @@ class NucleusConductorDelegate<P : Presenter<*>>(private val factory: PresenterF
         get() {
             if (field == null) {
                 field = factory.createPresenter()
-                field!!.create(bundle)
+                checkNotNull(field).create(bundle)
                 bundle = null
             }
             return field

@@ -110,11 +110,11 @@ class AboutController : SettingsController(), NoAppBarElevationController {
     private fun checkVersion() {
         if (activity == null) return
 
-        activity!!.toast(R.string.update_check_look_for_updates)
+        checkNotNull(activity).toast(R.string.update_check_look_for_updates)
 
         launchNow {
             try {
-                when (val result = updateChecker.checkForUpdate(activity!!, isUserPrompt = true)) {
+                when (val result = updateChecker.checkForUpdate(checkNotNull(activity), isUserPrompt = true)) {
                     is AppUpdateResult.NewUpdate -> {
                         NewUpdateDialogController(result).showDialog(router)
                     }
@@ -142,7 +142,7 @@ class AboutController : SettingsController(), NoAppBarElevationController {
             )
             outputDf.timeZone = TimeZone.getDefault()
 
-            buildTime!!.toDateTimestampString(dateFormat)
+            checkNotNull(buildTime).toDateTimestampString(dateFormat)
         } catch (e: Exception) {
             BuildConfig.BUILD_TIME
         }

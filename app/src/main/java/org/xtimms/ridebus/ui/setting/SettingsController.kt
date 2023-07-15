@@ -91,10 +91,10 @@ abstract class SettingsController : PreferenceController() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val tv = TypedValue()
-        activity!!.theme.resolveAttribute(androidx.preference.R.attr.preferenceTheme, tv, true)
+        checkNotNull(activity).theme.resolveAttribute(androidx.preference.R.attr.preferenceTheme, tv, true)
         themedContext = ContextThemeWrapper(activity, tv.resourceId)
 
-        val screen = preferenceManager.createPreferenceScreen(themedContext!!)
+        val screen = preferenceManager.createPreferenceScreen(checkNotNull(themedContext))
         preferenceScreen = screen
         setupPreferenceScreen(screen)
     }

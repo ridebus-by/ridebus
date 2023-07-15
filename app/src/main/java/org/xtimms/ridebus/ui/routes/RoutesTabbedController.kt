@@ -53,7 +53,7 @@ class RoutesTabbedController :
     }
 
     override fun getTitle(): String {
-        return resources!!.getString(R.string.title_routes)
+        return checkNotNull(resources).getString(R.string.title_routes)
     }
 
     override fun createBinding(inflater: LayoutInflater) = PagerControllerBinding.inflate(inflater)
@@ -68,7 +68,7 @@ class RoutesTabbedController :
     }
 
     override fun onDestroyView(view: View) {
-        if (!activity!!.isChangingConfigurations) {
+        if (!checkNotNull(activity).isChangingConfigurations) {
             binding.pager.adapter = null
         }
         (activity as? MainActivity)?.binding?.tabs?.setupWithViewPager(null)
@@ -119,11 +119,11 @@ class RoutesTabbedController :
     private fun checkDatabaseFromServer() {
         if (activity == null) return
 
-        activity!!.toast(R.string.update_check_look_for_updates)
+        checkNotNull(activity).toast(R.string.update_check_look_for_updates)
 
         launchNow {
             try {
-                when (val result = updateChecker.checkForUpdate(activity!!, isUserPrompt = true)) {
+                when (val result = updateChecker.checkForUpdate(checkNotNull(activity), isUserPrompt = true)) {
                     is DatabaseUpdateResult.NewUpdate -> {
                         NewScheduleDialogController(result).showDialog(router)
                     }
@@ -151,7 +151,7 @@ class RoutesTabbedController :
                 4 -> R.string.label_tram
                 else -> R.string.unknown
             }
-        }.map { resources!!.getString(it) }
+        }.map { checkNotNull(resources).getString(it) }
 
         override fun getCount(): Int {
             return typesOfTransport.size

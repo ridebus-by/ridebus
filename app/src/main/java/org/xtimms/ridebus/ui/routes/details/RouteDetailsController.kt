@@ -95,7 +95,7 @@ class RouteDetailsController :
     }
 
     override fun getTitle(): String {
-        return "${resources!!.getString(R.string.label_route)} №${route?.number}"
+        return "${checkNotNull(resources).getString(R.string.label_route)} №${route?.number}"
     }
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
@@ -116,7 +116,7 @@ class RouteDetailsController :
 
     override fun createPresenter(): RouteDetailsPresenter {
         return RouteDetailsPresenter(
-            route!!
+            checkNotNull(route)
         )
     }
 
@@ -189,7 +189,7 @@ class RouteDetailsController :
         // Controller may actually already be destroyed by the time this gets run
         if (!isAttached) return
 
-        val scrolledList = binding.fullRecycler ?: binding.infoRecycler!!
+        val scrolledList = binding.fullRecycler ?: checkNotNull(binding.infoRecycler)
         (activity as? MainActivity)?.binding?.appbar?.titleTextAlpha = when {
             // Specific alpha provided
             alpha != null -> alpha
@@ -217,7 +217,7 @@ class RouteDetailsController :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_favourite -> addToFavourites(route!!)
+            R.id.action_favourite -> addToFavourites(checkNotNull(route))
             R.id.action_report -> report()
         }
         return super.onOptionsItemSelected(item)
@@ -243,7 +243,7 @@ class RouteDetailsController :
     private fun report() {
         val intent = Intent(Intent.ACTION_SENDTO)
 
-        intent.putExtra(Intent.EXTRA_SUBJECT, resources!!.getString(R.string.email_subject))
+        intent.putExtra(Intent.EXTRA_SUBJECT, checkNotNull(resources).getString(R.string.email_subject))
         intent.data = Uri.parse(BuildConfig.DEVELOPER_EMAIL)
 
         try {

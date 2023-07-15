@@ -40,7 +40,7 @@ class RouteStopsHeaderAdapter(
             binding.stopsLabel.text = if (numStops == null) {
                 view.context.getString(R.string.information_no_stops_on_route)
             } else {
-                view.context.resources.getQuantityString(R.plurals.route_num_stops, numStops!!, numStops)
+                view.context.resources.getQuantityString(R.plurals.route_num_stops, checkNotNull(numStops), numStops)
             }
         }
     }

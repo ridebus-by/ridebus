@@ -30,12 +30,12 @@ class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundl
     )
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val releaseBody = args.getString(BODY_KEY)!!
+        val releaseBody = checkNotNull(args.getString(BODY_KEY))
             .replace("""---(\R|.)*Checksums(\R|.)*""".toRegex(), "")
-        val info = Markwon.create(activity!!).toMarkdown(releaseBody)
+        val info = Markwon.create(checkNotNull(activity)).toMarkdown(releaseBody)
 
         return MaterialAlertDialogBuilder(
-            activity!!,
+            checkNotNull(activity),
             materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
         )
             .setTitle(R.string.update_check_notification_update_available)
@@ -44,12 +44,12 @@ class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundl
             .setPositiveButton(R.string.update_check_confirm) { _, _ ->
                 applicationContext?.let { context ->
                     // Start download
-                    val url = args.getString(DOWNLOAD_URL_KEY)!!
+                    val url = checkNotNull(args.getString(DOWNLOAD_URL_KEY))
                     AppUpdateService.start(context, url)
                 }
             }
             .setNeutralButton(R.string.update_check_open) { _, _ ->
-                openInBrowser(args.getString(RELEASE_URL_KEY)!!)
+                openInBrowser(checkNotNull(args.getString(RELEASE_URL_KEY)))
             }
             .setNeutralButton(R.string.action_postpone) { _, _ ->
                 dialog?.dismiss()
@@ -81,18 +81,18 @@ class NewScheduleDialogController(bundle: Bundle? = null) : DialogController(bun
     )
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val infoBody = args.getString(NEW_SCHEDULE_BODY_KEY)!!
-        val version = args.getString(NEW_SCHEDULE_VERSION_KEY)!!
+        val infoBody = checkNotNull(args.getString(NEW_SCHEDULE_BODY_KEY))
+        val version = checkNotNull(args.getString(NEW_SCHEDULE_VERSION_KEY))
 
         val message = buildString {
-            append(activity!!.getString(R.string.new_version_s, version))
+            append(checkNotNull(activity).getString(R.string.new_version_s, version))
             appendLine()
             appendLine()
             append(infoBody)
         }
 
         return MaterialAlertDialogBuilder(
-            activity!!,
+            checkNotNull(activity),
             materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
         )
             .setTitle(R.string.update_check_notification_database_update_available)
@@ -101,8 +101,8 @@ class NewScheduleDialogController(bundle: Bundle? = null) : DialogController(bun
             .setPositiveButton(R.string.update_check_confirm) { _, _ ->
                 applicationContext?.let { context ->
                     // Start download
-                    val url = args.getString(NEW_SCHEDULE_DOWNLOAD_URL_KEY)!!
-                    val version = args.getString(NEW_SCHEDULE_VERSION_KEY)!!
+                    val url = checkNotNull(args.getString(NEW_SCHEDULE_DOWNLOAD_URL_KEY))
+                    val version = checkNotNull(args.getString(NEW_SCHEDULE_VERSION_KEY))
                     DatabaseUpdateService.start(context, url, title = infoBody, version = version)
                 }
             }
@@ -134,10 +134,10 @@ class CriticalDatabaseUpdateDialogController(bundle: Bundle? = null) : DialogCon
     )
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val infoBody = args.getString(CRITICAL_DATABASE_UPDATE_BODY_KEY)!!
+        val infoBody = checkNotNull(args.getString(CRITICAL_DATABASE_UPDATE_BODY_KEY))
 
         return MaterialAlertDialogBuilder(
-            activity!!,
+            checkNotNull(activity),
             materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
         )
             .setTitle(R.string.critical_database_update_title)
@@ -146,8 +146,8 @@ class CriticalDatabaseUpdateDialogController(bundle: Bundle? = null) : DialogCon
             .setPositiveButton(R.string.update_check_confirm) { _, _ ->
                 applicationContext?.let { context ->
                     // Start download
-                    val url = args.getString(CRITICAL_DATABASE_UPDATE_DOWNLOAD_URL_KEY)!!
-                    val version = args.getString(CRITICAL_DATABASE_UPDATE_VERSION_KEY)!!
+                    val url = checkNotNull(args.getString(CRITICAL_DATABASE_UPDATE_DOWNLOAD_URL_KEY))
+                    val version = checkNotNull(args.getString(CRITICAL_DATABASE_UPDATE_VERSION_KEY))
                     DatabaseUpdateService.start(context, url, title = infoBody, version = version)
                 }
             }

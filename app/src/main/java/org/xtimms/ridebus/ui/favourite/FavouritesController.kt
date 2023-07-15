@@ -90,7 +90,7 @@ class FavouritesController :
 
     override fun onPinClick(position: Int) {
         val item = adapter?.getItem(position) as? FavouriteItem ?: return
-        toggleFavouritePin(item.route!!)
+        toggleFavouritePin(checkNotNull(item.route))
     }
 
     override fun onItemClick(view: View, position: Int): Boolean {
@@ -105,11 +105,11 @@ class FavouritesController :
         val isPinned = item.header?.type?.equals(FavouritesPresenter.PINNED_KEY) ?: false
 
         val items = mutableListOf(
-            activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin) to { toggleFavouritePin(item.route!!) },
-            activity.getString(R.string.action_remove) to { removeFavouriteItem(item.route!!) }
+            activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin) to { toggleFavouritePin(checkNotNull(item.route)) },
+            activity.getString(R.string.action_remove) to { removeFavouriteItem(checkNotNull(item.route)) }
         )
 
-        FavouriteOptionsDialog(item.route!!.title, items).showDialog(router)
+        FavouriteOptionsDialog(checkNotNull(item.route).title, items).showDialog(router)
     }
 
     private fun toggleFavouritePin(favourite: Route) {

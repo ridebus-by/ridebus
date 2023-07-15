@@ -37,12 +37,12 @@ abstract class DialogController : Controller {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedViewState: Bundle?): View {
         dialog = onCreateDialog(savedViewState)
-        dialog!!.setOwnerActivity(activity!!)
-        dialog!!.setOnDismissListener { dismissDialog() }
+        checkNotNull(dialog).setOwnerActivity(checkNotNull(activity))
+        checkNotNull(dialog).setOnDismissListener { dismissDialog() }
         if (savedViewState != null) {
             val dialogState = savedViewState.getBundle(SAVED_DIALOG_STATE_TAG)
             if (dialogState != null) {
-                dialog!!.onRestoreInstanceState(dialogState)
+                checkNotNull(dialog).onRestoreInstanceState(dialogState)
             }
         }
         return View(activity) // stub view
@@ -50,24 +50,24 @@ abstract class DialogController : Controller {
 
     override fun onSaveViewState(view: View, outState: Bundle) {
         super.onSaveViewState(view, outState)
-        val dialogState = dialog!!.onSaveInstanceState()
+        val dialogState = checkNotNull(dialog).onSaveInstanceState()
         outState.putBundle(SAVED_DIALOG_STATE_TAG, dialogState)
     }
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        dialog!!.show()
+        checkNotNull(dialog).show()
     }
 
     override fun onDetach(view: View) {
         super.onDetach(view)
-        dialog!!.hide()
+        checkNotNull(dialog).hide()
     }
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-        dialog!!.setOnDismissListener(null)
-        dialog!!.dismiss()
+        checkNotNull(dialog).setOnDismissListener(null)
+        checkNotNull(dialog).dismiss()
         dialog = null
     }
 

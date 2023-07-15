@@ -13,7 +13,7 @@ class RoutesOnStopItem(val route: Route, val times: Times) :
     AbstractFlexibleItem<RouteOnStopHolder>() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.stops_route_item
+        return R.layout.routes_on_stop_item
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): RouteOnStopHolder {

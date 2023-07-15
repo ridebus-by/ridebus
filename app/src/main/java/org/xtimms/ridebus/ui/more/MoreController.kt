@@ -42,7 +42,7 @@ class MoreController :
 
             onChange { newValue ->
                 val checked = newValue as Boolean
-                DatabaseUpdateJob.setupTask(activity!!, checked)
+                DatabaseUpdateJob.setupTask(checkNotNull(activity), checked)
                 true
             }
         }

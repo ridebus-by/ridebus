@@ -116,7 +116,7 @@ class ScheduleTabbedController :
                 7 -> R.string.label_everyday
                 else -> R.string.unknown
             }
-        }.map { resources!!.getString(it) }
+        }.map { checkNotNull(resources).getString(it) }
 
         override fun getCount(): Int {
             return typesOfDay.size

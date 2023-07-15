@@ -63,7 +63,7 @@ class RouteController :
     override fun createBinding(inflater: LayoutInflater) = TransportControllerBinding.inflate(inflater)
 
     override fun createPresenter(): RoutePresenter {
-        return RoutePresenter(transportType!!)
+        return RoutePresenter(checkNotNull(transportType))
     }
 
     override fun onViewCreated(view: View) {
@@ -141,7 +141,7 @@ class RouteController :
 
     override fun onItemClick(position: Int) {
         val route = (adapter?.getItem(position) as? RouteItem)?.route?.routeId ?: return
-        parentController!!.router.pushController(RouteDetailsController(route).withFadeTransaction())
+        checkNotNull(parentController).router.pushController(RouteDetailsController(route).withFadeTransaction())
     }
 
     override fun onUpdateEmptyView(size: Int) {

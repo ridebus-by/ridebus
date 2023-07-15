@@ -13,12 +13,12 @@ import uy.kohesive.injekt.injectLazy
 class RoutesSettingsSheet(
     router: Router,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : TabbedBottomSheetDialog(router.activity!!) {
+) : TabbedBottomSheetDialog(checkNotNull(router.activity)) {
 
     private val display: Display
 
     init {
-        display = Display(router.activity!!)
+        display = Display(checkNotNull(router.activity))
         display.onGroupClicked = onGroupClickListener
     }
 

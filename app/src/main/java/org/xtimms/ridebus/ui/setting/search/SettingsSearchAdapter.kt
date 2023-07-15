@@ -40,7 +40,7 @@ class SettingsSearchAdapter(val controller: SettingsSearchController) :
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        bundle = savedInstanceState.getBundle(HOLDER_BUNDLE_KEY)!!
+        bundle = checkNotNull(savedInstanceState.getBundle(HOLDER_BUNDLE_KEY))
     }
 
     /**

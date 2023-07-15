@@ -62,7 +62,7 @@ class ThemesPreferenceAdapter(private val clickListener: OnItemClickListener) :
         private val unselectedColor = view.context.getResourceColor(android.R.attr.textColorHint)
 
         fun bind(appTheme: PreferenceValues.AppTheme) {
-            binding.name.text = view.context.getString(appTheme.titleResId!!)
+            binding.name.text = view.context.getString(checkNotNull(appTheme.titleResId))
 
             val isSelected = preferences.appTheme().get() == appTheme
             binding.themeCard.isChecked = isSelected

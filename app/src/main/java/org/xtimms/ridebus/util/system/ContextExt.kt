@@ -81,7 +81,7 @@ fun Context.copyToClipboard(label: String, content: String) {
     if (content.isBlank()) return
 
     try {
-        val clipboard = getSystemService<ClipboardManager>()!!
+        val clipboard = checkNotNull(getSystemService<ClipboardManager>())
         clipboard.setPrimaryClip(ClipData.newPlainText(label, content))
 
         toast(getString(R.string.copied_to_clipboard, content.truncateCenter(50)))
@@ -153,13 +153,13 @@ val Int.dpToPx: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()
 
 val Context.notificationManager: NotificationManager
-    get() = getSystemService()!!
+    get() = checkNotNull(getSystemService())
 
 val Context.powerManager: PowerManager
-    get() = getSystemService()!!
+    get() = checkNotNull(getSystemService())
 
 val Context.inputMethodManager: InputMethodManager
-    get() = getSystemService()!!
+    get() = checkNotNull(getSystemService())
 
 val Resources.isLTR
     get() = configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR

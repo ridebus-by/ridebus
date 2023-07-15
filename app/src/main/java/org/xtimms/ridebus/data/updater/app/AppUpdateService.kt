@@ -13,7 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import logcat.LogPriority
 import okhttp3.internal.http2.ErrorCode
 import okhttp3.internal.http2.StreamResetException
 import org.xtimms.ridebus.BuildConfig
@@ -24,12 +23,10 @@ import org.xtimms.ridebus.network.NetworkHelper
 import org.xtimms.ridebus.network.ProgressListener
 import org.xtimms.ridebus.network.await
 import org.xtimms.ridebus.network.newCallWithProgress
-import org.xtimms.ridebus.util.lang.launchIO
 import org.xtimms.ridebus.util.storage.getUriCompat
 import org.xtimms.ridebus.util.storage.saveTo
 import org.xtimms.ridebus.util.system.acquireWakeLock
 import org.xtimms.ridebus.util.system.isServiceRunning
-import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 
@@ -117,7 +114,7 @@ class AppUpdateService : Service() {
             notifier.onDownloadFinished(apkFile.getUriCompat(this))
         } catch (e: Exception) {
             val shouldCancel = e is CancellationException ||
-                    (e is StreamResetException && e.errorCode == ErrorCode.CANCEL)
+                (e is StreamResetException && e.errorCode == ErrorCode.CANCEL)
             if (shouldCancel) {
                 notifier.cancel()
             } else {

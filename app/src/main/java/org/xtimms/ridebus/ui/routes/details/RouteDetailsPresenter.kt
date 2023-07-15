@@ -63,7 +63,7 @@ class RouteDetailsPresenter(
 
     private fun getTimes(typeDay: Int?, stopId: Int): Single<Times> {
         return Single.fromCallable {
-            db.scheduleDao().getArrivalTime(typeDay!!, route.routeId, stopId)
+            db.scheduleDao().getArrivalTime(checkNotNull(typeDay), route.routeId, stopId)
                 .map { it.arrivalTime }
         }.subscribeOn(Schedulers.io())
             .map { Times(it) }

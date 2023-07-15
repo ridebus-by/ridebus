@@ -12,8 +12,8 @@ import org.xtimms.ridebus.ui.base.controller.openInBrowser
 class WhatsNewDialogController(bundle: Bundle? = null) : DialogController(bundle) {
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialAlertDialogBuilder(activity!!)
-            .setTitle(activity!!.getString(R.string.updated_version, BuildConfig.VERSION_NAME))
+        return MaterialAlertDialogBuilder(checkNotNull(activity))
+            .setTitle(checkNotNull(activity).getString(R.string.updated_version, BuildConfig.VERSION_NAME))
             .setPositiveButton(android.R.string.ok, null)
             .setNeutralButton(R.string.whats_new) { _, _ ->
                 openInBrowser(RELEASE_URL)

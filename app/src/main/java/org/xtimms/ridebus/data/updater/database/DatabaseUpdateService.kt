@@ -127,12 +127,14 @@ class DatabaseUpdateService : Service() {
             notifier.onDownloadFinished(title)
         } catch (e: Exception) {
             val shouldCancel = e is CancellationException ||
-                    (e is StreamResetException && e.errorCode == ErrorCode.CANCEL)
+                (e is StreamResetException && e.errorCode == ErrorCode.CANCEL)
             if (shouldCancel) {
                 notifier.cancel()
             } else {
                 notifier.onDownloadError(url, version)
             }
+        } finally {
+            database.openHelper.writableDatabase.endTransaction()
         }
     }
 

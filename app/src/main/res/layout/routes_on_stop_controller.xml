@@ -53,11 +53,11 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header"
-        tools:listitem="@layout/stops_route_item" />
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <org.xtimms.ridebus.widget.EmptyView
         android:id="@+id/empty_view"

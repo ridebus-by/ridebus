@@ -16,7 +16,7 @@ class AttentionDialog(bundle: Bundle? = null) : DialogController(bundle) {
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialAlertDialogBuilder(activity!!, com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered)
+        return MaterialAlertDialogBuilder(checkNotNull(activity), com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered)
             .setIcon(activity?.getDrawable(R.drawable.ic_dissatisfied))
             .setTitle(activity?.getString(R.string.attention_title))
             .setMessage(activity?.getString(R.string.attention_message))

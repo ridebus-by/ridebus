@@ -15,7 +15,7 @@ abstract class NucleusController<VB : ViewBinding, P : Presenter<*>>(val bundle:
     private val delegate = NucleusConductorDelegate(this)
 
     val presenter: P
-        get() = delegate.presenter!!
+        get() = checkNotNull(delegate.presenter)
 
     init {
         addLifecycleListener(NucleusConductorLifecycleListener(delegate))

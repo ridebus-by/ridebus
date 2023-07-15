@@ -96,7 +96,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
                 resId: Int,
                 @AttrRes colorAttrRes: Int = com.google.android.material.R.attr.colorPrimary
             ): Drawable {
-                return AppCompatResources.getDrawable(context, resId)!!.apply {
+                return checkNotNull(AppCompatResources.getDrawable(context, resId)).apply {
                     setTint(
                         context.getResourceColor(
                             if (enabled) colorAttrRes else com.google.android.material.R.attr.colorControlNormal

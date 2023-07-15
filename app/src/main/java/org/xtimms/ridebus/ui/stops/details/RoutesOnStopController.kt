@@ -15,7 +15,7 @@ import logcat.LogPriority
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Stop
-import org.xtimms.ridebus.databinding.StopsRouteControllerBinding
+import org.xtimms.ridebus.databinding.RoutesOnStopControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
@@ -27,7 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class RoutesOnStopController :
-    NucleusController<StopsRouteControllerBinding, RouteOnStopPresenter>,
+    NucleusController<RoutesOnStopControllerBinding, RouteOnStopPresenter>,
     NoAppBarElevationController,
     FlexibleAdapter.OnItemClickListener,
     RoutesOnStopAdapter.OnItemClickListener {
@@ -65,12 +65,12 @@ class RoutesOnStopController :
         return "${stop?.direction}"
     }
 
-    override fun createBinding(inflater: LayoutInflater) = StopsRouteControllerBinding.inflate(
+    override fun createBinding(inflater: LayoutInflater) = RoutesOnStopControllerBinding.inflate(
         inflater
     )
 
     override fun createPresenter(): RouteOnStopPresenter {
-        return RouteOnStopPresenter(stop!!)
+        return RouteOnStopPresenter(checkNotNull(stop))
     }
 
     override fun onViewCreated(view: View) {

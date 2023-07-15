@@ -48,7 +48,7 @@ class FavouritesPresenter(
         val byType = favourites.sortedWith(object : Comparator<Route?> {
 
             override fun compare(o1: Route?, o2: Route?): Int {
-                return extractInt(o1!!) - extractInt(o2!!)
+                return extractInt(checkNotNull(o1)) - extractInt(checkNotNull(o2))
             }
 
             fun extractInt(s: Route): Int {

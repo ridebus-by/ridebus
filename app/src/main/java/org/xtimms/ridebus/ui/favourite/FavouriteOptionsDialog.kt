@@ -16,7 +16,7 @@ class FavouriteOptionsDialog(bundle: Bundle? = null) : DialogController(bundle) 
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialAlertDialogBuilder(activity!!)
+        return MaterialAlertDialogBuilder(checkNotNull(activity))
             .setTitle(favourite)
             .setItems(items.map { it.first }.toTypedArray()) { dialog, which ->
                 items[which].second()

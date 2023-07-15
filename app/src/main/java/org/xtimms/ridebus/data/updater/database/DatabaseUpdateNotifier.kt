@@ -90,7 +90,7 @@ class DatabaseUpdateNotifier(private val context: Context) {
             addAction(
                 R.drawable.ic_close,
                 context.getString(R.string.action_cancel),
-                NotificationReceiver.cancelUpdateDownloadPendingBroadcast(context),
+                NotificationReceiver.cancelUpdateDownloadPendingBroadcast(context)
             )
         }
         notificationBuilder.show()

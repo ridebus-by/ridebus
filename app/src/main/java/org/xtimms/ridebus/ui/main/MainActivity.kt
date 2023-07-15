@@ -467,7 +467,7 @@ class MainActivity : BaseActivity() {
     }
 
     private val nav: NavigationBarView
-        get() = binding.bottomNav ?: binding.sideNav!!
+        get() = binding.bottomNav ?: checkNotNull(binding.sideNav)
 
     private fun setNavLabelVisibility() {
         if (preferences.bottomBarLabels().get()) {

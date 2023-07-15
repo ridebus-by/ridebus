@@ -63,7 +63,7 @@ class ScheduleController :
     override fun createBinding(inflater: LayoutInflater) = ScheduleControllerBinding.inflate(inflater)
 
     override fun createPresenter(): SchedulePresenter {
-        return SchedulePresenter(typeDay!!, route!!, stop!!, db)
+        return SchedulePresenter(checkNotNull(typeDay), checkNotNull(route), checkNotNull(stop), db)
     }
 
     override fun onViewCreated(view: View) {

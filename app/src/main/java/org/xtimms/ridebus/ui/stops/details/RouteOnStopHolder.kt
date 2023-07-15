@@ -4,12 +4,12 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import eu.davidea.viewholders.FlexibleViewHolder
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.databinding.StopsRouteItemBinding
+import org.xtimms.ridebus.databinding.RoutesOnStopItemBinding
 
 class RouteOnStopHolder(view: View, val adapter: RoutesOnStopAdapter) :
     FlexibleViewHolder(view, adapter) {
 
-    private val binding = StopsRouteItemBinding.bind(view)
+    private val binding = RoutesOnStopItemBinding.bind(view)
 
     init {
         binding.holder.setOnClickListener {

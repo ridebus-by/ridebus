@@ -4,7 +4,7 @@ import java.util.*
 
 class Times(times: List<String?>) {
 
-    private val data = TreeSet(times.map { Time(it!!) })
+    private val data = TreeSet(times.map { Time(checkNotNull(it)) })
 
     fun closest(time: Time): Time? {
         return data.ceiling(time)

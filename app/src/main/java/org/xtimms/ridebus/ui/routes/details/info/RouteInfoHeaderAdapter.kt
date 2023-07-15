@@ -131,7 +131,7 @@ class RouteInfoHeaderAdapter(
             }
 
             drivingSession =
-                drivingRouter!!.requestRoutes(requestPoints, drivingOptions, vehicleOptions, this)
+                checkNotNull(drivingRouter).requestRoutes(requestPoints, drivingOptions, vehicleOptions, this)
         } else {
             constraintSet.clone(constraintLayout)
             constraintSet.connect(
