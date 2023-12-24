@@ -12,7 +12,7 @@ interface ScheduleDao {
     fun getArrivalTime(typeDay: Int, routeId: Int, stopId: Int): List<Timetable>
 
     @Transaction
-    @Query("SELECT schedule._id AS id, schedule.route_id AS routeId, schedule.type_day AS typeDay, strftime('%H:%M', 'now', 'localtime', 'start of day', schedule.hour || ' hours', schedule.minute || ' minutes', routeStops.shift_hour || ' hours', routeStops.shift_minute || ' minutes') AS arrivalTime FROM schedule, routeStops WHERE (routeStops.route_id = :routeId AND schedule.route_id = :routeId AND routeStops.stop_id = :stopId AND schedule.type_day = :typeDay) ORDER BY schedule.hour, schedule.minute")
+    @Query("SELECT schedule._id AS id, schedule.route_id AS routeId, schedule.type_day AS typeDay, strftime('%H:%M', 'now', 'localtime', 'start of day', schedule.hour || ' hours', schedule.minute || ' minutes', routeStops.shift_hour || ' hours', routeStops.shift_minute || ' minutes') AS arrivalTime FROM schedule, routeStops WHERE (routeStops.route_id = :routeId AND schedule.route_id = :routeId AND routeStops.stop_id = :stopId AND schedule.type_day = :typeDay) ORDER BY schedule.hour, schedule.minute ASC")
     fun observeArrivalTime(typeDay: Int, routeId: Int, stopId: Int): Flow<List<Timetable>>
 
     @Query("SELECT DISTINCT hour FROM schedule where route_id = :routeId and type_day = :typeDay")

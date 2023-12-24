@@ -247,4 +247,6 @@
         <item quantity="one">Done in %1$s with %2$s error</item>
         <item quantity="other">Done in %1$s with %2$s errors</item>
     </plurals>
+    <string name="settings_categories">Categories of settings</string>
+    <string name="important_settings">Important settings</string>
 </resources>

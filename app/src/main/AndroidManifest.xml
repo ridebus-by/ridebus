@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- For background jobs -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
@@ -47,10 +47,12 @@
 
         <service
             android:name=".data.updater.app.AppUpdateService"
+            android:foregroundServiceType="dataSync"
             android:exported="false" />
 
         <service
             android:name=".data.updater.database.DatabaseUpdateService"
+            android:foregroundServiceType="dataSync"
             android:exported="false" />
 
         <meta-data

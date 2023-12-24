@@ -8,6 +8,8 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.core.animation.doOnEnd
 import androidx.core.app.ActivityCompat
@@ -45,7 +47,6 @@ import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.main.welcome.WelcomeDialogController
 import org.xtimms.ridebus.ui.more.CriticalDatabaseUpdateDialogController
-import org.xtimms.ridebus.ui.more.MoreController
 import org.xtimms.ridebus.ui.more.NewScheduleDialogController
 import org.xtimms.ridebus.ui.more.NewUpdateDialogController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
@@ -154,15 +155,6 @@ class MainActivity : BaseActivity() {
                     R.id.nav_routes -> router.setRoot(RoutesTabbedController(), id)
                     R.id.nav_stops -> router.setRoot(StopsController(), id)
                     R.id.nav_favourites -> router.setRoot(FavouritesController(), id)
-                    R.id.nav_more -> router.setRoot(MoreController(), id)
-                }
-            } else if (!isHandlingShortcut) {
-                when (id) {
-                    R.id.nav_more -> {
-                        if (router.backstackSize == 1) {
-                            router.pushController(SettingsMainController().withFadeTransaction())
-                        }
-                    }
                 }
             }
             true
@@ -239,6 +231,28 @@ class MainActivity : BaseActivity() {
         preferences.bottomBarLabels()
             .asImmediateFlow { setNavLabelVisibility() }
             .launchIn(lifecycleScope)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (menu == null) {
+            return false
+        }
+        menu.findItem(R.id.action_settings)?.isVisible = router.backstack.lastOrNull()?.controller is RootController
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_settings -> {
+            router.pushController(SettingsMainController().withFadeTransaction())
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     /**

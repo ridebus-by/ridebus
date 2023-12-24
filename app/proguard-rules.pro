@@ -1,4 +1,3 @@
-# Keep extension's common dependencies
 -keep,allowoptimization class org.xtimms.ridebus.** { public protected *; }
 -keep,allowoptimization class androidx.preference.** { *; }
 -keep,allowoptimization class kotlin.** { public protected *; }
@@ -11,6 +10,7 @@
 -keep,allowoptimization class com.github.salomonbrys.kotson.** { public protected *; }
 -keep,allowoptimization class com.squareup.duktape.** { public protected *; }
 -keep,allowoptimization class uy.kohesive.injekt.** { public protected *; }
+-keep,allowoptimization class com.yandex.** { public protected *; }
 
 ##---------------Begin: proguard configuration for RxJava 1.x  ----------
 -dontwarn sun.misc.**
@@ -62,3 +62,27 @@
     <methods>;
 }
 ##---------------End: proguard configuration for kotlinx.serialization  ----------
+
+# This is generated automatically by the Android Gradle plugin.
+-dontwarn androidx.car.app.SurfaceCallback
+-dontwarn androidx.car.app.SurfaceContainer
+-dontwarn androidx.window.extensions.WindowExtensions
+-dontwarn androidx.window.extensions.WindowExtensionsProvider
+-dontwarn androidx.window.extensions.layout.DisplayFeature
+-dontwarn androidx.window.extensions.layout.FoldingFeature
+-dontwarn androidx.window.extensions.layout.WindowLayoutComponent
+-dontwarn androidx.window.extensions.layout.WindowLayoutInfo
+-dontwarn androidx.window.sidecar.SidecarDeviceState
+-dontwarn androidx.window.sidecar.SidecarDisplayFeature
+-dontwarn androidx.window.sidecar.SidecarInterface$SidecarCallback
+-dontwarn androidx.window.sidecar.SidecarInterface
+-dontwarn androidx.window.sidecar.SidecarProvider
+-dontwarn androidx.window.sidecar.SidecarWindowLayoutInfo
+-dontwarn com.oracle.svm.core.annotate.AutomaticFeature
+-dontwarn com.oracle.svm.core.annotate.Delete
+-dontwarn com.oracle.svm.core.annotate.Substitute
+-dontwarn com.oracle.svm.core.annotate.TargetClass
+-dontwarn com.oracle.svm.core.configure.ResourcesRegistry
+-dontwarn org.graalvm.nativeimage.ImageSingletons
+-dontwarn org.graalvm.nativeimage.hosted.Feature$BeforeAnalysisAccess
+-dontwarn org.graalvm.nativeimage.hosted.Feature

@@ -31,7 +31,7 @@ android {
         applicationId = "org.xtimms.ridebus"
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-        versionCode = 3
+        versionCode = 4
         versionName = "0.3"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
@@ -113,7 +113,7 @@ android {
         }
     }
 
-    packagingOptions {
+    packaging {
         resources.excludes.addAll(
             listOf(
                 "META-INF/DEPENDENCIES",
@@ -134,6 +134,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
 
         // Disable some unused things
         aidl = false
@@ -161,7 +162,7 @@ dependencies {
 
     implementation(kotlin("reflect", version = BuildPluginsVersion.KOTLIN))
 
-    val coroutinesVersion = "1.6.4"
+    val coroutinesVersion = "1.7.3"
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
@@ -191,9 +192,6 @@ dependencies {
     // Job scheduling
     implementation("androidx.work:work-runtime-ktx:2.7.1")
     implementation("com.google.guava:guava:31.1-android")
-    implementation(
-        "com.github.Koitharu.pausing-coroutine-dispatcher:pausing-coroutine-dispatcher:5213d53420"
-    )
 
     // Network
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -233,7 +231,7 @@ dependencies {
     implementation("io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbindingVersion")
 
     // UI libraries
-    implementation("com.google.android.material:material:1.8.0")
+    implementation("com.google.android.material:material:1.10.0")
     implementation("com.github.arkon.FlexibleAdapter:flexible-adapter:c8013533")
     implementation("com.github.arkon.FlexibleAdapter:flexible-adapter-ui:c8013533")
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
@@ -292,7 +290,7 @@ tasks {
             "-opt-in=kotlinx.coroutines.InternalCoroutinesApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
             "-opt-in=coil.annotation.ExperimentalCoilApi",
-            "-Xjvm-default=enable"
+            "-Xjvm-default=all"
         )
     }
 

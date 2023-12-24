@@ -41,8 +41,14 @@ class SchedulePresenter(
                 val (hour, minute) = item.arrivalTime?.split(':') ?: continue
                 rows.getOrPut(hour.toInt()) { TreeSet() }.add(minute.toInt())
             }
-            rows.entries.map {
-                ScheduleRow(it.key, it.value, time)
+            val sortedRows = rows.map {
+                val hour = it.key
+                val minutes = it.value
+                Pair(hour, minutes)
+            }.sortedBy { it.first }
+
+            sortedRows.map {
+                ScheduleRow(it.first, it.second, time)
             }
         }.flowOn(Dispatchers.Default)
             .onEach { view?.setSchedule(it) }

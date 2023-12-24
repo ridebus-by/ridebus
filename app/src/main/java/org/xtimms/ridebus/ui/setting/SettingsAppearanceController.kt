@@ -7,7 +7,6 @@ import androidx.core.app.ActivityCompat
 import androidx.preference.PreferenceScreen
 import kotlinx.coroutines.flow.launchIn
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.preference.PreferenceKeys
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.util.preference.*
 import org.xtimms.ridebus.util.system.DeviceUtil
@@ -125,29 +124,6 @@ class SettingsAppearanceController : SettingsController() {
                     bindTo(preferences.bottomBarLabels())
                     titleRes = R.string.pref_show_bottom_bar_labels
                 }
-            }
-        }
-
-        preferenceCategory {
-            titleRes = R.string.pref_category_timestamps
-
-            listPreference {
-                key = PreferenceKeys.dateFormat
-                titleRes = R.string.pref_date_format
-                entryValues = arrayOf("", "MM/dd/yy", "dd/MM/yy", "yyyy-MM-dd", "dd MMM yyyy", "MMM dd, yyyy")
-
-                val now = Date().time
-                entries = entryValues.map { value ->
-                    val formattedDate = preferences.dateFormat(value.toString()).format(now)
-                    if (value == "") {
-                        "${context.getString(R.string.system_default)} ($formattedDate)"
-                    } else {
-                        "$value ($formattedDate)"
-                    }
-                }.toTypedArray()
-
-                defaultValue = ""
-                summary = "%s"
             }
         }
     }
