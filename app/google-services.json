@@ -1,0 +1,160 @@
+{
+  "project_info": {
+    "project_number": "946292053666",
+    "firebase_url": "https://api-7108673381507456403-50668-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "api-7108673381507456403-50668",
+    "storage_bucket": "api-7108673381507456403-50668.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946292053666:android:c90bda3df5812824b7a9fb",
+        "android_client_info": {
+          "package_name": "by.ridebus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946292053666-advad69cts67316uk003q50e7i9k0uv9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "by.ridebus",
+            "certificate_hash": "74a9f6d36c9d6f93c1ca7e150cb2546cb2b6bd24"
+          }
+        },
+        {
+          "client_id": "946292053666-3s2g6vph1tdrodaegnj1ckuu8jvjcvnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ZqyGo0eYPoYHaeacDuNc7JaOTu_bEGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946292053666-27d4mqctas678bj6lpev7hfj6nqq4cau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946292053666:android:f5e3352ce6e9f77fb7a9fb",
+        "android_client_info": {
+          "package_name": "org.xtimms.ferro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946292053666-3s2g6vph1tdrodaegnj1ckuu8jvjcvnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ZqyGo0eYPoYHaeacDuNc7JaOTu_bEGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946292053666-27d4mqctas678bj6lpev7hfj6nqq4cau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-4028799306144499~9250613914"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946292053666:android:30bf07dcfda8cc49b7a9fb",
+        "android_client_info": {
+          "package_name": "org.xtimms.kabegami"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946292053666-dp9v1v9mv2ulahft2rp0pimgpbndlria.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.xtimms.kabegami",
+            "certificate_hash": "dce66cccd79f1bad9262067658bdc458c51110ce"
+          }
+        },
+        {
+          "client_id": "946292053666-i4nfrufgspv9s6le2mj6hih8u45ffqh1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.xtimms.kabegami",
+            "certificate_hash": "950e00627c465a2eac6e845eaae24e2b8818083a"
+          }
+        },
+        {
+          "client_id": "946292053666-vhng0393h3us0s2v518ui27f6l60r1ho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.xtimms.kabegami",
+            "certificate_hash": "6e92fe53169ee5fe0ca23a1cf39cac5cecf37271"
+          }
+        },
+        {
+          "client_id": "946292053666-3s2g6vph1tdrodaegnj1ckuu8jvjcvnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ZqyGo0eYPoYHaeacDuNc7JaOTu_bEGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946292053666-27d4mqctas678bj6lpev7hfj6nqq4cau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946292053666:android:97b21e258efec488b7a9fb",
+        "android_client_info": {
+          "package_name": "org.xtimms.ridebus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946292053666-3s2g6vph1tdrodaegnj1ckuu8jvjcvnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ZqyGo0eYPoYHaeacDuNc7JaOTu_bEGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946292053666-27d4mqctas678bj6lpev7hfj6nqq4cau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

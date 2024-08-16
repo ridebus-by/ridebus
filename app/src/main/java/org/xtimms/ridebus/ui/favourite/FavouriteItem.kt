@@ -6,7 +6,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractSectionableItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.model.Route
 
 data class FavouriteItem(
     val route: Route?,

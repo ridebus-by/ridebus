@@ -12,13 +12,15 @@ plugins {
     kotlin("android")
     kotlin("plugin.serialization")
     kotlin("kapt")
-    id("com.github.zellius.shortcut-helper")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 val acraAuthLogin: String = gradleLocalProperties(rootDir).getProperty("authLogin") ?: "\"acra_login\""
 val acraAuthPassword: String = gradleLocalProperties(rootDir).getProperty("authPassword") ?: "\"acra_password\""
-
-shortcutHelper.setFilePath("./shortcuts.xml")
 
 val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
 
@@ -42,7 +44,7 @@ android {
         buildConfigField("String", "DATABASE_VERSION", "\"3.0\"")
 
         // Please disable ACRA or use your own instance in forked versions of the project
-        buildConfigField("String", "ACRA_URI", "\"https://acra.kotatsu.app/report\"")
+        buildConfigField("String", "ACRA_URI", "\"https://bugs.kotatsu.app/report\"")
         buildConfigField("String", "ACRA_AUTH_LOGIN", acraAuthLogin)
         buildConfigField("String", "ACRA_AUTH_PASSWORD", acraAuthPassword)
 
@@ -75,11 +77,8 @@ android {
     buildTypes {
         named("debug") {
             versionNameSuffix = "-${getCommitCount()}"
-            applicationIdSuffix = ".debug"
-
-            isShrinkResources = true
-            isMinifyEnabled = true
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            isShrinkResources = false
+            isMinifyEnabled = false
         }
         create("debugFull") { // Debug without R8
             initWith(getByName("debug"))
@@ -182,6 +181,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-process:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
 
+    // Injection
+    implementation("com.google.dagger:hilt-android:2.47")
+    ksp("com.google.dagger:hilt-compiler:2.47")
+
     // Data serialization (JSON, protobuf)
     val kotlinSerializationVersion = "1.3.3"
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
@@ -236,6 +239,15 @@ dependencies {
     implementation("com.github.arkon.FlexibleAdapter:flexible-adapter-ui:c8013533")
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
     implementation("com.github.vipulasri:timelineview:1.1.5")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-perf")
 
     // Preferences
     implementation("androidx.preference:preference-ktx:1.2.0")

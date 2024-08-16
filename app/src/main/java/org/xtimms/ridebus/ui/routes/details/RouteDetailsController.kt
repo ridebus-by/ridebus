@@ -22,9 +22,9 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import logcat.LogPriority
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.model.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
+import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.databinding.RoutesDetailControllerBinding
 import org.xtimms.ridebus.ui.base.controller.DialogController
 import org.xtimms.ridebus.ui.base.controller.FabController
@@ -65,7 +65,7 @@ class RouteDetailsController :
     }
 
     constructor(routeId: Int) : this(
-        Injekt.get<RideBusDatabase>().routeDao().getRoute(routeId).firstOrNull()
+        Injekt.get<UseCases>().getRoute(routeId)
     )
 
     @Suppress("unused")

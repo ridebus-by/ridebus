@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.isActive
 import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.model.Route
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get

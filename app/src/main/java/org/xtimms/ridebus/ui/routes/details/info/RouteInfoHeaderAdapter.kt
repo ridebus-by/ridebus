@@ -28,7 +28,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.model.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.RouteDetailHeaderBinding
 import org.xtimms.ridebus.ui.base.controller.getMainAppBarHeight

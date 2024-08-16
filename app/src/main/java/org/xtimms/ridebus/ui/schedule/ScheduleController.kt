@@ -6,10 +6,12 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import kotlinx.coroutines.flow.firstOrNull
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.model.Route
+import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.databinding.ScheduleControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import uy.kohesive.injekt.Injekt
@@ -34,7 +36,7 @@ class ScheduleController :
 
     constructor(typeDay: Int, routeId: Int, stopId: Int) : this(
         typeDay,
-        Injekt.get<RideBusDatabase>().routeDao().getRoute(routeId).firstOrNull(),
+        Injekt.get<UseCases>().getRoute(routeId),
         Injekt.get<RideBusDatabase>().stopDao().getStop(stopId).firstOrNull()
     )
 

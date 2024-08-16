@@ -2,7 +2,7 @@ package org.xtimms.ridebus.ui.favourite
 
 import android.os.Bundle
 import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.model.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import rx.Observable
@@ -33,7 +33,7 @@ class FavouritesPresenter(
         val pinnedFavouriteIds = preferences.pinnedFavourites().get()
 
         for (element in favouriteIds) {
-            favourites += db.routeDao().getRoute(element.toInt())
+            // favourites += db.routeDao().getRoute(element.toInt())
         }
 
         val map = TreeMap<Int, MutableList<Route?>> { d1, d2 ->

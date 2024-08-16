@@ -63,7 +63,7 @@ class RouteController :
     override fun createBinding(inflater: LayoutInflater) = TransportControllerBinding.inflate(inflater)
 
     override fun createPresenter(): RoutePresenter {
-        return RoutePresenter(checkNotNull(transportType))
+        return RoutePresenter()
     }
 
     override fun onViewCreated(view: View) {

@@ -10,8 +10,9 @@ import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxrelay.BehaviorRelay
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Route
 import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.model.Route
+import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.databinding.ScheduleTabbedControllerBinding
 import org.xtimms.ridebus.ui.base.controller.BaseController
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
@@ -46,7 +47,7 @@ class ScheduleTabbedController :
     }
 
     constructor(routeId: Int, stopId: Int) : this(
-        Injekt.get<RideBusDatabase>().routeDao().getRoute(routeId).firstOrNull(),
+        Injekt.get<UseCases>().getRoute(routeId),
         Injekt.get<RideBusDatabase>().stopDao().getStop(stopId).firstOrNull()
     )
 

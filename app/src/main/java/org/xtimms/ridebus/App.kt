@@ -16,6 +16,7 @@ import org.acra.ktx.initAcra
 import org.xtimms.ridebus.data.notification.Notifications
 import org.xtimms.ridebus.data.preference.PreferenceValues
 import org.xtimms.ridebus.data.preference.PreferencesHelper
+import org.xtimms.ridebus.di.AppModule
 import org.xtimms.ridebus.util.preference.asImmediateFlow
 import org.xtimms.ridebus.util.system.logcat
 import uy.kohesive.injekt.Injekt
@@ -30,7 +31,7 @@ open class App : Application(), DefaultLifecycleObserver {
 
         Injekt.importModule(AppModule(this))
 
-        setupAcra()
+        // setupAcra()
         setupNotificationChannels()
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)

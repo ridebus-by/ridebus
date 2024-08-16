@@ -249,4 +249,5 @@
     </plurals>
     <string name="settings_categories">Categories of settings</string>
     <string name="important_settings">Important settings</string>
+    <string name="default_notification_channel_id">fcm_default_channel</string>
 </resources>

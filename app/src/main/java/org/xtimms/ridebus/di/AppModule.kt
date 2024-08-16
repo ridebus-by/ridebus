@@ -1,10 +1,17 @@
-package org.xtimms.ridebus
+package org.xtimms.ridebus.di
 
 import android.app.Application
 import androidx.core.content.ContextCompat
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import kotlinx.serialization.json.Json
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.preference.PreferencesHelper
+import org.xtimms.ridebus.data.repository.RouteRepository
+import org.xtimms.ridebus.data.repository.impl.RouteRepositoryImpl
+import org.xtimms.ridebus.data.usecases.GetRoute
+import org.xtimms.ridebus.data.usecases.GetRoutes
+import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.network.NetworkHelper
 import uy.kohesive.injekt.api.InjektModule
 import uy.kohesive.injekt.api.InjektRegistrar
@@ -24,6 +31,15 @@ class AppModule(val app: Application) : InjektModule {
         addSingletonFactory { RideBusDatabase.getDatabase(app) }
 
         addSingletonFactory { NetworkHelper(app) }
+
+        addSingletonFactory { Firebase.firestore.collection("routes") }
+
+        addSingletonFactory<RouteRepository> { RouteRepositoryImpl(get()) }
+
+        addSingletonFactory { GetRoutes(get()) }
+        addSingletonFactory { GetRoute(get()) }
+
+        addSingletonFactory { UseCases(get(), get()) }
 
         ContextCompat.getMainExecutor(app).execute {
             get<PreferencesHelper>()

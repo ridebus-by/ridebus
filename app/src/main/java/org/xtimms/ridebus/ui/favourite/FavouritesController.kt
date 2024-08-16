@@ -7,7 +7,7 @@ import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.entity.Route
+import org.xtimms.ridebus.data.model.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.FavouriteControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
