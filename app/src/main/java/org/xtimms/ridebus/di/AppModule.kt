@@ -8,9 +8,12 @@ import kotlinx.serialization.json.Json
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.data.repository.RouteRepository
+import org.xtimms.ridebus.data.repository.StopRepository
 import org.xtimms.ridebus.data.repository.impl.RouteRepositoryImpl
+import org.xtimms.ridebus.data.repository.impl.StopRepositoryImpl
 import org.xtimms.ridebus.data.usecases.GetRoute
 import org.xtimms.ridebus.data.usecases.GetRoutes
+import org.xtimms.ridebus.data.usecases.GetStops
 import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.network.NetworkHelper
 import uy.kohesive.injekt.api.InjektModule
@@ -32,14 +35,16 @@ class AppModule(val app: Application) : InjektModule {
 
         addSingletonFactory { NetworkHelper(app) }
 
-        addSingletonFactory { Firebase.firestore.collection("routes") }
+        addSingletonFactory { Firebase.firestore.collection("schedule") }
 
         addSingletonFactory<RouteRepository> { RouteRepositoryImpl(get()) }
+        addSingletonFactory<StopRepository> { StopRepositoryImpl(get()) }
 
         addSingletonFactory { GetRoutes(get()) }
         addSingletonFactory { GetRoute(get()) }
+        addSingletonFactory { GetStops(get()) }
 
-        addSingletonFactory { UseCases(get(), get()) }
+        addSingletonFactory { UseCases(get(), get(), get()) }
 
         ContextCompat.getMainExecutor(app).execute {
             get<PreferencesHelper>()

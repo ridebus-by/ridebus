@@ -10,6 +10,9 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.firestore
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import org.xtimms.ridebus.ui.main.MainActivity
@@ -57,6 +60,16 @@ class RideBusMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         Log.d("FCM", "New token: $token")
+        sendTokenToServer(token)
+    }
+
+    private fun sendTokenToServer(token: String?) {
+        val deviceToken = hashMapOf(
+            "token" to token,
+            "timestamp" to FieldValue.serverTimestamp()
+        )
+        Firebase.firestore.collection("fcmTokens").document("tokens")
+            .set(deviceToken)
     }
 
     companion object {

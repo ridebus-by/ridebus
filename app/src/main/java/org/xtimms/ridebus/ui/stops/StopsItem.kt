@@ -6,7 +6,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.model.Stop
 
 //
 // Created by Xtimms on 01.09.2021.
