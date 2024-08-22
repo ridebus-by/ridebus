@@ -11,10 +11,11 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import kotlinx.coroutines.runBlocking
 import logcat.LogPriority
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.model.Stop
+import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.databinding.RoutesOnStopControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NoAppBarElevationController
 import org.xtimms.ridebus.ui.base.controller.NucleusController
@@ -41,7 +42,7 @@ class RoutesOnStopController :
     }
 
     constructor(stopId: Int) : this(
-        Injekt.get<RideBusDatabase>().stopDao().getStop(stopId).firstOrNull()
+        runBlocking { Injekt.get<UseCases>().getStop(stopId) }
     )
 
     @Suppress("unused")

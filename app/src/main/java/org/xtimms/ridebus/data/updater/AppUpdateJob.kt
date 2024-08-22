@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.data.updater.app
+package org.xtimms.ridebus.data.updater
 
 import android.content.Context
 import androidx.work.Constraints

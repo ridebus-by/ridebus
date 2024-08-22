@@ -4,7 +4,7 @@ import android.os.Bundle
 import logcat.LogPriority
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Route
-import org.xtimms.ridebus.data.database.entity.Stop
+import org.xtimms.ridebus.data.model.Stop
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import org.xtimms.ridebus.util.Times
 import org.xtimms.ridebus.util.system.TimeUtil

@@ -23,8 +23,7 @@ object SettingsSearchHelper {
         SettingsAccessibilityController::class,
         SettingsAdvancedController::class,
         SettingsAppearanceController::class,
-        SettingsGeneralController::class,
-        SettingsScheduleController::class
+        SettingsGeneralController::class
     )
 
     /**

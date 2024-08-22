@@ -43,12 +43,7 @@
             android:exported="false" />
 
         <service
-            android:name=".data.updater.app.AppUpdateService"
-            android:foregroundServiceType="dataSync"
-            android:exported="false" />
-
-        <service
-            android:name=".data.updater.database.DatabaseUpdateService"
+            android:name=".data.updater.AppUpdateService"
             android:foregroundServiceType="dataSync"
             android:exported="false" />
 

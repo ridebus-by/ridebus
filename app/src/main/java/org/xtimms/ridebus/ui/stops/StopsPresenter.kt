@@ -16,11 +16,10 @@ class StopsPresenter(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        loadStops()
+        loadStops(preferences.city().get().toInt())
     }
 
-    private fun loadStops() {
-        val cityId = preferences.city().get().toInt()
+    private fun loadStops(cityId: Int) {
         presenterScope.launch {
             useCases.getStops(cityId).collect { response ->
                 withUIContext {

@@ -1,8 +1,7 @@
 package org.xtimms.ridebus
 
 import org.xtimms.ridebus.data.preference.PreferencesHelper
-import org.xtimms.ridebus.data.updater.app.AppUpdateJob
-import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
+import org.xtimms.ridebus.data.updater.AppUpdateJob
 
 object Migrations {
 
@@ -25,7 +24,6 @@ object Migrations {
             if (BuildConfig.INCLUDE_UPDATER) {
                 AppUpdateJob.setupTask(context)
             }
-            DatabaseUpdateJob.setupTask(context)
 
             // Fresh install
             if (oldVersion == 0) {

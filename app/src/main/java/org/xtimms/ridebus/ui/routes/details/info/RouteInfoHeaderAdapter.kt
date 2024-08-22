@@ -131,7 +131,12 @@ class RouteInfoHeaderAdapter(
             }
 
             drivingSession =
-                checkNotNull(drivingRouter).requestRoutes(requestPoints, drivingOptions, vehicleOptions, this)
+                checkNotNull(drivingRouter).requestRoutes(
+                    requestPoints,
+                    drivingOptions,
+                    vehicleOptions,
+                    this
+                )
         } else {
             constraintSet.clone(constraintLayout)
             constraintSet.connect(
@@ -193,60 +198,16 @@ class RouteInfoHeaderAdapter(
          * Update the view with route information.
          */
         private fun setRouteInfo() {
-            if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote().get()) {
-                binding.noteChip.visibility = View.VISIBLE
-            }
+            binding.noteChip.visibility =
+                if (route.transportId == MINIBUS && preferences.isVisibleAttentionNote().get()) {
+                    View.VISIBLE
+                } else View.GONE
 
             binding.noteChip.clicks()
                 .onEach { controller.showAttentionDialog() }
                 .launchIn(controller.viewScope)
 
-            when (route.transportId) {
-                BUS -> binding.circleTransport.setBackgroundColor(
-                    itemView.context.getThemeColor(R.attr.busPrimaryContainer)
-                )
-
-                MINIBUS -> binding.circleTransport.setBackgroundColor(
-                    itemView.context.getThemeColor(
-                        R.attr.minibusPrimaryContainer
-                    )
-                )
-
-                EXPRESS -> binding.circleTransport.setBackgroundColor(
-                    itemView.context.getThemeColor(
-                        R.attr.expressPrimaryContainer
-                    )
-                )
-
-                TRAM -> binding.circleTransport.setBackgroundColor(
-                    itemView.context.getThemeColor(R.attr.tramPrimaryContainer)
-                )
-            }
-
-            when (route.transportId) {
-                BUS -> binding.type.setImageResource(R.drawable.ic_bus_side)
-                MINIBUS -> binding.type.setImageResource(R.drawable.ic_van_side)
-                EXPRESS -> binding.type.setImageResource(R.drawable.ic_lightning_bolt)
-                TRAM -> binding.type.setImageResource(R.drawable.ic_tram)
-            }
-
-            when (route.transportId) {
-                BUS -> binding.type.setColorFilter(
-                    itemView.context.getThemeColor(R.attr.busOnPrimaryContainer)
-                )
-
-                MINIBUS -> binding.type.setColorFilter(
-                    itemView.context.getThemeColor(R.attr.minibusOnPrimaryContainer)
-                )
-
-                EXPRESS -> binding.type.setColorFilter(
-                    itemView.context.getThemeColor(R.attr.expressOnPrimaryContainer)
-                )
-
-                TRAM -> binding.type.setColorFilter(
-                    itemView.context.getThemeColor(R.attr.tramOnPrimaryContainer)
-                )
-            }
+            setTransportTypeAttributes(route.transportId)
 
             // Update number TextView
             binding.number.text = route.number
@@ -263,67 +224,78 @@ class RouteInfoHeaderAdapter(
 
             binding.fare.text = route.fare
 
-            val tags = ArrayList<RideBusChipGroup.ChipModel>()
-            if (route.qrCode) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.qr),
-                    icon = R.drawable.ic_qr_code
-                )
-            }
-            if (route.cash) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.in_cash),
-                    icon = R.drawable.ic_account_balance_wallet
-                )
-            }
-            if (route.isSmall) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.small_class),
-                    icon = R.drawable.ic_little_class
-                )
-            }
-            if (route.isBig) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.big_class),
-                    icon = R.drawable.ic_big_class
-                )
-            }
-            if (route.isVeryBig) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.very_big_class),
-                    icon = R.drawable.ic_very_big_class
-                )
-            }
-            if (route.isEco) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.ecotransport),
-                    icon = R.drawable.ic_eco
-                )
-            }
-            if (route.wifi) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.wifi),
-                    icon = R.drawable.ic_wifi
-                )
-            }
-            if (route.isLowFloor) {
-                tags += RideBusChipGroup.ChipModel(
-                    title = view.context.getString(R.string.low_floor),
-                    icon = R.drawable.ic_wheelchair
-                )
-            }
+            val tags = listOf(
+                route.qrCode to (R.string.qr to R.drawable.ic_qr_code),
+                route.cash to (R.string.in_cash to R.drawable.ic_account_balance_wallet),
+                route.isSmall to (R.string.small_class to R.drawable.ic_little_class),
+                route.isBig to (R.string.big_class to R.drawable.ic_big_class),
+                route.isVeryBig to (R.string.very_big_class to R.drawable.ic_very_big_class),
+                route.isEco to (R.string.ecotransport to R.drawable.ic_eco),
+                route.wifi to (R.string.wifi to R.drawable.ic_wifi),
+                route.isLowFloor to (R.string.low_floor to R.drawable.ic_wheelchair)
+            ).filter { it.first }
+                .map { (_, pair) ->
+                    RideBusChipGroup.ChipModel(
+                        title = view.context.getString(pair.first),
+                        icon = pair.second
+                    )
+                }
 
             // Route info section
             binding.routeSummary.setTags(tags)
-            binding.routeSummary.description = view.context.getString(R.string.route_direction) +
-                ": " + route.following + "\n\n" + view.context.getString(R.string.working_hours) +
-                ": " + route.workingHours + "\n\n" + view.context.getString(
-                R.string.additional_info
-            ) +
-                ": " + route.techInfo + "\n\n" + view.context.getString(
-                R.string.carrier_company
-            ) +
-                ": " + route.carrierCompany
+            binding.routeSummary.description = """
+                ${view.context.getString(R.string.route_direction)}: ${route.following}
+    
+                ${view.context.getString(R.string.working_hours)}: ${route.workingHours}
+    
+                ${view.context.getString(R.string.additional_info)}: ${route.techInfo}
+
+                ${view.context.getString(R.string.carrier_company)}: ${route.carrierCompany}
+            """.trimIndent()
+        }
+
+        private fun setTransportTypeAttributes(transportId: Int) {
+            val (backgroundColorAttr, imageResource, colorFilterAttr) = when (transportId) {
+                BUS -> Triple(
+                    R.attr.busPrimaryContainer,
+                    R.drawable.ic_bus_side,
+                    R.attr.busOnPrimaryContainer
+                )
+
+                MINIBUS -> Triple(
+                    R.attr.minibusPrimaryContainer,
+                    R.drawable.ic_van_side,
+                    R.attr.minibusOnPrimaryContainer
+                )
+
+                EXPRESS -> Triple(
+                    R.attr.expressPrimaryContainer,
+                    R.drawable.ic_lightning_bolt,
+                    R.attr.expressOnPrimaryContainer
+                )
+
+                TRAM -> Triple(
+                    R.attr.tramPrimaryContainer,
+                    R.drawable.ic_tram,
+                    R.attr.tramOnPrimaryContainer
+                )
+
+                else -> Triple(0, 0, 0)
+            }
+
+            if (backgroundColorAttr != 0) {
+                binding.circleTransport.setBackgroundColor(
+                    itemView.context.getThemeColor(
+                        backgroundColorAttr
+                    )
+                )
+            }
+            if (imageResource != 0) {
+                binding.type.setImageResource(imageResource)
+            }
+            if (colorFilterAttr != 0) {
+                binding.type.setColorFilter(itemView.context.getThemeColor(colorFilterAttr))
+            }
         }
     }
 

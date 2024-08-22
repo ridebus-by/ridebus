@@ -5,8 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import org.xtimms.ridebus.data.updater.app.AppUpdateService
-import org.xtimms.ridebus.data.updater.database.DatabaseUpdateService
+import org.xtimms.ridebus.data.updater.AppUpdateService
 import org.xtimms.ridebus.util.system.notificationManager
 import org.xtimms.ridebus.BuildConfig.APPLICATION_ID as ID
 
@@ -18,16 +17,11 @@ class NotificationReceiver : BroadcastReceiver() {
             ACTION_DISMISS_NOTIFICATION -> dismissNotification(context, intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Cancel downloading app update
             ACTION_CANCEL_APP_UPDATE_DOWNLOAD -> cancelDownloadAppUpdate(context)
-            ACTION_CANCEL_DATABASE_UPDATE_DOWNLOAD -> cancelDownloadDatabaseUpdate(context)
         }
     }
 
     private fun cancelDownloadAppUpdate(context: Context) {
         AppUpdateService.stop(context)
-    }
-
-    private fun cancelDownloadDatabaseUpdate(context: Context) {
-        DatabaseUpdateService.stop(context)
     }
 
     companion object {
@@ -38,7 +32,6 @@ class NotificationReceiver : BroadcastReceiver() {
         private const val EXTRA_NOTIFICATION_ID = "$ID.$NAME.NOTIFICATION_ID"
 
         private const val ACTION_CANCEL_APP_UPDATE_DOWNLOAD = "$ID.$NAME.CANCEL_APP_UPDATE_DOWNLOAD"
-        private const val ACTION_CANCEL_DATABASE_UPDATE_DOWNLOAD = "$ID.$NAME.CANCEL_DATABASE_UPDATE_DOWNLOAD"
 
         /**
          * Returns [PendingIntent] that starts a service which dismissed the notification

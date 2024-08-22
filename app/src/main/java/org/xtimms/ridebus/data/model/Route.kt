@@ -4,7 +4,7 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Route(
-    val routeId: Int = 0,
+    var routeId: Int = 0,
     val cityId: Int = 0,
     val transportId: Int = 0,
     val kindId: Int = 0,

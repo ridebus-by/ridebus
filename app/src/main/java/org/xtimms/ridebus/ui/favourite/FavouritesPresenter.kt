@@ -1,9 +1,10 @@
 package org.xtimms.ridebus.ui.favourite
 
 import android.os.Bundle
-import org.xtimms.ridebus.data.database.RideBusDatabase
+import kotlinx.coroutines.launch
 import org.xtimms.ridebus.data.model.Route
 import org.xtimms.ridebus.data.preference.PreferencesHelper
+import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.Subscription
@@ -16,16 +17,18 @@ class FavouritesPresenter(
     private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<FavouritesController>() {
 
-    private val db: RideBusDatabase by injectLazy()
+    private val useCases: UseCases by injectLazy()
 
     private var favouriteSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        loadFavourites()
+        presenterScope.launch {
+            loadFavourites()
+        }
     }
 
-    private fun loadFavourites() {
+    private suspend fun loadFavourites() {
         favouriteSubscription?.unsubscribe()
         val favourites = mutableListOf<Route?>()
         val favouriteIds = preferences.favourites().get()
@@ -33,7 +36,7 @@ class FavouritesPresenter(
         val pinnedFavouriteIds = preferences.pinnedFavourites().get()
 
         for (element in favouriteIds) {
-            // favourites += db.routeDao().getRoute(element.toInt())
+            favourites += useCases.getRoute(element.toInt())
         }
 
         val map = TreeMap<Int, MutableList<Route?>> { d1, d2 ->
@@ -76,7 +79,9 @@ class FavouritesPresenter(
     }
 
     fun updateFavourites() {
-        loadFavourites()
+        presenterScope.launch {
+            loadFavourites()
+        }
     }
 
     companion object {

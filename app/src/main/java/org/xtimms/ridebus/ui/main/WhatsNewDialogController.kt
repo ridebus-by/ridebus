@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.updater.app.RELEASE_URL
+import org.xtimms.ridebus.data.updater.RELEASE_URL
 import org.xtimms.ridebus.ui.base.controller.DialogController
 import org.xtimms.ridebus.ui.base.controller.openInBrowser
 

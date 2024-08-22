@@ -8,4 +8,5 @@ typealias Stops = List<Stop>
 interface StopRepository {
 
     fun getStops(cityId: Int): Flow<Stops>
+    suspend fun getStop(stopId: Int): Stop?
 }

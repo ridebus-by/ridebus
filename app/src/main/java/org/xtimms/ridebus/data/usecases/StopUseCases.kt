@@ -7,3 +7,9 @@ class GetStops(
 ) {
     operator fun invoke(cityId: Int) = repo.getStops(cityId)
 }
+
+class GetStop(
+    private val repo: StopRepository
+) {
+    suspend operator fun invoke(stopId: Int) = repo.getStop(stopId)
+}

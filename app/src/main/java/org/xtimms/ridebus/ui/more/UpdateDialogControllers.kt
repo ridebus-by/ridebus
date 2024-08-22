@@ -9,12 +9,8 @@ import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.noties.markwon.Markwon
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.notification.NotificationReceiver
-import org.xtimms.ridebus.data.notification.Notifications
-import org.xtimms.ridebus.data.updater.app.AppUpdateResult
-import org.xtimms.ridebus.data.updater.app.AppUpdateService
-import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
-import org.xtimms.ridebus.data.updater.database.DatabaseUpdateService
+import org.xtimms.ridebus.data.updater.AppUpdateResult
+import org.xtimms.ridebus.data.updater.AppUpdateService
 import org.xtimms.ridebus.ui.base.controller.DialogController
 import org.xtimms.ridebus.ui.base.controller.openInBrowser
 import com.google.android.material.R as materialR
@@ -69,93 +65,3 @@ class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundl
 private const val BODY_KEY = "NewUpdateDialogController.body"
 private const val RELEASE_URL_KEY = "NewUpdateDialogController.release_url"
 private const val DOWNLOAD_URL_KEY = "NewUpdateDialogController.download_url"
-
-class NewScheduleDialogController(bundle: Bundle? = null) : DialogController(bundle) {
-
-    constructor(update: DatabaseUpdateResult.NewUpdate) : this(
-        bundleOf(
-            NEW_SCHEDULE_BODY_KEY to update.update.info,
-            NEW_SCHEDULE_VERSION_KEY to update.update.version,
-            NEW_SCHEDULE_DOWNLOAD_URL_KEY to update.update.getDownloadLink()
-        )
-    )
-
-    override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val infoBody = checkNotNull(args.getString(NEW_SCHEDULE_BODY_KEY))
-        val version = checkNotNull(args.getString(NEW_SCHEDULE_VERSION_KEY))
-
-        val message = buildString {
-            append(checkNotNull(activity).getString(R.string.new_version_s, version))
-            appendLine()
-            appendLine()
-            append(infoBody)
-        }
-
-        return MaterialAlertDialogBuilder(
-            checkNotNull(activity),
-            materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
-        )
-            .setTitle(R.string.update_check_notification_database_update_available)
-            .setMessage(message)
-            .setIcon(R.drawable.ic_database_update)
-            .setPositiveButton(R.string.update_check_confirm) { _, _ ->
-                applicationContext?.let { context ->
-                    // Start download
-                    val url = checkNotNull(args.getString(NEW_SCHEDULE_DOWNLOAD_URL_KEY))
-                    val version = checkNotNull(args.getString(NEW_SCHEDULE_VERSION_KEY))
-                    DatabaseUpdateService.start(context, url, title = infoBody, version = version)
-                }
-            }
-            .setNeutralButton(R.string.action_postpone) { _, _ ->
-                dialog?.dismiss()
-                applicationContext?.let { context ->
-                    NotificationReceiver.dismissNotificationPendingBroadcast(
-                        context,
-                        Notifications.ID_DATABASE_UPDATER
-                    )
-                }
-            }
-            .create()
-    }
-}
-
-private const val NEW_SCHEDULE_BODY_KEY = "NewScheduleDialogController.body"
-private const val NEW_SCHEDULE_DOWNLOAD_URL_KEY = "NewScheduleDialogController.download_url"
-private const val NEW_SCHEDULE_VERSION_KEY = "NewScheduleDialogController.version"
-
-class CriticalDatabaseUpdateDialogController(bundle: Bundle? = null) : DialogController(bundle) {
-
-    constructor(update: DatabaseUpdateResult.CriticalUpdate) : this(
-        bundleOf(
-            CRITICAL_DATABASE_UPDATE_BODY_KEY to update.update.info,
-            CRITICAL_DATABASE_UPDATE_VERSION_KEY to update.update.version,
-            CRITICAL_DATABASE_UPDATE_DOWNLOAD_URL_KEY to update.update.getDownloadLink()
-        )
-    )
-
-    override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val infoBody = checkNotNull(args.getString(CRITICAL_DATABASE_UPDATE_BODY_KEY))
-
-        return MaterialAlertDialogBuilder(
-            checkNotNull(activity),
-            materialR.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
-        )
-            .setTitle(R.string.critical_database_update_title)
-            .setMessage(R.string.critical_database_update_message)
-            .setIcon(R.drawable.ic_database_arrow_up)
-            .setPositiveButton(R.string.update_check_confirm) { _, _ ->
-                applicationContext?.let { context ->
-                    // Start download
-                    val url = checkNotNull(args.getString(CRITICAL_DATABASE_UPDATE_DOWNLOAD_URL_KEY))
-                    val version = checkNotNull(args.getString(CRITICAL_DATABASE_UPDATE_VERSION_KEY))
-                    DatabaseUpdateService.start(context, url, title = infoBody, version = version)
-                }
-            }
-            .setCancelable(false)
-            .create()
-    }
-}
-
-private const val CRITICAL_DATABASE_UPDATE_BODY_KEY = "CriticalDatabaseUpdateDialogController.body"
-private const val CRITICAL_DATABASE_UPDATE_DOWNLOAD_URL_KEY = "CriticalDatabaseUpdateDialogController.download_url"
-private const val CRITICAL_DATABASE_UPDATE_VERSION_KEY = "CriticalDatabaseUpdateDialogController.version"

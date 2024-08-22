@@ -32,35 +32,23 @@ import com.bluelinelabs.conductor.Router
 import com.google.android.material.navigation.NavigationBarView
 import dev.chrisbanes.insetter.applyInsetter
 import kotlinx.coroutines.flow.launchIn
-import logcat.LogPriority
-import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.Migrations
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.notification.NotificationReceiver
-import org.xtimms.ridebus.data.updater.app.AppUpdateChecker
-import org.xtimms.ridebus.data.updater.app.AppUpdateResult
-import org.xtimms.ridebus.data.updater.database.DatabaseUpdateChecker
-import org.xtimms.ridebus.data.updater.database.DatabaseUpdateResult
 import org.xtimms.ridebus.databinding.MainActivityBinding
 import org.xtimms.ridebus.ui.base.activity.BaseActivity
 import org.xtimms.ridebus.ui.base.controller.*
 import org.xtimms.ridebus.ui.favourite.FavouritesController
 import org.xtimms.ridebus.ui.main.welcome.WelcomeDialogController
-import org.xtimms.ridebus.ui.more.CriticalDatabaseUpdateDialogController
-import org.xtimms.ridebus.ui.more.NewScheduleDialogController
-import org.xtimms.ridebus.ui.more.NewUpdateDialogController
 import org.xtimms.ridebus.ui.routes.RoutesTabbedController
 import org.xtimms.ridebus.ui.routes.details.RouteDetailsController
 import org.xtimms.ridebus.ui.schedule.ScheduleTabbedController
 import org.xtimms.ridebus.ui.setting.SettingsMainController
 import org.xtimms.ridebus.ui.stops.StopsController
-import org.xtimms.ridebus.util.lang.launchNow
 import org.xtimms.ridebus.util.lang.launchUI
 import org.xtimms.ridebus.util.preference.asImmediateFlow
 import org.xtimms.ridebus.util.system.dpToPx
 import org.xtimms.ridebus.util.system.isTablet
-import org.xtimms.ridebus.util.system.logcat
-import org.xtimms.ridebus.util.system.toast
 import org.xtimms.ridebus.util.view.setNavigationBarTransparentCompat
 import kotlin.collections.set
 
@@ -96,7 +84,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         val didMigration = if (savedInstanceState == null) Migrations.upgrade(preferences) else false
-        val isDatabaseMigrated = if (savedInstanceState == null) Migrations.isDatabaseSchemaChanged else false
+        val isDatabaseMigrated = if (savedInstanceState == null) Migrations.isDatabaseSchemaChanged else false // TODO remove
 
         binding = MainActivityBinding.inflate(layoutInflater)
 
@@ -207,7 +195,7 @@ class MainActivity : BaseActivity() {
                     }
                 }
             }
-            // Show database critical update dialog if database is migrated
+            /*// Show database critical update dialog if database is migrated
             if (didMigration && !BuildConfig.DEBUG) {
                 launchNow {
                     try {
@@ -220,7 +208,7 @@ class MainActivity : BaseActivity() {
                         logcat(LogPriority.ERROR, error)
                     }
                 }
-            }
+            }*/
         } else {
             // Restore selected nav item
             router.backstack.firstOrNull()?.tag()?.toIntOrNull()?.let {
@@ -322,12 +310,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        checkForUpdates()
-    }
-
-    private fun checkForUpdates() {
+    /*private fun checkForUpdates() {
         launchNow {
             // Database updates
             try {
@@ -351,7 +334,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-    }
+    }*/
 
     private fun handleIntentAction(intent: Intent): Boolean {
         val notificationId = intent.getIntExtra("notificationId", -1)

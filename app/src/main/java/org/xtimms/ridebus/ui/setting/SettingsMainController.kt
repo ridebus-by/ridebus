@@ -5,14 +5,14 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.preference.PreferenceScreen
+import kotlinx.coroutines.runBlocking
 import logcat.LogPriority
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.updater.app.AppUpdateChecker
-import org.xtimms.ridebus.data.updater.app.AppUpdateResult
-import org.xtimms.ridebus.data.updater.app.RELEASE_URL
-import org.xtimms.ridebus.data.updater.database.DatabaseUpdateJob
+import org.xtimms.ridebus.data.updater.AppUpdateChecker
+import org.xtimms.ridebus.data.updater.AppUpdateResult
+import org.xtimms.ridebus.data.updater.RELEASE_URL
+import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.ui.base.controller.openInBrowser
 import org.xtimms.ridebus.ui.base.controller.withFadeTransaction
 import org.xtimms.ridebus.ui.more.AboutLinksPreference
@@ -38,7 +38,7 @@ const val YANDEX_MAPS_TERMS_OF_USE = "https://yandex.ru/legal/maps_termsofuse"
 
 class SettingsMainController : SettingsController() {
 
-    private val database: RideBusDatabase by injectLazy()
+    private val useCases: UseCases by injectLazy()
     private val updateChecker by lazy { AppUpdateChecker() }
     private val dateFormat: DateFormat = preferences.dateFormat()
 
@@ -50,27 +50,13 @@ class SettingsMainController : SettingsController() {
         preferenceCategory {
             titleRes = R.string.important_settings
 
-            switchPreference {
-                bindTo(preferences.autoUpdateSchedule())
-                titleRes = R.string.automatic_schedule_updates
-                summaryRes = R.string.automatic_schedule_updates_summary
-                iconRes = R.drawable.ic_database_update
-                iconTint = tintColor
-
-                onChange { newValue ->
-                    val checked = newValue as Boolean
-                    DatabaseUpdateJob.setupTask(checkNotNull(activity), checked)
-                    true
-                }
-            }
-
             listPreference {
                 bindTo(preferences.city())
                 iconRes = R.drawable.ic_city
                 iconTint = tintColor
                 titleRes = R.string.city
-                entriesName = database.cityDao().getCitiesNames().map { it }.toTypedArray()
-                entryValues = database.cityDao().getCitiesIds().map { it.toString() }.toTypedArray()
+                entriesName = runBlocking { useCases.getCitiesNames().map { it }.toTypedArray() }
+                entryValues = runBlocking { useCases.getCitiesIds().map { it.toString() }.toTypedArray() }
                 summary = "%s"
             }
         }
@@ -89,12 +75,6 @@ class SettingsMainController : SettingsController() {
                 iconTint = tintColor
                 titleRes = R.string.pref_category_appearance
                 onClick { navigateTo(SettingsAppearanceController()) }
-            }
-            preference {
-                iconRes = R.drawable.ic_schedule
-                iconTint = tintColor
-                titleRes = R.string.pref_category_schedule
-                onClick { navigateTo(SettingsScheduleController()) }
             }
             preference {
                 iconRes = R.drawable.ic_accessibility

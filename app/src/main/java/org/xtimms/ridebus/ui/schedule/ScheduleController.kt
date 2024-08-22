@@ -6,11 +6,11 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.runBlocking
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.data.model.Route
+import org.xtimms.ridebus.data.model.Stop
 import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.databinding.ScheduleControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
@@ -36,8 +36,8 @@ class ScheduleController :
 
     constructor(typeDay: Int, routeId: Int, stopId: Int) : this(
         typeDay,
-        Injekt.get<UseCases>().getRoute(routeId),
-        Injekt.get<RideBusDatabase>().stopDao().getStop(stopId).firstOrNull()
+        runBlocking { Injekt.get<UseCases>().getRoute(routeId) },
+        runBlocking { Injekt.get<UseCases>().getStop(stopId) }
     )
 
     @Suppress("unused")
@@ -62,7 +62,8 @@ class ScheduleController :
 
     private var schedule: List<ScheduleRow> = emptyList()
 
-    override fun createBinding(inflater: LayoutInflater) = ScheduleControllerBinding.inflate(inflater)
+    override fun createBinding(inflater: LayoutInflater) =
+        ScheduleControllerBinding.inflate(inflater)
 
     override fun createPresenter(): SchedulePresenter {
         return SchedulePresenter(checkNotNull(typeDay), checkNotNull(route), checkNotNull(stop), db)

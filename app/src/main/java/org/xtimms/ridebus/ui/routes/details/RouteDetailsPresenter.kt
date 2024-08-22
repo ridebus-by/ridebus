@@ -1,10 +1,12 @@
 package org.xtimms.ridebus.ui.routes.details
 
 import android.os.Bundle
+import kotlinx.coroutines.launch
 import logcat.LogPriority
 import org.xtimms.ridebus.data.database.RideBusDatabase
 import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.data.model.Route
+import org.xtimms.ridebus.data.repository.RouteRepository
 import org.xtimms.ridebus.ui.base.presenter.BasePresenter
 import org.xtimms.ridebus.ui.routes.details.stop.StopOnRouteItem
 import org.xtimms.ridebus.util.Times
@@ -19,7 +21,8 @@ import uy.kohesive.injekt.api.get
 
 class RouteDetailsPresenter(
     val route: Route,
-    private val db: RideBusDatabase = Injekt.get()
+    private val db: RideBusDatabase = Injekt.get(),
+    private val repo: RouteRepository = Injekt.get()
 ) : BasePresenter<RouteDetailsController>() {
 
     /**
@@ -27,11 +30,17 @@ class RouteDetailsPresenter(
      */
     private var stops: List<IndexedValue<Stop>> = emptyList()
 
+    var getRoute: Route? = null
+
     private var stopsSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         loadStops(route)
+    }
+
+    fun getRoute(id: Int) = presenterScope.launch {
+        getRoute = repo.getRoute(id)
     }
 
     private fun loadStops(route: Route) {

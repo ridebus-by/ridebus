@@ -8,5 +8,5 @@ typealias Routes = List<Route>
 interface RouteRepository {
 
     fun getRoutes(transportId: Int, cityId: Int): Flow<Routes>
-    fun getRoute(id: Int): Route
+    suspend fun getRoute(id: Int): Route?
 }

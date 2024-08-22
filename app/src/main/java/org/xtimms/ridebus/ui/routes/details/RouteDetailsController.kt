@@ -19,6 +19,7 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import kotlinx.coroutines.runBlocking
 import logcat.LogPriority
 import org.xtimms.ridebus.BuildConfig
 import org.xtimms.ridebus.R
@@ -65,7 +66,7 @@ class RouteDetailsController :
     }
 
     constructor(routeId: Int) : this(
-        Injekt.get<UseCases>().getRoute(routeId)
+        runBlocking { Injekt.get<UseCases>().getRoute(routeId) }
     )
 
     @Suppress("unused")

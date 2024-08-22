@@ -1,4 +1,4 @@
-package org.xtimms.ridebus.data.updater.app
+package org.xtimms.ridebus.data.updater
 
 sealed class AppUpdateResult {
     class NewUpdate(val release: GithubRelease) : AppUpdateResult()

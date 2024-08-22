@@ -8,10 +8,11 @@ import com.bluelinelabs.conductor.*
 import com.bluelinelabs.conductor.viewpager.RouterPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxrelay.BehaviorRelay
+import kotlinx.coroutines.runBlocking
 import org.xtimms.ridebus.R
 import org.xtimms.ridebus.data.database.RideBusDatabase
-import org.xtimms.ridebus.data.database.entity.Stop
 import org.xtimms.ridebus.data.model.Route
+import org.xtimms.ridebus.data.model.Stop
 import org.xtimms.ridebus.data.usecases.UseCases
 import org.xtimms.ridebus.databinding.ScheduleTabbedControllerBinding
 import org.xtimms.ridebus.ui.base.controller.BaseController
@@ -47,8 +48,8 @@ class ScheduleTabbedController :
     }
 
     constructor(routeId: Int, stopId: Int) : this(
-        Injekt.get<UseCases>().getRoute(routeId),
-        Injekt.get<RideBusDatabase>().stopDao().getStop(stopId).firstOrNull()
+        runBlocking { Injekt.get<UseCases>().getRoute(routeId) },
+        runBlocking { Injekt.get<UseCases>().getStop(stopId) }
     )
 
     @Suppress("unused")

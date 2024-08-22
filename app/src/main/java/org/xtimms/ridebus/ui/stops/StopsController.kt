@@ -7,7 +7,6 @@ import dev.chrisbanes.insetter.applyInsetter
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import kotlinx.coroutines.flow.*
 import org.xtimms.ridebus.R
-import org.xtimms.ridebus.data.preference.PreferencesHelper
 import org.xtimms.ridebus.databinding.StopsControllerBinding
 import org.xtimms.ridebus.ui.base.controller.NucleusController
 import org.xtimms.ridebus.ui.base.controller.RootController
@@ -16,7 +15,6 @@ import org.xtimms.ridebus.ui.main.MainActivity
 import org.xtimms.ridebus.ui.stops.details.RoutesOnStopController
 import org.xtimms.ridebus.util.view.onAnimationsFinished
 import reactivecircus.flowbinding.appcompat.queryTextChanges
-import uy.kohesive.injekt.injectLazy
 
 class StopsController :
     NucleusController<StopsControllerBinding, StopsPresenter>(),
@@ -24,8 +22,6 @@ class StopsController :
     FlexibleAdapter.OnItemClickListener,
     FlexibleAdapter.OnUpdateListener,
     StopsAdapter.OnItemClickListener {
-
-    private val preferences: PreferencesHelper by injectLazy()
 
     private var adapter: StopsAdapter? = null
 
